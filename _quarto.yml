@@ -1,5 +1,6 @@
 project:
   type: book
+  output-dir: docs
 book:
   title: "CFI Redistribution"
   favicon: assets/img/favicon.png
