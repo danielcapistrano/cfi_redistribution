@@ -1,0 +1,20 @@
+# Introduction {.unnumbered}
+
+Promises in the proposal:  
+
+- [ESS] measure on the role of the government in reducing inequality [...] could be used to examine people’s opinion on this over time (from 2002 to 2020) and compared to other EU countries
+- [ESS] special welfare module was included in 2008 and 2016 of the ESS. This could be used to highlight some of the key changes in welfare attitudes across this eight-year period
+- With additional resources [...] conduct an experiment on re-distribution preferences
+
+## Key points
+
+- Over time, there is an overall stable support for government's role  in reducing differences in income levels (@fig-ess-time) and for wealth redistribution (@fig-vs-time).
+
+- ESS respondents from lower social classes and in worse financial situation are more likely to agree that the government should reduce differences in income levels (@tbl-multiv-gincdif).  
+
+- From 2008 to 2016, there was a significant reduction on the average agreement that social benefits pplace too great strain on economy (@fig-benefits)  
+
+- Respondents in worse financial situation (subjective self-reported) tend to disagree more with the perspective that social benefits are disincentives for work, economy and social cooperation (@tbl-multiv-beliefs)  
+
+
+- There is a trajectory of increasing support for redistribution across skilled and unskilled workers since round 8 (2016). However, for lower-grade service class and small business owners, there seems to be a break in this trajectory captured in the latest wave (@fig-class5-time)

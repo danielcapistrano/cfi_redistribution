@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.17">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Covid19 – CFI Redistribution</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./trust.html" rel="next">
+<link href="./welfare.html" rel="prev">
+<link href="./assets/img/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-da03d714c310c60cec1d83284c92da2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9c450107545e95ffdf74a3a7323d25b0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./covid19.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Covid19</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./assets/img/cover.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">CFI Redistribution</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://esri.ie" title="ESRI" class="quarto-navigation-tool px-1" aria-label="ESRI"><i class="bi bi-globe"></i></a>
+    <a href="https://github.com/danielcapistrano/CFI_redistribution" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./CFI-Redistribution.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./CFI-Redistribution.docx">
+              <i class="bi bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./redistribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Redistribution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./welfare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Welfare</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./covid19.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Covid19</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trust.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Trust</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./process.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annex: Data processing</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#time-series" id="toc-time-series" class="nav-link active" data-scroll-target="#time-series"><span class="header-section-number">4.1</span> Time series</a></li>
+  <li><a href="#job-loss" id="toc-job-loss" class="nav-link" data-scroll-target="#job-loss"><span class="header-section-number">4.2</span> Job loss</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Covid19</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to get the name of the latest file</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>get_latest <span class="ot">&lt;-</span> <span class="cf">function</span>(file_pattern){</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    file_list <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">"./data"</span>, <span class="at">pattern =</span> file_pattern)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    latest_file <span class="ot">&lt;-</span> <span class="fu">tail</span>(<span class="fu">sort</span>(file_list), <span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(latest_file)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Read file in the root of sub-folder "data" with name containing "ESS" </span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>df_ess <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="fu">paste0</span>(<span class="st">"data/"</span>, <span class="fu">get_latest</span>(<span class="st">"ESS"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>As shown in <a href="redistribution.html#fig-ess-time" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>, the ESS data indicates a slightly higher average support for redistribution after the 2008 economic crisis and after the 2022 Covid19 pandemic. Evidence from a survey experiment in the USA show that participants are more willing to prioritize society’s problems when exposed to issues related to the pandemic <span class="citation" data-cites="cappelen_solidarity_2021">(<a href="references.html#ref-cappelen_solidarity_2021" role="doc-biblioref"><strong>cappelen_solidarity_2021?</strong></a>)</span>. Van Hootegem and Laenen <span class="citation" data-cites="hootegem_wave_2023">(<a href="references.html#ref-hootegem_wave_2023" role="doc-biblioref"><strong>hootegem_wave_2023?</strong></a>)</span> show that the increase in support for a universal basic income increased with the pandemic but it was short lived.</p>
+<p>In this section we explore further the potential impact of the pandemic on support for redistribution.</p>
+<section id="time-series" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="time-series"><span class="header-section-number">4.1</span> Time series</h2>
+<p><a href="redistribution.html#tbl-multiv-gincdif" class="quarto-xref">Table&nbsp;<span>2.2</span></a> suggests that both social class and feeling about household income are significant predictors of support for redistribution. <a href="#fig-hincfel-time" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> shows that the difference between subjective income groups remains stable over time, with all groups responding similar to 2008 crisis and the pandemic.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>get_series <span class="ot">&lt;-</span> <span class="cf">function</span>(myvar){</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(df_ess <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="fu">get</span>(myvar))) <span class="sc">|&gt;</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(<span class="at">round =</span> <span class="fu">as_factor</span>(essround), <span class="at">class =</span> <span class="fu">as_factor</span>(<span class="fu">get</span>(myvar)))  <span class="sc">|&gt;</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gincdif_inv =</span> <span class="dv">6</span> <span class="sc">-</span> gincdif) <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean =</span> <span class="fu">weighted.mean</span>(gincdif_inv, <span class="at">w =</span> pspwght, <span class="at">na.rm =</span> T),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">se =</span> <span class="fu">sd</span>(gincdif_inv, <span class="at">na.rm =</span> T)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>((gincdif_inv)))) <span class="sc">|&gt;</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y =</span> mean, <span class="at">ymin =</span> mean <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span>se, <span class="at">ymax =</span> mean <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span>se, <span class="at">group =</span> class, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_pointrange</span>() <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">3</span>,<span class="fl">4.5</span>)<span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotly</span>()  <span class="sc">|&gt;</span> </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout</span>(<span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">"h"</span>, <span class="at">x =</span> <span class="fl">0.4</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.2</span>))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">get_series</span>(<span class="st">"hincfel"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-hincfel-time" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-hincfel-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Average support for redistribution by financial situation (2002-2022)
+</figcaption>
+<div aria-describedby="fig-hincfel-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-aa761b317676ddd5a734" style="width:70%;height:70%;"></div>
+<script type="application/json" data-for="htmlwidget-aa761b317676ddd5a734">{"x":{"data":[{"x":[1,2,3,4,5,6,7,8,9,10,11],"y":[3.6429937827838885,3.6597279596627343,3.5471726103538259,3.6556996579681886,3.7625144381005975,3.7858629540074014,3.7231668977106613,3.5812486212427648,3.5844664491841702,3.697889963707865,3.8335082406767067],"text":["round: 1<br />mean: 3.642994<br />mean - 1.96 * se: 3.574518<br />mean + 1.96 * se: 3.711470<br />class: Living comfortably on present income<br />class: Living comfortably on present income","round: 2<br />mean: 3.659728<br />mean - 1.96 * se: 3.603071<br />mean + 1.96 * se: 3.716385<br />class: Living comfortably on present income<br />class: Living comfortably on present income","round: 3<br />mean: 3.547173<br />mean - 1.96 * se: 3.477837<br />mean + 1.96 * se: 3.616508<br />class: Living comfortably on present income<br />class: Living comfortably on present income","round: 4<br />mean: 3.655700<br />mean - 1.96 * se: 3.571738<br />mean + 1.96 * se: 3.739661<br />class: Living comfortably on present income<br />class: Living comfortably on present income","round: 5<br />mean: 3.762514<br />mean - 1.96 * se: 3.668185<br />mean + 1.96 * se: 3.856844<br />class: Living comfortably on present income<br />class: Living comfortably on present income","round: 6<br />mean: 3.785863<br />mean - 1.96 * se: 3.696864<br />mean + 1.96 * se: 3.874862<br />class: Living comfortably on present income<br />class: Living comfortably on present income","round: 7<br />mean: 3.723167<br />mean - 1.96 * se: 3.639840<br />mean + 1.96 * se: 3.806494<br />class: Living comfortably on present income<br />class: Living comfortably on present income","round: 8<br />mean: 3.581249<br />mean - 1.96 * se: 3.516921<br />mean + 1.96 * se: 3.645576<br />class: Living comfortably on present income<br />class: Living comfortably on present income","round: 9<br />mean: 3.584466<br />mean - 1.96 * se: 3.515201<br />mean + 1.96 * se: 3.653732<br />class: Living comfortably on present income<br />class: Living comfortably on present income","round: 10<br />mean: 3.697890<br />mean - 1.96 * se: 3.622546<br />mean + 1.96 * se: 3.773234<br />class: Living comfortably on present income<br />class: Living comfortably on present income","round: 11<br />mean: 3.833508<br />mean - 1.96 * se: 3.759669<br />mean + 1.96 * se: 3.907348<br />class: Living comfortably on present income<br />class: Living comfortably on present income"],"type":"scatter","mode":"lines+markers","opacity":1,"line":{"color":"rgba(248,118,109,1)","width":1.8897637795275593,"dash":"solid"},"error_y":{"array":[0.068476234720749485,0.056656608136883779,0.069335688321980449,0.083961384605610867,0.094329291515005131,0.088998874737731715,0.083327375959775019,0.064327746193224566,0.069265792056373066,0.075343964011231002,0.07383968436312971],"arrayminus":[0.068476234720749485,0.056656608136883779,0.069335688321980449,0.083961384605610867,0.094329291515005131,0.088998874737731715,0.083327375959775019,0.064327746193224566,0.069265792056373066,0.075343964011231002,0.07383968436312971],"type":"data","width":0,"symmetric":false,"color":"rgba(248,118,109,1)"},"name":"Living comfortably on present income","legendgroup":"Living comfortably on present income","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":1.8897637795275593,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(248,118,109,1)"}},"hoveron":"points","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11],"y":[3.8365226109265014,3.8314340380141747,3.8142504944786224,3.7911430082004909,3.9373484475511664,3.9838155550134107,3.9393829712450086,3.7622541533234695,3.866609399733552,3.9439347666156115,3.9502138109462757],"text":["round: 1<br />mean: 3.836523<br />mean - 1.96 * se: 3.779825<br />mean + 1.96 * se: 3.893220<br />class: Coping on present income<br />class: Coping on present income","round: 2<br />mean: 3.831434<br />mean - 1.96 * se: 3.774449<br />mean + 1.96 * se: 3.888419<br />class: Coping on present income<br />class: Coping on present income","round: 3<br />mean: 3.814250<br />mean - 1.96 * se: 3.748998<br />mean + 1.96 * se: 3.879503<br />class: Coping on present income<br />class: Coping on present income","round: 4<br />mean: 3.791143<br />mean - 1.96 * se: 3.729576<br />mean + 1.96 * se: 3.852710<br />class: Coping on present income<br />class: Coping on present income","round: 5<br />mean: 3.937348<br />mean - 1.96 * se: 3.881348<br />mean + 1.96 * se: 3.993349<br />class: Coping on present income<br />class: Coping on present income","round: 6<br />mean: 3.983816<br />mean - 1.96 * se: 3.929777<br />mean + 1.96 * se: 4.037854<br />class: Coping on present income<br />class: Coping on present income","round: 7<br />mean: 3.939383<br />mean - 1.96 * se: 3.884607<br />mean + 1.96 * se: 3.994159<br />class: Coping on present income<br />class: Coping on present income","round: 8<br />mean: 3.762254<br />mean - 1.96 * se: 3.711095<br />mean + 1.96 * se: 3.813414<br />class: Coping on present income<br />class: Coping on present income","round: 9<br />mean: 3.866609<br />mean - 1.96 * se: 3.810025<br />mean + 1.96 * se: 3.923194<br />class: Coping on present income<br />class: Coping on present income","round: 10<br />mean: 3.943935<br />mean - 1.96 * se: 3.878493<br />mean + 1.96 * se: 4.009377<br />class: Coping on present income<br />class: Coping on present income","round: 11<br />mean: 3.950214<br />mean - 1.96 * se: 3.884257<br />mean + 1.96 * se: 4.016171<br />class: Coping on present income<br />class: Coping on present income"],"type":"scatter","mode":"lines+markers","opacity":1,"line":{"color":"rgba(124,174,0,1)","width":1.8897637795275593,"dash":"solid"},"error_y":{"array":[0.056697119091031922,0.056985081917199309,0.065252621174310299,0.061567460932919538,0.056000380742106781,0.054038097036982702,0.054775692720570035,0.051159359117966208,0.056584610247317979,0.065441966750350744,0.065956838122046779],"arrayminus":[0.056697119091031922,0.056985081917199309,0.065252621174310299,0.061567460932919538,0.056000380742106781,0.054038097036982702,0.054775692720570035,0.051159359117966208,0.056584610247317979,0.065441966750350744,0.065956838122046335],"type":"data","width":0,"symmetric":false,"color":"rgba(124,174,0,1)"},"name":"Coping on present income","legendgroup":"Coping on present income","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(124,174,0,1)","opacity":1,"size":1.8897637795275593,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(124,174,0,1)"}},"hoveron":"points","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11],"y":[3.9915228297167671,3.9324823396425606,3.8186045346674833,3.887866508784291,4.1320983048701212,4.0023846503419795,4.0356069024749512,3.917848660557457,3.977758900602943,4.1502677243576915,4.1592015395832478],"text":["round: 1<br />mean: 3.991523<br />mean - 1.96 * se: 3.894585<br />mean + 1.96 * se: 4.088460<br />class: Difficult on present income<br />class: Difficult on present income","round: 2<br />mean: 3.932482<br />mean - 1.96 * se: 3.833715<br />mean + 1.96 * se: 4.031250<br />class: Difficult on present income<br />class: Difficult on present income","round: 3<br />mean: 3.818605<br />mean - 1.96 * se: 3.680119<br />mean + 1.96 * se: 3.957090<br />class: Difficult on present income<br />class: Difficult on present income","round: 4<br />mean: 3.887867<br />mean - 1.96 * se: 3.769747<br />mean + 1.96 * se: 4.005986<br />class: Difficult on present income<br />class: Difficult on present income","round: 5<br />mean: 4.132098<br />mean - 1.96 * se: 4.050024<br />mean + 1.96 * se: 4.214173<br />class: Difficult on present income<br />class: Difficult on present income","round: 6<br />mean: 4.002385<br />mean - 1.96 * se: 3.919575<br />mean + 1.96 * se: 4.085195<br />class: Difficult on present income<br />class: Difficult on present income","round: 7<br />mean: 4.035607<br />mean - 1.96 * se: 3.946062<br />mean + 1.96 * se: 4.125151<br />class: Difficult on present income<br />class: Difficult on present income","round: 8<br />mean: 3.917849<br />mean - 1.96 * se: 3.830439<br />mean + 1.96 * se: 4.005258<br />class: Difficult on present income<br />class: Difficult on present income","round: 9<br />mean: 3.977759<br />mean - 1.96 * se: 3.869378<br />mean + 1.96 * se: 4.086140<br />class: Difficult on present income<br />class: Difficult on present income","round: 10<br />mean: 4.150268<br />mean - 1.96 * se: 4.048035<br />mean + 1.96 * se: 4.252501<br />class: Difficult on present income<br />class: Difficult on present income","round: 11<br />mean: 4.159202<br />mean - 1.96 * se: 4.045620<br />mean + 1.96 * se: 4.272783<br />class: Difficult on present income<br />class: Difficult on present income"],"type":"scatter","mode":"lines+markers","opacity":1,"line":{"color":"rgba(0,191,196,1)","width":1.8897637795275593,"dash":"solid"},"error_y":{"array":[0.09693752239506459,0.098767323696201892,0.13848506188087217,0.11811901280391179,0.082074517961193472,0.082810025535889231,0.08954440948476261,0.087409828096991049,0.108380727441868,0.10223304947447698,0.11358110937056498],"arrayminus":[0.09693752239506459,0.098767323696201448,0.13848506188087217,0.11811901280391224,0.082074517961193472,0.082810025535889231,0.089544409484763055,0.087409828096991049,0.108380727441868,0.10223304947447698,0.11358110937056498],"type":"data","width":0,"symmetric":false,"color":"rgba(0,191,196,1)"},"name":"Difficult on present income","legendgroup":"Difficult on present income","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":1.8897637795275593,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(0,191,196,1)"}},"hoveron":"points","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11],"y":[3.8900941522157404,4.1555399259636738,4.2553304461440664,3.9624266973397537,4.4238945651820218,4.278655532430875,4.2136753020266928,3.9436740436174533,3.9577664761505109,4.1186209849561957,4.3858695318477308],"text":["round: 1<br />mean: 3.890094<br />mean - 1.96 * se: 3.660952<br />mean + 1.96 * se: 4.119236<br />class: Very difficult on present income<br />class: Very difficult on present income","round: 2<br />mean: 4.155540<br />mean - 1.96 * se: 3.920780<br />mean + 1.96 * se: 4.390299<br />class: Very difficult on present income<br />class: Very difficult on present income","round: 3<br />mean: 4.255330<br />mean - 1.96 * se: 3.949216<br />mean + 1.96 * se:       NA<br />class: Very difficult on present income<br />class: Very difficult on present income","round: 4<br />mean: 3.962427<br />mean - 1.96 * se: 3.740332<br />mean + 1.96 * se: 4.184522<br />class: Very difficult on present income<br />class: Very difficult on present income","round: 5<br />mean: 4.423895<br />mean - 1.96 * se: 4.330025<br />mean + 1.96 * se:       NA<br />class: Very difficult on present income<br />class: Very difficult on present income","round: 6<br />mean: 4.278656<br />mean - 1.96 * se: 4.170213<br />mean + 1.96 * se: 4.387098<br />class: Very difficult on present income<br />class: Very difficult on present income","round: 7<br />mean: 4.213675<br />mean - 1.96 * se: 4.076997<br />mean + 1.96 * se: 4.350354<br />class: Very difficult on present income<br />class: Very difficult on present income","round: 8<br />mean: 3.943674<br />mean - 1.96 * se: 3.774454<br />mean + 1.96 * se: 4.112894<br />class: Very difficult on present income<br />class: Very difficult on present income","round: 9<br />mean: 3.957766<br />mean - 1.96 * se: 3.734894<br />mean + 1.96 * se: 4.180639<br />class: Very difficult on present income<br />class: Very difficult on present income","round: 10<br />mean: 4.118621<br />mean - 1.96 * se: 3.923675<br />mean + 1.96 * se: 4.313567<br />class: Very difficult on present income<br />class: Very difficult on present income","round: 11<br />mean: 4.385870<br />mean - 1.96 * se: 4.204532<br />mean + 1.96 * se:       NA<br />class: Very difficult on present income<br />class: Very difficult on present income"],"type":"scatter","mode":"lines+markers","opacity":1,"line":{"color":"rgba(199,124,255,1)","width":1.8897637795275593,"dash":"solid"},"error_y":{"array":[0.22914194175463942,0.2347595594218852,null,0.22209499748632666,null,0.10844238288278962,0.13667865819606995,0.16921991212115906,0.22287238493708239,0.19494638392753671,null],"arrayminus":[0.22914194175463942,0.2347595594218852,0.30611447716819207,0.22209499748632666,0.093869789560105943,0.10844238288278962,0.13667865819606995,0.16921991212115861,0.22287238493708239,0.19494638392753716,0.18133784685747489],"type":"data","width":0,"symmetric":false,"color":"rgba(199,124,255,1)"},"name":"Very difficult on present income","legendgroup":"Very difficult on present income","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(199,124,255,1)","opacity":1,"size":1.8897637795275593,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(199,124,255,1)"}},"hoveron":"points","frame":null}],"layout":{"margin":{"t":26.228310502283108,"r":7.3059360730593621,"b":40.182648401826498,"l":43.105022831050235},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,11.6],"tickmode":"array","ticktext":["1","2","3","4","5","6","7","8","9","10","11"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11],"categoryorder":"array","categoryarray":["1","2","3","4","5","6","7","8","9","10","11"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"round","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[2.9249999999999998,4.5750000000000002],"tickmode":"array","ticktext":["3.0","3.5","4.0","4.5"],"tickvals":[3,3.5,4,4.5],"categoryorder":"array","categoryarray":["3.0","3.5","4.0","4.5"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"mean","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"class","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"orientation":"h","x":0.40000000000000002,"y":-0.20000000000000001},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"14c2b2076513f":{"x":{},"y":{},"ymin":{},"ymax":{},"colour":{},"type":"scatter"},"14c2b37d00fbf":{"x":{},"y":{},"ymin":{},"ymax":{},"colour":{}}},"cur_data":"14c2b2076513f","visdat":{"14c2b2076513f":["function (y) ","x"],"14c2b37d00fbf":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</figure>
+</div>
+</div>
+<p>Conversely, the <a href="#fig-class5-time" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> suggests that there is a slightly different pattern in response to the pandemic. There is a trajectory of increasing support for redistribution across skilled and unskilled workers since round 8 (2016). However, for lower-grade service class and small business owners, there seems to be a break in this trajectory captured in the latest wave.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_series</span>(<span class="st">"class5"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-class5-time" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-class5-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Average support for redistribution by social class (2002-2022)
+</figcaption>
+<div aria-describedby="fig-class5-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-83b49d56507ec36f4c4b" style="width:70%;height:70%;"></div>
+<script type="application/json" data-for="htmlwidget-83b49d56507ec36f4c4b">{"x":{"data":[{"x":[1,2,3,4,5,6,7,8,9,10,11],"y":[3.5051229308465106,3.6004652874898335,3.5258807054247141,3.5429043507189726,3.8031375600213884,3.7189965255504234,3.5877018739156896,3.5830560737824131,3.5586818136737164,3.6337316969595581,3.7704440918846656],"text":["round: 1<br />mean: 3.505123<br />mean - 1.96 * se: 3.372320<br />mean + 1.96 * se: 3.637926<br />class: Higher-grade service class<br />class: Higher-grade service class","round: 2<br />mean: 3.600465<br />mean - 1.96 * se: 3.483294<br />mean + 1.96 * se: 3.717637<br />class: Higher-grade service class<br />class: Higher-grade service class","round: 3<br />mean: 3.525881<br />mean - 1.96 * se: 3.390270<br />mean + 1.96 * se: 3.661492<br />class: Higher-grade service class<br />class: Higher-grade service class","round: 4<br />mean: 3.542904<br />mean - 1.96 * se: 3.407123<br />mean + 1.96 * se: 3.678686<br />class: Higher-grade service class<br />class: Higher-grade service class","round: 5<br />mean: 3.803138<br />mean - 1.96 * se: 3.678097<br />mean + 1.96 * se: 3.928178<br />class: Higher-grade service class<br />class: Higher-grade service class","round: 6<br />mean: 3.718997<br />mean - 1.96 * se: 3.592684<br />mean + 1.96 * se: 3.845309<br />class: Higher-grade service class<br />class: Higher-grade service class","round: 7<br />mean: 3.587702<br />mean - 1.96 * se: 3.471683<br />mean + 1.96 * se: 3.703721<br />class: Higher-grade service class<br />class: Higher-grade service class","round: 8<br />mean: 3.583056<br />mean - 1.96 * se: 3.491551<br />mean + 1.96 * se: 3.674561<br />class: Higher-grade service class<br />class: Higher-grade service class","round: 9<br />mean: 3.558682<br />mean - 1.96 * se: 3.453669<br />mean + 1.96 * se: 3.663695<br />class: Higher-grade service class<br />class: Higher-grade service class","round: 10<br />mean: 3.633732<br />mean - 1.96 * se: 3.515135<br />mean + 1.96 * se: 3.752329<br />class: Higher-grade service class<br />class: Higher-grade service class","round: 11<br />mean: 3.770444<br />mean - 1.96 * se: 3.669856<br />mean + 1.96 * se: 3.871032<br />class: Higher-grade service class<br />class: Higher-grade service class"],"type":"scatter","mode":"lines+markers","opacity":1,"line":{"color":"rgba(248,118,109,1)","width":1.8897637795275593,"dash":"solid"},"error_y":{"array":[0.13280281656476811,0.11717144354588882,0.13561117887154062,0.1357817002441446,0.12504027460452383,0.12631210546563709,0.11601901235558509,0.091504705860863567,0.1050130075588398,0.11859684988207286,0.10058839531569674],"arrayminus":[0.13280281656476811,0.11717144354588882,0.13561117887154062,0.1357817002441446,0.12504027460452383,0.12631210546563709,0.11601901235558509,0.091504705860863567,0.1050130075588398,0.11859684988207286,0.10058839531569674],"type":"data","width":0,"symmetric":false,"color":"rgba(248,118,109,1)"},"name":"Higher-grade service class","legendgroup":"Higher-grade service class","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":1.8897637795275593,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(248,118,109,1)"}},"hoveron":"points","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11],"y":[3.7721615938414708,3.7497386705194247,3.6211099247675791,3.8545386538191337,3.9268806777470435,3.8804508982299208,3.9494590406942303,3.6324185388544392,3.7458913653323851,3.8343886183044211,3.7632180083541211],"text":["round: 1<br />mean: 3.772162<br />mean - 1.96 * se: 3.649827<br />mean + 1.96 * se: 3.894496<br />class: Lower-grade service class<br />class: Lower-grade service class","round: 2<br />mean: 3.749739<br />mean - 1.96 * se: 3.649703<br />mean + 1.96 * se: 3.849774<br />class: Lower-grade service class<br />class: Lower-grade service class","round: 3<br />mean: 3.621110<br />mean - 1.96 * se: 3.510512<br />mean + 1.96 * se: 3.731708<br />class: Lower-grade service class<br />class: Lower-grade service class","round: 4<br />mean: 3.854539<br />mean - 1.96 * se: 3.751326<br />mean + 1.96 * se: 3.957752<br />class: Lower-grade service class<br />class: Lower-grade service class","round: 5<br />mean: 3.926881<br />mean - 1.96 * se: 3.821876<br />mean + 1.96 * se: 4.031885<br />class: Lower-grade service class<br />class: Lower-grade service class","round: 6<br />mean: 3.880451<br />mean - 1.96 * se: 3.772072<br />mean + 1.96 * se: 3.988830<br />class: Lower-grade service class<br />class: Lower-grade service class","round: 7<br />mean: 3.949459<br />mean - 1.96 * se: 3.843989<br />mean + 1.96 * se: 4.054929<br />class: Lower-grade service class<br />class: Lower-grade service class","round: 8<br />mean: 3.632419<br />mean - 1.96 * se: 3.530456<br />mean + 1.96 * se: 3.734381<br />class: Lower-grade service class<br />class: Lower-grade service class","round: 9<br />mean: 3.745891<br />mean - 1.96 * se: 3.647958<br />mean + 1.96 * se: 3.843824<br />class: Lower-grade service class<br />class: Lower-grade service class","round: 10<br />mean: 3.834389<br />mean - 1.96 * se: 3.677760<br />mean + 1.96 * se: 3.991018<br />class: Lower-grade service class<br />class: Lower-grade service class","round: 11<br />mean: 3.763218<br />mean - 1.96 * se: 3.638812<br />mean + 1.96 * se: 3.887624<br />class: Lower-grade service class<br />class: Lower-grade service class"],"type":"scatter","mode":"lines+markers","opacity":1,"line":{"color":"rgba(163,165,0,1)","width":1.8897637795275593,"dash":"solid"},"error_y":{"array":[0.12233483444746529,0.10003556993804885,0.1105977618863152,0.10321293975359369,0.10500449083659413,0.10837872620090527,0.1054704583949917,0.1019620469908098,0.097932866265638463,0.15662900626954768,0.12440620950969183],"arrayminus":[0.12233483444746529,0.10003556993804885,0.1105977618863152,0.10321293975359369,0.10500449083659369,0.10837872620090527,0.1054704583949917,0.1019620469908098,0.097932866265638463,0.15662900626954768,0.12440620950969183],"type":"data","width":0,"symmetric":false,"color":"rgba(163,165,0,1)"},"name":"Lower-grade service class","legendgroup":"Lower-grade service class","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(163,165,0,1)","opacity":1,"size":1.8897637795275593,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(163,165,0,1)"}},"hoveron":"points","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11],"y":[3.8087193014251226,3.6448815403940182,3.513242653532699,3.7723149181075506,3.9638700559698323,3.7927182915701749,3.8945830365573442,3.5270358547004768,3.6174476902160229,3.7806400373367239,3.6232141194663732],"text":["round: 1<br />mean: 3.808719<br />mean - 1.96 * se: 3.712437<br />mean + 1.96 * se: 3.905002<br />class: Small business owners<br />class: Small business owners","round: 2<br />mean: 3.644882<br />mean - 1.96 * se: 3.532812<br />mean + 1.96 * se: 3.756951<br />class: Small business owners<br />class: Small business owners","round: 3<br />mean: 3.513243<br />mean - 1.96 * se: 3.371750<br />mean + 1.96 * se: 3.654735<br />class: Small business owners<br />class: Small business owners","round: 4<br />mean: 3.772315<br />mean - 1.96 * se: 3.641531<br />mean + 1.96 * se: 3.903098<br />class: Small business owners<br />class: Small business owners","round: 5<br />mean: 3.963870<br />mean - 1.96 * se: 3.841656<br />mean + 1.96 * se: 4.086084<br />class: Small business owners<br />class: Small business owners","round: 6<br />mean: 3.792718<br />mean - 1.96 * se: 3.681436<br />mean + 1.96 * se: 3.904001<br />class: Small business owners<br />class: Small business owners","round: 7<br />mean: 3.894583<br />mean - 1.96 * se: 3.779407<br />mean + 1.96 * se: 4.009760<br />class: Small business owners<br />class: Small business owners","round: 8<br />mean: 3.527036<br />mean - 1.96 * se: 3.417992<br />mean + 1.96 * se: 3.636080<br />class: Small business owners<br />class: Small business owners","round: 9<br />mean: 3.617448<br />mean - 1.96 * se: 3.504925<br />mean + 1.96 * se: 3.729971<br />class: Small business owners<br />class: Small business owners","round: 10<br />mean: 3.780640<br />mean - 1.96 * se: 3.632351<br />mean + 1.96 * se: 3.928929<br />class: Small business owners<br />class: Small business owners","round: 11<br />mean: 3.623214<br />mean - 1.96 * se: 3.486696<br />mean + 1.96 * se: 3.759732<br />class: Small business owners<br />class: Small business owners"],"type":"scatter","mode":"lines+markers","opacity":1,"line":{"color":"rgba(0,191,125,1)","width":1.8897637795275593,"dash":"solid"},"error_y":{"array":[0.096282374267099513,0.11206992538126492,0.14149238299005118,0.13078348928250838,0.12221424545884929,0.1112823554028477,0.11517649930583262,0.10904408243675556,0.11252294474018365,0.14828930403005369,0.136518219031879],"arrayminus":[0.096282374267099513,0.11206992538126492,0.14149238299005118,0.13078348928250838,0.12221424545884885,0.1112823554028477,0.11517649930583262,0.10904408243675556,0.11252294474018365,0.14828930403005369,0.136518219031879],"type":"data","width":0,"symmetric":false,"color":"rgba(0,191,125,1)"},"name":"Small business owners","legendgroup":"Small business owners","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,191,125,1)","opacity":1,"size":1.8897637795275593,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(0,191,125,1)"}},"hoveron":"points","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11],"y":[3.8651281056875022,3.7897242441519055,3.762874261923193,3.7915177683731276,4.0630427757875367,4.0550769979146368,3.9895148365894029,3.775818910877315,3.8501103197395441,3.9424382859214546,4.045738356894514],"text":["round: 1<br />mean: 3.865128<br />mean - 1.96 * se: 3.801148<br />mean + 1.96 * se: 3.929108<br />class: Skilled workers<br />class: Skilled workers","round: 2<br />mean: 3.789724<br />mean - 1.96 * se: 3.725991<br />mean + 1.96 * se: 3.853457<br />class: Skilled workers<br />class: Skilled workers","round: 3<br />mean: 3.762874<br />mean - 1.96 * se: 3.685234<br />mean + 1.96 * se: 3.840515<br />class: Skilled workers<br />class: Skilled workers","round: 4<br />mean: 3.791518<br />mean - 1.96 * se: 3.704833<br />mean + 1.96 * se: 3.878203<br />class: Skilled workers<br />class: Skilled workers","round: 5<br />mean: 4.063043<br />mean - 1.96 * se: 3.991432<br />mean + 1.96 * se: 4.134654<br />class: Skilled workers<br />class: Skilled workers","round: 6<br />mean: 4.055077<br />mean - 1.96 * se: 3.991610<br />mean + 1.96 * se: 4.118544<br />class: Skilled workers<br />class: Skilled workers","round: 7<br />mean: 3.989515<br />mean - 1.96 * se: 3.919783<br />mean + 1.96 * se: 4.059247<br />class: Skilled workers<br />class: Skilled workers","round: 8<br />mean: 3.775819<br />mean - 1.96 * se: 3.710832<br />mean + 1.96 * se: 3.840806<br />class: Skilled workers<br />class: Skilled workers","round: 9<br />mean: 3.850110<br />mean - 1.96 * se: 3.777404<br />mean + 1.96 * se: 3.922816<br />class: Skilled workers<br />class: Skilled workers","round: 10<br />mean: 3.942438<br />mean - 1.96 * se: 3.859758<br />mean + 1.96 * se: 4.025119<br />class: Skilled workers<br />class: Skilled workers","round: 11<br />mean: 4.045738<br />mean - 1.96 * se: 3.962497<br />mean + 1.96 * se: 4.128980<br />class: Skilled workers<br />class: Skilled workers"],"type":"scatter","mode":"lines+markers","opacity":1,"line":{"color":"rgba(0,176,246,1)","width":1.8897637795275593,"dash":"solid"},"error_y":{"array":[0.06397970840311773,0.063732856737731769,0.077640279858705252,0.086685148112932708,0.071610732140739763,0.063466624307120689,0.069732168046763299,0.064987214649834701,0.072705956504647062,0.082680708106971146,0.083241347497079232],"arrayminus":[0.06397970840311773,0.063732856737731769,0.077640279858705252,0.086685148112932708,0.071610732140740208,0.063466624307121133,0.069732168046763299,0.064987214649834701,0.072705956504647062,0.082680708106971146,0.083241347497079676],"type":"data","width":0,"symmetric":false,"color":"rgba(0,176,246,1)"},"name":"Skilled workers","legendgroup":"Skilled workers","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(0,176,246,1)","opacity":1,"size":1.8897637795275593,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(0,176,246,1)"}},"hoveron":"points","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11],"y":[3.8251207184142353,3.8916382742735882,3.8093510992540307,3.8281584314800048,4.1256276401949599,4.1494407868130949,4.123515694992931,3.9480630068694027,4.0283886546535381,4.1214459714131673,4.2071850402098638],"text":["round: 1<br />mean: 3.825121<br />mean - 1.96 * se: 3.734061<br />mean + 1.96 * se: 3.916180<br />class: Unskilled workers<br />class: Unskilled workers","round: 2<br />mean: 3.891638<br />mean - 1.96 * se: 3.814815<br />mean + 1.96 * se: 3.968461<br />class: Unskilled workers<br />class: Unskilled workers","round: 3<br />mean: 3.809351<br />mean - 1.96 * se: 3.709818<br />mean + 1.96 * se: 3.908884<br />class: Unskilled workers<br />class: Unskilled workers","round: 4<br />mean: 3.828158<br />mean - 1.96 * se: 3.739888<br />mean + 1.96 * se: 3.916429<br />class: Unskilled workers<br />class: Unskilled workers","round: 5<br />mean: 4.125628<br />mean - 1.96 * se: 4.046679<br />mean + 1.96 * se: 4.204576<br />class: Unskilled workers<br />class: Unskilled workers","round: 6<br />mean: 4.149441<br />mean - 1.96 * se: 4.068777<br />mean + 1.96 * se: 4.230105<br />class: Unskilled workers<br />class: Unskilled workers","round: 7<br />mean: 4.123516<br />mean - 1.96 * se: 4.043920<br />mean + 1.96 * se: 4.203111<br />class: Unskilled workers<br />class: Unskilled workers","round: 8<br />mean: 3.948063<br />mean - 1.96 * se: 3.875304<br />mean + 1.96 * se: 4.020822<br />class: Unskilled workers<br />class: Unskilled workers","round: 9<br />mean: 4.028389<br />mean - 1.96 * se: 3.943783<br />mean + 1.96 * se: 4.112994<br />class: Unskilled workers<br />class: Unskilled workers","round: 10<br />mean: 4.121446<br />mean - 1.96 * se: 4.014935<br />mean + 1.96 * se: 4.227957<br />class: Unskilled workers<br />class: Unskilled workers","round: 11<br />mean: 4.207185<br />mean - 1.96 * se: 4.119866<br />mean + 1.96 * se: 4.294504<br />class: Unskilled workers<br />class: Unskilled workers"],"type":"scatter","mode":"lines+markers","opacity":1,"line":{"color":"rgba(231,107,243,1)","width":1.8897637795275593,"dash":"solid"},"error_y":{"array":[0.091059468681820022,0.076823160732653495,0.09953336720856365,0.088270127047189728,0.078948246697430946,0.080664159788900847,0.079595293595923877,0.072758873267801949,0.08460560528451655,0.10651054532840831,0.087318895044653289],"arrayminus":[0.091059468681820022,0.076823160732653495,0.09953336720856365,0.088270127047189728,0.078948246697430946,0.080664159788900847,0.079595293595923877,0.072758873267801949,0.084605605284516994,0.10651054532840831,0.087318895044653289],"type":"data","width":0,"symmetric":false,"color":"rgba(231,107,243,1)"},"name":"Unskilled workers","legendgroup":"Unskilled workers","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","marker":{"autocolorscale":false,"color":"rgba(231,107,243,1)","opacity":1,"size":1.8897637795275593,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(231,107,243,1)"}},"hoveron":"points","frame":null}],"layout":{"margin":{"t":26.228310502283108,"r":7.3059360730593621,"b":40.182648401826498,"l":43.105022831050235},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,11.6],"tickmode":"array","ticktext":["1","2","3","4","5","6","7","8","9","10","11"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11],"categoryorder":"array","categoryarray":["1","2","3","4","5","6","7","8","9","10","11"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"round","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[2.9249999999999998,4.5750000000000002],"tickmode":"array","ticktext":["3.0","3.5","4.0","4.5"],"tickvals":[3,3.5,4,4.5],"categoryorder":"array","categoryarray":["3.0","3.5","4.0","4.5"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"mean","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"class","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"orientation":"h","x":0.40000000000000002,"y":-0.20000000000000001},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"14c2b4ba4684e":{"x":{},"y":{},"ymin":{},"ymax":{},"colour":{},"type":"scatter"},"14c2b16bbffae":{"x":{},"y":{},"ymin":{},"ymax":{},"colour":{}}},"cur_data":"14c2b4ba4684e","visdat":{"14c2b4ba4684e":["function (y) ","x"],"14c2b16bbffae":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="job-loss" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="job-loss"><span class="header-section-number">4.2</span> Job loss</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_ess <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(class5) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(hapnoc19)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">impact =</span> <span class="fu">case_when</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            hapljc19 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> hapfoc19 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> hapfuc19 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Lost job/unpaid leave/Forl."</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            hapirc19 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> hapwrc19 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Income / hours reduced"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            hapnoc19 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Nothing"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">is.na</span>(hapnoc19) <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">.default =</span> <span class="st">"Other"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(impact, <span class="at">class =</span> <span class="fu">as_factor</span>(class5)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean =</span> <span class="fu">weighted.mean</span>(gincdif_inv, <span class="at">w =</span> pspwght, <span class="at">na.rm =</span> T),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">se =</span> <span class="fu">sd</span>(gincdif_inv, <span class="at">na.rm =</span> T)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>((gincdif_inv)))) <span class="sc">|&gt;</span> </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> impact, <span class="at">fill =</span> mean))<span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"RdBu"</span>, <span class="at">direction=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ggplot(aes(x = class, y = mean, ymin = mean - 1.96*se, ymax = mean + 1.96*se)) +</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># geom_pointrange() +</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># coord_flip()+</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># facet_wrap(~impact, nrow =1) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-jobloss" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-jobloss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Average support for redistribution by social class (2002-2022)
+</figcaption>
+<div aria-describedby="fig-jobloss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="covid19_files/figure-html/fig-jobloss-1.png" style="width:70.0%;height:70.0%" class="figure-img">
+</div>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/danielcapistrano\.com\/CFI_redistribution");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./welfare.html" class="pagination-link" aria-label="Welfare">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Welfare</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./trust.html" class="pagination-link" aria-label="Trust">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Trust</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

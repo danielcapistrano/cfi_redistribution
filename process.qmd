@@ -1,0 +1,250 @@
+# Annex: Data processing {.unnumbered}
+
+## European Social Survey (ESS)
+
+### Importing
+
+Data downloaded from the European Social Survey [website](https://www.europeansocialsurvey.org) using the data builder.
+
+The following file contain the cumulative dataset for Ireland across the 11 rounds available. A subset of relevant variables were selected before download.
+
+```{r}
+library(tidyverse)
+library(haven)
+
+ess_ie <- read_dta("./data/ess/ess_ie.dta")
+
+```
+
+
+### Invert scale of main outcome
+
+Inverting scale of main outcome variable to denote stronger agreement with higher values. 
+
+```{r}
+
+ess_ie <- ess_ie |> mutate(gincdif_inv = 6 - gincdif)
+
+```
+
+### Year / quarter
+
+Adding column identifying the year and the quarter in which the interview has started. 
+
+```{r}
+get_quarter <- function(month){
+    if_else(is.na(month), NA,
+        if_else(month < 4, 1,
+            if_else(month > 3 & month < 7, 2,
+                if_else(month > 6 & month < 10, 3, 
+                    if_else(month> 9 & month < 13, 4, NA)))))
+}
+
+ess_ie <- 
+    ess_ie |> 
+        mutate(
+            interv_quarter = case_when(     
+                essround < 3 ~ paste0(inwyr,  get_quarter(inwmm)),
+                essround > 2 & essround  < 10 ~ paste0(inwyys, get_quarter(inwmms)),
+                essround > 9 ~ format(as.Date(inwds), "%Y%QQ")
+            ),
+            interv_year = case_when(
+                essround < 3 ~ inwyr, 
+                essround > 2 & essround  < 10 ~ inwyys,
+                essround > 9 ~ as.numeric(format(as.Date(inwds), "%Y"))
+            )
+        )
+
+```
+
+### Social class
+
+Create [Oesch social class schema](https://people.unil.ch/danieloesch/scripts/) from relevant columns in the dataset. 
+
+```{r}
+source("data/ess/Oesch_SocialClass.R")
+```
+
+### Exporting
+
+Exporting dataset with minimal set of variables.
+
+```{r}
+ess_vars <- c(
+    "cntry",
+    "idno",
+    "essround",
+    "pspwght",
+    "anweight",
+    "agea",
+    "gndr",
+    "gincdif",
+    "lrscale",
+    "ctzcntr",
+    "brncntr",
+    "yrbrn",
+    "isco08",
+    "isco08p",
+    "emplrel",
+    "emplno",
+    "emprelp",
+    "iscoco",
+    "iscocop",
+    "emplnop",
+    "mnactic",
+    "eduyrs",
+    "eisced",
+    "edulvla",
+    "hincfel",
+    "hinctnta",
+    "gincdif_inv",
+    "interv_quarter",
+    "interv_year",
+    "class5",
+    "class8",
+    "class16",
+    "brnocnt",
+    "nmnybsc",
+    "smdfslv",
+    "dfincac",
+    "gvcldcr",
+    "gvslvol",
+    "gvslvue",
+    "imsclbn",
+    "sbeqsoc",
+    "sblazy",
+    "sblwcoa",
+    "sbprvpv",
+    "sbstrec",
+    "uemplwk",
+    "gvhanc19",
+    "respc19",
+    "hapljc19",
+    "hapfuc19",
+    "hapfoc19",
+    "hapirc19",
+    "hapwrc19",
+    "hapnoc19"
+)
+
+ess_ie <- ess_ie |> select(all_of(ess_vars))
+
+write_dta(ess_ie, paste0("data/ESS_v", format(Sys.Date(), "%m%d"),".dta"))
+
+```
+
+
+## Voter Study (VS - European Elections Survey)
+
+### Importing
+
+Data downloaded from the GESIS [website](https://www.gesis.org/en/services/finding-and-accessing-data/international-survey-programs/european-election-studies).
+
+```{r}
+# Import individual files
+
+vs_14 <- read_dta("./data/vs/ZA5160_v4-1-0.dta")
+vs_19 <- read_dta("./data/vs/ZA7581_v2-0-1.dta")
+vs_24 <- read_dta ("./data/vs/ZA8868_v1-0-0.dta")
+```
+
+### Combining files 
+
+The surveys from 2014, 2019 and 2024 are available in three different files. The following code renames the main columns to 
+
+
+```{r}
+
+vs_vars <- c("cntry", "idno", "agea", "gndr", "redist", "weight", "study")
+
+vs_14 <- 
+    vs_14 |>
+    mutate(
+        study = "EES14",
+        cntry = b,
+        idno = respid,
+        agea = vd11,
+        gndr = as_factor(d10),
+        redist = qpp17_2 -1, # see coding (0 on quest is = to 1 in dataset)
+        weight = wex
+    ) |> 
+    select(all_of(vs_vars)) 
+
+vs_19 <- 
+    vs_19 |> 
+    mutate(
+        study = "EES19", 
+        agea = 2019 - D4_1,
+        cntry = hCountry,
+        idno = respid,
+        gndr = as_factor(D3),
+        redist = Q14_2,
+        weight = WGT1
+    
+    ) |> 
+    select(all_of(vs_vars)) 
+
+vs_24 <- 
+    vs_24 |> 
+    mutate(
+        study = "EES24",
+        cntry = country,
+        idno = resp_id,
+        agea = d4_age,
+        gndr = as_factor(d3),
+        redist = q12_2,
+        weight = Weight2
+    
+    ) |> 
+    select(all_of(vs_vars)) 
+
+
+```
+
+The following code combines these three different files into one cumulative dataset.
+
+```{r}
+
+vs_all <- bind_rows(vs_14, vs_19, vs_24)
+
+```
+
+
+
+
+### Missing values for main outcome
+
+Assigning common NA code to all non-valid observations. 
+
+```{r}
+vs_all$redist <- if_else(vs_all$redist < -1 | vs_all$redist > 11, NA, vs_all$redist)
+
+```
+
+
+### Invert scale of main outcome
+
+Assigning common NA code to all non-valid observations. 
+
+```{r}
+vs_all$redist_inv <- 10 - vs_all$redist
+vs_all |>  count(redist, redist_inv)
+
+```
+
+### Select Ireland
+
+Creating dataset with observation from Ireland only. 
+
+```{r}
+vs_ie  <- vs_all |> filter(cntry == 8)
+```
+
+
+### Exporting
+
+
+```{r}
+write_dta(vs_ie, paste0("data/VS_v", format(Sys.Date(), "%m%d"),".dta"))
+
+```

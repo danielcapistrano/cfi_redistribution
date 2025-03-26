@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.17">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Redistribution – CFI Redistribution</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./welfare.html" rel="next">
+<link href="./data.html" rel="prev">
+<link href="./assets/img/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-da03d714c310c60cec1d83284c92da2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9c450107545e95ffdf74a3a7323d25b0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./redistribution.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Redistribution</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./assets/img/cover.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">CFI Redistribution</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://esri.ie" title="ESRI" class="quarto-navigation-tool px-1" aria-label="ESRI"><i class="bi bi-globe"></i></a>
+    <a href="https://github.com/danielcapistrano/CFI_redistribution" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./CFI-Redistribution.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./CFI-Redistribution.docx">
+              <i class="bi bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./redistribution.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Redistribution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./welfare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Welfare</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./covid19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Covid19</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trust.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Trust</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./process.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annex: Data processing</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#over-time" id="toc-over-time" class="nav-link active" data-scroll-target="#over-time"><span class="header-section-number">2.1</span> Over time</a></li>
+  <li><a href="#gender" id="toc-gender" class="nav-link" data-scroll-target="#gender"><span class="header-section-number">2.2</span> Gender</a></li>
+  <li><a href="#age" id="toc-age" class="nav-link" data-scroll-target="#age"><span class="header-section-number">2.3</span> Age</a></li>
+  <li><a href="#social-class" id="toc-social-class" class="nav-link" data-scroll-target="#social-class"><span class="header-section-number">2.4</span> Social class</a></li>
+  <li><a href="#multivariate" id="toc-multivariate" class="nav-link" data-scroll-target="#multivariate"><span class="header-section-number">2.5</span> Multivariate</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Redistribution</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Reading the European Social Survey (ESS) and Voter Study (VS) processed files from the sub-directory “data”.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to get the name of the latest file</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>get_latest <span class="ot">&lt;-</span> <span class="cf">function</span>(file_pattern){</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    file_list <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">"./data"</span>, <span class="at">pattern =</span> file_pattern)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    latest_file <span class="ot">&lt;-</span> <span class="fu">tail</span>(<span class="fu">sort</span>(file_list), <span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(latest_file)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Read file in the root of sub-folder "data" with name containing "ESS" </span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>df_ess <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="fu">paste0</span>(<span class="st">"data/"</span>, <span class="fu">get_latest</span>(<span class="st">"ESS"</span>)))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Read file in the root of sub-folder "data" with name containing "VS" </span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>df_vs <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="fu">paste0</span>(<span class="st">"data/"</span>, <span class="fu">get_latest</span>(<span class="st">"VS"</span>)))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Read country with cross country data </span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>df_eu <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"./data/ess/ess_eu.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="over-time" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="over-time"><span class="header-section-number">2.1</span> Over time</h2>
+<p>The <a href="#fig-ess-time" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> below shows the mean values for ‘Government should reduce income differences’ by round. Overall there is a stable agreement (mean = 3.8). Rounds 5-7 (2010-2014) as well as 10-11(2022-2024) show a slightly higher agreement compared to other rounds.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(df_eu <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(<span class="at">round =</span> <span class="fu">as_factor</span>(essround), cntry)  <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gincdif_inv =</span> <span class="dv">6</span> <span class="sc">-</span> gincdif) <span class="sc">|&gt;</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean =</span> <span class="fu">weighted.mean</span>(gincdif_inv, <span class="at">w =</span> pspwght, <span class="at">na.rm =</span> T),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">se =</span> <span class="fu">sd</span>(gincdif_inv, <span class="at">na.rm =</span> T)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>((gincdif_inv)))) <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Country =</span> <span class="fu">if_else</span>(cntry <span class="sc">==</span> <span class="st">"IE"</span>, <span class="st">"Ireland"</span>, <span class="st">"Other EU"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y =</span> mean, <span class="at">group =</span> cntry, <span class="at">color =</span> Country)) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> cntry), <span class="at">size =</span> <span class="fl">0.4</span>, <span class="at">data =</span> <span class="sc">~</span><span class="fu">subset</span>(., Country <span class="sc">!=</span> <span class="st">"Ireland"</span>))<span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="sc">~</span><span class="fu">subset</span>(., Country <span class="sc">==</span> <span class="st">"Ireland"</span>)) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> cntry), <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">data =</span> <span class="sc">~</span><span class="fu">subset</span>(., Country <span class="sc">==</span> <span class="st">"Ireland"</span>))<span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"grey85"</span>))<span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">1</span>,<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotly</span>()  <span class="sc">|&gt;</span> </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout</span>(<span class="at">legend =</span> <span class="fu">list</span>(<span class="at">orientation =</span> <span class="st">"h"</span>, <span class="at">x =</span> <span class="fl">0.4</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-ess-time" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-ess-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Mean values for ‘Government should reduce income differences’ by round
+</figcaption>
+<div aria-describedby="fig-ess-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-58ebd397757e07573287" style="width:70%;height:70%;"></div>
+<script type="application/json" data-for="htmlwidget-58ebd397757e07573287">{"x":{"data":[{"x":[6,null,1,2,3,7,8,9,10,11,null,1,2,3,4,5,6,7,8,9,10,11,null,3,4,5,6,9,10,null,1,2,3,4,5,6,7,8,9,10,11,null,3,4,5,6,9,10,11,null,1,2,4,5,6,7,8,9,10,null,1,2,3,4,5,6,7,8,9,10,11,null,1,2,3,4,5,6,7,9,null,2,3,4,5,6,7,8,9,10,null,1,2,3,4,5,6,7,8,9,10,11,null,1,2,3,4,5,6,7,8,9,10,11,null,1,2,3,4,5,6,7,8,9,10,11,null,1,2,3,4,5,6,7,8,9,10,11,null,1,2,4,5,10,11,null,4,5,9,10,11,null,1,2,3,4,5,6,7,8,9,10,11,null,1,4,5,6,7,8,10,null,2,6,8,9,10,11,null,1,6,8,9,10,11,null,5,6,7,8,9,10,11,null,1,2,null,4,9,10,null,9,10,null,10,null,1,2,3,4,5,6,7,8,9,10,11,null,1,2,3,4,5,6,7,8,9,10,11,null,1,2,3,4,5,6,7,8,9,10,11,null,1,2,3,4,5,6,7,8,9,10,11,null,4,null,9,10,11,null,3,4,5,6,8,null,1,2,3,4,5,6,7,8,9,10,11,null,1,2,3,4,5,6,7,8,9,10,11,null,2,3,4,5,6,9,10,11,null,2,4,null,2,3,4,5,6,null,6],"y":[4.1841047022136957,null,3.7272826449098235,3.7360883022216838,3.8531957741052612,4.112596956304829,3.9140327886013062,3.9975188491365228,3.8449421491989519,4.1308229348572461,null,3.7749426805108763,3.6769640747522154,3.7709356598542816,3.7863199201303157,3.8073257991971885,3.8110005078286551,3.807009723241066,3.8463118569387023,3.8050940448040476,3.8267850700239014,3.7928388082845155,null,4.4636628843235355,4.0754482303400303,4.3991517831789375,4.3025362954197188,4.2395213200024848,4.2840351507122589,null,3.5317332008873317,3.5908849645755327,3.7150259784548059,3.6671799244102434,3.6981002575921482,3.7196418790663683,3.5021602905050302,3.6229928468593813,3.5969552500283983,3.678669043682306,3.7163562013420082,null,4.0983937721774257,4.0307102080804658,4.233559725319834,4.111963301187143,4.0238473967596917,3.9281899419618931,4.0798398896434085,null,3.3651878570786682,3.6341505937574619,3.4839051824950649,3.7120580545899835,3.707635266279186,3.5530658635659584,3.1470594302826322,3.329674327042818,3.2318250904224484,null,3.3456802732169981,3.4248080779913255,3.5706220611161279,3.6477501293890127,3.6970156185492451,3.8642169693191648,3.7868414404255382,3.8343143457691498,3.8597216316053968,3.8107775821817276,3.7179384455928473,null,3.0044829107522864,3.0199679371210664,3.0948095411148393,3.1255897051754058,3.0556431942566609,3.0270389169851883,2.9847839274235026,3.1635486557425105,null,3.9640814010429914,3.9560835600962094,3.7565559188813387,3.8393465354370235,4.0254017093643153,4.0026860891982965,3.7580707141866259,3.6616131119771085,3.6630622655965963,null,4.0321710594598459,3.9832285742526916,4.0945881834246238,3.9903958511528677,4.045521895316174,4.1097265335652908,4.2849234866316142,4.1323834400737249,4.0297450748705179,3.8462873126016617,3.7512652898791456,null,3.9989902629033516,3.807234336462157,3.9202533351705844,3.9471993705434021,3.9547450935945947,3.9413395884307931,3.9156746477061075,3.8888427848577796,3.8912818496604729,3.7013227337077672,3.6812016453415364,null,4.2072567379232453,4.2157027806217986,4.1053810821923005,4.0653289453690791,4.0714132301140697,3.9288189337648305,3.8247508334818594,3.9360821450262216,4.0841619121582271,3.979769887871464,3.899229873036921,null,3.4858757869833688,3.5377235214342546,3.4455472622669685,3.5096258979849515,3.5308311170155671,3.6286628197079298,3.6239620133396073,3.6810380498600632,3.7488934389279125,3.8741618878618453,3.8180389309441805,null,4.3049822847027164,4.4357507741622992,4.3932797841688238,4.2057579868375994,4.2404497018857574,4.3359808104151378,null,3.9625036322252134,4.1120649813889365,4.1290072565480012,4.0084567258757611,4.0634640741415815,null,4.1770058640941974,4.3367817155235464,4.2897320030582469,4.2941115635614286,4.4019510562669657,4.2736950614201614,4.3095776918736473,4.2876377178956311,4.2434111805346628,4.2365660983026157,4.1396702536805794,null,4.0872492242629566,3.9648918281774379,4.2128083154402933,4.3175948053175528,4.1860091234037791,3.9759125474039858,4.063963032657119,null,3.9998305454754299,3.9161521043030421,3.9929957960667788,3.9750052894134122,3.8962723972802262,3.8067568393335454,null,4.0300990846866842,4.2118735226148214,4.027943681683813,4.1590911164936708,3.9423211930347741,4.147308462692509,null,4.2584279938371639,4.2915983391639614,4.3738602426109665,4.2545695351876276,4.2154300960957523,3.8592401054942518,3.9073481565019126,null,3.6075177932923692,3.5702319272630638,null,4.1239672713303452,4.0568514026468261,3.9765871019918397,null,3.9272814365617692,3.9338952691961948,null,4.1108610804313814,null,3.3646566083657512,3.3559272382971845,3.4221559051414392,3.3838310027759997,3.410432812601822,3.3568557858023933,3.4275953986379317,3.4863256192407075,3.5596928531420282,3.7308137540776296,3.6319261885608412,null,3.6882305905293715,3.7194246549848962,3.5982504110988662,3.5644913057076906,3.4442874469861038,3.5138674279841537,3.5674574961928833,3.6297038233623389,3.8055561910785416,3.8724257869902146,3.7541428082563115,null,3.9575282465180179,4.0953763592773198,4.015967314118905,3.8541878737997211,3.8643682642332493,4.0239928691766913,4.0431011456836314,3.8284688980948549,3.8022435674116517,3.3921998734661249,3.4906004426112216,null,4.3245401361644893,4.1571023301895043,4.2219695810649807,4.1844488525366659,4.3983454062154168,4.3852414467292453,4.2711938467262049,4.1926077667870389,4.2252685878004241,4.3013778685414934,4.2557213572105042,null,4.122848569076992,null,3.9703232750876039,3.8888027740376407,4.0111620462181161,null,4.1100270185249244,3.9028544096907676,4.2141508046270184,4.115377945233532,3.9331843873813361,null,3.6462722119436406,3.6561534711456698,3.7270418167827488,3.6952939719922737,3.649293589737479,3.8159063535120641,3.756506100505375,3.6725650613213521,3.6450689813792865,3.5261845580060904,3.7327724036386938,null,4.1275578749595434,4.2017003024325108,4.0464823623023189,4.1691999875660235,4.2906396932709319,4.2710670869099863,4.1608615305976615,4.1778196480159027,4.1504952998074591,4.1148419790135247,3.9424263858535351,null,3.8975274284176806,3.9261179303696343,3.8108229877099511,4.0845580061889573,4.0131445782131632,3.8952516286088588,3.9318958828309163,3.9607114860100934,null,4.3517260222078322,4.2790438363736039,null,3.7929471579432468,4.3193393101593811,3.9924002437182629,4.4536205468927514,4.3659785468221619,null,4.1392498337460077],"text":["round: 6<br />mean: 4.184105<br />cntry: AL<br />Country: Other EU",null,"round: 1<br />mean: 3.727283<br />cntry: AT<br />Country: Other EU","round: 2<br />mean: 3.736088<br />cntry: AT<br />Country: Other EU","round: 3<br />mean: 3.853196<br />cntry: AT<br />Country: Other EU","round: 7<br />mean: 4.112597<br />cntry: AT<br />Country: Other EU","round: 8<br />mean: 3.914033<br />cntry: AT<br />Country: Other EU","round: 9<br />mean: 3.997519<br />cntry: AT<br />Country: Other EU","round: 10<br />mean: 3.844942<br />cntry: AT<br />Country: Other EU","round: 11<br />mean: 4.130823<br />cntry: AT<br />Country: Other EU",null,"round: 1<br />mean: 3.774943<br />cntry: BE<br />Country: Other EU","round: 2<br />mean: 3.676964<br />cntry: BE<br />Country: Other EU","round: 3<br />mean: 3.770936<br />cntry: BE<br />Country: Other EU","round: 4<br />mean: 3.786320<br />cntry: BE<br />Country: Other EU","round: 5<br />mean: 3.807326<br />cntry: BE<br />Country: Other EU","round: 6<br />mean: 3.811001<br />cntry: BE<br />Country: Other EU","round: 7<br />mean: 3.807010<br />cntry: BE<br />Country: Other EU","round: 8<br />mean: 3.846312<br />cntry: BE<br />Country: Other EU","round: 9<br />mean: 3.805094<br />cntry: BE<br />Country: Other EU","round: 10<br />mean: 3.826785<br />cntry: BE<br />Country: Other EU","round: 11<br />mean: 3.792839<br />cntry: BE<br />Country: Other EU",null,"round: 3<br />mean: 4.463663<br />cntry: BG<br />Country: Other EU","round: 4<br />mean: 4.075448<br />cntry: BG<br />Country: Other EU","round: 5<br />mean: 4.399152<br />cntry: BG<br />Country: Other EU","round: 6<br />mean: 4.302536<br />cntry: BG<br />Country: Other EU","round: 9<br />mean: 4.239521<br />cntry: BG<br />Country: Other EU","round: 10<br />mean: 4.284035<br />cntry: BG<br />Country: Other EU",null,"round: 1<br />mean: 3.531733<br />cntry: CH<br />Country: Other EU","round: 2<br />mean: 3.590885<br />cntry: CH<br />Country: Other EU","round: 3<br />mean: 3.715026<br />cntry: CH<br />Country: Other EU","round: 4<br />mean: 3.667180<br />cntry: CH<br />Country: Other EU","round: 5<br />mean: 3.698100<br />cntry: CH<br />Country: Other EU","round: 6<br />mean: 3.719642<br />cntry: CH<br />Country: Other EU","round: 7<br />mean: 3.502160<br />cntry: CH<br />Country: Other EU","round: 8<br />mean: 3.622993<br />cntry: CH<br />Country: Other EU","round: 9<br />mean: 3.596955<br />cntry: CH<br />Country: Other EU","round: 10<br />mean: 3.678669<br />cntry: CH<br />Country: Other EU","round: 11<br />mean: 3.716356<br />cntry: CH<br />Country: Other EU",null,"round: 3<br />mean: 4.098394<br />cntry: CY<br />Country: Other EU","round: 4<br />mean: 4.030710<br />cntry: CY<br />Country: Other EU","round: 5<br />mean: 4.233560<br />cntry: CY<br />Country: Other EU","round: 6<br />mean: 4.111963<br />cntry: CY<br />Country: Other EU","round: 9<br />mean: 4.023847<br />cntry: CY<br />Country: Other EU","round: 10<br />mean: 3.928190<br />cntry: CY<br />Country: Other EU","round: 11<br />mean: 4.079840<br />cntry: CY<br />Country: Other EU",null,"round: 1<br />mean: 3.365188<br />cntry: CZ<br />Country: Other EU","round: 2<br />mean: 3.634151<br />cntry: CZ<br />Country: Other EU","round: 4<br />mean: 3.483905<br />cntry: CZ<br />Country: Other EU","round: 5<br />mean: 3.712058<br />cntry: CZ<br />Country: Other EU","round: 6<br />mean: 3.707635<br />cntry: CZ<br />Country: Other EU","round: 7<br />mean: 3.553066<br />cntry: CZ<br />Country: Other EU","round: 8<br />mean: 3.147059<br />cntry: CZ<br />Country: Other EU","round: 9<br />mean: 3.329674<br />cntry: CZ<br />Country: Other EU","round: 10<br />mean: 3.231825<br />cntry: CZ<br />Country: Other EU",null,"round: 1<br />mean: 3.345680<br />cntry: DE<br />Country: Other EU","round: 2<br />mean: 3.424808<br />cntry: DE<br />Country: Other EU","round: 3<br />mean: 3.570622<br />cntry: DE<br />Country: Other EU","round: 4<br />mean: 3.647750<br />cntry: DE<br />Country: Other EU","round: 5<br />mean: 3.697016<br />cntry: DE<br />Country: Other EU","round: 6<br />mean: 3.864217<br />cntry: DE<br />Country: Other EU","round: 7<br />mean: 3.786841<br />cntry: DE<br />Country: Other EU","round: 8<br />mean: 3.834314<br />cntry: DE<br />Country: Other EU","round: 9<br />mean: 3.859722<br />cntry: DE<br />Country: Other EU","round: 10<br />mean: 3.810778<br />cntry: DE<br />Country: Other EU","round: 11<br />mean: 3.717938<br />cntry: DE<br />Country: Other EU",null,"round: 1<br />mean: 3.004483<br />cntry: DK<br />Country: Other EU","round: 2<br />mean: 3.019968<br />cntry: DK<br />Country: Other EU","round: 3<br />mean: 3.094810<br />cntry: DK<br />Country: Other EU","round: 4<br />mean: 3.125590<br />cntry: DK<br />Country: Other EU","round: 5<br />mean: 3.055643<br />cntry: DK<br />Country: Other EU","round: 6<br />mean: 3.027039<br />cntry: DK<br />Country: Other EU","round: 7<br />mean: 2.984784<br />cntry: DK<br />Country: Other EU","round: 9<br />mean: 3.163549<br />cntry: DK<br />Country: Other EU",null,"round: 2<br />mean: 3.964081<br />cntry: EE<br />Country: Other EU","round: 3<br />mean: 3.956084<br />cntry: EE<br />Country: Other EU","round: 4<br />mean: 3.756556<br />cntry: EE<br />Country: Other EU","round: 5<br />mean: 3.839347<br />cntry: EE<br />Country: Other EU","round: 6<br />mean: 4.025402<br />cntry: EE<br />Country: Other EU","round: 7<br />mean: 4.002686<br />cntry: EE<br />Country: Other EU","round: 8<br />mean: 3.758071<br />cntry: EE<br />Country: Other EU","round: 9<br />mean: 3.661613<br />cntry: EE<br />Country: Other EU","round: 10<br />mean: 3.663062<br />cntry: EE<br />Country: Other EU",null,"round: 1<br />mean: 4.032171<br />cntry: ES<br />Country: Other EU","round: 2<br />mean: 3.983229<br />cntry: ES<br />Country: Other EU","round: 3<br />mean: 4.094588<br />cntry: ES<br />Country: Other EU","round: 4<br />mean: 3.990396<br />cntry: ES<br />Country: Other EU","round: 5<br />mean: 4.045522<br />cntry: ES<br />Country: Other EU","round: 6<br />mean: 4.109727<br />cntry: ES<br />Country: Other EU","round: 7<br />mean: 4.284923<br />cntry: ES<br />Country: Other EU","round: 8<br />mean: 4.132383<br />cntry: ES<br />Country: Other EU","round: 9<br />mean: 4.029745<br />cntry: ES<br />Country: Other EU","round: 10<br />mean: 3.846287<br />cntry: ES<br />Country: Other EU","round: 11<br />mean: 3.751265<br />cntry: ES<br />Country: Other EU",null,"round: 1<br />mean: 3.998990<br />cntry: FI<br />Country: Other EU","round: 2<br />mean: 3.807234<br />cntry: FI<br />Country: Other EU","round: 3<br />mean: 3.920253<br />cntry: FI<br />Country: Other EU","round: 4<br />mean: 3.947199<br />cntry: FI<br />Country: Other EU","round: 5<br />mean: 3.954745<br />cntry: FI<br />Country: Other EU","round: 6<br />mean: 3.941340<br />cntry: FI<br />Country: Other EU","round: 7<br />mean: 3.915675<br />cntry: FI<br />Country: Other EU","round: 8<br />mean: 3.888843<br />cntry: FI<br />Country: Other EU","round: 9<br />mean: 3.891282<br />cntry: FI<br />Country: Other EU","round: 10<br />mean: 3.701323<br />cntry: FI<br />Country: Other EU","round: 11<br />mean: 3.681202<br />cntry: FI<br />Country: Other EU",null,"round: 1<br />mean: 4.207257<br />cntry: FR<br />Country: Other EU","round: 2<br />mean: 4.215703<br />cntry: FR<br />Country: Other EU","round: 3<br />mean: 4.105381<br />cntry: FR<br />Country: Other EU","round: 4<br />mean: 4.065329<br />cntry: FR<br />Country: Other EU","round: 5<br />mean: 4.071413<br />cntry: FR<br />Country: Other EU","round: 6<br />mean: 3.928819<br />cntry: FR<br />Country: Other EU","round: 7<br />mean: 3.824751<br />cntry: FR<br />Country: Other EU","round: 8<br />mean: 3.936082<br />cntry: FR<br />Country: Other EU","round: 9<br />mean: 4.084162<br />cntry: FR<br />Country: Other EU","round: 10<br />mean: 3.979770<br />cntry: FR<br />Country: Other EU","round: 11<br />mean: 3.899230<br />cntry: FR<br />Country: Other EU",null,"round: 1<br />mean: 3.485876<br />cntry: GB<br />Country: Other EU","round: 2<br />mean: 3.537724<br />cntry: GB<br />Country: Other EU","round: 3<br />mean: 3.445547<br />cntry: GB<br />Country: Other EU","round: 4<br />mean: 3.509626<br />cntry: GB<br />Country: Other EU","round: 5<br />mean: 3.530831<br />cntry: GB<br />Country: Other EU","round: 6<br />mean: 3.628663<br />cntry: GB<br />Country: Other EU","round: 7<br />mean: 3.623962<br />cntry: GB<br />Country: Other EU","round: 8<br />mean: 3.681038<br />cntry: GB<br />Country: Other EU","round: 9<br />mean: 3.748893<br />cntry: GB<br />Country: Other EU","round: 10<br />mean: 3.874162<br />cntry: GB<br />Country: Other EU","round: 11<br />mean: 3.818039<br />cntry: GB<br />Country: Other EU",null,"round: 1<br />mean: 4.304982<br />cntry: GR<br />Country: Other EU","round: 2<br />mean: 4.435751<br />cntry: GR<br />Country: Other EU","round: 4<br />mean: 4.393280<br />cntry: GR<br />Country: Other EU","round: 5<br />mean: 4.205758<br />cntry: GR<br />Country: Other EU","round: 10<br />mean: 4.240450<br />cntry: GR<br />Country: Other EU","round: 11<br />mean: 4.335981<br />cntry: GR<br />Country: Other EU",null,"round: 4<br />mean: 3.962504<br />cntry: HR<br />Country: Other EU","round: 5<br />mean: 4.112065<br />cntry: HR<br />Country: Other EU","round: 9<br />mean: 4.129007<br />cntry: HR<br />Country: Other EU","round: 10<br />mean: 4.008457<br />cntry: HR<br />Country: Other EU","round: 11<br />mean: 4.063464<br />cntry: HR<br />Country: Other EU",null,"round: 1<br />mean: 4.177006<br />cntry: HU<br />Country: Other EU","round: 2<br />mean: 4.336782<br />cntry: HU<br />Country: Other EU","round: 3<br />mean: 4.289732<br />cntry: HU<br />Country: Other EU","round: 4<br />mean: 4.294112<br />cntry: HU<br />Country: Other EU","round: 5<br />mean: 4.401951<br />cntry: HU<br />Country: Other EU","round: 6<br />mean: 4.273695<br />cntry: HU<br />Country: Other EU","round: 7<br />mean: 4.309578<br />cntry: HU<br />Country: Other EU","round: 8<br />mean: 4.287638<br />cntry: HU<br />Country: Other EU","round: 9<br />mean: 4.243411<br />cntry: HU<br />Country: Other EU","round: 10<br />mean: 4.236566<br />cntry: HU<br />Country: Other EU","round: 11<br />mean: 4.139670<br />cntry: HU<br />Country: Other EU",null,"round: 1<br />mean: 4.087249<br />cntry: IL<br />Country: Other EU","round: 4<br />mean: 3.964892<br />cntry: IL<br />Country: Other EU","round: 5<br />mean: 4.212808<br />cntry: IL<br />Country: Other EU","round: 6<br />mean: 4.317595<br />cntry: IL<br />Country: Other EU","round: 7<br />mean: 4.186009<br />cntry: IL<br />Country: Other EU","round: 8<br />mean: 3.975913<br />cntry: IL<br />Country: Other EU","round: 10<br />mean: 4.063963<br />cntry: IL<br />Country: Other EU",null,"round: 2<br />mean: 3.999831<br />cntry: IS<br />Country: Other EU","round: 6<br />mean: 3.916152<br />cntry: IS<br />Country: Other EU","round: 8<br />mean: 3.992996<br />cntry: IS<br />Country: Other EU","round: 9<br />mean: 3.975005<br />cntry: IS<br />Country: Other EU","round: 10<br />mean: 3.896272<br />cntry: IS<br />Country: Other EU","round: 11<br />mean: 3.806757<br />cntry: IS<br />Country: Other EU",null,"round: 1<br />mean: 4.030099<br />cntry: IT<br />Country: Other EU","round: 6<br />mean: 4.211874<br />cntry: IT<br />Country: Other EU","round: 8<br />mean: 4.027944<br />cntry: IT<br />Country: Other EU","round: 9<br />mean: 4.159091<br />cntry: IT<br />Country: Other EU","round: 10<br />mean: 3.942321<br />cntry: IT<br />Country: Other EU","round: 11<br />mean: 4.147308<br />cntry: IT<br />Country: Other EU",null,"round: 5<br />mean: 4.258428<br />cntry: LT<br />Country: Other EU","round: 6<br />mean: 4.291598<br />cntry: LT<br />Country: Other EU","round: 7<br />mean: 4.373860<br />cntry: LT<br />Country: Other EU","round: 8<br />mean: 4.254570<br />cntry: LT<br />Country: Other EU","round: 9<br />mean: 4.215430<br />cntry: LT<br />Country: Other EU","round: 10<br />mean: 3.859240<br />cntry: LT<br />Country: Other EU","round: 11<br />mean: 3.907348<br />cntry: LT<br />Country: Other EU",null,"round: 1<br />mean: 3.607518<br />cntry: LU<br />Country: Other EU","round: 2<br />mean: 3.570232<br />cntry: LU<br />Country: Other EU",null,"round: 4<br />mean: 4.123967<br />cntry: LV<br />Country: Other EU","round: 9<br />mean: 4.056851<br />cntry: LV<br />Country: Other EU","round: 10<br />mean: 3.976587<br />cntry: LV<br />Country: Other EU",null,"round: 9<br />mean: 3.927281<br />cntry: ME<br />Country: Other EU","round: 10<br />mean: 3.933895<br />cntry: ME<br />Country: Other EU",null,"round: 10<br />mean: 4.110861<br />cntry: MK<br />Country: Other EU",null,"round: 1<br />mean: 3.364657<br />cntry: NL<br />Country: Other EU","round: 2<br />mean: 3.355927<br />cntry: NL<br />Country: Other EU","round: 3<br />mean: 3.422156<br />cntry: NL<br />Country: Other EU","round: 4<br />mean: 3.383831<br />cntry: NL<br />Country: Other EU","round: 5<br />mean: 3.410433<br />cntry: NL<br />Country: Other EU","round: 6<br />mean: 3.356856<br />cntry: NL<br />Country: Other EU","round: 7<br />mean: 3.427595<br />cntry: NL<br />Country: Other EU","round: 8<br />mean: 3.486326<br />cntry: NL<br />Country: Other EU","round: 9<br />mean: 3.559693<br />cntry: NL<br />Country: Other EU","round: 10<br />mean: 3.730814<br />cntry: NL<br />Country: Other EU","round: 11<br />mean: 3.631926<br />cntry: NL<br />Country: Other EU",null,"round: 1<br />mean: 3.688231<br />cntry: NO<br />Country: Other EU","round: 2<br />mean: 3.719425<br />cntry: NO<br />Country: Other EU","round: 3<br />mean: 3.598250<br />cntry: NO<br />Country: Other EU","round: 4<br />mean: 3.564491<br />cntry: NO<br />Country: Other EU","round: 5<br />mean: 3.444287<br />cntry: NO<br />Country: Other EU","round: 6<br />mean: 3.513867<br />cntry: NO<br />Country: Other EU","round: 7<br />mean: 3.567457<br />cntry: NO<br />Country: Other EU","round: 8<br />mean: 3.629704<br />cntry: NO<br />Country: Other EU","round: 9<br />mean: 3.805556<br />cntry: NO<br />Country: Other EU","round: 10<br />mean: 3.872426<br />cntry: NO<br />Country: Other EU","round: 11<br />mean: 3.754143<br />cntry: NO<br />Country: Other EU",null,"round: 1<br />mean: 3.957528<br />cntry: PL<br />Country: Other EU","round: 2<br />mean: 4.095376<br />cntry: PL<br />Country: Other EU","round: 3<br />mean: 4.015967<br />cntry: PL<br />Country: Other EU","round: 4<br />mean: 3.854188<br />cntry: PL<br />Country: Other EU","round: 5<br />mean: 3.864368<br />cntry: PL<br />Country: Other EU","round: 6<br />mean: 4.023993<br />cntry: PL<br />Country: Other EU","round: 7<br />mean: 4.043101<br />cntry: PL<br />Country: Other EU","round: 8<br />mean: 3.828469<br />cntry: PL<br />Country: Other EU","round: 9<br />mean: 3.802244<br />cntry: PL<br />Country: Other EU","round: 10<br />mean: 3.392200<br />cntry: PL<br />Country: Other EU","round: 11<br />mean: 3.490600<br />cntry: PL<br />Country: Other EU",null,"round: 1<br />mean: 4.324540<br />cntry: PT<br />Country: Other EU","round: 2<br />mean: 4.157102<br />cntry: PT<br />Country: Other EU","round: 3<br />mean: 4.221970<br />cntry: PT<br />Country: Other EU","round: 4<br />mean: 4.184449<br />cntry: PT<br />Country: Other EU","round: 5<br />mean: 4.398345<br />cntry: PT<br />Country: Other EU","round: 6<br />mean: 4.385241<br />cntry: PT<br />Country: Other EU","round: 7<br />mean: 4.271194<br />cntry: PT<br />Country: Other EU","round: 8<br />mean: 4.192608<br />cntry: PT<br />Country: Other EU","round: 9<br />mean: 4.225269<br />cntry: PT<br />Country: Other EU","round: 10<br />mean: 4.301378<br />cntry: PT<br />Country: Other EU","round: 11<br />mean: 4.255721<br />cntry: PT<br />Country: Other EU",null,"round: 4<br />mean: 4.122849<br />cntry: RO<br />Country: Other EU",null,"round: 9<br />mean: 3.970323<br />cntry: RS<br />Country: Other EU","round: 10<br />mean: 3.888803<br />cntry: RS<br />Country: Other EU","round: 11<br />mean: 4.011162<br />cntry: RS<br />Country: Other EU",null,"round: 3<br />mean: 4.110027<br />cntry: RU<br />Country: Other EU","round: 4<br />mean: 3.902854<br />cntry: RU<br />Country: Other EU","round: 5<br />mean: 4.214151<br />cntry: RU<br />Country: Other EU","round: 6<br />mean: 4.115378<br />cntry: RU<br />Country: Other EU","round: 8<br />mean: 3.933184<br />cntry: RU<br />Country: Other EU",null,"round: 1<br />mean: 3.646272<br />cntry: SE<br />Country: Other EU","round: 2<br />mean: 3.656153<br />cntry: SE<br />Country: Other EU","round: 3<br />mean: 3.727042<br />cntry: SE<br />Country: Other EU","round: 4<br />mean: 3.695294<br />cntry: SE<br />Country: Other EU","round: 5<br />mean: 3.649294<br />cntry: SE<br />Country: Other EU","round: 6<br />mean: 3.815906<br />cntry: SE<br />Country: Other EU","round: 7<br />mean: 3.756506<br />cntry: SE<br />Country: Other EU","round: 8<br />mean: 3.672565<br />cntry: SE<br />Country: Other EU","round: 9<br />mean: 3.645069<br />cntry: SE<br />Country: Other EU","round: 10<br />mean: 3.526185<br />cntry: SE<br />Country: Other EU","round: 11<br />mean: 3.732772<br />cntry: SE<br />Country: Other EU",null,"round: 1<br />mean: 4.127558<br />cntry: SI<br />Country: Other EU","round: 2<br />mean: 4.201700<br />cntry: SI<br />Country: Other EU","round: 3<br />mean: 4.046482<br />cntry: SI<br />Country: Other EU","round: 4<br />mean: 4.169200<br />cntry: SI<br />Country: Other EU","round: 5<br />mean: 4.290640<br />cntry: SI<br />Country: Other EU","round: 6<br />mean: 4.271067<br />cntry: SI<br />Country: Other EU","round: 7<br />mean: 4.160862<br />cntry: SI<br />Country: Other EU","round: 8<br />mean: 4.177820<br />cntry: SI<br />Country: Other EU","round: 9<br />mean: 4.150495<br />cntry: SI<br />Country: Other EU","round: 10<br />mean: 4.114842<br />cntry: SI<br />Country: Other EU","round: 11<br />mean: 3.942426<br />cntry: SI<br />Country: Other EU",null,"round: 2<br />mean: 3.897527<br />cntry: SK<br />Country: Other EU","round: 3<br />mean: 3.926118<br />cntry: SK<br />Country: Other EU","round: 4<br />mean: 3.810823<br />cntry: SK<br />Country: Other EU","round: 5<br />mean: 4.084558<br />cntry: SK<br />Country: Other EU","round: 6<br />mean: 4.013145<br />cntry: SK<br />Country: Other EU","round: 9<br />mean: 3.895252<br />cntry: SK<br />Country: Other EU","round: 10<br />mean: 3.931896<br />cntry: SK<br />Country: Other EU","round: 11<br />mean: 3.960711<br />cntry: SK<br />Country: Other EU",null,"round: 2<br />mean: 4.351726<br />cntry: TR<br />Country: Other EU","round: 4<br />mean: 4.279044<br />cntry: TR<br />Country: Other EU",null,"round: 2<br />mean: 3.792947<br />cntry: UA<br />Country: Other EU","round: 3<br />mean: 4.319339<br />cntry: UA<br />Country: Other EU","round: 4<br />mean: 3.992400<br />cntry: UA<br />Country: Other EU","round: 5<br />mean: 4.453621<br />cntry: UA<br />Country: Other EU","round: 6<br />mean: 4.365979<br />cntry: UA<br />Country: Other EU",null,"round: 6<br />mean: 4.139250<br />cntry: XK<br />Country: Other EU"],"type":"scatter","mode":"lines","line":{"width":1.5118110236220474,"color":"rgba(217,217,217,1)","dash":"solid"},"hoveron":"points","name":"Other EU","legendgroup":"Other EU","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11],"y":[3.778888223586057,3.7526371051503298,3.6796753790933803,3.7749571160682223,3.9872407580797091,3.9629495636795591,3.9012599723615464,3.7210066115606302,3.7782411484604577,3.8856058877018915,3.9478148298533999],"text":["round: 1<br />mean: 3.778888<br />cntry: IE<br />Country: Ireland","round: 2<br />mean: 3.752637<br />cntry: IE<br />Country: Ireland","round: 3<br />mean: 3.679675<br />cntry: IE<br />Country: Ireland","round: 4<br />mean: 3.774957<br />cntry: IE<br />Country: Ireland","round: 5<br />mean: 3.987241<br />cntry: IE<br />Country: Ireland","round: 6<br />mean: 3.962950<br />cntry: IE<br />Country: Ireland","round: 7<br />mean: 3.901260<br />cntry: IE<br />Country: Ireland","round: 8<br />mean: 3.721007<br />cntry: IE<br />Country: Ireland","round: 9<br />mean: 3.778241<br />cntry: IE<br />Country: Ireland","round: 10<br />mean: 3.885606<br />cntry: IE<br />Country: Ireland","round: 11<br />mean: 3.947815<br />cntry: IE<br />Country: Ireland"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(0,100,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,100,0,1)"}},"hoveron":"points","name":"Ireland","legendgroup":"Ireland","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":3.0236220472440949,"color":"rgba(0,100,0,1)","dash":"solid"},"frame":null}],"layout":{"margin":{"t":26.228310502283108,"r":7.3059360730593621,"b":40.182648401826498,"l":31.415525114155255},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,11.6],"tickmode":"array","ticktext":["1","2","3","4","5","6","7","8","9","10","11"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11],"categoryorder":"array","categoryarray":["1","2","3","4","5","6","7","8","9","10","11"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"round","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.80000000000000004,5.2000000000000002],"tickmode":"array","ticktext":["1","2","3","4","5"],"tickvals":[1,2,3,4,5],"categoryorder":"array","categoryarray":["1","2","3","4","5"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"mean","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Country","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"orientation":"h","x":0.40000000000000002,"y":-0.20000000000000001},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"14bff73fbf8dc":{"x":{},"y":{},"colour":{},"type":"scatter"},"14bff238f6f01":{"x":{},"y":{},"colour":{}},"14bff1dc0bce4":{"x":{},"y":{},"colour":{}}},"cur_data":"14bff73fbf8dc","visdat":{"14bff73fbf8dc":["function (y) ","x"],"14bff238f6f01":["function (y) ","x"],"14bff1dc0bce4":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</figure>
+</div>
+</div>
+<p><a href="#fig-vs-time" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows the density of responses for the scale on support for redistribution of wealth. The mean values are similar for 2014, 2019 and 2024. However, the distribution seems is less skewed in 2024 compared to 2014.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_vs <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> redist_inv)) <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">data =</span> df_vs <span class="sc">|&gt;</span> <span class="fu">group_by</span>(study) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">weighted.mean</span>(redist_inv, <span class="at">w =</span> weight, <span class="at">na.rm =</span> T)), <span class="fu">aes</span>(<span class="at">xintercept =</span> mean), <span class="at">color =</span> <span class="st">'red'</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>study, <span class="at">nrow =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-vs-time" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-vs-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Density plot for ‘in favour of redistribution of wealth’ by survey year
+</figcaption>
+<div aria-describedby="fig-vs-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="redistribution_files/figure-html/fig-vs-time-1.png" style="width:70.0%;height:70.0%" class="figure-img">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="gender" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="gender"><span class="header-section-number">2.2</span> Gender</h2>
+<p>The <a href="#tbl-gender" class="quarto-xref">Table&nbsp;<span>2.1</span></a> shows the mean values for the main response variable in each study in 2024 by gender.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_ess <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(essround <span class="sc">==</span> <span class="dv">11</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(<span class="at">Gender =</span> <span class="fu">as_factor</span>(gndr)) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">ESS =</span> <span class="fu">weighted.mean</span>(gincdif_inv, <span class="at">w =</span> pspwght, <span class="at">na.rm =</span> T))  <span class="sc">|&gt;</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        df_vs <span class="sc">|&gt;</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(study <span class="sc">==</span> <span class="st">"EES24"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(<span class="at">Gender =</span> <span class="fu">as_factor</span>(gndr)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">VS =</span> <span class="fu">weighted.mean</span>(redist_inv, <span class="at">w =</span> weight, <span class="at">na.rm =</span> T))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>()  <span class="sc">|&gt;</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_number</span>(<span class="fu">everything</span>(), <span class="at">decimals =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="tbl-gender" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gender-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Mean values by gender and study in 2024
+</figcaption>
+<div aria-describedby="tbl-gender-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="kittnybqqn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kittnybqqn table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#kittnybqqn thead, #kittnybqqn tbody, #kittnybqqn tfoot, #kittnybqqn tr, #kittnybqqn td, #kittnybqqn th {
+  border-style: none;
+}
+
+#kittnybqqn p {
+  margin: 0;
+  padding: 0;
+}
+
+#kittnybqqn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kittnybqqn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kittnybqqn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kittnybqqn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#kittnybqqn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#kittnybqqn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#kittnybqqn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#kittnybqqn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#kittnybqqn .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#kittnybqqn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#kittnybqqn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#kittnybqqn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kittnybqqn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kittnybqqn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kittnybqqn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kittnybqqn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kittnybqqn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#kittnybqqn .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#kittnybqqn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kittnybqqn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kittnybqqn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kittnybqqn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#kittnybqqn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kittnybqqn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kittnybqqn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kittnybqqn .gt_left {
+  text-align: left;
+}
+
+#kittnybqqn .gt_center {
+  text-align: center;
+}
+
+#kittnybqqn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kittnybqqn .gt_font_normal {
+  font-weight: normal;
+}
+
+#kittnybqqn .gt_font_bold {
+  font-weight: bold;
+}
+
+#kittnybqqn .gt_font_italic {
+  font-style: italic;
+}
+
+#kittnybqqn .gt_super {
+  font-size: 65%;
+}
+
+#kittnybqqn .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#kittnybqqn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kittnybqqn .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kittnybqqn .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kittnybqqn .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kittnybqqn .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kittnybqqn .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#kittnybqqn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#kittnybqqn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Gender" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Gender</th>
+<th id="ESS" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ESS</th>
+<th id="VS" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">VS</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="Gender">Male</td>
+<td class="gt_row gt_right" headers="ESS">4.0</td>
+<td class="gt_row gt_right" headers="VS">6.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Gender">Female</td>
+<td class="gt_row gt_right" headers="ESS">3.9</td>
+<td class="gt_row gt_right" headers="VS">6.1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="age" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="age"><span class="header-section-number">2.3</span> Age</h2>
+<p>The relationship between age and the response variable seems to change across rounds. As shown in <a href="#fig-ess-age" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>, early rounds suggest that older respondents support more the government reducing income differences, whereas the latest round (11) and round 8 seem to indicate the opposite.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">ESS</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">VS</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_ess <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(essround, agea) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">weighted.mean</span>(gincdif_inv, <span class="at">w =</span> pspwght, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> agea, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="dv">3</span>,<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>essround)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-ess-age" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-ess-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Scatter plot for ‘Government should reduce income differences’ by age and round
+</figcaption>
+<div aria-describedby="fig-ess-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="redistribution_files/figure-html/fig-ess-age-1.png" style="width:70.0%;height:70.0%" class="figure-img">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_vs <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(study, agea) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">weighted.mean</span>(redist_inv, <span class="at">w =</span> weight, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> agea, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>study)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-vs-age" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-vs-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: Scatter plot for ‘wealth redistribution’ by age and study
+</figcaption>
+<div aria-describedby="fig-vs-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="redistribution_files/figure-html/fig-vs-age-1.png" style="width:70.0%;height:70.0%" class="figure-img">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="social-class" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="social-class"><span class="header-section-number">2.4</span> Social class</h2>
+<p><a href="#fig-class5" class="quarto-xref">Figure&nbsp;<span>2.5</span></a> suggests a negative relationship between social class and the main ESS response variable. The higher the social class, the lower the support for the government to reduce income differences.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">5 groups</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">16 groups</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_ess <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">class_inv =</span> <span class="dv">6</span> <span class="sc">-</span> class5) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(essround, <span class="at">class =</span> class_inv) <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">weighted.mean</span>(gincdif_inv, <span class="at">w =</span> pspwght, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>essround)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-class5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-class5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: Scatter plot for ‘income differences’ by social class (5 groups) and round
+</figcaption>
+<div aria-describedby="fig-class5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="redistribution_files/figure-html/fig-class5-1.png" style="width:70.0%;height:70.0%" class="figure-img">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_ess <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">class_inv =</span> <span class="dv">17</span> <span class="sc">-</span> class16) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(essround, <span class="at">class =</span> class_inv) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">weighted.mean</span>(gincdif_inv, <span class="at">w =</span> pspwght, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>essround)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-class16" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-class16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.6: Scatter plot for ‘income differences’ by social class (16 groups) and round
+</figcaption>
+<div aria-describedby="fig-class16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="redistribution_files/figure-html/fig-class16-1.png" style="width:70.0%;height:70.0%" class="figure-img">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="multivariate" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="multivariate"><span class="header-section-number">2.5</span> Multivariate</h2>
+<p>The <a href="#tbl-multiv-gincdif" class="quarto-xref">Table&nbsp;<span>2.2</span></a> below shows the coefficients of an OLS regression model on the support for government reducing differences in income levels. The overall explanatory power of the model is low. The effect of age seems to be neglectable. Both the social class and subjective income suggest that respondents in more precarious economic situation tend to be more favourable of the government reducing income differences.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(gincdif_inv <span class="sc">~</span> <span class="fu">factor</span>(essround) <span class="sc">+</span> agea <span class="sc">+</span> <span class="fu">as_factor</span>(gndr) <span class="sc">+</span> <span class="fu">as_factor</span>(class5) <span class="sc">+</span> <span class="fu">as_factor</span>(hincfel), <span class="at">weights =</span> pspwght, <span class="at">data =</span> df_ess)  <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tbl_regression</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">include =</span> <span class="fu">c</span>(<span class="st">"agea"</span>, <span class="st">"as_factor(gndr)"</span>, <span class="st">"as_factor(class5)"</span>, <span class="st">"as_factor(hincfel)"</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    )  <span class="sc">|&gt;</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bold_p</span>(<span class="at">t =</span> <span class="fl">0.05</span>, <span class="at">q =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_glance_source_note</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    gt<span class="sc">::</span><span class="fu">tab_source_note</span>(<span class="st">"Time fixed effects (ESS Round) omitted from the table but included in the model"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_options</span>(<span class="at">table.width =</span> <span class="fu">pct</span>(<span class="dv">70</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="tbl-multiv-gincdif" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-multiv-gincdif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.2: OLS regression coefficients for ‘income differences’
+</figcaption>
+<div aria-describedby="tbl-multiv-gincdif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="pzipyddono" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pzipyddono table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pzipyddono thead, #pzipyddono tbody, #pzipyddono tfoot, #pzipyddono tr, #pzipyddono td, #pzipyddono th {
+  border-style: none;
+}
+
+#pzipyddono p {
+  margin: 0;
+  padding: 0;
+}
+
+#pzipyddono .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 70%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pzipyddono .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#pzipyddono .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pzipyddono .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pzipyddono .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pzipyddono .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pzipyddono .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pzipyddono .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pzipyddono .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pzipyddono .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pzipyddono .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pzipyddono .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pzipyddono .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#pzipyddono .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#pzipyddono .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pzipyddono .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pzipyddono .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pzipyddono .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pzipyddono .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pzipyddono .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#pzipyddono .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#pzipyddono .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#pzipyddono .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pzipyddono .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#pzipyddono .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#pzipyddono .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pzipyddono .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pzipyddono .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pzipyddono .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pzipyddono .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pzipyddono .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pzipyddono .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pzipyddono .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pzipyddono .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pzipyddono .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pzipyddono .gt_left {
+  text-align: left;
+}
+
+#pzipyddono .gt_center {
+  text-align: center;
+}
+
+#pzipyddono .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pzipyddono .gt_font_normal {
+  font-weight: normal;
+}
+
+#pzipyddono .gt_font_bold {
+  font-weight: bold;
+}
+
+#pzipyddono .gt_font_italic {
+  font-style: italic;
+}
+
+#pzipyddono .gt_super {
+  font-size: 65%;
+}
+
+#pzipyddono .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#pzipyddono .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#pzipyddono .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#pzipyddono .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#pzipyddono .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#pzipyddono .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#pzipyddono .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#pzipyddono .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#pzipyddono div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span data-qmd-base64="PHN0cm9uZz5DaGFyYWN0ZXJpc3RpYzwvc3Ryb25nPg=="><span class="gt_from_md"><strong>Characteristic</strong></span></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span data-qmd-base64="PHN0cm9uZz5CZXRhPC9zdHJvbmc+"><span class="gt_from_md"><strong>Beta</strong></span></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span data-qmd-base64="PHN0cm9uZz45NSUgQ0k8L3N0cm9uZz4="><span class="gt_from_md"><strong>95% CI</strong></span></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span data-qmd-base64="PHN0cm9uZz5wLXZhbHVlPC9zdHJvbmc+"><span class="gt_from_md"><strong>p-value</strong></span></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">Age of respondent, calculated</td>
+<td headers="estimate" class="gt_row gt_center">0.00</td>
+<td headers="conf.low" class="gt_row gt_center">0.00, 0.00</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Gender</td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="conf.low" class="gt_row gt_center"><br></td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Male</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="conf.low" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Female</td>
+<td headers="estimate" class="gt_row gt_center">0.05</td>
+<td headers="conf.low" class="gt_row gt_center">0.03, 0.08</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No answer</td>
+<td headers="estimate" class="gt_row gt_center">0.05</td>
+<td headers="conf.low" class="gt_row gt_center">-0.39, 0.49</td>
+<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Final Oesch class position - 5 classes</td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="conf.low" class="gt_row gt_center"><br></td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Higher-grade service class</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="conf.low" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Lower-grade service class</td>
+<td headers="estimate" class="gt_row gt_center">0.14</td>
+<td headers="conf.low" class="gt_row gt_center">0.09, 0.18</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Small business owners</td>
+<td headers="estimate" class="gt_row gt_center">0.05</td>
+<td headers="conf.low" class="gt_row gt_center">0.00, 0.10</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.037</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Skilled workers</td>
+<td headers="estimate" class="gt_row gt_center">0.21</td>
+<td headers="conf.low" class="gt_row gt_center">0.18, 0.25</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Unskilled workers</td>
+<td headers="estimate" class="gt_row gt_center">0.30</td>
+<td headers="conf.low" class="gt_row gt_center">0.26, 0.35</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Feeling about household's income nowadays</td>
+<td headers="estimate" class="gt_row gt_center"><br></td>
+<td headers="conf.low" class="gt_row gt_center"><br></td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Living comfortably on present income</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="conf.low" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Coping on present income</td>
+<td headers="estimate" class="gt_row gt_center">0.16</td>
+<td headers="conf.low" class="gt_row gt_center">0.13, 0.19</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Difficult on present income</td>
+<td headers="estimate" class="gt_row gt_center">0.25</td>
+<td headers="conf.low" class="gt_row gt_center">0.21, 0.30</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Very difficult on present income</td>
+<td headers="estimate" class="gt_row gt_center">0.45</td>
+<td headers="conf.low" class="gt_row gt_center">0.38, 0.51</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">&lt;0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;No answer</td>
+<td headers="estimate" class="gt_row gt_center">0.33</td>
+<td headers="conf.low" class="gt_row gt_center">0.02, 0.63</td>
+<td headers="p.value" class="gt_row gt_center" style="font-weight: bold;">0.035</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Refusal</td>
+<td headers="estimate" class="gt_row gt_center">-0.12</td>
+<td headers="conf.low" class="gt_row gt_center">-0.44, 0.19</td>
+<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;Don't know</td>
+<td headers="estimate" class="gt_row gt_center">0.02</td>
+<td headers="conf.low" class="gt_row gt_center">-0.16, 0.20</td>
+<td headers="p.value" class="gt_row gt_center">0.9</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4"><span data-qmd-base64="UsKyID0gMC4wNDQ7IEFkanVzdGVkIFLCsiA9IDAuMDQzOyBTaWdtYSA9IDAuOTQ5OyBTdGF0aXN0aWMgPSA0MS41OyBwLXZhbHVlID0gJmx0OzAuMDAxOyBkZiA9IDIzOyBMb2ctbGlrZWxpaG9vZCA9IC0zMCwyMDc7IEFJQyA9IDYwLDQ2MzsgQklDID0gNjAsNjYyOyBEZXZpYW5jZSA9IDE4LDcwODsgUmVzaWR1YWwgZGYgPSAyMCw3NzI7IE5vLiBPYnMuID0gMjAsNzk2"><span class="gt_from_md">R² = 0.044; Adjusted R² = 0.043; Sigma = 0.949; Statistic = 41.5; p-value = &lt;0.001; df = 23; Log-likelihood = -30,207; AIC = 60,463; BIC = 60,662; Deviance = 18,708; Residual df = 20,772; No. Obs. = 20,796</span></span></td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="4">Time fixed effects (ESS Round) omitted from the table but included in the model</td>
+    </tr>
+  </tfoot>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span data-qmd-base64="Q0kgPSBDb25maWRlbmNlIEludGVydmFs"><span class="gt_from_md">CI = Confidence Interval</span></span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/danielcapistrano\.com\/CFI_redistribution");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./data.html" class="pagination-link" aria-label="Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./welfare.html" class="pagination-link" aria-label="Welfare">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Welfare</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

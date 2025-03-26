@@ -1,0 +1,223 @@
+# Welfare 
+
+```{r}
+library(tidyverse)
+library(haven)
+library(gt)
+library(gtsummary)
+library(plotly)
+
+# Function to get the name of the latest file
+get_latest <- function(file_pattern){
+    file_list <- list.files(path = "./data", pattern = file_pattern)
+    latest_file <- tail(sort(file_list), n = 1)
+    return(latest_file)
+}
+
+
+# Read file in the root of sub-folder "data" with name containing "ESS" 
+df_ess <- read_dta(paste0("data/", get_latest("ESS")))
+
+```
+
+The data analysed in this chapter refers to a special module from the European Social Survey on welfare attitudes that was fielded in 2008 (Round 4) and repeated in 2016 (Round 8) (see @meuleman_past_2018 for more on this module). 
+
+
+## Large differences acceptable
+
+In this question, respondents were asked to what extent they agree with the following statement: 
+
+::: {.callout-note}
+
+### Question wording
+‘Large differences in people’s incomes are acceptable to properly reward differences in talents and efforts’
+:::
+
+The distribution appears to be similar for 2008 and 2016, with a slight reduction in the proportion of those who "agree" or "agree strongly". 
+
+```{r}
+#| label: fig-large-diff
+#| fig-cap: "Distribution of 'Large differences acceptable' (2008 and 2016)"
+
+df_ess |> 
+    filter(!is.na(dfincac)) |> 
+    group_by(essround) |>
+    count(Acceptable = as_factor(dfincac)) |> 
+    mutate(Proportion = round(prop.table(n)*100,1)) |> 
+    ggplot(aes(x = Acceptable, y = Proportion)) +
+    geom_bar(stat = "identity", fill = "lightblue")+
+    geom_label(aes(label = Proportion)) +
+    theme_classic()+
+    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom")+
+    facet_wrap(~essround) 
+
+
+```
+
+A multivariate analysis with the same explanatory variables from the model  in @tbl-multiv-gincdif suggests that gender and class are not statistically significant predictors. However, respondents with worse financial situation tend to disagree more with this statement.
+
+```{r}
+#| include: false
+lm(dfincac ~ factor(essround) + agea + as_factor(gndr) + as_factor(class5) + as_factor(hincfel), weights = pspwght, data = df_ess)  |> 
+    tbl_regression() |> 
+    bold_p(t = 0.05, q = FALSE)
+```
+
+
+
+## Deservingness
+
+In this question, respondents were asked how much responsibility the government should have in relation to the following groups:
+
+::: {.callout-note}
+
+### Question wording
+
+People have different views on what the responsibilities of governments should or should not be. For each of the tasks I read out please tell me on a score of 0-10 how much responsibility you think governments should have. 0 means it should not be governments' responsibility at all and 10 means it should be entirely governments' responsibility
+
+"... ensure sufficient child care services for working parents"  
+
+"... ensure a reasonable standard of living for the old" 
+
+"...ensure a reasonable standard of living for the unemployed"
+:::
+
+In the @fig-deservingness, higher values denote higher government responsibility. On average respondents believe that the government should be more responsible for the old compared to working parents and unemployed. However, there was a reduction in this prioritisation for governments' responsibility in relation to older citizens and unemployed and increase in the average prioritisation for working parents.  
+
+```{r}
+#| label: fig-deservingness
+#| fig-cap: "Mean values for deservingness of government support by group and round"
+
+
+df_ess |>
+    filter(essround %in% c(4, 8)) |> 
+    group_by(round = as_factor(essround))  |> 
+    summarise(across(c("gvcldcr", "gvslvol", "gvslvue"), ~ weighted.mean(.x, w = pspwght, na.rm = T))) |> 
+    pivot_longer(cols = -round, names_to = "Group", values_to = "mean") |> 
+    mutate(Group = case_match(Group, "gvcldcr" ~ "working parents", "gvslvol" ~ "old", "gvslvue" ~ "unemployed")) |> 
+    ggplot(aes(x = round, y = mean, group = Group, color = Group)) +
+    geom_point() +
+    geom_line() +
+    geom_label(aes(label = round(mean, 1)))+
+    theme_classic() +
+    theme(legend.position="bottom")
+
+```
+
+## Beliefs about social benefits
+
+The module also included questions in relation to beliefs about the consequences of social benefits and services: 
+
+::: {.callout-note}
+
+### Question wording
+
+Using this card please tell me to what extent you agree or disagree that social benefits and services in [country]... 
+
+"...lead to a more equal society?"  
+
+"... make people lazy?" 
+
+"...make people less willing care for one another?"
+
+"...prevent widespread poverty"  
+
+"...place too great strain on economy"
+
+:::
+
+The average level of agreement remains similar comparing 2008 and 2016. The only exception is the average for "social benefits place too great strain on economy", which oberved a significant reduction in the level of agreement, as shown in @fig-benefits. 
+
+```{r}
+#| label: fig-benefits
+#| fig-cap: "Mean values for beliefs in relation to social benefits by round"
+
+believe_vars <- c("sbeqsoc", "sblazy", "sblwcoa", "sbprvpv", "sbstrec")
+
+df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.col}_inv"))
+
+believe_vars_inv <- c("sbeqsoc_inv", "sblazy_inv", "sblwcoa_inv", "sbprvpv_inv", "sbstrec_inv")
+
+
+(df_ess |>
+    filter(essround %in% c(4, 8)) |> 
+    group_by(round = as_factor(essround))  |> 
+    summarise(across(all_of(believe_vars_inv), ~ weighted.mean(.x, w = pspwght, na.rm = T))) |> 
+    pivot_longer(cols = -round, names_to = "Question", values_to = "mean") |> 
+    mutate(Question = case_match(
+        Question, 
+        "sbeqsoc_inv" ~ "Lead to equal society", 
+        "sblazy_inv" ~ "Make people lazy", 
+        "sblwcoa_inv" ~ "Make people less willing to care",
+        "sbstrec_inv" ~ "Put strain on economy",
+        "sbprvpv_inv" ~ "Prevent poverty"
+    )) |> 
+    ggplot(aes(x = round, y = mean, group = Question, color = Question)) +
+    geom_point() +
+    geom_line() +
+    # geom_label(aes(label = round(mean, 1)))+
+    theme_classic()) |> 
+    ggplotly()
+    
+```
+
+
+### PCA
+
+A Principal Components Analysis indicate that these five variables can be reduced to the following two latent dimensions named arbitrarily:
+
+- **Protective** (PC1): "Lead to equal society" and "Prevent poverty";    
+- **Disincentive** (PC2): "Make people lazy" and "Make people less willing to care", and "Put strain on economy".
+
+```{r}
+#| include: false
+library(psych)
+
+pca_res <- 
+    df_ess |> 
+    select(all_of(believe_vars_inv)) |>  
+    na.omit() |> 
+    psych::principal(nfactors = 2)
+
+pca_vars  <- data.frame(unclass(pca_res$loadings))
+
+```
+
+The variables were aggregated within each dimension using the mean value of the non-missing answers. The @tbl-multiv-beliefs below shows the coefficients of two OLS explanatory models for these two dimensions.
+
+The first model indicates that female respondents tend to provide a slightly lower score on the protective dimension of beliefs about social benefits. None of the other predictors included in the model are statistically significant. 
+
+The second model suggests that the group of "small business owners" and "skilled workers" have higher scores compared to respondents of other social classes. In addition, respondents with worse self-reported financial situation tend to disagree more with beliefs related to disincentive dimension of social beliefs. 
+
+
+
+```{r}
+#| label: tbl-multiv-beliefs
+#| tbl-cap: "OLS regression coefficients for 'beliefs about social benefits' "
+
+
+vars_protect <- c("sbeqsoc_inv", "sbprvpv_inv")
+vars_disinctv <- c("sblazy_inv", "sblwcoa_inv", "sbstrec_inv")
+
+df_ess$protective <- rowMeans(select(df_ess, all_of(vars_protect)), na.rm = T)
+df_ess$disincentive <- rowMeans(select(df_ess, all_of(vars_disinctv)), na.rm = T)
+
+model_belief <- function(DV){
+    model <- as.formula(paste0(DV, "~ factor(essround) + agea + as_factor(gndr) + as_factor(class5) + as_factor(hincfel)"))
+
+    lm(model, weights = pspwght, data = df_ess) |> 
+        tbl_regression(include = c("agea", "as_factor(gndr)", "as_factor(class5)", "as_factor(hincfel)"))  |> 
+        bold_p(t = 0.05, q = FALSE) 
+}
+
+
+tbl_merge(
+    tbls = map(c("protective", "disincentive"), model_belief),
+    tab_spanner = c("**Protective**", "**Disincentive**")) |> 
+    as_gt() |>
+    gt::tab_source_note("Time fixed effects (ESS Round) omitted from the table but included in the model") |> 
+    tab_options(table.width = pct(80))
+
+
+```

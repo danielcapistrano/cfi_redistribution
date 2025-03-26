@@ -1,0 +1,60 @@
+project:
+  type: book
+book:
+  title: "CFI Redistribution"
+  favicon: assets/img/favicon.png
+  downloads: [pdf, docx]
+  page-navigation: true
+  site-url: "https://danielcapistrano.com/CFI_redistribution" 
+  repo-url: "https://github.com/danielcapistrano/CFI_redistribution" 
+  search: true
+  author: "ESRI"
+  date: last-modified
+  chapters:
+    - index.qmd
+    - data.qmd
+    - redistribution.qmd
+    - welfare.qmd
+    - covid19.qmd
+    - trust.qmd
+    - references.qmd
+    - process.qmd
+  sidebar:
+      #background: "#D9E3E4"
+      logo: assets/img/cover.jpg
+      pinned: true
+      align: center
+      tools: 
+        - icon: globe
+          href: https://esri.ie
+          text: "ESRI"
+      style: "docked"
+      search: true
+      collapse-level: 2
+format:
+  html:
+    theme: spacelab
+    highlight: github
+    toc: true
+    number_sections: true
+    number-depth: 2
+    code-fold: true
+    fig-cap-location: top
+    css: assets/styles.css
+    knitr:
+      opts_chunk:
+        out.width: "70%"
+        out.height: "70%"
+    
+  # pdf:
+  #   documentclass: scrreprt
+  # docx:
+  #   toc: true
+  #   reference-docx: assets/template_esri.docx
+
+
+execute: 
+  warning: false
+  cache: false
+
+bibliography: assets/CFI_Redistribution.bib

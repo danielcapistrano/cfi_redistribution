@@ -1,0 +1,94 @@
+# Data
+
+## Voter Survey 
+
+::: {style="float: left; margin: 5px;"}
+![European Elections Studies](assets/img/ees.jpg)
+
+[EES Website](https://www.gesis.org/en/services/finding-and-accessing-data/international-survey-programs/european-election-studies)
+:::
+
+We rely on public opinion data from Voter Surveys conducted immediately after the European elections. Data from the latest three surveys (2014,	2019, 2024) were analysed here. These surveys are part of the European Elections Studies (EES), which also features political elite surveys, media studies, and the Euromanifestos project that codes Party Manifestos. Before 1994, the voter survey questions 3 part of the Eurobarometer surveys. Since the 1999 elections, EES surveys have been conducted independently of the Eurobarometer.
+
+
+### Response variable
+
+Here is the main response variable used in this project: 
+
+::: {.callout-note}
+
+#### Question wording
+
+[...] We would like  to ask you to position yourself on a scale from 0 to 10, where '0' means that you "fully agree with the statement at the top" and '10' means that you "fully agree with the statement at the bottom". [...]
+
+**Redistribution of wealth**  
+**0** - You fully favour redistribution from the rich to the poor in Ireland  
+**10** You fully oppose redistribution of wealth from the rich to the poor in Ireland  
+
+:::
+
+::: {.callout-warning}
+The original scale of this variable was inverted for this analysis. So, in the results presented here, higher values indicate more in favour of redistribution.
+:::
+
+### Relevant variables 
+
+Here are relevant variables from the latest three waves that were also included in the analysis. 
+
+- Country of birth  
+- Age  
+- Gender  
+- Educational attainment  
+
+
+## European Social Survey
+
+
+::: {style="float: right; margin: 5px;"}
+
+![European Social Survey](assets/img/ess.jpg)
+
+[ESS Website](https://europeansocialsurvey.org/)
+:::
+
+The main data source for this project is the European Social Survey (ESS). Most of the analysis is based on a core question that was asked across all 11 rounds since 2002. In addition, we also explore several questions from the module on welfare attitudes that was fielded in 2008 and 2016. 
+
+
+### Response variable
+
+Here is the main response variable from the European Social Survey that was administered across all 11 rounds: 
+
+::: {.callout-note}
+
+#### Question wording
+
+Using this card, please say to what extent you agree or disagree with each of the following statements. **The government should take measures to reduce differences in income levels**
+
+1 Agree strongly  
+2 Agree  
+3 Neither agree nor disagree  
+4 Disagree  
+5 Disagree strongly  
+:::
+
+::: {.callout-warning}
+The original scale of this variable was inverted for this analysis. So, in the results presented here, higher values denote stronger agreement with government reducing income differences.
+:::
+
+Some recent studies have raised concerns in relation to the reliability of this question as a measurement of support for redistribution. Margalit and Raviv -@margalit_does_2024 argues that reduction in income differences is too abstract and respondents in general do not link it to redistributive measures. Similarly, it has been suggested that this question only captures a diffuse inclination to equality and that is why responses are inconsistent with voting preferences across countries @dallinger_ambivalence_2022. However, @breznau_moderating_2025 argue that the absence of a relationship between this measurement and other expected correlates (voting preferences / support for concrete policies) is due to the ommission of views on government (trust and perceptions of corruption) as a moderating variable. 
+
+### Relevant variables 
+
+Here are relevant variables from the latest three waves that were also included in the analysis. 
+
+- Placement on left right scale  
+- Citizen of country  
+- Born in country  
+- Gender   
+- Year of birth   
+- Highest level of education  
+- Feeling about household's income nowadays  
+
+In addition, based on the class scheme developed by Oesch -@oesch_coming_2006, a "social class" variable was constructed based on occupational variables and following  @tawfik_script_2020 script.  
+
+

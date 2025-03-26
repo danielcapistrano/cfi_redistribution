@@ -1,0 +1,4 @@
+data/
+temp*
+/.quarto/
+*_cache/
