@@ -1,1 +1,1 @@
-Sitemap: https://danielcapistrano.com/CFI_redistribution/sitemap.xml
+Sitemap: https://danielcapistrano.com/cfi_redistribution/sitemap.xml

@@ -56,7 +56,7 @@ get_series <- function(mygroup, myvar){
     layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
 }
 
-get_series("class5", "trstplt")
+get_series("hincfel", "trstplt")
 
 ```
 

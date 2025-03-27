@@ -6,8 +6,8 @@ book:
   favicon: assets/img/favicon.png
   downloads: [pdf, docx]
   page-navigation: true
-  site-url: "https://danielcapistrano.com/CFI_redistribution" 
-  repo-url: "https://github.com/danielcapistrano/CFI_redistribution" 
+  site-url: "https://danielcapistrano.com/cfi_redistribution" 
+  repo-url: "https://github.com/danielcapistrano/cfi_redistribution" 
   search: true
   author: "ESRI"
   date: last-modified
@@ -47,11 +47,11 @@ format:
         out.width: "70%"
         out.height: "70%"
     
-  # pdf:
-  #   documentclass: scrreprt
-  # docx:
-  #   toc: true
-  #   reference-docx: assets/template_esri.docx
+  pdf:
+    documentclass: scrreprt
+  docx:
+    toc: true
+    reference-docx: assets/template_esri.docx
 
 
 execute: 

@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://danielcapistrano.com/CFI_redistribution/index.html</loc>
+    <loc>https://danielcapistrano.com/cfi_redistribution/index.html</loc>
     <lastmod>2025-03-27T09:42:01.856Z</lastmod>
   </url>
   <url>
-    <loc>https://danielcapistrano.com/CFI_redistribution/data.html</loc>
+    <loc>https://danielcapistrano.com/cfi_redistribution/data.html</loc>
     <lastmod>2025-03-27T09:42:01.751Z</lastmod>
   </url>
   <url>
-    <loc>https://danielcapistrano.com/CFI_redistribution/redistribution.html</loc>
+    <loc>https://danielcapistrano.com/cfi_redistribution/redistribution.html</loc>
     <lastmod>2025-03-27T09:42:01.858Z</lastmod>
   </url>
   <url>
-    <loc>https://danielcapistrano.com/CFI_redistribution/welfare.html</loc>
+    <loc>https://danielcapistrano.com/cfi_redistribution/welfare.html</loc>
     <lastmod>2025-03-27T09:42:01.911Z</lastmod>
   </url>
   <url>
-    <loc>https://danielcapistrano.com/CFI_redistribution/covid19.html</loc>
+    <loc>https://danielcapistrano.com/cfi_redistribution/covid19.html</loc>
     <lastmod>2025-03-27T10:14:30.790Z</lastmod>
   </url>
   <url>
-    <loc>https://danielcapistrano.com/CFI_redistribution/trust.html</loc>
-    <lastmod>2025-03-27T10:31:53.847Z</lastmod>
+    <loc>https://danielcapistrano.com/cfi_redistribution/trust.html</loc>
+    <lastmod>2025-03-27T10:47:12.153Z</lastmod>
   </url>
   <url>
-    <loc>https://danielcapistrano.com/CFI_redistribution/references.html</loc>
+    <loc>https://danielcapistrano.com/cfi_redistribution/references.html</loc>
     <lastmod>2025-03-27T09:42:01.911Z</lastmod>
   </url>
   <url>
-    <loc>https://danielcapistrano.com/CFI_redistribution/process.html</loc>
+    <loc>https://danielcapistrano.com/cfi_redistribution/process.html</loc>
     <lastmod>2025-03-27T10:11:51.758Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielcapistrano.com/cfi_redistribution/CFI-Redistribution.pdf</loc>
+    <lastmod>2025-03-27T10:51:55.029Z</lastmod>
+  </url>
+  <url>
+    <loc>https://danielcapistrano.com/cfi_redistribution/CFI-Redistribution.docx</loc>
+    <lastmod>2025-03-27T10:51:57.537Z</lastmod>
   </url>
 </urlset>
