@@ -104,6 +104,8 @@ ess_vars <- c(
     "class8",
     "class16",
     "brnocnt",
+    "stfgov",
+    "trstplt",
     "nmnybsc",
     "smdfslv",
     "dfincac",

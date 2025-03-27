@@ -22,7 +22,7 @@ df_ess <- read_dta(paste0("data/", get_latest("ESS")))
 ```
 
 
-As shown in @fig-ess-time, the ESS data indicates a slightly higher average support for redistribution after the 2008 economic crisis and after the 2022 Covid19 pandemic. Evidence from a survey experiment in the USA show that participants are more willing to prioritize society's problems when exposed to issues related to the pandemic [@cappelen_solidarity_2021]. Van Hootegem and Laenen [-@hootegem_wave_2023] show that the increase in support for a universal basic income increased with the pandemic but it was short lived. 
+As shown in @fig-ess-time, the ESS data indicates a slightly higher average support for redistribution after the 2008 economic crisis and after the 2022 Covid19 pandemic. Evidence from a survey experiment in the USA show that participants are more willing to prioritize society's problems when exposed to issues related to the pandemic [@cappelen_solidarity_2021]. Van Hootegem and Laenen [-@van_hootegem_wave_2023] show that the increase in support for a universal basic income increased with the pandemic but it was short lived. 
 
 In this section we explore further  the potential impact of the pandemic on support for redistribution. 
 
