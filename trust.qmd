@@ -27,7 +27,7 @@ df_ess <- read_dta(paste0("data/", get_latest("ESS")))
 ## Trust in politicians 
 
 
-::: {.callout-note}
+::: {.callout-note collapse="true"}
 
 ### Question wording
 Using this card, please tell me on a score of 0-10 how much you personally trust each of the institutions I read out. 0 means you do not trust an institution at all, and 10 means you have complete trust. Firstly... ...politicians?
@@ -63,7 +63,7 @@ get_series("hincfel", "trstplt")
 
 ## Satisfied with government
 
-::: {.callout-note}
+::: {.callout-note collapse="true"}
 
 ### Question wording
 Now thinking about the [country] government, how satisfied are you with the way it is doing its job?

@@ -27,7 +27,7 @@ The data analysed in this chapter refers to a special module from the European S
 
 In this question, respondents were asked to what extent they agree with the following statement: 
 
-::: {.callout-note}
+::: {.callout-note collapse="true"}
 
 ### Question wording
 ‘Large differences in people’s incomes are acceptable to properly reward differences in talents and efforts’
@@ -70,7 +70,7 @@ lm(dfincac ~ factor(essround) + agea + as_factor(gndr) + as_factor(class5) + as_
 
 In this question, respondents were asked how much responsibility the government should have in relation to the following groups:
 
-::: {.callout-note}
+::: {.callout-note collapse="true"}
 
 ### Question wording
 
@@ -109,7 +109,7 @@ df_ess |>
 
 The module also included questions in relation to beliefs about the consequences of social benefits and services: 
 
-::: {.callout-note}
+::: {.callout-note collapse="true"}
 
 ### Question wording
 
