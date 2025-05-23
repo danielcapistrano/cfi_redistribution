@@ -52,7 +52,8 @@ df_ess |>
         legend.position = "bottom")+
     facet_wrap(~essround) 
 
-
+df_ess |> 
+ count(class5, class16)
 ```
 
 A multivariate analysis with the same explanatory variables from the model  in @tbl-multiv-gincdif suggests that gender and class are not statistically significant predictors. However, respondents with worse financial situation tend to disagree more with this statement.

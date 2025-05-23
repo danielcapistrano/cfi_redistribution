@@ -33,22 +33,22 @@ book:
       search: true
       collapse-level: 2
 format:
-  html:
-    theme: spacelab
-    highlight: github
-    toc: true
-    number_sections: true
-    number-depth: 2
-    code-fold: true
-    fig-cap-location: top
-    css: assets/styles.css
-    knitr:
-      opts_chunk:
-        out.width: "70%"
-        out.height: "70%"
+  # html:
+  #   theme: spacelab
+  #   highlight: github
+  #   toc: true
+  #   number_sections: true
+  #   number-depth: 2
+  #   code-fold: true
+  #   fig-cap-location: top
+  #   css: assets/styles.css
+  #   knitr:
+  #     opts_chunk:
+  #       out.width: "70%"
+  #       out.height: "70%"
     
-  pdf:
-    documentclass: scrreprt
+  # pdf:
+  #   documentclass: scrreprt
   docx:
     toc: true
     reference-docx: assets/template_esri.docx
@@ -57,5 +57,7 @@ format:
 execute: 
   warning: false
   cache: false
+  echo: false
+  message: false
 
 bibliography: assets/CFI_Redistribution.bib

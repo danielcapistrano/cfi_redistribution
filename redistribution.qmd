@@ -39,22 +39,19 @@ The @fig-ess-time below shows the mean values for 'Government should reduce inco
 
 
 (df_eu |>
+    filter(cntry %in% c("IE", "GB", "PT")) |> 
     group_by(round = as_factor(essround), cntry)  |> 
     mutate(gincdif_inv = 6 - gincdif) |> 
     summarise(
         mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
         se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))) |> 
     mutate(Country = if_else(cntry == "IE", "Ireland", "Other EU")) |> 
-    ggplot(aes(x = round, y = mean, group = cntry, color = Country)) +
-    geom_line(aes(group = cntry), size = 0.4, data = ~subset(., Country != "Ireland"))+
-    geom_point(data = ~subset(., Country == "Ireland")) +
-    geom_line(aes(group = cntry), size = 0.8, data = ~subset(., Country == "Ireland"))+
-    scale_color_manual(values = c("darkgreen", "grey85"))+
+    ggplot(aes(x = round, y = mean, group = cntry, color = cntry)) +
+    geom_line()+
+    geom_point() +
     ylim(1,5) +
-    theme_classic() +
-    theme(legend.position = "bottom")) |> 
-    ggplotly()  |> 
-    layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
+    theme_classic()) |> 
+    ggplotly()  
 
     
 ```
