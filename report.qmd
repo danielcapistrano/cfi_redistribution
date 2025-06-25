@@ -1,17 +1,18 @@
 ---
-title: "Public support for income redistribution and welfare policies in Ireland"
+title: "Public support for welfare and redistributive policies in Ireland"
 format:
    docx:
-     toc: false
-     link-citations: true
-     reference-docx: assets/template_esri.docx
-   pdf:
-    papersize: a4paper
-    documentclass: article
+    toc: false
+    number-sections: true
     link-citations: true
-    fig-cap-location: top
-    fig-pos: "H"
-fig-cap-location: top
+    reference-doc: _assets/template.docx
+fig-cap-location: bottom
+#    pdf:
+#     papersize: a4paper
+#     documentclass: article
+#     link-citations: true
+#     fig-cap-location: top
+#     fig-pos: "H"
 execute: 
   echo: false
   message: false
@@ -30,16 +31,26 @@ execute:
 
 # keywords: 
 #   - Welfare
-bibliography: assets/CFI_Redistribution.bib
+bibliography: _assets/CFI_Redistribution.bib
 ---
 
-# Introduction {.unnumbered}
+<style>
+  .narrow {
+    width: 60% !important;
+  }
+</style>
 
+# Introduction
 
-This report is based on a research project that investigated public support for income redistribution and welfare policies in Ireland. The main questions that guided the research were the following:
-- Has the support for income redistribution changed over time?  
-- What are the main attitudes and beliefs in relation to welfare policies?  
-- What individual and contextual factors are associated with support for redistribution and
+Many vulnerable individuals and families in Ireland, each with different profiles, circumstances, and needs, are struggling to make ends meet and are falling into poverty. A significant number of these people rely heavily on welfare benefits, but the current level of support is often insufficient to protect them from poverty. 
+
+This report presents the findings of a research project that explored attitudes towards welfare and redistributive policies designed to address these challenges. Ireland offers a particularly relevant context for this research. Over the past few decades, the Irish society experienced different levels of economic growth, income inequality, and poverty @roantree_poverty_2024. Therefore, these changing conditions provide information to examine the factors associated with public support for welfare policies and income redistribution. 
+
+The research project was guide by the following general questions:
+- Who in Ireland supports welfare policies and income redistribution?  
+- Has the overall support for welfare policies and income redistribution changed over time?  
+- What are the main policy implications of this public support?  
+
 
 ## Key points
 
@@ -55,15 +66,13 @@ This report is based on a research project that investigated public support for 
 - There is a trajectory of increasing support for redistribution across skilled and unskilled workers since round 8 (2016). However, for lower-grade service class and small business owners, there seems to be a break in this trajectory captured in the latest wave (@fig-class5-time)
 
 
-## Methods
+## Methods and data
 
-
-
-### Data sources 
+Social surveys are widely used as a research instrument to assess welfare attitudes and attitudes to redistribution [@steele_attitudes_2019; @svallfors_contested_2012]
 
 - **European Elections Studies**: The research examined public opinion data from Voter Surveys conducted immediately after the European elections. Data from the latest three surveys (2014,	2019, 2024) were analysed here. These surveys are part of the European Elections Studies (EES), which also features political elite surveys, media studies, and the Euromanifestos project that codes Party Manifestos. Before 1994, the voter survey questions 3 part of the Eurobarometer surveys. Since the 1999 elections, EES surveys have been conducted independently of the Eurobarometer. The main response variable used in this project is based on a question related to wealth redistribution. The interviewer manual does not contain any additional instruction in relation to this question, so respondents provided their answers according to their understanding of the following wording:
 
-::: {.callout-note}
+::: {.callout-note .narrow}
 
 ##### Question wording
 
@@ -118,15 +127,13 @@ Here are relevant variables from the latest three waves that were also included 
 In addition, based on the class scheme developed by Oesch -@oesch_coming_2006, a "social class" variable was constructed based on occupational variables and following  @tawfik_script_2020 script.  
 
 
-# Public support for income redistribution
-
+# Who supports redistribution?
 
 ```{r}
 library(tidyverse)
 library(haven)
 library(gt)
 library(gtsummary)
-library(plotly)
 
 # Function to get the name of the latest file
 get_latest <- function(file_pattern){
@@ -135,6 +142,26 @@ get_latest <- function(file_pattern){
     return(latest_file)
 }
 
+
+# Function to save an image of the table/plot and print the image on the report
+save_display  <- function(myobj, w=NULL, h=NULL){
+    name_str  <- deparse(substitute(myobj))
+    file_path  <- paste0("_assets/img/", name_str, '.png')
+
+    if(str_detect(name_str, 'tbl')){
+        gtsave(myobj, filename = file_path)
+    } else if (str_detect(name_str, 'fig')) {
+        if(missing(w)){
+            ggsave(myobj, filename = file_path)
+        } else {
+            ggsave(myobj, filename = file_path, width = w, height = h)
+        }
+    } else {
+        print("Name of the object should contain 'fig' or 'tbl'")
+    }
+
+    knitr::include_graphics(file_path)
+}
 
 # Read file in the root of sub-folder "data" with name containing "ESS" 
 df_ess <- read_dta(paste0("data/", get_latest("ESS")))
@@ -153,71 +180,6 @@ df_esseu <- read_dta("./data/ess/ess_eu.dta")
 ```
 
 
-## Over time
-
-The average level of support for income redistribution in Ireland is similar to the ones observed in other European countries. However, the average support varies substantially over time. The @fig-ess-time below shows the mean values for 'Government should reduce income differences' by round. Overall there is a stable agreement (mean = `r round(weighted.mean(df_ess$gincdif_inv, w = df_ess$pspwght, na.rm = T),1)`). Rounds 5-7 (2010-2014) as well as 10-11(2022-2024) show a slightly higher agreement compared to other rounds and the European average.  
-
-```{r}
-#| label: fig-ess-time
-#| fig-cap: "Mean values for 'Government should reduce income differences' by round" 
-
-list_countries <- c("IE", "GR", "PT", "GB", "BE", "CZ", "FI", "FR", "DE", "NO", "ES")
-
-
-df_esseu |>
-    filter(cntry %in% list_countries) |> 
-    mutate(Country = case_match(cntry,
-        "IE" ~ "Ireland",
-        "PT" ~ "Portugal",
-        # "GR" ~ "Greece",
-        "GB" ~ "Great Britain",
-        .default = paste0("Other ", length(list_countries), " EU countries"))) |> 
-    group_by(round = as_factor(essround), Country)  |> 
-    mutate(gincdif_inv = 6 - gincdif) |> 
-    summarise(
-        mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
-        se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))) |> 
-    ggplot(aes(x = round, y = mean, group = Country, color = Country)) +
-    geom_line()+
-    geom_point() +
-    ylim(3,5) +
-    theme_classic()
-
-    
-```
-
-@fig-vs-time shows the density of responses for the scale on support for redistribution of wealth. The mean values are similar for 2014, 2019 and 2024. However, the distribution seems is less skewed in 2024 compared to 2014.
-
-```{r}
-#| label: fig-vs-time
-#| fig-cap: "Density plot for 'in favour of redistribution of wealth' by survey year"
-
-df_vseu |>
-    mutate(
-        Country = if_else(as_factor(cntry) == "IRELAND", "Ireland", paste0("Other EU countries")),
-        Year = as.numeric(str_remove(study, "EES"))
-    ) |> 
-    group_by(Year, Country)  |> 
-    summarise(
-        mean = weighted.mean(redist_inv, w = weight, na.rm = T),
-        se = sd(redist_inv, na.rm = T)/sqrt(length((redist_inv)))) |> 
-    ggplot(aes(x = Year, y = mean, group = Country, color = Country)) +
-    geom_line()+
-    geom_point() +
-    ylim(4,7) +
-    theme_classic()
-
-
-# df_vseu |> 
-#     ggplot(aes(x = redist_inv)) + 
-#     geom_density(fill = "lightblue") + 
-#     geom_vline(data = df_vs |> group_by(study) |> summarise(mean = weighted.mean(redist_inv, w = weight, na.rm = T)), aes(xintercept = mean), color = 'red') +
-#     facet_wrap(~study, nrow = 3) +
-#     theme_classic()
-
-```
-
-
 ## Gender
 
 The @tbl-gender shows the mean values for the main response variable in each study in 2024 by gender. 
@@ -226,20 +188,24 @@ The @tbl-gender shows the mean values for the main response variable in each stu
 #| label: tbl-gender
 #| tbl-cap: "Mean values by gender and study in 2024"
 
+tbl_gender <- 
+    df_ess |> 
+        filter(essround == 11) |> 
+        group_by(Gender = as_factor(gndr), .drop=TRUE) |>
+        summarise(ESS = weighted.mean(gincdif_inv, w = pspwght, na.rm = T))  |> 
+        left_join(
+            df_vs |> 
+            filter(study == "EES24") |> 
+            group_by(Gender = as_factor(gndr), .drop=TRUE) |> 
+            summarise(VS = weighted.mean(redist_inv, w = weight, na.rm = T))
+        ) |> 
+        gt() |> 
+        fmt_number(everything(), decimals = 1) |> 
+        tab_options(table.width = px(300))
 
-df_ess |> 
-    filter(essround == 11) |> 
-    group_by(Gender = as_factor(gndr)) |>
-    summarise(ESS = weighted.mean(gincdif_inv, w = pspwght, na.rm = T))  |> 
-    left_join(
-        df_vs |> 
-        filter(study == "EES24") |> 
-        group_by(Gender = as_factor(gndr)) |> 
-        summarise(VS = weighted.mean(redist_inv, w = weight, na.rm = T))
-    ) |> 
-    gt()  |> 
-    fmt_number(everything(), decimals = 1) |> 
-    tab_options(table.layout = "auto")
+
+
+save_display(tbl_gender)
 
 ```
 
@@ -258,15 +224,18 @@ The relationship between age and the response variable seems to change across ro
 #| label: fig-ess-age
 #| fig-cap: "Scatter plot for 'Government should reduce income differences' by age and round"
 
-df_ess |> 
-    group_by(essround, agea) |> 
-    summarise(mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T)) |> 
-    ggplot(aes(x = agea, y = mean)) +
-    geom_point() +
-    geom_smooth(method = 'lm') +
-    ylim(3,5) +
-    facet_wrap(~essround)
+fig_ess_age <- 
+    df_ess |> 
+        group_by(essround, agea) |> 
+        summarise(mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T)) |> 
+        ggplot(aes(x = agea, y = mean)) +
+        geom_point() +
+        geom_smooth(method = 'lm') +
+        ylim(3,5) +
+        facet_wrap(~essround)
 
+
+save_display(fig_ess_age, w = 7, h =6)
 
 ```
 
@@ -366,8 +335,8 @@ df_ess |>
 The @tbl-multiv-gincdif below shows the coefficients of an OLS regression model on the support for government reducing differences in income levels. The overall explanatory power of the model is low. The effect of age seems to be neglectable. Both the social class and subjective income suggest that respondents in more precarious economic situation tend to be more favourable of the government reducing income differences. 
 
 ```{r}
-#| label: tbl-multiv-gincdif
-#| tbl-cap: "OLS regression coefficients for 'income differences' "
+##| label: tbl-multiv-gincdif
+##| tbl-cap: "OLS regression coefficients for 'income differences' "
 
 
 lm(gincdif_inv ~ factor(essround) + agea + as_factor(gndr) + as_factor(class5) + as_factor(hincfel) + cso_unemp, weights = pspwght, data = df_ess)  |> 
@@ -382,6 +351,72 @@ lm(gincdif_inv ~ factor(essround) + agea + as_factor(gndr) + as_factor(class5) +
 
 
 ```
+
+
+## Has the support changed over time?
+
+The average level of support for income redistribution in Ireland is similar to the ones observed in other European countries. However, the average support varies substantially over time. The @fig-ess-time below shows the mean values for 'Government should reduce income differences' by round. Overall there is a stable agreement (mean = `r round(weighted.mean(df_ess$gincdif_inv, w = df_ess$pspwght, na.rm = T),1)`). Rounds 5-7 (2010-2014) as well as 10-11(2022-2024) show a slightly higher agreement compared to other rounds and the European average.  
+
+```{r}
+#| label: fig-ess-time
+#| fig-cap: "Mean values for 'Government should reduce income differences' by round" 
+
+list_countries <- c("IE", "GR", "PT", "GB", "BE", "CZ", "FI", "FR", "DE", "NO", "ES")
+
+
+df_esseu |>
+    filter(cntry %in% list_countries) |> 
+    mutate(Country = case_match(cntry,
+        "IE" ~ "Ireland",
+        "PT" ~ "Portugal",
+        # "GR" ~ "Greece",
+        "GB" ~ "Great Britain",
+        .default = paste0("Other ", length(list_countries), " EU countries"))) |> 
+    group_by(round = as_factor(essround), Country)  |> 
+    mutate(gincdif_inv = 6 - gincdif) |> 
+    summarise(
+        mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
+        se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))) |> 
+    ggplot(aes(x = round, y = mean, group = Country, color = Country)) +
+    geom_line()+
+    geom_point() +
+    ylim(3,5) +
+    theme_classic()
+
+    
+```
+
+@fig-vs-time shows the density of responses for the scale on support for redistribution of wealth. The mean values are similar for 2014, 2019 and 2024. However, the distribution seems is less skewed in 2024 compared to 2014.
+
+```{r}
+#| label: fig-vs-time
+#| fig-cap: "Density plot for 'in favour of redistribution of wealth' by survey year"
+
+df_vseu |>
+    mutate(
+        Country = if_else(as_factor(cntry) == "IRELAND", "Ireland", paste0("Other EU countries")),
+        Year = as.numeric(str_remove(study, "EES"))
+    ) |> 
+    group_by(Year, Country)  |> 
+    summarise(
+        mean = weighted.mean(redist_inv, w = weight, na.rm = T),
+        se = sd(redist_inv, na.rm = T)/sqrt(length((redist_inv)))) |> 
+    ggplot(aes(x = Year, y = mean, group = Country, color = Country)) +
+    geom_line()+
+    geom_point() +
+    ylim(4,7) +
+    theme_classic()
+
+
+# df_vseu |> 
+#     ggplot(aes(x = redist_inv)) + 
+#     geom_density(fill = "lightblue") + 
+#     geom_vline(data = df_vs |> group_by(study) |> summarise(mean = weighted.mean(redist_inv, w = weight, na.rm = T)), aes(xintercept = mean), color = 'red') +
+#     facet_wrap(~study, nrow = 3) +
+#     theme_classic()
+
+```
+
 
 # Economic crisis and Covid19
 
@@ -401,7 +436,7 @@ In this section we explore further  the potential impact of the pandemic on supp
 
 get_series <- function(myvar){
 
-(df_ess |>
+df_ess |>
     filter(!is.na(get(myvar))) |> 
     group_by(round = as_factor(essround), class = as_factor(get(myvar)))  |> 
     mutate(gincdif_inv = 6 - gincdif) |> 
@@ -412,9 +447,7 @@ get_series <- function(myvar){
     geom_pointrange() +
     geom_line()+
     ylim(3,4.5)+
-    theme_classic()) |> 
-    ggplotly()  |> 
-    layout(legend = list(orientation = "h", x = 0.4, y = -0.2))
+    theme_classic()
 }
 
 get_series("hincfel")
@@ -590,7 +623,7 @@ df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.co
 believe_vars_inv <- c("sbeqsoc_inv", "sblazy_inv", "sblwcoa_inv", "sbprvpv_inv", "sbstrec_inv")
 
 
-(df_ess |>
+df_ess |>
     filter(essround %in% c(4, 8)) |> 
     group_by(round = as_factor(essround))  |> 
     summarise(across(all_of(believe_vars_inv), ~ weighted.mean(.x, w = pspwght, na.rm = T))) |> 
@@ -607,8 +640,7 @@ believe_vars_inv <- c("sbeqsoc_inv", "sblazy_inv", "sblwcoa_inv", "sbprvpv_inv",
     geom_point() +
     geom_line() +
     # geom_label(aes(label = round(mean, 1)))+
-    theme_classic()) |> 
-    ggplotly()
+    theme_classic()
     
 ```
 

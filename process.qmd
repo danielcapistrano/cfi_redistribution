@@ -14,6 +14,16 @@ library(haven)
 
 ess_ie <- read_dta("./data/ess/ess_ie.dta")
 
+# Add reference year of ESS in Ireland
+
+ess_ie  <-
+    ess_ie |> 
+        mutate(start_year = case_match(
+            essround, 
+            1 ~ 2003, 2 ~ 2005, 3  ~ 2006, 4 ~ 2009, 5 ~ 2011, 
+            6 ~ 2012, 7 ~ 2014, 8 ~ 2016, 9 ~ 2018, 10 ~ 2021, 11 ~ 2023
+        ))
+
 ```
 
 
@@ -67,17 +77,80 @@ df_cso$ess_month = as.Date(paste0(df_cso$Month, " 01"), format = "%Y %B %d")
 ess_ie <- 
     ess_ie |> 
         mutate(
-            ess_month = case_when(     
-                essround < 3 ~ as.Date(paste0(inwyr, "-", inwmm, "-01"), format = "%Y-%M-%d"),
-                essround > 2 & essround  < 10 ~ as.Date(paste0(inwyys, "-", inwmms, "-01"), format = "%Y-%M-%d"),
-                essround > 9 ~ as.Date(format(inwds, "%Y-%M-%d"), format = "%Y-%M-%d")
-            )
-        ) |>
+            ess_day = case_when(     
+                essround < 3 ~ as.Date(paste0(inwyr, "-", inwmm, "-", inwdd), format =  "%Y-%m-%d"),
+                essround > 2 & essround  < 10 ~ as.Date(paste0(inwyye, "-", inwmme, "-", inwdde), format =  "%Y-%m-%d"),
+                essround > 9 ~ as.Date(format(inwde,  "%Y-%m-%d"), format =  "%Y-%m-%d")),
+            ess_month = as.Date(paste0(strftime(ess_day, format("%Y-%m")), "-01"), format =  "%Y-%m-%d")) |>
         left_join(df_cso |> select(ess_month, VALUE) |> rename(cso_unemp = VALUE))
-
 
 ```
 
+
+### Add flag if interview was conducted before after budget announcement  
+
+
+Here is a plot showing the number of ESS interviews for each day and the red vertical line represents the day of the announcement of the following years' annual budget, these dates were gathered from diverse sources (Oireachtas transcripts, news from RTE, IrishTimes and IrishExaminer).
+
+```{r}
+
+budget_days <- tibble(budget_date = as.Date(c(
+    "2002-12-06", "2003-12-03", "2004-12-01", "2005-12-07",
+    "2006-12-06", "2007-12-05", "2008-10-14", "2009-12-09", "2010-12-07", 
+    "2011-12-05", "2012-12-05", "2013-10-15", "2014-10-14", "2015-10-13", 
+    "2016-10-11", "2017-10-10", "2018-10-09", "2019-10-08", "2020-10-13",
+    "2021-10-12", "2022-09-27", "2023-10-10", "2024-10-01"
+), format = "%Y-%m-%d"))
+
+
+
+ess_ie |>
+    mutate(year = strftime(ess_day, "%Y"), monthday = strftime(ess_day, "%m%d")) |> 
+    group_by(year, monthday, .drop=TRUE) |> 
+    summarise(n = n()) |> 
+    ggplot(aes(x = monthday, y=n)) +
+    geom_bar(stat='identity') +
+    geom_vline(
+        data = budget_days |> mutate(year = strftime(budget_date, "%Y"), monthday = strftime(budget_date, "%m%d")) ,
+        aes(xintercept = monthday),
+        color = 'red'
+    ) +
+    facet_wrap(~year, ncol =1, strip.position="left") +
+    theme_void()
+
+```
+
+As seen in the plot, these are the rounds in which the budget announcement was made during fieldwork: 
+- 3 (2006),  
+- 4 (2009),  
+- 5 (2011),  
+- 6 (2012),  
+- 7 (2014),
+- 11 (2023)
+
+```{r}
+
+ess_ie <- 
+    ess_ie |>
+        mutate(
+            budget_period = case_when(
+                essround == 3 & ess_day <=  as.Date("2006-12-06", format = "%Y-%m-%d") ~ "Before",
+                essround == 3 & ess_day > as.Date("2006-12-06", format = "%Y-%m-%d") ~ "After",
+                essround == 4 & ess_day <=  as.Date("2009-12-09", format = "%Y-%m-%d") ~ "Before",
+                essround == 4 & ess_day > as.Date("2009-12-09", format = "%Y-%m-%d") ~ "After",
+                essround == 5 & ess_day <=  as.Date("2011-12-05", format = "%Y-%m-%d") ~ "Before",
+                essround == 5 & ess_day > as.Date("2011-12-05", format = "%Y-%m-%d") ~ "After",
+                essround == 6 & ess_day <=  as.Date("2012-12-05", format = "%Y-%m-%d") ~ "Before",
+                essround == 6 & ess_day > as.Date("2012-12-05", format = "%Y-%m-%d") ~ "After",
+                essround == 7 & ess_day <=  as.Date("2014-10-14", format = "%Y-%m-%d") ~ "Before",
+                essround == 7 & ess_day > as.Date("2014-10-14", format = "%Y-%m-%d") ~ "After",
+                essround == 11 & ess_day <=  as.Date("2023-10-10", format = "%Y-%m-%d") ~ "Before",
+                essround == 11 & ess_day > as.Date("2023-10-10", format = "%Y-%m-%d") ~ "After",
+                .default = NA_character_
+            )
+        )
+
+```
 
 ### Social class
 
@@ -96,6 +169,10 @@ ess_vars <- c(
     "cntry",
     "idno",
     "essround",
+    "ess_month",
+    "ess_day",
+    "start_year",
+    "budget_period",
     "pspwght",
     "anweight",
     "agea",
