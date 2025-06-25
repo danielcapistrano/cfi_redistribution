@@ -2,3 +2,4 @@ data/
 temp*
 /.quarto/
 *_cache/
+_archive/

@@ -1,11 +1,11 @@
 ---
 title: "Public support for income redistribution and welfare policies in Ireland"
 format:
-#   docx:
-#     toc: true
-#     link-citations: true
-#     reference-docx: assets/template_esri.docx
-  pdf:
+   docx:
+     toc: false
+     link-citations: true
+     reference-docx: assets/template_esri.docx
+   pdf:
     papersize: a4paper
     documentclass: article
     link-citations: true
