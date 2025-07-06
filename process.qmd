@@ -180,6 +180,7 @@ ess_vars <- c(
     "gincdif",
     "lrscale",
     "ctzcntr",
+    "basinc",
     "brncntr",
     "yrbrn",
     "isco08",
