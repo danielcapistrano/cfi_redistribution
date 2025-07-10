@@ -218,6 +218,8 @@ ess_vars <- c(
     "sblwcoa",
     "sbprvpv",
     "sbstrec",
+    "imsclbn",
+    "sbbsntx",
     "uemplwk",
     "gvhanc19",
     "respc19",
