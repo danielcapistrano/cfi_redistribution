@@ -256,18 +256,19 @@ The surveys from 2014, 2019 and 2024 are available in three different files. The
 
 
 ```{r}
-
-vs_vars <- c("cntry", "idno", "agea", "gndr", "redist", "weight", "study")
+vs_vars <- c("cntry", "idno", "agea", "gndr", "redist", "party", "lrscale", "weight", "study")
 
 vs_14 <- 
     vs_14 |>
     mutate(
         study = "EES14",
-        cntry = b,
+        cntry = as_factor(b),
         idno = respid,
+        party = qp2_ees,
+        lrscale = qpp13,
         agea = vd11,
         gndr = as_factor(d10),
-        redist = qpp17_2 -1, # see coding (0 on quest is = to 1 in dataset)
+        redist = qpp17_2 -1, # see codebook (0 on quest is = to 1 in dataset)
         weight = wex
     ) |> 
     select(all_of(vs_vars)) 
@@ -277,8 +278,10 @@ vs_19 <-
     mutate(
         study = "EES19", 
         agea = 2019 - D4_1,
-        cntry = hCountry,
+        cntry = as_factor(hCountry),
         idno = respid,
+        party = Q7,
+        lrscale = q13_9,
         gndr = as_factor(D3),
         redist = Q14_2,
         weight = WGT1
@@ -290,8 +293,10 @@ vs_24 <-
     vs_24 |> 
     mutate(
         study = "EES24",
-        cntry = country,
+        cntry = as_factor(country),
         idno = resp_id,
+        party = q6,
+        lrscale = q11_8,
         agea = d4_age,
         gndr = as_factor(d3),
         redist = q12_2,
@@ -330,7 +335,6 @@ Assigning common NA code to all non-valid observations.
 
 ```{r}
 vs_all$redist_inv <- 10 - vs_all$redist
-vs_all |>  count(redist, redist_inv)
 
 ```
 
@@ -339,7 +343,7 @@ vs_all |>  count(redist, redist_inv)
 Creating dataset with observation from Ireland only. 
 
 ```{r}
-vs_ie  <- vs_all |> filter(cntry == 8)
+vs_ie  <- vs_all |> filter(cntry %in% c("Ireland", "IRELAND"))
 ```
 
 

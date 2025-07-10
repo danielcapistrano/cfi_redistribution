@@ -1,5 +1,5 @@
 ---
-title: "Public support for welfare and redistributive policies in Ireland"
+title: "Cothrom na Féinne: Public support for welfare and redistributive policies in Ireland"
 format:
    docx:
     toc: false
@@ -26,20 +26,18 @@ bibliography: _assets/CFI_Redistribution.bib
 
 # Introduction {#sec-introduction} 
 
-Many vulnerable individuals and families in Ireland, each with different profiles, circumstances, and needs, are struggling to make ends meet and are falling into poverty. A significant number of these people rely heavily on welfare benefits, but the current level of support is often insufficient to protect them from poverty. 
+Many vulnerable individuals and families in Ireland, each with different profiles, circumstances, and needs, are struggling to make ends meet and are falling into poverty. A significant number of these people rely heavily on welfare benefits, but the current level of support is often insufficient to protect them from poverty. In a context of increasing challanges to social welfare in Ireland, it is crucial to have a better understanding of the public support to State actions designed to address these challenges.  
 
-In a context of increasing challanges to social welfare in Ireland, it is crucial to have a better understanding of the public support to State actions designed to address these challenges.  
-
-With this objective, the current report presents the findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. Ireland offers a particularly relevant context for this research. Over the past few decades, the Irish society experienced different levels of economic growth, income inequality, and poverty @roantree_poverty_2024. In this sense, the changing conditions provide valuable information to examine the factors associated with public support for welfare policies and income redistribution. 
+With this objective, the current report presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. Ireland offers a particularly relevant context for this research. Over the past few decades, the Irish society experienced different levels of economic growth, income inequality, and poverty @roantree_poverty_2024. In this sense, the changing conditions provide valuable information to examine the factors associated with public support for welfare policies and income redistribution. 
 
 The research project was guide by the following general questions:  
 1) **Who** in Ireland supports income redistribution?  
 
-2) **What** are the main attitudes in relation to welfare policies in Ireland?    
+2) **Which** policies and social groups receive higher support?    
 
 3) Has the overall support for welfare policies and income redistribution **changed** over time?   
 
-The [first chapter](@sec-who) in this report addresses the first question of a diffuse and generalised support for income and wealth redistribution in the Irish society. The [second chapter](@sec-what), addressing the second question, examines more specific support to welfare policies, beliefs about social benefits and their benifitiaries. The [final chapter](@sec-change) looks at change over time in relation to these topics and explores the possible impact of the economic recession and the pandemic.
+[Chapter @sec-who] in this report addresses the first question of a diffuse and generalised support for income and wealth redistribution in the Irish society. [Chapter @sec-what], addressing the second question, examines more specific support to welfare policies, beliefs about social benefits and their benifitiaries. Finally, [Chapter @sec-change] looks at change over time in relation to these topics and explores the possible impact of the 2008 economic recession and the 2020 pandemic.
 
 ## Key points
 
@@ -147,9 +145,9 @@ Recent studies have raised concerns in relation to the reliability of this quest
 
 Similar to the main ESS question, the VS questionnaires also ask whether voters are in favour of wealth redistribution from the rich to the poor using a scale from 0 ('fully oppose') to 10 ('fully favour'). The original scale of this variable was inverted for this analysis. So, in the results presented here, higher values indicate more in favour of redistribution.
 
-## European context?
+## Higher support in Ireland compared to other northern European countries
 
-The mean levels of support for income redistribution shown in @fig-eumap is in line with the geographical divide identified before @meuleman_past_2018, with @finseraas_income_2009 arguing that countries with higher income inequality tend to be more supportive of income redistribution. The mean value for Ireland (3.95) is slightly higher compared to other countries in the north of Europe such as the United Kingdom (3.82) and the Netherlands (3.63). 
+The mean levels of support for income redistribution in 2022 shown in @fig-eumap is in line with the south/north geographical divide identified before @meuleman_past_2018, with @finseraas_income_2009 arguing that countries with higher income inequality tend to be more supportive of income redistribution. The mean value for Ireland (3.95) is similar to the one observed in France (3.90) and slightly higher compared to other countries in the north of Europe such as the United Kingdom (3.82) and the Netherlands (3.63). 
 
 ```{r}
 #| label: fig-eumap
@@ -175,12 +173,12 @@ fig_eumap <-
         ) |> 
         ggplot() +
         geom_sf(aes(fill = mean)) +
-        scale_fill_distiller(palette = "PuOr", na.value = "grey90") +
+        scale_fill_distiller(palette = "RdYlBu", na.value = "white") +
         coord_sf(xlim = c(-25, 40), ylim = c(25, 75), expand = FALSE) +
         theme_void() +
         labs(
             fill = "Government should \nreduce income differences",
-            caption = "Source: European Social Survey"
+            caption = "Source: European Social Survey, Round 11"
         ) +
         theme(
             legend.position = "left", 
@@ -193,16 +191,14 @@ save_display(fig_eumap, w =5, h=4)
 ```
 
 
-## Age and social class are relevant predictors
+## Female and lower social class respondents are more supportive of redistribution
 
 Despite the profusion of studies on the relationship between gender and welfare policies, there is a gap in understanding the gender dimension of beliefs and perceptions in relation to these policies @garritzmann_gender_2021. Considering the marked gender differences in access to the labour market and levels of pay in Ireland @hingre_gender_2024, it is plausible to also expect differences in demands for income redistirbution. 
 
-However, on average, it is not possible to identify statistically significant differences for male and female individuals in Ireland. The ESS question on the government role has a similar mean values for male (3.96) and female (3.94) respondents. Similarly, the voter study identified similar mean values for wealth redistribution across male (6.3) and female (6.15) participants.
+On average, it is not possible to identify statistically significant differences for male and female individuals in the latest rounds of both surveys. The ESS question on the government role has a similar mean values for male (3.9) and female (3.9) respondents. Similarly, the voter study identified similar mean values for wealth redistribution across male (5.4) and female (5.2) participants.
 
 ```{r}
 #| include: false
-
-# Redistribution
 df_ess |> 
     filter(essround == 11) |> 
     group_by(Gender = as_factor(gndr), .drop=TRUE) |>
@@ -213,10 +209,43 @@ df_ess |>
         group_by(Gender = as_factor(gndr), .drop=TRUE) |> 
         summarise(VS = weighted.mean(redist_inv, w = weight, na.rm = T))
     ) 
+
+lm(gincdif_inv ~ as_factor(gndr) + essround, weights = pspwght, data= df_ess) |>  summary()
+
 ```
 
+However, as shown in @fig-sex, there is some variation across time in relation to this gap. Considering all 11 rounds of the ESS together, there is a significantly higher support for redistribution among female respondents compared to male respondents. 
 
-On the other hand, there seems to be an age pattern where younger respondents tend to be more supportive of income redistribution in Ireland. As shown in @fig-age-eu, the opposite patter is observed in Germany, Finland, France, and Portugal. Although the UK also has a similar negative relationshop between age and  support, it seems to be less pronounced compared to Ireland. This association is further explored in [Chapter 3](@sec-change) investigating potential generational changes.
+```{r}
+#| label: fig-sex
+#| fig-cap: "Mean value for 'Governement should reduce income differences' in Ireland by sex, 2002-2023"
+
+fig_sex <- 
+    df_ess |> 
+        filter(!is.na(gndr)) |> 
+        group_by(essround, Sex = as_factor(gndr), .drop=TRUE) |>
+        summarise(
+                mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
+                se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))
+            ) |> 
+            ggplot(aes(x = essround, y = mean,  ymin = mean - 1.96*se, ymax= mean + 1.96*se, fill = Sex, colour = Sex)) +
+            geom_pointrange() +
+            geom_line() +
+            theme_classic() +
+            labs(
+                caption = "Source: European Social Survey"
+            ) +
+            theme(
+                legend.position = "bottom", 
+                legend.title = element_text(size = 8),
+                plot.caption = element_text(hjust = -1)
+            )
+
+save_display(fig_sex, w=6, h=4)
+
+```
+
+In addition, data suggest an age pattern where younger respondents tend to be more supportive of income redistribution in Ireland. As shown in @fig-age-eu, the opposite pattern is observed in Germany, Finland, France, and Portugal. Although the UK also has a similar negative relationshop between age and  support, it seems to be less pronounced compared to Ireland. 
 
 ```{r}
 #| label: fig-age-eu
@@ -236,15 +265,39 @@ fig_age_eu <-
         labs(
             x = "Age", 
             y = "Government should reduce income differences", 
+            caption = "Source: European Social Survey 2023"
+        )+
+        theme_classic() +
+        theme(plot.caption = element_text(hjust = 0))
+```
+
+However, zooming out for a longer time period, we observe different relationships depending on the time of the data collection. During the third and fourth rounds, there is a positive association between age and support for redistribution. This different associations over time might suggest a different level of support across generations instead of age groups. This topic is further explored in [Chapter @sec-change].
+
+```{r}
+#| label: fig-age-round
+#| fig-cap: "Scatter plot for 'reduce income differences' by age and ESS round, Ireland"
+
+fig_age_round <- 
+    df_ess |> 
+        group_by(Round = start_year, agea) |> 
+        summarise(mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T)) |> 
+        ggplot(aes(x = agea, y = mean)) +
+        geom_point(size = 0.5) +
+        geom_smooth(method = 'lm') +
+        ylim(3,5) +
+        facet_wrap(~Round, nrow=2) + 
+        labs(
+            x = "Age", 
+            y = "Government should reduce income differences", 
             caption = "Source: European Social Survey"
         )+
         theme_classic() +
         theme(plot.caption = element_text(hjust = 0))
 
-save_display(fig_age_eu, w=5, h=4)
+save_display(fig_age_round, w=8, h=5)
 ```
 
-The analysis by social class suggests a negative relationship between class and the main ESS response variable. The mean values shown in @fig-class5 indicate that 'unskilled workers' show higher levels of agreement with the government reducing income differences whereas 'small business owners' and the 'service class' show lower levels of agreement. 
+There is robust evidence for the association between social class and overall welfare attitudes in Europe [@svallfors_contested_2012; @langsaether_more_2020].The analysis by social class in Ireland suggests a negative relationship between class and the main ESS response variable. The mean values shown in @fig-class5 indicate that 'unskilled workers' show higher levels of agreement with the government reducing income differences whereas 'small business owners' and the 'service class' show lower levels of agreement. 
 
 ```{r}
 #| label: fig-class5
@@ -275,19 +328,50 @@ save_display(fig_class5, w = 6, h=3)
 ```
 
 
-## Ideology and voting behaviour
+## Left-wing voters are more supportive of redistribution
+
+The ESS survey also finds a consistent pattern of association between the respondents' ideological positioning and support for redistribution. Those participants who position themselves more to the left of the left-right political scale tend to be more supportive of redistribution across all rounds of the survey since 2002. 
 
 ```{r}
+#| include: false
+
+df_ess |> 
+    filter(!is.na(lrscale) & !is.na(gincdif_inv)) |>
+    group_by(essround) |> 
+    summarise(cor = cor(lrscale, gincdif_inv))
 
 ```
 
-## Social class is more relevant
+With the data from the Voter Survey it is also possible to examine differences in redistribution preferences across voting choice in the European Parliament elections. People Before Profit (7.5) and Sinn Féin (6.4) voters indicate the highest support, whereas Green Party (4.7) and Fine Gael (4.7) voters reported the lowest support among voters from the most voted parties. Even when controlling for positioning in the left-right scale, differences between the former two and latter two parties are statistically significant.  However, these estimates should be interpreted with caution due to the small sample size of respondents who voted in the last European elections. 
 
-We created a multivariate regression model to assess the extent to which these individual factors are associated to support for income redistribution. We also included other variables in the model to control for subjective income ('Sastisfaction with the household income'), economic activity ('Main activity in the last seven days'), and political ideology ('Placement in the left-right scale). 
+```{r}
+#| include: false
 
-@tbl-multiv-gincdif below shows the coefficients of the OLS regression model. The overall explanatory power of the model is low (R² = 0.087), indicating that the small set of variables selected do not provide enough information to predict support accurately. However, the model identifies significant differences across groups.
+df_vs |> 
+    filter(study == "EES24") |> 
+    group_by(as_factor(party), .drop=TRUE) |> 
+        summarise(VS = weighted.mean(redist_inv, w = weight, na.rm = T), n = n())
 
-In terms of age, if we take the group of 25 to 34 as reference, all other age groups are expected to have lower support for redistribution. In addition, both the social class and subjective income suggest that respondents in more precarious economic situation tend to be more favourable of the government reducing income differences. 
+df_vs |> count(party) |> print(n=20)
+
+df_vs$party_lable <-  relevel(as_factor(df_vs$party), ref = "Fine Gael")
+
+lm(redist_inv ~  as_factor(party_lable) + lrscale, data = df_vs |> 
+    filter(study == "EES24"), weights = weight) |> summary()
+
+
+
+```
+
+## Age, gender and social class are relevant even controlling for occupation and financial situation
+
+We created a fixed-effects multivariate regression model to assess the extent to which these individual factors are associated to support for income redistribution, considering all ESS rounds. We also included other variables in the model to control for subjective income ('Sastisfaction with the household income'), economic activity ('Main activity in the last seven days'), and political ideology ('Placement in the left-right scale'). 
+
+@tbl-multiv-gincdif below shows the coefficients of the OLS regression model. Despite the overall explanatory power of the model being low (R² = 0.05), the model identifies significant differences across groups.
+
+In terms of age, taking the group of 18 to 24 as reference, all other age groups are expected to have higher support for redistribution, which is the opposite relationship found for the latest round in 2023. In addition, both the social class and subjective income suggest that respondents in more precarious economic situation tend to be more favourable of the government reducing income differences. 
+
+Finally, as discussed earlier in this chapter, both female respondents and those who place themselves on the left of the left-right scale are more likely to support income redistribution, even when controlling for other factors such as age and social class.
 
 ```{r}
 #| label: tbl-multiv-gincdif
@@ -295,18 +379,22 @@ In terms of age, if we take the group of 25 to 34 as reference, all other age gr
 
 df_ess$age_group  <- cut(df_ess$agea, c(0, 24, 35, 45, 55, 65, Inf), c("18-24", "25-35", "36-45", "46-55", "56-65", ">66"), include.lowest=TRUE)
 
-df_ess$age_group <-  relevel(df_ess$age_group, ref = "25-35")
+df_ess$age_group <-  relevel(df_ess$age_group, ref = "18-24")
 
-ind_vars <- c('age_group', 'as_factor(gndr)', 'as_factor(class5)', 'as_factor(hincfel)', 'as_factor(mnactic)', 'lrscale')
+df_ess$false_cohort  <-  cut(df_ess$yrbrn, breaks = c(1900, 1940, 1960, 1980, 2020), right = FALSE, labels = c("1900-1940", "1941-1960", "1961-1980", "1981-"))
+
+ind_vars <- c('age_group', 'as_factor(gndr)', 'as_factor(class5)', 'as_factor(hincfel)', 'as_factor(mnactic)', 'lrscale', 'as_factor(essround)')
+
+
 
 tbl_multiv_gincdif <- 
     lm(
-        as.formula(paste("gincdif_inv ~ ", paste(ind_vars, collapse= "+"))), 
+        as.formula(paste0("gincdif_inv ~ ", paste(ind_vars, collapse= "+"))), 
         weights = pspwght, 
-        data = df_ess |> filter(essround == 11) 
+        data = df_ess 
     )  |> 
     tbl_regression(
-        include = c("age_group", "as_factor(gndr)", "as_factor(class5)"),
+        include = c("age_group", "as_factor(gndr)", "as_factor(class5)", "lrscale"),
         label = list(age_group = "Age group", `as_factor(gndr)` = "Gender", `as_factor(class5)` = 'Social class')
     )  |> 
     bold_p(t = 0.05, q = FALSE) |> 
@@ -324,7 +412,7 @@ tbl_multiv_gincdif <-
         locations = cells_column_labels(
         columns = everything()
     )) |> 
-    tab_footnote("Note: Omitted control variables: economic activity, subjective income, and political ideology")  |> 
+    tab_footnote("Note: Economic activity, Subjective income, and ESS round were omitted from the table")  |> 
     tab_footnote("Source: European Social Survey")
 
 save_display(tbl_multiv_gincdif)
@@ -334,10 +422,10 @@ save_display(tbl_multiv_gincdif)
 
 # What are the main attituddes towards welfare policies? {#sec-what} 
 
-The data analysed in this chapter refers to a special module from the European Social Survey on welfare attitudes that was fielded in 2009 (Round 4) and repeated in 2016 (Round 8) (see @meuleman_past_2018 for more on this module). This module contains additional questions on beliefs about welfare, social benefits and their beneficiaries. 
+The data analysed in this chapter refers to a special module from the European Social Survey on welfare attitudes that was fielded in 2009 (Round 4) and repeated in 2016 (Round 8) (see @meuleman_past_2018 for more on this module). These ronds of data collection contain additional questions on beliefs about welfare, social benefits and their beneficiaries. 
 
 
-## Are large differences acceptable?  
+## Meritocratic differences are acceptable for younger and right-wing respondents
 
 As discussed in the previous chapter, a few socio-demographic characteristics such as age and social class may influence people's views on redistribution. In addition to that, other factors related to their view on fairness and meritocracy are also relevant to understand overall support to welfare policies. 
 
@@ -347,6 +435,7 @@ A multivariate analysis with the same explanatory variables from the model  of t
 
 ```{r}
 #| include: false
+
 lm(as.formula(paste("dfincac ~ ", paste(ind_vars, collapse= "+"))), 
         weights = pspwght, data = df_ess)  |> 
     tbl_regression() |> 
@@ -354,37 +443,37 @@ lm(as.formula(paste("dfincac ~ ", paste(ind_vars, collapse= "+"))),
 ```
 
 
-## Who deserves welfare policies?  
 
-A crucial aspect of the sustainability of modern welfare states is the public support given to its policies. A vast literature in social sciences has addressed the social legitimacy of welfare policies that are targeted at specific groups @van_oorschot_social_2017, as they create contentious views on which social groups are more or less deserving of the State attention. In the ESS, respondents were asked to indicate how much responsibility governments should have to the following:
+## Working parents and elders are more responsibility of the government than the unemployed 
 
-"... ensure sufficient child care services for working parents"   
+A crucial aspect of the sustainability of modern welfare states is the public support given to its policies. A vast literature in social sciences has addressed the social legitimacy of welfare policies that are targeted at specific groups [@van_oorschot_social_2017], as they create contentious views on which social groups are more or less deserving of the State attention. In the ESS, respondents were asked to indicate how much responsibility governments should have to the following:
+
+"... ensure sufficient childcare services for working parents"   
 
 "... ensure a reasonable standard of living for the old"  
 
 "...ensure a reasonable standard of living for the unemployed"  
 
 
-In the @fig-deservingness, higher values denote higher government responsibility. On average respondents believe that the government should be more responsible for the old compared to working parents and unemployed. However, there was a reduction in this prioritisation for governments' responsibility in relation to older citizens and unemployed and increase in the average prioritisation for working parents.  
+In the @fig-deservingness, higher values denote higher government responsibility. On average, respondents from all countries (except The Netherlands) believe that the government should be least responsible for the unemployed compared to working parents and older citizens.   
 
 ```{r}
 #| label: fig-deservingness
-#| fig-cap: "Mean values for deservingness of government support by group and round"
-
+#| fig-cap: "Mean values for deservingness of government support by group and country, 2016"
 
 fig_deservingness <- 
     df_esseu |>
-        filter(essround == 8 & cntry %in% c("IE", "GB", "FR", "PT")) |> 
-        group_by(country = as_factor(cntry))   |> 
+        filter(essround == 8) |> 
+        group_by(country = if_else(cntry == 'IE', 'Ireland', cntry))   |> 
         summarise(across(c("gvcldcr", "gvslvol", "gvslvue"), list(
             mean = ~ weighted.mean(.x, w = pspwght, na.rm = T),
             se = ~ sd(.x, na.rm = T)/sqrt(length((.x))))
         ))  |> 
         pivot_longer(cols = -country, names_to = c("Group", ".value"), names_sep = "_") |> 
-        mutate(Group = case_match(Group, "gvcldcr" ~ "working parents", "gvslvol" ~ "old", "gvslvue" ~ "unemployed")) |> 
-        ggplot(aes(x = Group, y = mean, ymin = mean - 1.96*se, ymax = mean + 1.96*se,  group = Group, color = Group)) +
+        mutate(Group = case_match(Group, "gvcldcr" ~ "Working parents", "gvslvol" ~ "Old", "gvslvue" ~ "Unemployed")) |> 
+        ggplot(aes(x = reorder(country, -mean), y = mean, ymin = mean - 1.96*se, ymax = mean + 1.96*se,  group = Group, color = Group)) +
         geom_pointrange() +
-        facet_wrap(~country) +
+        coord_flip() +
         theme_classic() +
         theme(legend.position="bottom")
 
@@ -392,7 +481,24 @@ save_display(fig_deservingness)
 
 ```
 
-## What are the consequences of social benefit?  
+In Ireland, a prioritisation of unemployed over old is found mainly among respondents who are younger, female, either unemployed or permanently sick, as well as 'unskilled workers'. 
+
+```{r}
+#| include: false
+
+# Create variable indicating priority to unemployed over old
+
+df_ess$unemp_prior <- df_ess$gvslvue - df_ess$gvslvol
+
+lm(as.formula(paste("unemp_prior ~ ", paste(ind_vars, collapse= "+"))), 
+        weights = pspwght, data = df_ess)  |> 
+    tbl_regression() |> 
+    bold_p(t = 0.05, q = FALSE)
+
+```
+
+
+## Ireland has the highest average agreement with the view that 'Social benefits make people lazy'
 
 The module also included questions in relation to beliefs about the consequences of social benefits and services: 
 
@@ -424,34 +530,82 @@ believe_vars <- c("sbeqsoc", "sblazy", "sblwcoa", "sbprvpv", "sbstrec")
 
 df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.col}_inv"))
 
-believe_vars_inv <- c("sbeqsoc_inv", "sblazy_inv", "sblwcoa_inv", "sbprvpv_inv", "sbstrec_inv")
+
+believe_vars_inv <- c("sbprvpv_inv", "sblazy_inv", "sbeqsoc_inv", "sbstrec_inv", "sblwcoa_inv")
 
 
-df_ess |>
-    filter(essround %in% c(4, 8)) |> 
-    group_by(round = as_factor(essround))  |> 
-    summarise(across(all_of(believe_vars_inv), ~ weighted.mean(.x, w = pspwght, na.rm = T))) |> 
-    pivot_longer(cols = -round, names_to = "Question", values_to = "mean") |> 
-    mutate(Question = case_match(
-        Question, 
-        "sbeqsoc_inv" ~ "Lead to equal society", 
-        "sblazy_inv" ~ "Make people lazy", 
-        "sblwcoa_inv" ~ "Make people less willing to care",
-        "sbstrec_inv" ~ "Put strain on economy",
-        "sbprvpv_inv" ~ "Prevent poverty"
-    )) |> 
-    ggplot(aes(x = round, y = mean, group = Question, color = Question)) +
-    geom_point() +
-    geom_line() +
-    # geom_label(aes(label = round(mean, 1)))+
-    theme_classic()
-    
+fig_benefits <- 
+    df_ess |>
+        filter(essround %in% c(4, 8)) |> 
+        group_by(year = as_factor(start_year))  |> 
+        summarise(across(all_of(believe_vars_inv), ~ weighted.mean(.x, w = pspwght, na.rm = T))) |> 
+        pivot_longer(cols = -year, names_to = "Question", values_to = "mean") |> 
+        mutate(Statement = case_match(
+            Question, 
+            "sbprvpv_inv" ~ "Prevent poverty",
+            "sblazy_inv" ~ "Make people lazy", 
+            "sbeqsoc_inv" ~ "Lead to equal society", 
+            "sbstrec_inv" ~ "Put strain on economy",
+            "sblwcoa_inv" ~ "Make people less willing to care",
+        )) |> 
+        ggplot(aes(x = year, y = mean, group = Statement, color = Statement)) +
+        geom_point() +
+        geom_line() +
+        scale_color_discrete(breaks=c('Prevent poverty', 'Make people lazy', 'Lead to equal society', 'Put strain on economy', 'Make people less willing to care')) +
+        theme_classic() 
+
+save_display(fig_benefits, w =6, h=3)
+
+```
+
+Despite the reduction from 2009 to 2016, as shown in @fig-lazy, Ireland (3.49) had the third highest average agreement that "social benefits make people lazy", behind Portugal and Poland. 
+
+```{r}
+#| label: fig-lazy
+#| fig-cap: "Mean values for agreement that social benefits make people lazy, Europe, 2016"
+
+df_esseu <- df_esseu |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.col}_inv"))
+
+tb_lazy <- 
+    df_esseu |>
+    filter(essround == 8) |> 
+    group_by(cntry) |> 
+    summarise(
+        mean = weighted.mean(sblazy_inv, w = pspwght, na.rm = T),
+        se = sd(sblazy_inv, na.rm = T)/sqrt(length((sblazy_inv))))  |> 
+    arrange(desc(mean))
+
+fig_lazy <- 
+    eumap |> 
+        mutate(cntry = case_when(
+            name == 'France' ~ "FR",
+            name == "Norway" ~ "NO",
+            .default = iso_a2)) |> 
+        left_join(tb_lazy, by = "cntry") |> 
+        ggplot() +
+        geom_sf(aes(fill = mean)) +
+        scale_fill_distiller(palette = "RdYlBu", na.value = "white") +
+        coord_sf(xlim = c(-25, 40), ylim = c(25, 75), expand = FALSE) +
+        theme_void() +
+        labs(
+            fill = "Social benefits make people lazy",
+            caption = "Source: European Social Survey, Round 11"
+        ) +
+        theme(
+            legend.position = "left", 
+            legend.title = element_text(size = 8),
+            plot.caption = element_text(hjust = -1.5)
+        )  
+
+save_display(fig_lazy, w =5, h=4)
+
 ```
 
 
-### PCA
 
-A Principal Components Analysis indicate that these five variables can be reduced to the following two latent dimensions named arbitrarily:
+## Younger, right-wing and those from higher social-class agree that social benefits are disincentives
+
+A Principal Components Analysis indicate that these five variables related to social benefits' consequences can be reduced to the following two latent dimensions named arbitrarily:
 
 - **Protective** (PC1): "Lead to equal society" and "Prevent poverty";    
 - **Disincentive** (PC2): "Make people lazy" and "Make people less willing to care", and "Put strain on economy".
@@ -462,27 +616,12 @@ library(psych)
 
 pca_res <- 
     df_ess |> 
+    filter(essround == 8) |> 
     select(all_of(believe_vars_inv)) |>  
     na.omit() |> 
     psych::principal(nfactors = 2)
 
 pca_vars  <- data.frame(unclass(pca_res$loadings))
-
-```
-
-The variables were aggregated within each dimension using the mean value of the non-missing answers. The @tbl-multiv-beliefs below shows the coefficients of two OLS explanatory models for these two dimensions.
-
-The first model indicates that female respondents tend to provide a slightly lower score on the protective dimension of beliefs about social benefits. None of the other predictors included in the model are statistically significant. 
-
-The second model suggests that the group of "small business owners" and "skilled workers" have higher scores compared to respondents of other social classes. In addition, respondents with worse self-reported financial situation tend to disagree more with beliefs related to disincentive dimension of social beliefs. 
-
-::: {.landscape}
-
-
-```{r}
-#| label: tbl-multiv-beliefs
-#| tbl-cap: "OLS regression coefficients for 'beliefs about social benefits' "
-
 
 vars_protect <- c("sbeqsoc_inv", "sbprvpv_inv")
 vars_disinctv <- c("sblazy_inv", "sblwcoa_inv", "sbstrec_inv")
@@ -490,28 +629,61 @@ vars_disinctv <- c("sblazy_inv", "sblwcoa_inv", "sbstrec_inv")
 df_ess$protective <- rowMeans(select(df_ess, all_of(vars_protect)), na.rm = T)
 df_ess$disincentive <- rowMeans(select(df_ess, all_of(vars_disinctv)), na.rm = T)
 
-model_belief <- function(DV){
-    model <- as.formula(paste0(DV, "~ factor(essround) + agea + as_factor(gndr) + as_factor(class5) + as_factor(hincfel)" ))
-
-    lm(model, weights = pspwght, data = df_ess) |> 
-        tbl_regression(include = c("agea", "as_factor(gndr)", "as_factor(class5)", "as_factor(hincfel)"))  |> 
-        bold_p(t = 0.05, q = FALSE) 
-}
-
-
-tbl_merge(
-    tbls = map(c("protective", "disincentive"), model_belief),
-    tab_spanner = c("**Protective**", "**Disincentive**")) |> 
-    as_gt() |>
-    gt::tab_source_note("Time fixed effects (ESS Round) omitted from the table but included in the model") |> 
-    tab_options(table.layout = "auto")
+df_ess |> select(all_of(vars_protect)) |> psych::alpha()
 
 
 
 ```
 
-:::
+The variables were aggregated within each dimension using the mean value of the non-missing answers. The @tbl-multiv-beliefs below shows the coefficients of two OLS explanatory models for these two dimensions.
 
+
+
+```{r}
+#| label: tbl-multiv-beliefs
+#| tbl-cap: "OLS regression coefficients for 'beliefs about social benefits' "
+
+
+
+model_belief <- function(DV){
+    model <- as.formula(paste0(DV, " ~ ", paste(ind_vars[ind_vars != "as_factor(essround)"], collapse= "+")))
+
+    lm(model, weights = pspwght, data = df_ess |> filter(essround == 8)) |> 
+        tbl_regression(
+            include = c("age_group", "as_factor(gndr)", "as_factor(class5)", "lrscale"),
+            label = list(age_group = "Age group", `as_factor(gndr)` = "Gender", `as_factor(class5)` = 'Social class')
+        )  |> 
+        bold_p(t = 0.05, q = FALSE) 
+}
+
+tbl_multiv_beliefs <- 
+    tbl_merge(
+        tbls = map(c("protective", "disincentive"), model_belief),
+        tab_spanner = c("**Protective**", "**Disincentive**")) |> 
+        as_gt() |>
+        opt_row_striping()  |> 
+        opt_vertical_padding(scale = 0.4) |> 
+
+        tab_style(
+            style = cell_fill(color = "#1F355E"),
+            locations = cells_column_labels(
+            columns = everything()
+        )) |> 
+        tab_style(
+            style = cell_text(color = "white"),
+            locations = cells_column_labels(
+            columns = everything()
+        )) |> 
+        tab_footnote("Note: Economic activity, Subjective income, and ESS round were omitted from the table")  |> 
+        tab_footnote("Source: European Social Survey")
+
+save_display(tbl_multiv_beliefs)
+
+```
+
+The first model shows no significant differences across the main variables tested. That may indicate that there is an overall agreement in relation to the protective function of social benefits across different social groups. 
+
+The second model provides a different picture in relation to beliefs on social benefits as disincentives. Respondents in the 18-24 group believe more in the idea that social benefits are disincentives compared to all older age groups. In addition, those who place themselves more to the right of the left-right ideological scale also tend to believe more in social benefits as disincentives. 
 
 # Has the support changed over time? {#sec-change} 
 
