@@ -152,6 +152,21 @@ ess_ie <-
 
 ```
 
+### Add flag if interview was conducted before DSP campaign
+Add 
+
+```{r}
+
+dsp_day <- "2017-04-17"
+
+ess_ie <- 
+    ess_ie |> 
+        mutate(dsp_before = if_else(ess_day < as.Date(dsp_day), 1, 0)) |> 
+        mutate(dsp_diffdays = ess_day - as.Date(dsp_before)) 
+
+```
+
+
 ### Social class
 
 Create [Oesch social class schema](https://people.unil.ch/danieloesch/scripts/) from relevant columns in the dataset. 
@@ -171,6 +186,8 @@ ess_vars <- c(
     "essround",
     "ess_month",
     "ess_day",
+    "dsp_diffdays",
+    "dsp_before",
     "start_year",
     "budget_period",
     "pspwght",

@@ -1,5 +1,5 @@
 ---
-title: "Cothrom na Féinne: Public support for welfare and redistributive policies in Ireland"
+title: "In Fairness: Public support for welfare and redistributive policies in Ireland"
 format:
    docx:
     toc: false
@@ -11,12 +11,6 @@ format:
 knitr:
   opts_chunk:
     out.width: "70%"
-#    pdf:
-#     papersize: a4paper
-#     documentclass: article
-#     link-citations: true
-#     fig-cap-location: top
-#     fig-pos: "H"
 execute: 
   echo: false
   message: false
@@ -28,7 +22,7 @@ bibliography: _assets/CFI_Redistribution.bib
 
 Many vulnerable individuals and families in Ireland, each with different profiles, circumstances, and needs, are struggling to make ends meet and are falling into poverty. A significant number of these people rely heavily on welfare benefits, but the current level of support is often insufficient to protect them from poverty. In a context of increasing challenges to social welfare in Ireland, it is crucial to have a better understanding of the public support to State actions designed to address these challenges.  
 
-With this objective, the current report presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. Ireland offers a particularly relevant context for this research. Over the past few decades, the Irish society experienced different levels of economic growth, income inequality, and poverty @roantree_poverty_2024. In this sense, the changing conditions provide valuable information to examine the factors associated with public support for welfare policies and income redistribution. 
+With this objective, the current report presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. Ireland offers a particularly relevant context for this research. Over the past few decades, the Irish society experienced different levels of economic growth, market inequality, and poverty [@roantree_poverty_2024]. In this sense, the changing conditions provide valuable information to examine the factors associated with public support for welfare policies and income redistribution. 
 
 The research project was guide by the following general questions:  
 
@@ -52,15 +46,20 @@ The research project was guide by the following general questions:
 
 - From 2009 to 2016 there was an increase in the proportion of respondents who agree that 'social benefits lead to a more equal society' (@fig_benefits).    
 
+- Tax policy has moved in the same direction as public opinion but not unemployment policy @rosset_unevenly_2025
+
+- Baumberg Geiger: the main difference between the Scandinavian nations and the rest of Europe is not the extent to which negative attitudes to welfare exist, but the degree to which positive attitudes do
+
+- Ernst Fehr: Inequality aversion, selfish and altruism in support for redistribution
 
 
 ## Methods and data
 
-Social researchers make use of a varied set of methods to assess welfare attitudes. However, the main quantitative method in this field is social survey [@steele_attitudes_2019; @svallfors_contested_2012]. Despite their limited capacity to capture nuance and ambivalences in welfare attitudes @goerres_can_2012, surveys help researchers to identify trends and patterns within and across different societies. 
+Social researchers make use of a varied set of methods to assess welfare attitudes. However, the main quantitative method in this field is social survey [@steele_attitudes_2019; @svallfors_contested_2012]. Despite their limited capacity to capture nuance and ambivalence in welfare attitudes [@goerres_can_2012], surveys help researchers to identify trends and patterns within and across different societies. 
 
 In this sense, the main data source selected for this project is the European Social Survey (ESS)[^ess]. More than 20 European countries participate in this survey that is conducted roughly every two years. Ireland is one of the few countries that participated in all 11 rounds since 2002. On average, 2,200 people who were 18 or older and resident in Ireland were interviewed in each of these rounds. 
 
-This research analysed several questions from a special module on welfare attitudes that was fielded in 2009 and 2016. However, most of the analysis is based on a core question, included in all rounds, on the role of the government in reducing income inequalities. Beyond that, the ESS questionnaire contains several other questions relevant to this research related to socio-demographic characteristics. In addition, based on the class scheme developed by Oesch -@oesch_coming_2006, a "social class" variable was constructed using questions about the respondent's occupation (following @tawfik_script_2020 script).  
+This research analysed several questions from a special module on welfare attitudes that was fielded in 2009 and 2016. However, most of the analysis is based on a core question, included in all rounds, on the role of the government in reducing income inequalities. Beyond that, the ESS questionnaire contains several other questions relevant to this research related to socio-demographic characteristics. In addition, based on the class scheme developed by @oesch_coming_2006, a "social class" variable was constructed using questions about the respondent's occupation (following @tawfik_script_2020 script).  
 
 [^ess]: For more info, visit https://www.europeansocialsurvey.org 
 
@@ -110,7 +109,7 @@ save_display  <- function(myobj, w=NULL, h=NULL, vwidth = 600){
 df_ess_raw <- read_dta(paste0("data/", get_latest("ESS")))
 
 # Getting complete observations
-df_ess <- df_ess_raw |> filter(!if_any(c(agea, gndr, eisced, class5, mnactic, hincfel), ~is.na(.x)))
+df_ess <- df_ess_raw |> filter(!if_any(c(agea, gndr, hincfel), ~is.na(.x)))
 
 # Read file in the root of sub-folder "data" with name containing "VS" 
 df_vs <- read_dta(paste0("data/", get_latest("VS_")))
@@ -147,7 +146,7 @@ Using this card, please say to what extent you agree or disagree with each of th
 
 The original scale of this variable was inverted for our analysis. So, in the results presented in this report, higher values denote stronger agreement with government reducing income differences.  
 
-Recent studies have raised concerns in relation to the reliability of this question as a measurement of support for redistribution. Margalit and Raviv -@margalit_does_2024 argues that reduction in income differences is too abstract and respondents in general do not link it to redistributive measures. Similarly, it has been suggested that this question only captures a diffuse inclination to equality and that is why responses are inconsistent with voting preferences across countries @dallinger_ambivalence_2022. However, @breznau_moderating_2025 argue that the absence of a relationship between this measurement and other expected correlates (voting preferences, support for concrete policies) is due to the omission of views on government (trust and perceptions of corruption) as a moderating variable. 
+Recent studies have raised concerns in relation to the reliability of this question as a measurement of support for redistribution. @margalit_does_2024 argues that reduction in income differences is too abstract and respondents in general do not link it to redistributive measures. Similarly, it has been suggested that this question only captures a diffuse inclination to equality and that is why responses are inconsistent with voting preferences across countries [@dallinger_ambivalence_2022]. However, @breznau_moderating_2025 argue that the absence of a relationship between this measurement and other expected correlates (voting preferences, support for concrete policies) is due to the omission of views on government (trust and perceptions of corruption) as a moderating variable. 
 
 Similar to the main ESS question, the VS questionnaires also ask whether voters are in favour of wealth redistribution from the rich to the poor using a scale from 0 ('fully oppose') to 10 ('fully favour'). The original scale of this variable was inverted for this analysis. So, in the results presented here, higher values indicate more in favour of redistribution.
 
@@ -338,7 +337,7 @@ save_display(fig_class5, w = 6, h=3)
 
 ## Left-wing voters are more supportive of redistribution
 
-The ESS survey also finds a consistent pattern of association between the respondents' ideological positioning and support for redistribution. Those participants who position themselves more to the left of the left-right political scale tend to be more supportive of redistribution across all rounds of the survey since 2002. 
+The ESS survey also finds a consistent pattern of association between the respondents' ideological positioning and support for redistribution. Those participants who position themselves more to the left of the left-right political scale tend to be more supportive of redistribution across all rounds of the survey since 2002.
 
 ```{r}
 #| include: false
@@ -350,7 +349,7 @@ df_ess |>
 
 ```
 
-With the data from the Voter Survey it is also possible to examine differences in redistribution preferences across voting choice in the European Parliament elections. People Before Profit (7.5) and Sinn Féin (6.4) voters indicate the highest support, whereas Green Party (4.7) and Fine Gael (4.7) voters reported the lowest support among voters from the most voted parties. Even when controlling for positioning in the left-right scale, differences between the former two and latter two parties are statistically significant.  However, these estimates should be interpreted with caution due to the small sample size of respondents who voted in the last European elections. 
+With the data from the Voter Survey it is also possible to examine differences in redistribution preferences across voting choice in the European Parliament elections. People Before Profit (7.5) and Sinn Féin (6.4) voters indicate the highest support, whereas Green Party (4.7) and Fine Gael (4.7) voters reported the lowest support among the main parties. Even when controlling for positioning in the left-right scale, differences between the former two and latter two parties are statistically significant.  These estimates should be interpreted with caution due to the small sample size of respondents who voted in the last European elections. However,  @attewell_deservingness_2021 indicate that this pattern is consistent across most Western European countries, and welfare attitudes are relevant predictors of voting even for parties with focus on non-economic issues such as 'immigration' and EU integration. 
 
 ```{r}
 #| include: false
@@ -435,7 +434,7 @@ The data analysed in this chapter refers to a special module from the European S
 
 ## Meritocratic differences are acceptable for younger and right-wing respondents
 
-As discussed in the previous chapter, a few socio-demographic characteristics such as age and social class may influence people's views on redistribution. In addition to that, other factors related to their view on fairness and meritocracy are also relevant to understand overall support to welfare policies. 
+As discussed in the previous chapter, a few socio-demographic characteristics such as age and social class may influence people's views on redistribution. The connection between these two factors, social position and redistributive preferences, tend to be explained by self-interest, meaning that people may support redistribution if they believe that it would improve their own material conditions and lives. However, a large body of research shows that other factors related to peoples' views on fairness and meritocracy are also relevant to understand overall support to welfare policies. 
 
 In the 2016 ESS, respondents were asked to what extent they agree with the statement that *‘Large differences in people’s incomes are acceptable to properly reward differences in talents and efforts’*. The majority of participants (`r  df_ess |> filter(!is.na(dfincac) & essround == 8) |> summarise(round(weighted.mean(dfincac %in% c(1,2), w = pspwght)*100))`%) either "agree" or "agree strongly" with the statement.
 
@@ -452,7 +451,7 @@ lm(as.formula(paste("dfincac ~ ", paste(ind_vars, collapse= "+"))),
 
 
 
-## The government should have more responsibility towards old citizens and working parents compared the unemployed 
+## The government should have more responsibility towards old citizens and working parents compared to the unemployed 
 
 A crucial aspect of the sustainability of modern welfare states is the public support given to its policies. A vast literature in social sciences has addressed the social legitimacy of welfare policies that are targeted at specific groups [@van_oorschot_social_2017], as they create contentious views on which social groups are more or less deserving of the State attention. In the ESS, respondents were asked to indicate how much responsibility governments should have to the following:
 
@@ -724,6 +723,43 @@ save_display(fig_immig, w =8, h=4)
 ```
 
 As shown in @fig-immig, only 5% in 2016 indicated that "They should never get the same rights". This proportion is significantly higher in countries such as Hungary (30%) and Czechia (24%). In Ireland, this proportion is also higher for those in worse financial situation (19%) and among those who are unemployed and not looking for job (18%). 
+
+## Attitudes are impacted by government campaigns
+
+@power_framing_2022
+
+@dunaiski_does_2025
+
+```{r}
+
+df_ess |>
+    filter(essround == 8) |> 
+    group_by(ess_day, .drop=TRUE) |> 
+    summarise(n = n()) |> 
+    ggplot(aes(x = ess_day, y=n)) +
+    geom_bar(stat='identity') +
+    geom_vline(
+        aes(xintercept = as.Date(dsp_day), yintercept = 0),
+        color = 'red', linetype = 'dashed'
+    ) +
+    theme_classic()
+```
+
+
+
+```{r}
+
+
+df_ess |> 
+    filter(essround == 8) |> 
+    group_by(gndr,before_dsp) |> 
+    summarise(mean = weighted.mean(gincdif_inv, w= pspwght, na.rm = TRUE))
+
+```
+
+## *Redistribution from* and *Redistribution to* 
+
+as pointed out by @cavaille_fair_2025,  
 
 # Has the support changed over time? {#sec-change} 
 
