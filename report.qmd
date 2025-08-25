@@ -1,5 +1,5 @@
 ---
-title: "In Fairness: Public support for welfare and redistributive policies in Ireland"
+title: "Public support for welfare and redistributive policies in Ireland"
 format:
    docx:
     toc: false
@@ -70,6 +70,8 @@ Finally, this research also relied on public opinion data from Voter Surveys (VS
 # Who supports redistribution? {#sec-who} 
 
 ```{r}
+#| include: false
+
 library(tidyverse)
 library(haven)
 library(gt)
@@ -104,6 +106,11 @@ save_display  <- function(myobj, w=NULL, h=NULL, vwidth = 600){
     
     knitr::include_graphics(file_path)
 }
+
+```
+
+```{r}
+#| include: false
 
 # Read file in the root of sub-folder "data" with name containing "ESS" 
 df_ess_raw <- read_dta(paste0("data/", get_latest("ESS")))
@@ -262,7 +269,7 @@ fig_age_eu <-
         group_by(Country = as_factor(cntry), agea) |> 
         summarise(mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T)) |> 
         ggplot(aes(x = agea, y = mean)) +
-        geom_point() +
+        geom_point(size = 1) +
         geom_smooth(method = 'lm') +
         ylim(3,5) +
         facet_wrap(~Country) + 
@@ -388,7 +395,9 @@ df_ess$age_group <-  relevel(df_ess$age_group, ref = "18-24")
 
 df_ess$false_cohort  <-  cut(df_ess$yrbrn, breaks = c(1900, 1940, 1960, 1980, 2020), right = FALSE, labels = c("1900-1940", "1941-1960", "1961-1980", "1981-"))
 
-ind_vars <- c('age_group', 'eisced', 'as_factor(gndr)', 'as_factor(class5)', 'as_factor(hincfel)', 'as_factor(mnactic)', 'lrscale', 'as_factor(essround)')
+ind_vars <- c('agea', 'eisced', 'as_factor(gndr)', 'as_factor(class5)', 'as_factor(hincfel)', 'as_factor(mnactic)', 'lrscale', 'as_factor(essround)')
+
+ind_vars_print <- ind_vars[!ind_vars %in% c('eisced', 'as_factor(mnactic)', 'as_factor(essround)')]
 
 tbl_multiv_gincdif <- 
     lm(
@@ -397,9 +406,9 @@ tbl_multiv_gincdif <-
         data = df_ess 
     )  |> 
     tbl_regression(
-        include = c("age_group", "as_factor(gndr)", "as_factor(class5)", "as_factor(hincfel)", "lrscale"),
+        include = ind_vars_print,
         label = list(
-            age_group = "Age group", 
+            #age_group = "Age group", 
             `as_factor(gndr)` = "Gender", 
             `as_factor(class5)` = 'Social class',
             `as_factor(hincfel)` = 'Financial situation'
@@ -442,14 +451,12 @@ A multivariate analysis with the same explanatory variables from the model  of t
 
 ```{r}
 #| include: false
-
 lm(as.formula(paste("dfincac ~ ", paste(ind_vars, collapse= "+"))), 
         weights = pspwght, data = df_ess)  |> 
     tbl_regression() |> 
     bold_p(t = 0.05, q = FALSE)
+
 ```
-
-
 
 ## The government should have more responsibility towards old citizens and working parents compared to the unemployed 
 
@@ -492,7 +499,7 @@ save_display(fig_deservingness, h=7, w=6)
 
 ```
 
-In Ireland, a greater prioritisation of older over unemployed is found mainly among respondents who are older, male, in paid work, as well as those in the 'Higher-grade service class'. 
+In Ireland, a greater prioritisation of the older over the unemployed is found mainly among respondents who are female, in paid work, and with lower level of educational attainment. 
 
 ```{r}
 #| include: false
@@ -552,7 +559,6 @@ believe_vars_agree <- paste0(believe_vars,"_agree")
 # Creating dummy variables for strong agreement
 df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ if_else(.x == 1, 1, 0), .names = "{.col}_strong_agree"))
 believe_vars_strong_agree <- paste0(believe_vars,"_strong_agree")
-
 
 
 fig_benefits <- 
@@ -639,9 +645,9 @@ model_belief <- function(DV){
 
     glm(m_form, family = 'binomial', weights = pspwght, data = df_ess  |> filter(essround == 8 )) |> 
         tbl_regression(
-            include = c("age_group", "as_factor(gndr)", "as_factor(hincfel)", "eisced", "lrscale"),
+            include = ind_vars_print,
             exponentiate = TRUE,
-            label = list(age_group = "Age group", `as_factor(gndr)` = "Gender", `as_factor(hincfel)` = "Financial situation")
+            label = list(`as_factor(gndr)` = "Gender", `as_factor(hincfel)` = "Financial situation")
         )  |> 
         bold_p(t = 0.05, q = FALSE) 
 }
@@ -677,6 +683,9 @@ The second model on the @tbl-multiv-beliefs provides a different picture in rela
 ## Most respondents indicate that immigrants could receive social benefits after having worked and paid taxes for at least one year
 
 Overall, data from 2016 indicates that about half of respondents in Ireland believe that immigrants should obtain rights to social benefits/services "After worked and paid taxes at least a year". The other options that received most answers were "Once they have become a citizen" (19%) and  "After a year, whether or not have worked" (16%). 
+
+As shown in @fig-immig, only 5% in 2016 indicated that "They should never get the same rights". This proportion is significantly higher in countries such as Hungary (30%) and Czechia (24%). In Ireland, this proportion is also higher for those in worse financial situation (19%) and among those who are unemployed and not looking for job (18%). 
+
 
 ```{r}
 #| include: false
@@ -722,38 +731,64 @@ save_display(fig_immig, w =8, h=4)
 
 ```
 
-As shown in @fig-immig, only 5% in 2016 indicated that "They should never get the same rights". This proportion is significantly higher in countries such as Hungary (30%) and Czechia (24%). In Ireland, this proportion is also higher for those in worse financial situation (19%) and among those who are unemployed and not looking for job (18%). 
 
 ## Attitudes are impacted by government campaigns
 
-@power_framing_2022
+During the 2016 European data collection @power_framing_2022
 
 @dunaiski_does_2025
 
 ```{r}
+#| include: false
 
-df_ess |>
-    filter(essround == 8) |> 
-    group_by(ess_day, .drop=TRUE) |> 
-    summarise(n = n()) |> 
-    ggplot(aes(x = ess_day, y=n)) +
-    geom_bar(stat='identity') +
-    geom_vline(
-        aes(xintercept = as.Date(dsp_day), yintercept = 0),
-        color = 'red', linetype = 'dashed'
-    ) +
-    theme_classic()
+dsp_day <- "2017-04-18"
+
+plot <- 
+    df_ess |> 
+        filter(!is.na(gincdif_inv)) |> 
+        arrange(ess_day) |> 
+        group_by(essround) |> 
+        mutate(mean = cummean(gincdif_inv)) |> 
+        ggplot(aes(x = ess_day, y=mean)) +
+        geom_line(stat='identity') +
+        # geom_vline(
+        #     aes(xintercept = as.Date(dsp_day), yintercept = 0),
+        #     color = 'red', linetype = 'dashed'
+        # ) +
+        #facet_wrap(~essround, scales ='free') +
+        ylim(3.7, 3.9) +
+        theme_classic()
+
+htmlwidgets::saveWidget(plotly::ggplotly(plot), "temp.html")
+
 ```
 
 
 
 ```{r}
 
-
 df_ess |> 
-    filter(essround == 8) |> 
-    group_by(gndr,before_dsp) |> 
-    summarise(mean = weighted.mean(gincdif_inv, w= pspwght, na.rm = TRUE))
+    mutate(essround_dsp = case_when(
+        essround == 8 & dsp_period == "Before" ~ "8A",
+        essround == 8 & dsp_period == "After" ~ "8B",
+        .default = as.character(essround)
+    )) |> 
+    group_by(var_grp = as_factor(age_group), essround_dsp) |> 
+    summarise(mean = weighted.mean(gincdif_inv, w= pspwght, na.rm = TRUE)) |> 
+    ggplot(aes(x = essround_dsp, y = mean, color = var_grp)) +
+    geom_line(aes(group = var_grp))
+
+dsp_models <- map(c("Before", "After"), ~lm(
+        as.formula(paste0("gincdif_inv ~ ", paste(ind_vars[ind_vars != "as_factor(essround)"], collapse= "+"))), 
+        weights = pspwght, 
+        data = subset(df_ess, essround == 8  & abs(dsp_diffdays) < 15 & dsp_period == .x)
+    ))  
+
+tbl_merge(map(dsp_models, ~tbl_regression(.x) |> bold_p()))
+
+
+
+df_ess |> count(sblazy)
 
 ```
 
