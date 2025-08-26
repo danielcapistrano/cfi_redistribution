@@ -112,6 +112,9 @@ save_display  <- function(myobj, w=NULL, h=NULL, vwidth = 600){
 ```{r}
 #| include: false
 
+######################
+### Import files
+
 # Read file in the root of sub-folder "data" with name containing "ESS" 
 df_ess_raw <- read_dta(paste0("data/", get_latest("ESS")))
 
@@ -128,6 +131,52 @@ df_vseu <- read_dta(paste0("data/", get_latest("VSEU_")))
 df_esseu_raw <- read_dta("./data/ess/ess_eu.dta")
 
 df_esseu <- df_esseu_raw |> filter(!if_any(c(agea, gndr, hincfel), ~is.na(.x)))
+
+######################
+### Variables
+
+# Main model
+
+df_ess$age_group  <- cut(df_ess$agea, c(0, 24, 35, 45, 55, 65, Inf), c("18-24", "25-35", "36-45", "46-55", "56-65", ">66"), include.lowest=TRUE)
+
+df_ess$age_group <-  relevel(df_ess$age_group, ref = "18-24")
+
+df_ess$false_cohort  <-  cut(df_ess$yrbrn, breaks = c(1900, 1940, 1960, 1980, 2020), right = FALSE, labels = c("1900-1940", "1941-1960", "1961-1980", "1981-"))
+
+ind_vars <- c('agea', 'eisced', 'as_factor(gndr)', 'as_factor(class5)', 'as_factor(hincfel)', 'as_factor(mnactic)', 'lrscale', 'as_factor(essround)')
+
+ind_vars_print <- ind_vars[!ind_vars %in% c('eisced', 'as_factor(mnactic)', 'as_factor(essround)')]
+
+# Beliefs models
+
+believe_vars <- c("sbeqsoc", "sblazy", "sblwcoa", "sbprvpv", "sbstrec", "sbbsntx")
+
+# Creating inverted scales so higher values denote higher agreement
+df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.col}_inv"))
+believe_vars_inv <- paste0(believe_vars,"_inv")
+
+df_esseu <- df_esseu |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.col}_inv"))
+df_esseu <- df_esseu |> mutate(across(all_of(believe_vars), ~ if_else(.x %in% c(1,2), 1, 0), .names = "{.col}_agree"))
+
+# Creating dummy variables for agreement
+df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ if_else(.x %in% c(1,2), 1, 0), .names = "{.col}_agree"))
+believe_vars_agree <- paste0(believe_vars,"_agree")
+
+# Creating dummy variables for strong agreement
+df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ if_else(.x == 1, 1, 0), .names = "{.col}_strong_agree"))
+believe_vars_strong_agree <- paste0(believe_vars,"_strong_agree")
+
+
+
+
+
+
+# Create variable indicating priority to unemployed over old
+df_ess$old_prior <- df_ess$gvslvol - df_ess$gvslvue
+
+
+# List of EU countries to be shown
+list_countries <- c("IE", "GR", "PT", "GB", "BE", "CZ", "FI", "FR", "DE", "NO", "ES")
 
 ```
 
@@ -389,16 +438,6 @@ Finally, as discussed earlier in this chapter, both female respondents and those
 #| label: tbl-multiv-gincdif
 #| tbl-cap: "OLS regression coefficients for 'income differences' "
 
-df_ess$age_group  <- cut(df_ess$agea, c(0, 24, 35, 45, 55, 65, Inf), c("18-24", "25-35", "36-45", "46-55", "56-65", ">66"), include.lowest=TRUE)
-
-df_ess$age_group <-  relevel(df_ess$age_group, ref = "18-24")
-
-df_ess$false_cohort  <-  cut(df_ess$yrbrn, breaks = c(1900, 1940, 1960, 1980, 2020), right = FALSE, labels = c("1900-1940", "1941-1960", "1961-1980", "1981-"))
-
-ind_vars <- c('agea', 'eisced', 'as_factor(gndr)', 'as_factor(class5)', 'as_factor(hincfel)', 'as_factor(mnactic)', 'lrscale', 'as_factor(essround)')
-
-ind_vars_print <- ind_vars[!ind_vars %in% c('eisced', 'as_factor(mnactic)', 'as_factor(essround)')]
-
 tbl_multiv_gincdif <- 
     lm(
         as.formula(paste0("gincdif_inv ~ ", paste(ind_vars, collapse= "+"))), 
@@ -504,9 +543,7 @@ In Ireland, a greater prioritisation of the older over the unemployed is found m
 ```{r}
 #| include: false
 
-# Create variable indicating priority to unemployed over old
 
-df_ess$old_prior <- df_ess$gvslvol - df_ess$gvslvue
 
 lm(as.formula(paste("old_prior ~ ", paste(ind_vars, collapse= "+"), '+ uemplwk')), 
         weights = pspwght, data = df_ess)  |> 
@@ -546,21 +583,6 @@ The average level of agreement remains similar comparing 2008 and 2016. The only
 #| label: fig-benefits
 #| fig-cap: "Proportion of respondents who agree with statements about social benefits by round"
 
-believe_vars <- c("sbeqsoc", "sblazy", "sblwcoa", "sbprvpv", "sbstrec", "sbbsntx")
-
-# Creating inverted scales so higher values denote higher agreement
-df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.col}_inv"))
-believe_vars_inv <- paste0(believe_vars,"_inv")
-
-# Creating dummy variables for agreement
-df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ if_else(.x %in% c(1,2), 1, 0), .names = "{.col}_agree"))
-believe_vars_agree <- paste0(believe_vars,"_agree")
-
-# Creating dummy variables for strong agreement
-df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ if_else(.x == 1, 1, 0), .names = "{.col}_strong_agree"))
-believe_vars_strong_agree <- paste0(believe_vars,"_strong_agree")
-
-
 fig_benefits <- 
     df_ess |>
         filter(essround %in% c(4, 8)) |> 
@@ -591,8 +613,6 @@ Despite the reduction from 2009 to 2016, as shown in @fig-lazy, Ireland (58%) ha
 #| label: fig-lazy
 #| fig-cap: "Proportion of agreement that social benefits make people lazy, Europe, 2016"
 
-df_esseu <- df_esseu |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.col}_inv"))
-df_esseu <- df_esseu |> mutate(across(all_of(believe_vars), ~ if_else(.x %in% c(1,2), 1, 0), .names = "{.col}_agree"))
 
 
 tb_lazy <- 
@@ -741,8 +761,6 @@ During the 2016 European data collection @power_framing_2022
 ```{r}
 #| include: false
 
-dsp_day <- "2017-04-18"
-
 plot <- 
     df_ess |> 
         filter(!is.na(gincdif_inv)) |> 
@@ -752,7 +770,7 @@ plot <-
         ggplot(aes(x = ess_day, y=mean)) +
         geom_line(stat='identity') +
         # geom_vline(
-        #     aes(xintercept = as.Date(dsp_day), yintercept = 0),
+        #     aes(xintercept = as.Date("2017-04-18"), yintercept = 0),
         #     color = 'red', linetype = 'dashed'
         # ) +
         #facet_wrap(~essround, scales ='free') +
@@ -786,8 +804,6 @@ dsp_models <- map(c("Before", "After"), ~lm(
 
 tbl_merge(map(dsp_models, ~tbl_regression(.x) |> bold_p()))
 
-
-
 df_ess |> count(sblazy)
 
 ```
@@ -804,7 +820,7 @@ However, the average support varies substantially over time. The @fig-ess-time b
 #| label: fig-ess-time
 #| fig-cap: "Mean values for 'Government should reduce income differences' by round" 
 
-list_countries <- c("IE", "GR", "PT", "GB", "BE", "CZ", "FI", "FR", "DE", "NO", "ES")
+
 
 
 df_esseu |>
