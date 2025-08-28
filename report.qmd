@@ -46,11 +46,11 @@ The research project was guide by the following general questions:
 
 - From 2009 to 2016 there was an increase in the proportion of respondents who agree that 'social benefits lead to a more equal society' (@fig_benefits).    
 
-- Tax policy has moved in the same direction as public opinion but not unemployment policy @rosset_unevenly_2025
+<!-- - Tax policy has moved in the same direction as public opinion but not unemployment policy @rosset_unevenly_2025
 
 - Baumberg Geiger: the main difference between the Scandinavian nations and the rest of Europe is not the extent to which negative attitudes to welfare exist, but the degree to which positive attitudes do
 
-- Ernst Fehr: Inequality aversion, selfish and altruism in support for redistribution
+- Ernst Fehr: Inequality aversion, selfish and altruism in support for redistribution -->
 
 
 ## Methods and data
@@ -63,7 +63,7 @@ This research analysed several questions from a special module on welfare attitu
 
 [^ess]: For more info, visit https://www.europeansocialsurvey.org 
 
-Finally, this research also relied on public opinion data from Voter Surveys (VS) conducted immediately after the European elections (2014,	2019, 2024). These surveys are part of the European Elections Studies (EES), which also features political elite surveys, media studies, and the Euromanifestos project that codes Party Manifestos. Despite being part of the Eurobarometer project before 1994, thee EES surveys have been conducted independently since 1999. The survey offers additional information particularly on electoral behavious and political attitudes. 
+Finally, this research also relied on public opinion data from Voter Surveys (VS) conducted immediately after the European elections (2014,	2019, 2024). These surveys are part of the European Elections Studies (EES), which also features political elite surveys, media studies, and the Euromanifestos project that codes Party Manifestos. Despite being part of the Eurobarometer project before 1994, thee EES surveys have been conducted independently since 1999. The survey offers additional information particularly on electoral behaviours and political attitudes. 
 
 
 
@@ -119,7 +119,7 @@ save_display  <- function(myobj, w=NULL, h=NULL, vwidth = 600){
 df_ess_raw <- read_dta(paste0("data/", get_latest("ESS")))
 
 # Getting complete observations
-df_ess <- df_ess_raw |> filter(!if_any(c(agea, gndr, hincfel), ~is.na(.x)))
+df_ess <- df_ess_raw |> filter(!if_any(c(agea, gndr, hincfel, brncntr), ~is.na(.x)))
 
 # Read file in the root of sub-folder "data" with name containing "VS" 
 df_vs <- read_dta(paste0("data/", get_latest("VS_")))
@@ -130,12 +130,31 @@ df_vseu <- read_dta(paste0("data/", get_latest("VSEU_")))
 # Read country with cross country data 
 df_esseu_raw <- read_dta("./data/ess/ess_eu.dta")
 
-df_esseu <- df_esseu_raw |> filter(!if_any(c(agea, gndr, hincfel), ~is.na(.x)))
+df_esseu <- df_esseu_raw |> filter(!if_any(c(agea, gndr, hincfel, brncntr), ~is.na(.x)))
+
+
+```
+
+
+```{r}
+#| include: false
 
 ######################
 ### Variables
 
 # Main model
+
+df_ess$gincdif_agree <- if_else(df_ess$gincdif %in% c(1, 2),  1, 0, missing = NA)
+df_esseu$gincdif_agree <- if_else(df_esseu$gincdif %in% c(1, 2),  1, 0, missing = NA)
+
+df_esseu <- 
+    df_esseu |> 
+            mutate(start_year = case_match(
+                essround, 
+                1 ~ 2003, 2 ~ 2005, 3  ~ 2006, 4 ~ 2009, 5 ~ 2011, 
+                6 ~ 2012, 7 ~ 2014, 8 ~ 2016, 9 ~ 2018, 10 ~ 2021, 11 ~ 2023
+            ))
+
 
 df_ess$age_group  <- cut(df_ess$agea, c(0, 24, 35, 45, 55, 65, Inf), c("18-24", "25-35", "36-45", "46-55", "56-65", ">66"), include.lowest=TRUE)
 
@@ -143,9 +162,15 @@ df_ess$age_group <-  relevel(df_ess$age_group, ref = "18-24")
 
 df_ess$false_cohort  <-  cut(df_ess$yrbrn, breaks = c(1900, 1940, 1960, 1980, 2020), right = FALSE, labels = c("1900-1940", "1941-1960", "1961-1980", "1981-"))
 
-ind_vars <- c('agea', 'eisced', 'as_factor(gndr)', 'as_factor(class5)', 'as_factor(hincfel)', 'as_factor(mnactic)', 'lrscale', 'as_factor(essround)')
+df_ess$inc_topQ <- if_else(df_ess$hinctnta %in% c(1,2), "Top quintile", "Bottom quintiles", missing = NA)
 
-ind_vars_print <- ind_vars[!ind_vars %in% c('eisced', 'as_factor(mnactic)', 'as_factor(essround)')]
+df_ess$inc_topD <- if_else(df_ess$hinctnta %in% c(1,2), "Top Decile", "Bottom Deciles", missing = NA)
+
+vars_class <- "as_factor(class5)"
+
+vars_indo <- c('agea', 'as_factor(gndr)', 'as_factor(brncntr)', 'eisced', "as_factor(class5)", "as_factor(hincfel)",  'as_factor(mnactic)', 'lrscale',  'as_factor(essround)')
+
+vars_omit <- c('eisced', 'as_factor(mnactic)', 'as_factor(essround)')
 
 # Beliefs models
 
@@ -166,20 +191,18 @@ believe_vars_agree <- paste0(believe_vars,"_agree")
 df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ if_else(.x == 1, 1, 0), .names = "{.col}_strong_agree"))
 believe_vars_strong_agree <- paste0(believe_vars,"_strong_agree")
 
-
-
-
-
-
 # Create variable indicating priority to unemployed over old
 df_ess$old_prior <- df_ess$gvslvol - df_ess$gvslvue
 
 
-# List of EU countries to be shown
-list_countries <- c("IE", "GR", "PT", "GB", "BE", "CZ", "FI", "FR", "DE", "NO", "ES")
+list_labels <- list(
+            `as_factor(brncntr)` = "Born in Ireland",
+            `as_factor(gndr)` = "Gender", 
+            `as_factor(class)` = 'Social class',
+            `as_factor(hincfel)` = 'Financial situation'
+        )
 
 ```
-
 
 The ESS question used to assess support for redistribution asked participants to indicate if the government should take measures to reduce differences in income levels. The interviewer manual does not contain any additional instruction in relation to this question, so respondents provided their answers according to their understanding of the following wording: 
 
@@ -200,19 +223,17 @@ Using this card, please say to what extent you agree or disagree with each of th
 5 - Disagree strongly   
 :::
 
-The original scale of this variable was inverted for our analysis. So, in the results presented in this report, higher values denote stronger agreement with government reducing income differences.  
-
 Recent studies have raised concerns in relation to the reliability of this question as a measurement of support for redistribution. @margalit_does_2024 argues that reduction in income differences is too abstract and respondents in general do not link it to redistributive measures. Similarly, it has been suggested that this question only captures a diffuse inclination to equality and that is why responses are inconsistent with voting preferences across countries [@dallinger_ambivalence_2022]. However, @breznau_moderating_2025 argue that the absence of a relationship between this measurement and other expected correlates (voting preferences, support for concrete policies) is due to the omission of views on government (trust and perceptions of corruption) as a moderating variable. 
 
 Similar to the main ESS question, the VS questionnaires also ask whether voters are in favour of wealth redistribution from the rich to the poor using a scale from 0 ('fully oppose') to 10 ('fully favour'). The original scale of this variable was inverted for this analysis. So, in the results presented here, higher values indicate more in favour of redistribution.
 
 ## Higher support in Ireland compared to other northern European countries
 
-The mean levels of support for income redistribution in 2022 shown in @fig-eumap is in line with the south/north geographical divide identified before @meuleman_past_2018, with @finseraas_income_2009 arguing that countries with higher income inequality tend to be more supportive of income redistribution. The mean value for Ireland (3.95) is similar to the one observed in France (3.90) and slightly higher compared to other countries in the north of Europe such as the United Kingdom (3.82) and the Netherlands (3.63). 
+The overall levels of support for income redistribution in 2023 shown in @fig-eumap is in line with the south/north geographical divide identified before @meuleman_past_2018, with @finseraas_income_2009 arguing that countries with higher income inequality tend to be more supportive of income redistribution. About 75% of respondents in Ireland indicated that they either 'agree' or 'agree strongly' that the government should reduce income differences. This percentage is higher than the European average (69%), and the one observed in France (70%), UK (68%), the Netherlands (62%) and Poland (56%).  
 
 ```{r}
 #| label: fig-eumap
-#| fig-cap: "Mean value for 'Governement should reduce income differences', Europe, 2023"
+#| fig-cap: "Percentage who agree that the 'Government should reduce income differences', Europe, 2023"
 
 eumap <- ne_countries(scale = "medium", continent = "Europe", returnclass = "sf") |> filter(!name %in% c("Russia", "Faeroe Is."))
 
@@ -228,13 +249,13 @@ fig_eumap <-
             group_by(cntry) |> 
             mutate(gincdif_inv = 6 - gincdif) |> 
             summarise(
-                mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
-                se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))),
+                mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T),
+                se = sd(gincdif_agree, na.rm = T)/sqrt(length((gincdif_agree)))),
             by = "cntry"
         ) |> 
         ggplot() +
         geom_sf(aes(fill = mean)) +
-        scale_fill_distiller(palette = "RdYlBu", na.value = "white") +
+        scale_fill_distiller(palette = "RdBu", na.value = "white") +
         coord_sf(xlim = c(-25, 40), ylim = c(25, 75), expand = FALSE) +
         theme_void() +
         labs(
@@ -252,7 +273,53 @@ save_display(fig_eumap, w =5, h=4)
 ```
 
 
-## Female and lower social class respondents are more supportive of redistribution
+## There is no clear relationship between support for redistribution and willingness to pay more taxes
+
+In 2025, the Eurobarometer conducted a survey on citizen's attitudes towards taxation. Participants were asked which among the following statements they agreed the most:
+
+- *Taxes are too high, and I would decrease them even if it means fewer or lower quality public services*   
+- *I agree with higher taxes if it means more or better  public services*  
+- *Both taxes and public services should stay at the same level*  
+
+In Ireland, 34% of respondents indicated that they would agree with higher taxes if it means more or better public services. This is the 6th highest percentage across the 27 participant countries. This proportion varies from 16% in Luxembourg and Belgium to 42% in Sweden and Spain. Comparing countries at the national level in @, there is no clear relationship between this question and the overall support for redistribution measured by the ESS in 2023.
+
+```{r}
+#| label: fig-tax
+#| fig-cap: "Relationship between agreement that the 'Government should reduce income differences' and there could be 'higher taxes if it means more or better  public services', Europe, 2023-2025"
+
+eubar_tax <- read_csv("./data/eurob_tax.csv")
+eubar_wealthy <- read_csv("./data/eurb_wealthy.csv")
+eubar_tax <- eubar_tax |> select(-wtotal)  |> pivot_longer(cols = -cntry, names_to = "option", values_to = "n")
+
+eubar_taxben <- eubar_tax |> group_by(cntry) |> mutate(tax = prop.table(n)*100) |> filter(cntry != "EU27" & option == "tax_morebenef")
+
+fig_taxes <- 
+    df_esseu |> 
+        filter(essround == 11) |> 
+        group_by(cntry) |> 
+        summarise(
+            mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T), .groups = 'drop') |> 
+        left_join(eubar_taxben |> select(cntry, tax)) |> 
+        ggplot(aes(x = mean, y = tax, label = as_factor(cntry)))+
+        geom_point() +
+        geom_label() +
+        theme_classic() +
+            labs(
+                x = "Government should reduce income differences",
+                y = "I agree with higher taxes if it means more or better  public services",
+                caption = "Source: European Social Survey (Round 11) and Eurobarometer 2025"
+            ) +
+            theme(
+                legend.position = "left", 
+                legend.title = element_text(size = 8),
+                plot.caption = element_text(hjust = 0, vjust = -1)
+            )  
+
+save_display(fig_taxes, w =8, h=6)
+
+```
+
+## Female and working class respondents are more supportive of redistribution
 
 Despite the profusion of studies on the relationship between gender and welfare policies, there is a gap in understanding the gender dimension of beliefs and perceptions in relation to these policies @garritzmann_gender_2021. Considering the marked gender differences in access to the labour market and levels of pay in Ireland @hingre_gender_2024, it is plausible to also expect differences in demands for income redistirbution. 
 
@@ -279,53 +346,53 @@ However, as shown in @fig-sex, there is some variation across time in relation t
 
 ```{r}
 #| label: fig-sex
-#| fig-cap: "Mean value for 'Governement should reduce income differences' in Ireland by sex, 2002-2023"
+#| fig-cap: "Proportion who agree that the 'Governement should reduce income differences' in Ireland by sex, 2002-2023"
 
 fig_sex <- 
     df_ess |> 
-        group_by(essround, Sex = as_factor(gndr), .drop=TRUE) |>
+        group_by(start_year, Sex = as_factor(gndr), .drop=TRUE) |>
         summarise(
-                mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
-                se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))
+                mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T),
+                se = sd(gincdif_agree, na.rm = T)/sqrt(length((gincdif_agree)))
             ) |> 
-            ggplot(aes(x = essround, y = mean,  ymin = mean - 1.96*se, ymax= mean + 1.96*se, fill = Sex, colour = Sex)) +
+            ggplot(aes(x = start_year, y = mean,  ymin = mean - 1.96*se, ymax= mean + 1.96*se, fill = Sex, colour = Sex)) +
             geom_pointrange() +
             geom_line() +
             theme_classic() +
             labs(
-                caption = "Source: European Social Survey"
+                caption = "Source: European Social Survey",
+                y = "Proportion"
             ) +
             theme(
                 legend.position = "bottom", 
                 legend.title = element_text(size = 8),
-                plot.caption = element_text(hjust = -1)
+                plot.caption = element_text(hjust = 0)
             )
 
 save_display(fig_sex, w=6, h=4)
 
 ```
 
-In addition, data suggest an age pattern where younger respondents tend to be more supportive of income redistribution in Ireland. As shown in @fig-age-eu, the opposite pattern is observed in Germany, Finland, France, and Portugal. Although the UK also has a similar negative relationshop between age and  support, it seems to be less pronounced compared to Ireland. 
+In addition, data suggest an age pattern where younger respondents tend to be more supportive of income redistribution in Ireland. As shown in @fig-age-eu, the opposite pattern is observed in Germany, Finland, France, and Portugal. Although the UK also has a similar negative relationship between age and support, the agreement among young respondents (18-35) is higher in Ireland. 
 
 ```{r}
 #| label: fig-age-eu
-#| fig-cap: "Scatter plot for 'reduce income differences' by age and country, 2023"
+#| fig-cap: "Scatter plot for 'Government should reduce income differences' by age and country, 2023"
 
 fig_age_eu <- 
     df_esseu |> 
-        mutate(gincdif_inv = 6 - gincdif) |> 
         filter(essround == 11 & cntry %in% c('IE', 'FR', 'FI', 'GB', 'NL', 'DE')) |> 
         group_by(Country = as_factor(cntry), agea) |> 
-        summarise(mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T)) |> 
+        summarise(mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T)) |> 
         ggplot(aes(x = agea, y = mean)) +
         geom_point(size = 1) +
         geom_smooth(method = 'lm') +
-        ylim(3,5) +
+        #ylim(3,5) +
         facet_wrap(~Country) + 
         labs(
             x = "Age", 
             y = "Government should reduce income differences", 
-            caption = "Source: European Social Survey 2023"
+            caption = "Source: European Social Survey, Round 11"
         )+
         theme_classic() +
         theme(plot.caption = element_text(hjust = 0))
@@ -334,7 +401,7 @@ save_display(fig_age_eu, w=6, h=4)
 
 ```
 
-However, zooming out for a longer time period, we observe different relationships depending on the time of the data collection. During the third and fourth rounds, there is a positive association between age and support for redistribution. This different associations over time might suggest a different level of support across generations instead of age groups. This topic is further explored in [Chapter @sec-change].
+Using a longer time period, however, we observe different relationships depending on the time of the data collection. During the third and fourth rounds, there is a positive association between age and support for redistribution. This different associations over time might suggest a different level of support across generations instead of age groups. This topic is further explored in [Chapter @sec-change].
 
 ```{r}
 #| label: fig-age-round
@@ -343,11 +410,11 @@ However, zooming out for a longer time period, we observe different relationship
 fig_age_round <- 
     df_ess |> 
         group_by(Round = start_year, agea) |> 
-        summarise(mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T)) |> 
+        summarise(mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T)) |> 
         ggplot(aes(x = agea, y = mean)) +
         geom_point(size = 0.5) +
         geom_smooth(method = 'lm') +
-        ylim(3,5) +
+        #ylim(0.25,1) +
         facet_wrap(~Round, nrow=2) + 
         labs(
             x = "Age", 
@@ -360,20 +427,20 @@ fig_age_round <-
 save_display(fig_age_round, w=8, h=5)
 ```
 
-There is robust evidence for the association between social class and overall welfare attitudes in Europe [@svallfors_contested_2012; @langsaether_more_2020].The analysis by social class in Ireland suggests a negative relationship between class and the main ESS response variable. The mean values shown in @fig-class5 indicate that 'unskilled workers' show higher levels of agreement with the government reducing income differences whereas 'small business owners' and the 'service class' show lower levels of agreement. 
+Finally, there is robust evidence for the association between social class and overall welfare attitudes in Europe [@svallfors_contested_2012; @langsaether_more_2020].The analysis by social class in Ireland suggests a negative relationship between class and the main ESS response variable. The mean values shown in @fig-class indicate that both 'skilled' and 'unskilled' workers show higher levels of agreement with the government reducing income differences whereas 'small business owners' and the 'service class', which includes managers and professionals,  show lower levels of agreement. 
 
 ```{r}
-#| label: fig-class5
+#| label: fig-class
 #| fig-cap: "Scatter plot for 'income differences' by social class (5 groups)"
 
-fig_class5 <- 
+fig_class <- 
     df_ess |> 
         filter(essround == 11 & !is.na(class5)) |> 
         mutate(class = as_factor(class5)) |> 
         group_by(class) |> 
         summarise(
-            mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
-            se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))
+            mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T),
+            se = sd(gincdif_agree, na.rm = T)/sqrt(length((gincdif_agree)))
         ) |> 
         ggplot(aes(x = class, y = mean,  ymin = mean - 1.96*se, ymax= mean + 1.96*se)) +
         geom_pointrange() +
@@ -386,22 +453,22 @@ fig_class5 <-
             caption = "Source: European Social Survey"
         )
 
-save_display(fig_class5, w = 6, h=3)
+save_display(fig_class, w = 6, h=3)
 
 ```
 
 
 ## Left-wing voters are more supportive of redistribution
 
-The ESS survey also finds a consistent pattern of association between the respondents' ideological positioning and support for redistribution. Those participants who position themselves more to the left of the left-right political scale tend to be more supportive of redistribution across all rounds of the survey since 2002.
+The ESS survey also finds a consistent pattern of association between the respondents' ideological positioning and support for redistribution. Those participants who position themselves more to the left of the left-right political scale tend to be more supportive of redistribution since 2002.
 
 ```{r}
 #| include: false
 
 df_ess |> 
-    filter(!is.na(lrscale) & !is.na(gincdif_inv)) |>
-    group_by(essround) |> 
-    summarise(cor = cor(lrscale, gincdif_inv))
+    filter(!is.na(lrscale) & !is.na(gincdif_agree)) |>
+    group_by(start_year) |> 
+    summarise(cor = cor(lrscale, gincdif_agree))
 
 ```
 
@@ -424,35 +491,31 @@ lm(redist_inv ~  as_factor(party_lable) + lrscale, data = df_vs |>
 
 ```
 
-## Age, gender and social class are relevant even controlling for occupation and financial situation
+## Age, gender and social class are relevant even controlling for economic activity and financial situation
 
-We created a fixed-effects multivariate regression model to assess the extent to which these individual factors are associated to support for income redistribution, considering all ESS rounds. In addition to these main variables, the model also includes a measurement of the household financial situation. A subjective measurement was chosen ('Sastisfaction with the household income') instead of household income due to the high proportion of missing values in the former. Finally, the model also includes the following control variables: economic activity ('Main activity in the last seven days'), educational attainment, and political ideology ('Placement in the left-right scale'). 
+We created a fixed-effects multivariate regression model to assess the extent to which these individual factors are associated to support for income redistribution, considering all ESS rounds. In addition to these main variables, the model also includes a measurement of the household financial situation. A subjective measurement was chosen ('Satisfaction with the household income') instead of household income due to the high proportion of missing values in the former. Finally, the model also includes the following control variables: economic activity ('Main activity in the last seven days'), educational attainment, and political ideology ('Placement in the left-right scale'). 
 
-@tbl-multiv-gincdif below shows the coefficients of the OLS regression model. Despite the overall explanatory power of the model being low (R² = 0.06), the model identifies significant differences across groups.
-
-In terms of age, taking the group of 18 to 24 as reference, all other age groups are expected to have higher support for redistribution, which is the opposite relationship found for the latest round in 2023. In addition, both the social class and subjective income suggest that respondents in more precarious economic situation tend to be more favourable of the government reducing income differences. 
+@tbl-multiv-gincdif below shows the coefficients of the logistic regression model that identifies significant differences across groups. In terms of age, an additional year is expected to be associated with higher likelihood of agreement with redistribution, which is the opposite relationship found for the latest round in 2023. In addition, both the social class and subjective income suggest that respondents in more precarious economic situation are more likely to be  favourable of the government reducing income differences. 
 
 Finally, as discussed earlier in this chapter, both female respondents and those who place themselves on the left of the left-right scale are more likely to support income redistribution, even when controlling for other factors such as age and social class.
 
 ```{r}
 #| label: tbl-multiv-gincdif
-#| tbl-cap: "OLS regression coefficients for 'income differences' "
+#| tbl-cap: "Logit regression coefficients (odds-ratio) for 'income differences'"
+
 
 tbl_multiv_gincdif <- 
-    lm(
-        as.formula(paste0("gincdif_inv ~ ", paste(ind_vars, collapse= "+"))), 
+    glm(
+        as.formula(paste0("gincdif_agree ~ ", paste(vars_indo, collapse= "+"))), 
         weights = pspwght, 
-        data = df_ess 
-    )  |> 
+        family = 'binomial',
+        data = df_ess
+    )  |>
     tbl_regression(
-        include = ind_vars_print,
-        label = list(
-            #age_group = "Age group", 
-            `as_factor(gndr)` = "Gender", 
-            `as_factor(class5)` = 'Social class',
-            `as_factor(hincfel)` = 'Financial situation'
-        )
-    )  |> 
+        exponentiate = TRUE,
+        include = vars_indo[!vars_indo %in% vars_omit],
+        label = list_labels
+    )  |>
     bold_p(t = 0.05, q = FALSE) |> 
     as_gt() |>
     opt_row_striping()  |> 
@@ -474,10 +537,11 @@ save_display(tbl_multiv_gincdif)
 
 ```
 
+Overall, the examination of individual factors associated with support for income redistribution in Ireland goes in the same direction of the literature pointing out the role of material interests (financial situation) and perspectives of upward mobility (social class) @bonnet_what_2024.
 
 # What people think about welfare policies? {#sec-what} 
 
-The data analysed in this chapter refers to a special module from the European Social Survey on welfare attitudes that was fielded in 2009 (Round 4) and repeated in 2016 (Round 8) (see @meuleman_past_2018 for more on this module). These ronds of data collection contain additional questions on beliefs about welfare, social benefits and their beneficiaries. 
+The data analysed in this chapter refers to a special module from the European Social Survey on welfare attitudes that was fielded in 2009 (Round 4) and repeated in 2016 (Round 8) (see @meuleman_past_2018 for more on this module). These rounds of data collection contain additional questions on beliefs about welfare, social benefits and their beneficiaries. 
 
 
 ## Meritocratic differences are acceptable for younger and right-wing respondents
@@ -490,7 +554,7 @@ A multivariate analysis with the same explanatory variables from the model  of t
 
 ```{r}
 #| include: false
-lm(as.formula(paste("dfincac ~ ", paste(ind_vars, collapse= "+"))), 
+lm(as.formula(paste("dfincac ~ ", paste(vars_indo, collapse= "+"))), 
         weights = pspwght, data = df_ess)  |> 
     tbl_regression() |> 
     bold_p(t = 0.05, q = FALSE)
@@ -543,9 +607,7 @@ In Ireland, a greater prioritisation of the older over the unemployed is found m
 ```{r}
 #| include: false
 
-
-
-lm(as.formula(paste("old_prior ~ ", paste(ind_vars, collapse= "+"), '+ uemplwk')), 
+lm(as.formula(paste("old_prior ~ ", paste(vars_indo, collapse= "+"), '+ uemplwk')), 
         weights = pspwght, data = df_ess)  |> 
     tbl_regression() |> 
     bold_p(t = 0.05, q = FALSE)
@@ -577,7 +639,7 @@ Using this card please tell me to what extent you agree or disagree that social 
 
 :::
 
-The average level of agreement remains similar comparing 2008 and 2016. The only exception is the average for "social benefits place too great strain on economy", which oberved a significant reduction in the level of agreement, as shown in @fig-benefits. 
+The average level of agreement remains similar comparing 2008 and 2016. The only exception is the average for "social benefits place too great strain on economy", which observed a significant reduction in the level of agreement, as shown in @fig-benefits. 
 
 ```{r}
 #| label: fig-benefits
@@ -607,13 +669,11 @@ save_display(fig_benefits, w =6, h=3)
 
 ```
 
-Despite the reduction from 2009 to 2016, as shown in @fig-lazy, Ireland (58%) had the third highest proportion of respondents agreeing that "social benefits make people lazy", behind Portugal (63%) and Poland (60%). This proportion is significantly lower in countries such as Iceland (24%), Sweden (35%), and Germany (43%).
+Despite the reduction from 2009 to 2016, as shown in @fig-lazy, Ireland (58%) had the third highest proportion of respondents agreeing that "social benefits make people lazy", behind Portugal (63%) and Poland (60%). This proportion is significantly lower in countries such as Iceland (24%), Sweden (35%), and Germany (43%). Finally, as expected those who believe that "social benefits make people lazy" are also less likely to support income redistribution. 
 
 ```{r}
 #| label: fig-lazy
 #| fig-cap: "Proportion of agreement that social benefits make people lazy, Europe, 2016"
-
-
 
 tb_lazy <- 
     df_esseu |>
@@ -637,7 +697,7 @@ fig_lazy <-
         theme_void() +
         labs(
             fill = "Social benefits make people lazy",
-            caption = "Source: European Social Survey, Round 11"
+            caption = "Source: European Social Survey, 2016"
         ) +
         theme(
             legend.position = "left", 
@@ -649,8 +709,6 @@ save_display(fig_lazy, w =5, h=4)
 
 ```
 
-
-
 ## Compared to male respondents, female respondents are less likely to agree that social benefits leads to equality  
 
 The @tbl-multiv-beliefs below shows logistic regression models for two selected dimensions of beliefs about social benefits. The first model, on social benefits as promoters of equality, no significant differences were found across groups in main variables such as age and social class. However, the model indicates that female respondents are more likely to disagree with the equality outcome compared to male respondents. Another significant difference was found in the 'financial situation' variable, with those who are coping on present income being less likely to agree with the equality statement compared to those living comfortably. Those in worse subjective financial situation ('very difficult on present income') have higher likelihood of agreeing although this difference is not statistically significant. 
@@ -661,13 +719,13 @@ The @tbl-multiv-beliefs below shows logistic regression models for two selected 
 #| tbl-cap: "Logistic regression estimates for agreement on statements about 'social benefits', Ireland, 2016"
 
 model_belief <- function(DV){
-    m_form <- as.formula(paste0(DV, " ~ ", paste(ind_vars[!ind_vars %in% c("as_factor(essround)")], collapse= "+")))
+    m_form <- as.formula(paste0(DV, " ~ ", paste(vars_indo[!vars_indo %in% c("as_factor(essround)")], collapse= "+")))
 
     glm(m_form, family = 'binomial', weights = pspwght, data = df_ess  |> filter(essround == 8 )) |> 
         tbl_regression(
-            include = ind_vars_print,
+            #include = vars_indo[!vars_indo %in% vars_omit],
             exponentiate = TRUE,
-            label = list(`as_factor(gndr)` = "Gender", `as_factor(hincfel)` = "Financial situation")
+            label = list_labels
         )  |> 
         bold_p(t = 0.05, q = FALSE) 
 }
@@ -696,7 +754,7 @@ save_display(tbl_multiv_beliefs, vwidth = 800)
 
 ```
 
-## Younger, right-wing, and those with lower educational attainment are more likely to agree that social benefits make people lazy
+## Older, right-wing, and those with lower educational attainment are more likely to agree that social benefits make people lazy
 
 The second model on the @tbl-multiv-beliefs provides a different picture in relation to beliefs on social benefits resulting in lazyness. Respondents in the 18-24 age group are more inclined to agree with this statement compared to  all older age groups. In addition, those who place themselves more to the right of the left-right ideological scale and those with lower educational attainment tend to agree with this statement that social benefits make people lazy. 
 
@@ -705,7 +763,6 @@ The second model on the @tbl-multiv-beliefs provides a different picture in rela
 Overall, data from 2016 indicates that about half of respondents in Ireland believe that immigrants should obtain rights to social benefits/services "After worked and paid taxes at least a year". The other options that received most answers were "Once they have become a citizen" (19%) and  "After a year, whether or not have worked" (16%). 
 
 As shown in @fig-immig, only 5% in 2016 indicated that "They should never get the same rights". This proportion is significantly higher in countries such as Hungary (30%) and Czechia (24%). In Ireland, this proportion is also higher for those in worse financial situation (19%) and among those who are unemployed and not looking for job (18%). 
-
 
 ```{r}
 #| include: false
@@ -743,8 +800,15 @@ fig_immig <-
         ggplot(aes(x = reorder(Moment, p), y = p)) +
         geom_bar(stat = 'identity', width = 0.5, fill = "#223451") +
         coord_flip() +
+        labs(
+            caption = "Source: European Social Survey, 2016",
+            x = "Moment", y = "Proportion"
+        ) +
         theme_classic() +
-        theme(axis.text.y = element_text(size = 12))
+        theme(
+            axis.text.y = element_text(size = 12),
+            plot.caption = element_text(hjust = -1)
+        )  
 
 save_display(fig_immig, w =8, h=4)
 
@@ -752,181 +816,84 @@ save_display(fig_immig, w =8, h=4)
 ```
 
 
-## Attitudes are impacted by government campaigns
-
-During the 2016 European data collection @power_framing_2022
-
-@dunaiski_does_2025
-
-```{r}
-#| include: false
-
-plot <- 
-    df_ess |> 
-        filter(!is.na(gincdif_inv)) |> 
-        arrange(ess_day) |> 
-        group_by(essround) |> 
-        mutate(mean = cummean(gincdif_inv)) |> 
-        ggplot(aes(x = ess_day, y=mean)) +
-        geom_line(stat='identity') +
-        # geom_vline(
-        #     aes(xintercept = as.Date("2017-04-18"), yintercept = 0),
-        #     color = 'red', linetype = 'dashed'
-        # ) +
-        #facet_wrap(~essround, scales ='free') +
-        ylim(3.7, 3.9) +
-        theme_classic()
-
-htmlwidgets::saveWidget(plotly::ggplotly(plot), "temp.html")
-
-```
-
-
-
-```{r}
-
-df_ess |> 
-    mutate(essround_dsp = case_when(
-        essround == 8 & dsp_period == "Before" ~ "8A",
-        essround == 8 & dsp_period == "After" ~ "8B",
-        .default = as.character(essround)
-    )) |> 
-    group_by(var_grp = as_factor(age_group), essround_dsp) |> 
-    summarise(mean = weighted.mean(gincdif_inv, w= pspwght, na.rm = TRUE)) |> 
-    ggplot(aes(x = essround_dsp, y = mean, color = var_grp)) +
-    geom_line(aes(group = var_grp))
-
-dsp_models <- map(c("Before", "After"), ~lm(
-        as.formula(paste0("gincdif_inv ~ ", paste(ind_vars[ind_vars != "as_factor(essround)"], collapse= "+"))), 
-        weights = pspwght, 
-        data = subset(df_ess, essround == 8  & abs(dsp_diffdays) < 15 & dsp_period == .x)
-    ))  
-
-tbl_merge(map(dsp_models, ~tbl_regression(.x) |> bold_p()))
-
-df_ess |> count(sblazy)
-
-```
-
-## *Redistribution from* and *Redistribution to* 
-
-as pointed out by @cavaille_fair_2025,  
-
 # Has the support changed over time? {#sec-change} 
 
-However, the average support varies substantially over time. The @fig-ess-time below shows the mean values for 'Government should reduce income differences' by round. Overall there is a stable agreement (mean = `r round(weighted.mean(df_ess$gincdif_inv, w = df_ess$pspwght, na.rm = T),1)`). Rounds 5-7 (2010-2014) as well as 10-11(2022-2024) show a slightly higher agreement compared to other rounds and the European average.  
+The @fig-eu-time below shows the proportion of respondents in Ireland who agree that 'Government should reduce income differences' by year of the start of the survey. Overall there is a stable agreement (`r round(weighted.mean(df_ess$gincdif_agree, w = df_ess$pspwght, na.rm = T),1)*100`)%. Rounds 5-7 (2010-2014) as well as 10-11(2022-2024) show a slightly higher agreement compared to other rounds and the European average.  
 
 ```{r}
-#| label: fig-ess-time
-#| fig-cap: "Mean values for 'Government should reduce income differences' by round" 
+#| label: fig-eu-time
+#| fig-cap: "Proportion agreeing that the 'Government should reduce income differences' by round" 
 
 
 
+fig_eutime <- 
+    df_esseu |>
+        mutate(Country = case_match(cntry,
+            "IE" ~ "Ireland",
+            "PT" ~ "Portugal",
+            # "GR" ~ "Greece",
+            "GB" ~ "Great Britain",
+            .default = paste0("Other ", length(length(unique(df_esseu$cntry)) - 3), " EU countries"))) |> 
+        group_by(round = as_factor(essround), Country)  |> 
+        mutate(gincdif_inv = 6 - gincdif) |> 
+        summarise(
+            mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
+            se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))) |> 
+        ggplot(aes(x = round, y = mean, group = Country, color = Country)) +
+        geom_line()+
+        geom_point() +
+        ylim(3,5) +
+        labs(
+            caption = "Source: European Social Survey",
+            x = "ESS Round", y = "Proportion"
+        ) +
+        theme_classic() +
+        theme(
+            axis.text.y = element_text(size = 12),
+            plot.caption = element_text(hjust = 0)
+        ) 
 
-df_esseu |>
-    filter(cntry %in% list_countries) |> 
-    mutate(Country = case_match(cntry,
-        "IE" ~ "Ireland",
-        "PT" ~ "Portugal",
-        # "GR" ~ "Greece",
-        "GB" ~ "Great Britain",
-        .default = paste0("Other ", length(list_countries), " EU countries"))) |> 
-    group_by(round = as_factor(essround), Country)  |> 
-    mutate(gincdif_inv = 6 - gincdif) |> 
-    summarise(
-        mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
-        se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))) |> 
-    ggplot(aes(x = round, y = mean, group = Country, color = Country)) +
-    geom_line()+
-    geom_point() +
-    ylim(3,5) +
-    theme_classic()
-
-    
-```
-
-@fig-vs-time shows the density of responses for the scale on support for redistribution of wealth. The mean values are similar for 2014, 2019 and 2024. However, the distribution seems is less skewed in 2024 compared to 2014.
-
-```{r}
-#| label: fig-vs-time
-#| fig-cap: "Density plot for 'in favour of redistribution of wealth' by survey year"
-
-df_vseu |>
-    mutate(
-        Country = if_else(as_factor(cntry) == "IRELAND", "Ireland", paste0("Other EU countries")),
-        Year = as.numeric(str_remove(study, "EES"))
-    ) |> 
-    group_by(Year, Country)  |> 
-    summarise(
-        mean = weighted.mean(redist_inv, w = weight, na.rm = T),
-        se = sd(redist_inv, na.rm = T)/sqrt(length((redist_inv)))) |> 
-    ggplot(aes(x = Year, y = mean, group = Country, color = Country)) +
-    geom_line()+
-    geom_point() +
-    ylim(4,7) +
-    theme_classic()
-
-
-# df_vseu |> 
-#     ggplot(aes(x = redist_inv)) + 
-#     geom_density(fill = "lightblue") + 
-#     geom_vline(data = df_vs |> group_by(study) |> summarise(mean = weighted.mean(redist_inv, w = weight, na.rm = T)), aes(xintercept = mean), color = 'red') +
-#     facet_wrap(~study, nrow = 3) +
-#     theme_classic()
+save_display(fig_eutime, w =7, h=5)
 
 ```
 
 
 ## Age
 
-The relationship between age and the response variable seems to change across rounds. As shown in @fig-time-age, early rounds suggest that older respondents support more the government reducing income differences, whereas the latest round (11) and round 8 seem to indicate the opposite. 
+The relationship between age and the response variable seems to change across rounds. As discussed in @sec-who, the multivariate regression model indicates that, considering all rounds, older respondents support more the government reducing income differences. However, the average support by age observed in the latest round (11) seem to indicate the opposite (see @fig-age-round in @sec-who). 
 
-
-
-### ESS
-
-```{r}
-#| label: fig-time-age
-#| fig-cap: "Scatter plot for 'Government should reduce income differences' by age and round"
-
-fig_ess_age <- 
-    df_ess |> 
-        group_by(essround, agea) |> 
-        summarise(mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T)) |> 
-        ggplot(aes(x = agea, y = mean)) +
-        geom_point() +
-        geom_smooth(method = 'lm') +
-        ylim(3,5) +
-        facet_wrap(~essround)
-
-
-save_display(fig_ess_age, w = 7, h =6)
-
-```
-
-
-### ESS
+The @fig-ess-cohort below shows the support for redistribution across respondents grouped according to their birth year (pseudo-cohort). The younger cohort (respondents born after 1980) had overall lower support compared to the other cohorts until ESS Round 8, administered in 2016. From this round onwards, this younger group presented significantly higher support for redistribution compared to the older groups.   
 
 ```{r}
 #| label: fig-ess-cohort
-#| fig-cap: "Mean values for 'Government should reduce income differences' by false cohort and round"
+#| fig-cap: "Support for redistribution by pseudo-cohort and round"
 
-df_ess |> 
-    mutate(false_cohort = cut(yrbrn, breaks = c(1900, 1940, 1980, 2020), right = FALSE, labels = c("1900-1940", "1940-1980", "1980-"))) |>
-    filter(!is.na(false_cohort)) |> 
-    group_by(essround, false_cohort) |> 
-    summarise(mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T)) |> 
-    ggplot(aes(x = essround, y = mean, colour = false_cohort, fill = false_cohort)) +
-    geom_line()+
-    geom_point() +
-    ylim(3,5) +
-    theme_classic()
+fig_cohort <- 
+    df_ess |> 
+        mutate(false_cohort = cut(yrbrn, breaks = c(1900, 1940, 1980, 2020), right = FALSE, labels = c("1900-1940", "1940-1980", "1980-"))) |>
+        filter(!is.na(false_cohort)) |> 
+        group_by(start_year, false_cohort) |>
+        summarise(mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T)) |> 
+        ggplot(aes(x = start_year, y = mean, colour = false_cohort, fill = false_cohort)) +
+        geom_line()+
+        geom_point() +
+        labs(   
+                color = "Pseudo-cohort", fill = "Pseudo-cohort", 
+                caption = "Source: European Social Survey",
+                x = "Survey year", y = "Proportion"
+            ) +
+        theme_classic() +
+        theme(
+            axis.text.y = element_text(size = 12),
+            plot.caption = element_text(hjust = 0)
+        ) 
+
+save_display(fig_cohort, w =7, h=5)
+
 
 ```
 
-
-
-# Economic crisis and Covid19
+## Recession and Covid19
 
 As shown in @fig-time-ess, the ESS data indicates a slightly higher average support for redistribution after the 2008 economic crisis and after the 2022 Covid19 pandemic. Evidence from a survey experiment in the USA show that participants are more willing to prioritize society's problems when exposed to issues related to the pandemic [@cappelen_solidarity_2021]. Van Hootegem and Laenen [-@van_hootegem_wave_2023] show that the increase in support for a universal basic income increased with the pandemic but it was short lived. 
 
@@ -946,26 +913,39 @@ get_series <- function(myvar){
 
 df_ess |>
     filter(!is.na(get(myvar))) |> 
-    group_by(round = as_factor(essround), class = as_factor(get(myvar)))  |> 
-    mutate(gincdif_inv = 6 - gincdif) |> 
+    group_by(round = ess_month, group_var = as_factor(get(myvar)))  |> 
     summarise(
-        mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
-        se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))) |> 
-    ggplot(aes(x = round, y = mean, ymin = mean - 1.96*se, ymax = mean + 1.96*se, group = class, color = class)) +
-    geom_pointrange() +
-    geom_line()+
-    ylim(3,4.5)+
-    theme_classic()
+        mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T),
+        se = sd(gincdif_agree, na.rm = T)/sqrt(length((gincdif_agree)))) |> 
+    ggplot(aes(x = round, y = mean, ymin = mean - 1.96*se, ymax = mean + 1.96*se, group = group_var, color = group_var)) +
+    #geom_point(alpha = 0.1) +
+    tidyquant::geom_ma(n = 7) +
+    #geom_line()+
+    ylim(0,1)+
+    theme_classic() +
+    labs(   
+        caption = "Source: European Social Survey",
+        x = "Survey year", y = "Proportion"
+    ) +
+    theme_classic() +
+    theme(
+        axis.text.y = element_text(size = 12),
+        plot.caption = element_text(hjust = 0)
+    ) 
 }
 
-get_series("hincfel")
+get_series("agea")
+
+fig_timeclass <- get_series("class5")
+save_display(fig_timeclass, w =7, h=5)
+
 
 ```
 
-Conversely, the @fig-time-class5 suggests that there is a slightly different pattern in response to the pandemic. There is a trajectory of increasing support for redistribution across skilled and unskilled workers since round 8 (2016). However, for lower-grade service class and small business owners, there seems to be a break in this trajectory captured in the latest wave. 
+Conversely, the @fig-time-class suggests that there is a slightly different pattern in response to the pandemic. There is a trajectory of increasing support for redistribution across skilled and unskilled workers since round 8 (2016). However, for lower-grade service class and small business owners, there seems to be a break in this trajectory captured in the latest wave. 
 
 ```{r}
-#| label: fig-time-class5
+#| label: fig-time-class
 #| fig-cap: "Average support for redistribution by social class (2002-2022)"
 
 get_series("class5")
@@ -993,8 +973,8 @@ df_ess |>
     ) |> 
     group_by(impact, class = as_factor(class5)) |> 
     summarise(
-        mean = weighted.mean(gincdif_inv, w = pspwght, na.rm = T),
-        se = sd(gincdif_inv, na.rm = T)/sqrt(length((gincdif_inv)))) |> 
+        mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T),
+        se = sd(gincdif_agree, na.rm = T)/sqrt(length((gincdif_agree)))) |> 
     ggplot(aes(x = class, y = impact, fill = mean))+
     geom_tile() +
     scale_fill_distiller(palette = "RdBu", direction=1) + 
@@ -1010,7 +990,7 @@ df_ess |>
 
 ## Multivariate analysis
 
-We created a multivariate regression model to assess the extent to which these individual factors are associated support for government reducing differences in income levels in Ireland. In order to  The @tbl-multiv-gincdif below shows the coefficients of the OLS regression model. The overall explanatory power of the model is low, indicating that the small set of variables selected do not provide enough information to predict support appropriately. The effect of age seems to be neglectable. Both the social class and subjective income suggest that respondents in more precarious economic situation tend to be more favourable of the government reducing income differences. 
+We created a multivariate regression model to assess the extent to which these individual factors are associated support for government reducing differences in income levels in Ireland. In order to  The @tbl-multiv-gincdif below shows the coefficients of the OLS regression model. The overall explanatory power of the model is low, indicating that the small set of variables selected do not provide enough information to predict support appropriately. The effect of age is very small compared to other variables. Both the social class and subjective income suggest that respondents in more precarious economic situation tend to be more favourable of the government reducing income differences. 
 
 ```{r}
 ##| label: tbl-time-multiv-gincdif

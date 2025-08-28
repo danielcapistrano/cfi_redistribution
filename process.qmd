@@ -156,8 +156,7 @@ ess_ie <-
 
 ```
 
-### Add flag if interview was conducted before DSP campaign
-Add 
+### Add flag if interview was conducted before DSP 2017 campaign on welfare 'cheaters'
 
 ```{r}
 
@@ -168,6 +167,22 @@ ess_ie <-
         mutate(dsp_before = if_else(ess_day < as.Date(dsp_day), 1, 0, missing = NA),
                 dsp_period = if_else(ess_day < as.Date(dsp_day), "Before", "After", missing = NA)) |>
         mutate(dsp_daysafter = ess_day - as.Date(dsp_day))
+
+```
+
+
+### Add flag if interview was conducted before 2023 Dublin riots
+Add 
+
+```{r}
+
+riot_day <- "2023-11-23"
+
+ess_ie <- 
+    ess_ie |> 
+        mutate(riot_before = if_else(ess_day < as.Date(riot_day), 1, 0, missing = NA),
+                riot_period = if_else(ess_day < as.Date(riot_day), "Before", "After", missing = NA)) |>
+        mutate(riot_daysafter = ess_day - as.Date(riot_day))
 
 ```
 
@@ -196,6 +211,9 @@ ess_vars <- c(
     "dsp_daysafter",
     "dsp_period",
     "dsp_before",
+    "riot_daysafter",
+    "riot_period",
+    "riot_before",
     "start_year",
     "budget_daysafter",
     "pspwght",
@@ -207,6 +225,7 @@ ess_vars <- c(
     "ctzcntr",
     "basinc",
     "brncntr",
+    "dscrgrp",
     "yrbrn",
     "isco08",
     "isco08p",
@@ -244,6 +263,8 @@ ess_vars <- c(
     "sbprvpv",
     "sbstrec",
     "imsclbn",
+    "imbgeco",
+    "imwbcnt",
     "sbbsntx",
     "uemplwk",
     "gvhanc19",
