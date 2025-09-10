@@ -22,7 +22,7 @@ bibliography: _assets/CFI_Redistribution.bib
 
 Many vulnerable individuals and families in Ireland, each with different profiles, circumstances, and needs, are struggling to make ends meet and are falling into poverty. A significant number of these people rely heavily on welfare benefits, but the current level of support is often insufficient to protect them from poverty. In a context of increasing challenges to social welfare in Ireland, it is crucial to have a better understanding of the public support to State actions designed to address these challenges.  
 
-With this objective, the current report presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. Ireland offers a particularly relevant context for this research. Over the past few decades, the Irish society experienced different levels of economic growth, market inequality, and poverty [@roantree_poverty_2024]. In this sense, the changing conditions provide valuable information to examine the factors associated with public support for welfare policies and income redistribution. 
+With this objective, the current report presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. Ireland offers a particularly relevant context for this research. Over the past few decades, the Irish society experienced different levels of economic growth, market inequality, and poverty [@roantree_poverty_2025]. In this sense, the changing conditions provide valuable information to examine the factors associated with public support for welfare policies and income redistribution. 
 
 The research project was guide by the following general questions:  
 
@@ -176,10 +176,10 @@ df_vs <- read_dta(paste0("data/", get_latest("VS_")))
 # Read file in the root of sub-folder "data" with name containing "VSEU" 
 df_vseu <- read_dta(paste0("data/", get_latest("VSEU_")))
 
-# Read country with cross country data 
-df_esseu_raw <- read_dta("./data/ess/ess_eu.dta")
+# # Read country with cross country data 
+# df_esseu_raw <- read_dta("./data/ess/ess_eu.dta")
 
-df_esseu <- df_esseu_raw |> filter(!if_any(c(agea, gndr, hincfel, brncntr), ~is.na(.x)))
+# df_esseu <- df_esseu_raw |> filter(!if_any(c(agea, gndr, hincfel, brncntr), ~is.na(.x)))
 
 
 ```
@@ -194,16 +194,6 @@ df_esseu <- df_esseu_raw |> filter(!if_any(c(agea, gndr, hincfel, brncntr), ~is.
 # Main model
 
 df_ess$gincdif_agree <- if_else(df_ess$gincdif %in% c(1, 2),  1, 0, missing = NA)
-df_esseu$gincdif_agree <- if_else(df_esseu$gincdif %in% c(1, 2),  1, 0, missing = NA)
-
-df_esseu <- 
-    df_esseu |> 
-            mutate(start_year = case_match(
-                essround, 
-                1 ~ 2003, 2 ~ 2005, 3  ~ 2006, 4 ~ 2009, 5 ~ 2011, 
-                6 ~ 2012, 7 ~ 2014, 8 ~ 2016, 9 ~ 2018, 10 ~ 2021, 11 ~ 2023
-            ))
-
 
 df_ess$age_group  <- cut(df_ess$agea, c(0, 24, 35, 45, 55, 65, Inf), c("18-24", "25-35", "36-45", "46-55", "56-65", ">66"), include.lowest=TRUE)
 
@@ -215,22 +205,16 @@ df_ess$inc_topQ <- if_else(df_ess$hinctnta %in% c(1,2), "Top quintile", "Bottom 
 
 df_ess$inc_topD <- if_else(df_ess$hinctnta %in% c(1,2), "Top Decile", "Bottom Deciles", missing = NA)
 
-vars_class <- "as_factor(class5)"
-
 vars_indo <- c('agea', 'as_factor(gndr)', 'as_factor(brncntr)', 'eisced', "as_factor(class5)", "as_factor(hincfel)",  'as_factor(mnactic)', 'lrscale',  'as_factor(essround)')
 
 vars_omit <- c('eisced', 'as_factor(mnactic)', 'as_factor(essround)')
 
 # Beliefs models
-
 believe_vars <- c("sbeqsoc", "sblazy", "sblwcoa", "sbprvpv", "sbstrec", "sbbsntx")
 
 # Creating inverted scales so higher values denote higher agreement
 df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.col}_inv"))
 believe_vars_inv <- paste0(believe_vars,"_inv")
-
-df_esseu <- df_esseu |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.col}_inv"))
-df_esseu <- df_esseu |> mutate(across(all_of(believe_vars), ~ if_else(.x %in% c(1,2), 1, 0), .names = "{.col}_agree"))
 
 # Creating dummy variables for agreement
 df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ if_else(.x %in% c(1,2), 1, 0), .names = "{.col}_agree"))
@@ -243,9 +227,8 @@ believe_vars_strong_agree <- paste0(believe_vars,"_strong_agree")
 # Create variable indicating priority to unemployed over old
 df_ess$old_prior <- df_ess$gvslvol - df_ess$gvslvue
 
-
 list_labels <- list(
-            `as_factor(brncntr)` = "Born in Ireland",
+            `as_factor(brncntr)` = "Born in country",
             `as_factor(gndr)` = "Gender", 
             `as_factor(class)` = 'Social class',
             `as_factor(hincfel)` = 'Financial situation'
@@ -293,7 +276,7 @@ fig_eumap <-
             name == "Norway" ~ "NO",
             .default = iso_a2)) |> 
         left_join(
-            df_esseu |>
+            df_ess |>
             filter(essround == 11) |> 
             group_by(cntry) |> 
             mutate(gincdif_inv = 6 - gincdif) |> 

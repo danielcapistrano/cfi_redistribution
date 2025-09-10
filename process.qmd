@@ -12,12 +12,12 @@ The following file contain the cumulative dataset for Ireland across the 11 roun
 library(tidyverse)
 library(haven)
 
-ess_ie <- read_dta("./data/ess/ess_ie.dta")
+ess_data <- read_dta("./data/ess/ess_eu.dta")
 
 # Add reference year of ESS in Ireland
 
-ess_ie  <-
-    ess_ie |> 
+ess_data  <-
+    ess_data |> 
         mutate(start_year = case_match(
             essround, 
             1 ~ 2003, 2 ~ 2005, 3  ~ 2006, 4 ~ 2009, 5 ~ 2011, 
@@ -33,7 +33,7 @@ Inverting scale of main outcome variable to denote stronger agreement with highe
 
 ```{r}
 
-ess_ie <- ess_ie |> mutate(gincdif_inv = 6 - gincdif)
+ess_data <- ess_data |> mutate(gincdif_inv = 6 - gincdif)
 
 ```
 
@@ -50,8 +50,8 @@ Adding column identifying the year and the quarter in which the interview has st
 #                     if_else(month> 9 & month < 13, 4, NA)))))
 # }
 
-# ess_ie <- 
-#     ess_ie |> 
+# ess_data <- 
+#     ess_data |> 
 #         mutate(
 #             interv_quarter = case_when(     
 #                 essround < 3 ~ paste0(inwyr,  get_quarter(inwmm)),
@@ -74,8 +74,8 @@ df_cso <- read_csv("data/MUM01.20250522T130504.csv")
 
 df_cso$ess_month = as.Date(paste0(df_cso$Month, " 01"), format = "%Y %B %d")
 
-ess_ie <- 
-    ess_ie |> 
+ess_data <- 
+    ess_data |> 
         mutate(
             ess_day = case_when(     
                 essround < 3 ~ as.Date(paste0(inwyr, "-", inwmm, "-", inwdd), format =  "%Y-%m-%d"),
@@ -90,21 +90,22 @@ ess_ie <-
 ### Add flag if interview was conducted before after budget announcement  
 
 
-Here is a plot showing the number of ESS interviews for each day and the red vertical line represents the day of the announcement of the following years' annual budget, these dates were gathered from diverse sources (Oireachtas transcripts, news from RTE, IrishTimes and IrishExaminer).
+Here is a plot showing the number of ESS interviews for each day and the red vertical line represents the day of the announcement of the following years' annual budget, these dates were gathered from diverse sources (Oireachtas transcripts, citizensinformation.ie, news from RTE, IrishTimes and IrishExaminer).
 
 ```{r}
 
 budget_days <- tibble(budget_date = as.Date(c(
     "2002-12-06", "2003-12-03", "2004-12-01", "2005-12-07",
     "2006-12-06", "2007-12-05", "2008-10-14", "2009-12-09", "2010-12-07", 
-    "2011-12-05", "2012-12-05", "2013-10-15", "2014-10-14", "2015-10-13", 
+    "2011-12-06", "2012-12-05", "2013-10-15", "2014-10-14", "2015-10-13", 
     "2016-10-11", "2017-10-10", "2018-10-09", "2019-10-08", "2020-10-13",
     "2021-10-12", "2022-09-27", "2023-10-10", "2024-10-01"
 ), format = "%Y-%m-%d"))
 
 
 
-ess_ie |>
+ess_data |>
+    filter(cntry == "IE") |> 
     mutate(year = strftime(ess_day, "%Y"), monthday = strftime(ess_day, "%m%d")) |> 
     group_by(year, monthday, .drop=TRUE) |> 
     summarise(n = n()) |> 
@@ -130,13 +131,13 @@ As seen in the plot, these are the rounds in which the budget announcement was m
 
 ```{r}
 
-ess_ie <- 
-    ess_ie |>
+ess_data <- 
+    ess_data |>
         mutate(
             budget_daysafter = case_when(
                 essround == 3 ~ ess_day - as.Date("2006-12-06"),
                 essround == 4 ~ ess_day - as.Date("2009-12-09"),
-                essround == 5 ~ ess_day - as.Date("2011-12-05"),
+                essround == 5 ~ ess_day - as.Date("2011-12-06"),
                 essround == 6 ~ ess_day - as.Date("2012-12-05"),
                 essround == 7 ~ ess_day - as.Date("2014-10-14"),
                 essround == 11 ~ ess_day - as.Date("2023-10-10"),
@@ -145,8 +146,8 @@ ess_ie <-
         )
 
 
-ess_ie <- 
-    ess_ie |>
+ess_data <- 
+    ess_data |>
         mutate(
             xmas_daysafter = if_else(essround %in% c(3, 4, 5, 6, 7, 11), as.Date(ess_day, format = "%m-%d") - as.Date("12-25", format = "%m-%d"), NA
             )
@@ -162,8 +163,8 @@ ess_ie <-
 
 dsp_day <- "2017-04-17"
 
-ess_ie <- 
-    ess_ie |> 
+ess_data <- 
+    ess_data |> 
         mutate(dsp_before = if_else(ess_day < as.Date(dsp_day), 1, 0, missing = NA),
                 dsp_period = if_else(ess_day < as.Date(dsp_day), "Before", "After", missing = NA)) |>
         mutate(dsp_daysafter = ess_day - as.Date(dsp_day))
@@ -178,8 +179,8 @@ Add
 
 riot_day <- "2023-11-23"
 
-ess_ie <- 
-    ess_ie |> 
+ess_data <- 
+    ess_data |> 
         mutate(riot_before = if_else(ess_day < as.Date(riot_day), 1, 0, missing = NA),
                 riot_period = if_else(ess_day < as.Date(riot_day), "Before", "After", missing = NA)) |>
         mutate(riot_daysafter = ess_day - as.Date(riot_day))
@@ -203,6 +204,7 @@ Exporting dataset with minimal set of variables.
 ess_vars <- c(
     "cntry",
     "idno",
+    "inwtm",
     "nwspol",
     "essround",
     "ess_month",
@@ -267,6 +269,13 @@ ess_vars <- c(
     "imwbcnt",
     "sbbsntx",
     "uemplwk",
+    "sofrdst",
+    "sofrpr",
+    "sofrprv",
+    "sofrwrk",
+    "wltdffr",
+    "btminfr",
+    "topinfr",
     "gvhanc19",
     "respc19",
     "hapljc19",
@@ -277,9 +286,9 @@ ess_vars <- c(
     "hapnoc19"
 )
 
-ess_ie <- ess_ie |> select(all_of(ess_vars))
+ess_export <- ess_data |> select(all_of(ess_vars))
 
-write_dta(ess_ie, paste0("data/ESS_v", format(Sys.Date(), "%m%d"),".dta"))
+write_dta(ess_export, paste0("data/ESS_v", format(Sys.Date(), "%m%d"),".dta"))
 
 ```
 
