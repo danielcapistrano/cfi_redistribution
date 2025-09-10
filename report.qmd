@@ -71,6 +71,7 @@ Finally, this research also relied on public opinion data from Voter Surveys (VS
 
 ```{r}
 #| include: false
+# custom functions 
 
 library(tidyverse)
 library(haven)
@@ -84,6 +85,54 @@ get_latest <- function(file_pattern){
     file_list <- list.files(path = "./data", pattern = file_pattern)
     latest_file <- tail(sort(file_list), n = 1)
     return(latest_file)
+}
+
+
+# Function to build the regression model
+
+get_model  <- function(df, dv, ivs, type = 'glm'){
+    
+    myform  <-  as.formula(paste0(dv, " ~ ", paste(ivs, collapse= "+")))
+
+    if (type == 'lm'){
+        mymodel <- lm(myform, weights = pspwght, data = df)
+    } else if (type == 'glm') {
+       mymodel <- glm(myform, family = 'binomial', weights = pspwght, data = df)
+    }
+
+    return(mymodel)
+}
+
+get_table <- function(model, toprint = everything(), note = '', source_ess = '', type = 'glm'){
+    
+    if (type == 'glm'){
+        table_reg <- tbl_regression(
+            exponentiate = TRUE,
+            include = toprint,
+            label = list_labels
+        )
+    } else {
+        table_reg <- tbl_regression(include = toprint, label = list_labels)
+    }
+      
+
+    table_reg |> 
+        bold_p(t = 0.05, q = FALSE) |> 
+        as_gt() |>
+        opt_row_striping()  |> 
+        opt_vertical_padding(scale = 0.4) |> 
+        tab_style(
+            style = cell_fill(color = "#1F355E"),
+            locations = cells_column_labels(
+            columns = everything()
+        )) |> 
+        tab_style(
+            style = cell_text(color = "white"),
+            locations = cells_column_labels(
+            columns = everything()
+        )) |> 
+        tab_footnote(note)  |> 
+        tab_footnote(paste0("Source: European Social Survey", source_ess))
 }
 
 
@@ -501,7 +550,7 @@ Finally, as discussed earlier in this chapter, both female respondents and those
 
 ```{r}
 #| label: tbl-multiv-gincdif
-#| tbl-cap: "Logit regression coefficients (odds-ratio) for 'income differences'"
+#| tbl-cap: "Logistic regression coefficients (odds-ratio) for agreement with redistribution"
 
 
 tbl_multiv_gincdif <- 
@@ -532,6 +581,16 @@ tbl_multiv_gincdif <-
     )) |> 
     tab_footnote("Note: Economic activity, Educational attainment and ESS round were omitted from the table")  |> 
     tab_footnote("Source: European Social Survey")
+
+get_table(
+    model = get_model(
+        df = df_ess,
+        dv = 'gincdif_agree',
+        ivs = vars_indo,
+        type = 'glm'
+    ),
+    type = 'glm'
+)
 
 save_display(tbl_multiv_gincdif)
 
@@ -894,6 +953,46 @@ save_display(fig_cohort, w =7, h=5)
 ```
 
 ## Recession and Covid19
+
+
+```{r}
+
+df_ess |> count(ess_d)
+
+df_ess$budget_period <- if_else(df_ess$budget_daysafter > 0, "After", "Before")
+
+glm(
+    as.formula(paste0("gincdif_agree ~ budget_period + ess_day+", paste(vars_indo, collapse= "+"))), 
+    weights = pspwght, 
+    family = 'binomial',
+    data = df_ess |> filter(budget_daysafter > -10 & budget_daysafter < 10)
+    )  |>
+    tbl_regression(
+        exponentiate = TRUE,
+        #include = c(vars_indo[!vars_indo %in% vars_omit], "cso_unemp"),
+        label = list_labels
+    )  |>
+    bold_p(t = 0.05, q = FALSE)
+    # as_gt() |>
+    # opt_row_striping()  |> 
+    # opt_vertical_padding(scale = 0.4) |> 
+    # tab_style(
+    #     style = cell_fill(color = "#1F355E"),
+    #     locations = cells_column_labels(
+    #     columns = everything()
+    # )) |> 
+    # tab_style(
+    #     style = cell_text(color = "white"),
+    #     locations = cells_column_labels(
+    #     columns = everything()
+    # )) |> 
+    # tab_footnote("Note: Economic activity, Educational attainment and ESS round were omitted from the table")  |> 
+    # tab_footnote("Source: European Social Survey")
+
+
+```
+
+
 
 As shown in @fig-time-ess, the ESS data indicates a slightly higher average support for redistribution after the 2008 economic crisis and after the 2022 Covid19 pandemic. Evidence from a survey experiment in the USA show that participants are more willing to prioritize society's problems when exposed to issues related to the pandemic [@cappelen_solidarity_2021]. Van Hootegem and Laenen [-@van_hootegem_wave_2023] show that the increase in support for a universal basic income increased with the pandemic but it was short lived. 
 
