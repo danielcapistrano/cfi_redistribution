@@ -1,0 +1,340 @@
+---
+title: "Public support for welfare and redistributive policies in Ireland"
+subtitle: "Annex 1: Additional analyses"
+format:
+   docx:
+    toc: false
+    number-sections: true
+    link-citations: true
+    reference-doc: _assets/esri_template.docx
+    fig-cap-location: top
+    prefer-html: true
+knitr:
+  opts_chunk:
+    out.width: "70%"
+execute: 
+  echo: false
+  message: false
+  warning: false
+bibliography: _assets/CFI_Redistribution.bib
+---
+
+# Introduction {#sec-introduction} 
+
+This annex contains additional analyses that were either mentioned in the main report or provide supplementary results to the ones presented in the document. 
+
+
+
+```{r}
+#| include: false
+# custom functions 
+
+library(tidyverse)
+library(haven)
+library(gt)
+library(gtsummary)
+library(rnaturalearth)
+library(rnaturalearthdata)
+
+# Function to get the name of the latest file
+get_latest <- function(file_pattern){
+    file_list <- list.files(path = "./data", pattern = file_pattern)
+    latest_file <- tail(sort(file_list), n = 1)
+    return(latest_file)
+}
+
+
+# Function to build the regression model
+
+get_model  <- function(df, dv, ivs, type = 'glm'){
+    
+    myform  <-  as.formula(paste0(dv, " ~ ", paste(ivs, collapse= "+")))
+
+    if (type == 'lm'){
+        mymodel <- lm(myform, weights = pspwght, data = df)
+    } else if (type == 'glm') {
+       mymodel <- glm(myform, family = 'binomial', weights = pspwght, data = df)
+    }
+
+    return(mymodel)
+}
+
+get_table <- function(model, toprint = everything(), note = '', source_ess = '', type = 'glm'){
+    
+    if (type == 'glm'){
+        table_reg <- tbl_regression(
+            model,
+            exponentiate = TRUE,
+            include = toprint,
+            label = list_labels
+        )
+    } else {
+        table_reg <- tbl_regression(model, include = toprint, label = list_labels)
+    }
+      
+
+    table_reg |> 
+        bold_p(t = 0.05, q = FALSE) |> 
+        as_gt() |>
+        opt_row_striping()  |> 
+        opt_vertical_padding(scale = 0.4) |> 
+        tab_style(
+            style = cell_fill(color = "#1F355E"),
+            locations = cells_column_labels(
+            columns = everything()
+        )) |> 
+        tab_style(
+            style = cell_text(color = "white"),
+            locations = cells_column_labels(
+            columns = everything()
+        )) |> 
+        tab_footnote(note)  |> 
+        tab_footnote(paste0("Source: European Social Survey", source_ess))
+}
+
+
+# Function to save an image of the table/plot and print the image on the report
+save_display  <- function(myobj, w=NULL, h=NULL, vwidth = 600){
+    name_str  <- deparse(substitute(myobj))
+    file_path  <- paste0("_assets/img/", name_str, '.png')
+
+    if(str_detect(name_str, 'tbl')){
+        gtsave(myobj, filename = file_path, vwidth = vwidth)
+    } else if (str_detect(name_str, 'fig')) {
+        if(missing(w)){
+            ggsave(myobj, filename = file_path, dpi=320)
+        } else {
+            ggsave(myobj, filename = file_path, width = w, height = h, dpi=320)
+        }
+    } else {
+        print("Name of the object should contain 'fig' or 'tbl'")
+    }
+    
+    knitr::include_graphics(file_path)
+}
+
+```
+
+```{r}
+#| include: false
+
+######################
+### Import files
+
+# Read file in the root of sub-folder "data" with name containing "ESS" 
+df_ess_raw <- read_dta(paste0("data/", get_latest("ESS")))
+
+# Getting complete observations
+df_ess <- df_ess_raw |> filter(!if_any(c(agea, gndr, brncntr), ~is.na(.x)))
+
+# Read file in the root of sub-folder "data" with name containing "VS" 
+df_vs <- read_dta(paste0("data/", get_latest("VS_")))
+
+# Read file in the root of sub-folder "data" with name containing "VSEU" 
+df_vseu <- read_dta(paste0("data/", get_latest("VSEU_")))
+
+# # Read country with cross country data 
+# df_esseu_raw <- read_dta("./data/ess/ess_eu.dta")
+
+# df_esseu <- df_esseu_raw |> filter(!if_any(c(agea, gndr, hincfel, brncntr), ~is.na(.x)))
+
+
+```
+
+
+```{r}
+#| include: false
+
+######################
+### Variables
+
+
+# Main model
+
+df_ess$gincdif_agree <- if_else(df_ess$gincdif %in% c(1, 2),  1, 0, missing = NA)
+
+df_ess$age_group  <- cut(df_ess$agea, c(0, 24, 35, 45, 55, 65, Inf), c("18-24", "25-35", "36-45", "46-55", "56-65", ">66"), include.lowest=TRUE)
+
+df_ess$age_group <-  relevel(df_ess$age_group, ref = "18-24")
+
+df_ess$false_cohort  <-  cut(df_ess$yrbrn, breaks = c(1900, 1940, 1960, 1980, 2020), right = FALSE, labels = c("1900-1940", "1941-1960", "1961-1980", "1981-"))
+
+df_ess <- df_ess |> mutate(
+    hinc_quint = case_match(hinctnta,
+        c(1, 2) ~ "1st quintile",
+        c(3, 4) ~ "2nd quintile",
+        c(5, 6) ~ "3rd quintile",
+        c(7, 8) ~ "4th quintile",
+        c(9,10) ~ "Top quintile", 
+        .default = NA        
+    )
+)
+
+df_ess$hinc_topQ <- if_else(df_ess$hinctnta %in% c(9,10), "Top quintile", "Bottom quintiles", missing = NA)
+
+df_ess$hinc_topD <- if_else(df_ess$hinctnta == 10, "Top Decile", "Bottom Deciles", missing = NA)
+
+
+vars_indo <- c('age_group', 'as_factor(gndr)', 'as_factor(brncntr)', 'eisced', "as_factor(class5)", "as_factor(hincfel)",  'as_factor(mnactic)', 'lrscale',  'as_factor(essround)')
+
+vars_omit <- c('eisced', 'as_factor(mnactic)', 'as_factor(essround)', "as_factor(hincfel)")
+
+# Beliefs models
+believe_vars <- c("sbeqsoc", "sblazy", "sblwcoa", "sbprvpv", "sbstrec", "sbbsntx")
+
+# Creating inverted scales so higher values denote higher agreement
+df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ 6 - .x, .names = "{.col}_inv"))
+believe_vars_inv <- paste0(believe_vars,"_inv")
+
+# Creating dummy variables for agreement
+df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ if_else(.x %in% c(1,2), 1, 0), .names = "{.col}_agree"))
+believe_vars_agree <- paste0(believe_vars,"_agree")
+
+# Creating dummy variables for strong agreement
+df_ess <- df_ess |> mutate(across(all_of(believe_vars), ~ if_else(.x == 1, 1, 0), .names = "{.col}_strong_agree"))
+believe_vars_strong_agree <- paste0(believe_vars,"_strong_agree")
+
+# Create variable indicating priority to unemployed over old
+df_ess$old_prior <- df_ess$gvslvol - df_ess$gvslvue
+
+list_labels <- list(
+            `as_factor(brncntr)` = "Born in country",
+            `age_group` = "Age group",
+            `as_factor(gndr)` = "Gender", 
+            `as_factor(class)` = 'Social class',
+            `as_factor(hincfel)` = 'Financial situation'
+        )
+
+```
+
+
+# Support for redistribution
+
+## Complete output table
+
+The report includes a table with the coefficients of a logistic regression model explaining support for redistribution. The table ommits the effects for specific variables to facilitate reading. @tbl-multiv-gincdif-all shows all variables included in the model. 
+
+```{r}
+#| label: tbl-multiv-gincdif-all
+#| tbl-cap: "Logistic regression coefficients (odds-ratio) for 'support for redistribution' (all variables), Ireland, 2003-2023"
+
+get_table(
+    model = get_model(
+        df = df_ess |> filter(cntry == "IE"),
+        dv = 'gincdif_agree',
+        ivs = vars_indo,
+        type = 'glm'
+    ),
+    type = 'glm',
+    source_ess = "Source: European Social Survey"
+)
+
+```
+
+## Original outcome variable (5-point)
+
+The main outcome variable in the report is measured through the grouping of "Strongly agree" and "Agree" options for the statement that "Government should reduce income differences". Here in @tbl-multiv-gincdif-lm, we show the results of an OLS model using the same independent variables and the outcome variable in their original format (5-point scale).
+
+```{r}
+#| label: tbl-multiv-gincdif-lm
+#| tbl-cap: "OLS regression coefficients for 'support for redistribution' (original variable), Ireland, 2003-2023"
+
+get_table(
+    model = get_model(
+        df = df_ess |> filter(cntry == "IE"),
+        dv = 'gincdif_inv',
+        ivs = vars_indo,
+        type = 'lm'
+    ),
+    type = 'lm',
+    source_ess = "Source: European Social Survey"
+)
+
+```
+
+## Other countries
+
+@tbl-multiv-gincdif-eu below shows the results of the same model reported in @tbl-multiv-gincdif-lm using pooled data from all other ESS countries (excluding Ireland).
+
+```{r}
+#| label: tbl-multiv-gincdif-eu
+#| tbl-cap: "OLS regression coefficients for 'support for redistribution' (original variable), ESS countries without Ireland, 2003-2023"
+
+get_table(
+    model = get_model(
+        df = df_ess |> filter(cntry != "IE"),
+        dv = 'gincdif_inv',
+        ivs = c(vars_indo, "cntry"),
+        type = 'lm'
+    ),
+    type = 'lm',
+    source_ess = "Source: European Social Survey"
+)
+
+```
+
+## Household income as predictor
+
+In the logistic regression model included in the report one of the SES measures is "feeling about the household income". This variable is used as alternative to household income due to the low response rate for this variable. @tbl-multiv-gincdif-income below replaces the subjective measure with the household income deciles as measured in the survey (hinctnta). 
+
+```{r}
+#| label: tbl-multiv-gincdif-income
+#| tbl-cap: "Logistic regression coefficients (odds-ratio) for 'support for redistribution' (household income), Ireland, 2003-2023"
+
+get_table(
+    model = get_model(
+        df = df_ess |> filter(cntry == "IE"),
+        dv = 'gincdif_agree',
+        ivs = c(vars_indo[vars_indo != "as_factor(hincfel)"], "hinctnta"),
+        type = 'glm'
+    ),
+    type = 'glm',
+    source_ess = "Source: European Social Survey"
+)
+
+
+```
+
+
+## Pandemic impact in Ireland, Great Britain and Germany
+
+```{r}
+#| label: fig-time-jobloss
+#| fig-cap: "Proportion of support for redistribution by social class and personal impact of the pandemic, Ireland, Great Britain and Germany, 2021"
+
+df_ess |> 
+    filter(!is.na(class5) & cntry %in% c('IE', 'GB', 'DE') & essround == 10) |> 
+    mutate(
+        impact = case_when(
+            hapljc19 == 1 | hapfoc19 == 1 | hapfuc19 == 1 ~ "Lost job\nUnpaid leave\nForloughed",
+            hapirc19 == 1 | hapwrc19 == 1 ~ "Income or hours\nreduced",
+            hapnoc19 == 1 ~ "Nothing",
+            is.na(hapnoc19) ~ NA_character_,
+            .default = "Other"
+        )
+    ) |> 
+    group_by(cntry, impact, class = as_factor(class5)) |> 
+    summarise(
+        mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T)*100,
+        total = n(),
+        se = sd(gincdif_agree, na.rm = T)/sqrt(length((gincdif_agree)))) |> 
+    ggplot(aes(x = impact, y = class, fill = mean))+
+    geom_tile() +
+    geom_text(aes(label = paste0(round(mean), "%\n(", total, ")")), size = 3) +
+    scale_fill_distiller(palette = "RdBu", direction=-1) + 
+    facet_wrap(~cntry, ncol = 1) +
+    labs(caption = "Source: European Social Survey, 2021",
+        x = "Pandemic impact", y = 'Social Class', fill = 'Percentage') +
+    theme(
+        legend.position = 'top',
+        axis.text.x = element_text(size = 10, angle = 0, hjust = 0.5),
+        axis.text.y = element_text(size = 12),
+        plot.caption = element_text(hjust = -0.5)
+    ) 
+
+```
+
+# References {.unnumbered}
+
+::: {#refs}
+::: 
