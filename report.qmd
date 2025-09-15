@@ -52,7 +52,7 @@ The research project was guide by the following general questions:
 
 - Support for redistribution among the working class in Ireland is now at the highest level since 2002 (@fig-time-class).
 
-- Events such as government campaigns and budget announcements have significant but short-lived impact on welfare attitudes (@fig-fig-dsp-model) and support for redistribution (@fig-fig-budget-model). 
+- Events such as government campaigns and budget announcements have significant but short-lived impact on welfare attitudes (@fig-dsp-model) and support for redistribution (@fig-budget-model). 
 
 - Those who experienced job loss during the COVID19 pandemic are more supportive of redistribution, regardless of their financial situation (@fig-covid).    
 
@@ -764,7 +764,7 @@ fig_lazy <-
         theme_void() +
         labs(
             fill = "Proportion",
-            caption = "Source: European Social Survey, 2016"
+            caption = "Source: European Social Survey, 2009/2016"
         ) +
         facet_wrap(~start_year) +
         theme(
