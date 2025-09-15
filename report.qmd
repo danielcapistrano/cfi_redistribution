@@ -48,9 +48,13 @@ The research project was guide by the following general questions:
 
 - From 2009 to 2016 there was an increase in the proportion of respondents who agree that 'social benefits lead to a more equal society' (@fig-benefits).    
 
-<!-- Baumberg Geiger: the main difference between the Scandinavian nations and the rest of Europe is not the extent to which negative attitudes to welfare exist, but the degree to which positive attitudes do
+- In Ireland, perceptions of how unfairly high is the income of the rich is associated with support for redistribution as much as perceptions of how unfairly low is the income of the poor. In countries such as Norway and France, unfairly high incomes are more strongly associated with support for redistribution (@fig-fairness). 
 
-- Ernst Fehr: Inequality aversion, selfish and altruism in support for redistribution -->
+- Support for redistribution among the working class in Ireland is now at the highest level since 2002 (@fig-time-class).
+
+- Events such as government campaigns and budget announcements have significant but short-lived impact on welfare attitudes (@fig-fig-dsp-model) and support for redistribution (@fig-fig-budget-model). 
+
+- Those who experienced job loss during the COVID19 pandemic are more supportive of redistribution, regardless of their financial situation (@fig-covid).    
 
 
 ## Methods and data
@@ -553,14 +557,14 @@ lm(redist_inv ~  as_factor(party_lable) + lrscale, data = df_vs |>
 
 We created a fixed-effects multivariate regression model to assess the extent to which these individual factors are associated with support for redistribution, considering all ESS rounds in Ireland. In addition to these main variables, the model also includes a measurement of the household financial situation. A subjective measurement was chosen ('Satisfaction with the household income') instead of household income due to the high proportion of missing values in the former. However, the same model using household income instead of this subjective measurement indicates similar results for the main variables (see Annex 1). Finally, the following control variables were also added to the model: economic activity ('Main activity in the last seven days'), educational attainment, and political ideology ('Placement in the left-right scale'). 
 
-@tbl-multiv-gincdif below shows the coefficients of the logistic regression model detecting significant differences across groups. Older age groups are all expected to show higher support compared to the youngest group (18 to 24 years old), which is the opposite relationship found for the latest round in 2023, but also found in other participant countries such as the UK. Both SES variables (social class and financial situation) suggest that respondents in more precarious socio-economic situation are more likely to be  favourable of the government reducing income differences. 
+@tbl-multiv-gincdif below shows the estimates of the logistic regression model detecting significant differences across groups. Older age groups are all expected to show higher support compared to the youngest group (18 to 24 years old), which is the opposite relationship found for the latest round in 2023, but also found in other participant countries such as the UK. Both SES variables (social class and financial situation) suggest that respondents in more precarious socio-economic situation are more likely to be  favourable of the government reducing income differences. 
 
 Those who were not born in Ireland are significantly less likely to support redistribution compared to natives. This is a pattern found in other European countries by @gonnot_cultural_2023, who suggests that this could be explained by experiences with discrimination and lower access to social benefits. 
 As discussed earlier in this chapter, both female respondents and those who place themselves on the left of the left-right scale are more likely to support income redistribution, even when controlling for other factors such as age and social class. 
 
 ```{r}
 #| label: tbl-multiv-gincdif
-#| tbl-cap: "Logistic regression coefficients (odds-ratio) for 'support for redistribution', Ireland, 2002-2023"
+#| tbl-cap: "Logistic regression estimates (odds-ratio) for 'support for redistribution', Ireland, 2002-2023"
 
 tbl_multiv_gincdif <- 
     get_table(
@@ -993,7 +997,7 @@ The @fig-eu-time below shows the proportion of respondents in Ireland and other 
 
 ```{r}
 #| label: fig-eu-time
-#| fig-cap: "Proportion agreeing that the 'Government should reduce income differences' by round" 
+#| fig-cap: "Proportion agreeing that the 'Government should reduce income differences' by year, 2002-2024" 
 
 all_countries <- unique(df_ess$cntry)
 
@@ -1030,6 +1034,42 @@ fig_eutime <-
 
 save_display(fig_eutime, w =7, h=5)
 
+```
+
+However, the recovery from the economic recession initiated a different trajectory for different social classes. As shown in @fig-fig-time-class, respondents in the service class had an overall reduction in the level of support for redistribution since the peak of the economic recession. On the other hand, respondents grouped into the working classes (skilled and unskilled) have a trajectory of stable or increasing support since then. In fact, 85% of unskilled workers indicated in latest round that the government should reduce differences in income, which is the highest proportion in the time series since 2002. 
+
+```{r}
+#| label: fig-time-class
+#| fig-cap: "Proportion agreeing that the 'Government should reduce income differences' by social class and year, Ireland, 2002-2024" 
+
+df_ess |> 
+    filter(cntry == 'IE' & class5  == 5) |> 
+    group_by(essround) |> 
+    summarise(mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T))
+
+
+fig_time_class <- 
+    df_ess |>
+        filter(cntry == 'IE' & !is.na(class5)) |> 
+        group_by(Year = as_factor(start_year), class = as_factor(class5))  |> 
+        summarise(
+            mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T),
+            se = sd(gincdif_agree, na.rm = T)/sqrt(length((gincdif_agree)))) |> 
+        ggplot(aes(x = Year, y = mean, group = class, color = class)) +
+        geom_pointrange(aes(y=mean,  ymin = mean - 1.96*se, ymax = mean + 1.96*se), size = 0.2, colour = 'grey90') +
+        geom_line(linewidth = 0.8)+
+        scale_color_manual(values = c("#396065", "darkblue", "#1fbec6", "#f26a4c", "pink"))+
+        labs(
+            caption = "Source: European Social Survey",
+            x = "ESS Year", y = "Proportion"
+        ) +
+        theme_classic() +
+        theme(
+            axis.text.y = element_text(size = 12),
+            plot.caption = element_text(hjust = 0)
+        ) 
+
+save_display(fig_time_class, w =8, h=5)
 ```
 
 The solid line in @fig-unemp shows the seasonally adjusted monthly unemployment rate from Central Statistics Office (CS0) and the points represent the monthly proportion of respondents supporting income redistribution in Ireland, with size proportional to the number of respondents. The dotted line shows the 3-month moving average of the support for redistribution. The figure suggest an increase in support in anticipation of the unemployment rise (although based on limited number of observations). On the other hand, the sharp reduction in unemployment was not accompanied by a significant decrease in support, which has been stable since mid-2010's.
@@ -1410,10 +1450,10 @@ The first ESS data collection after the pandemic in Ireland occurred between Nov
 *None of these*   
 
 
-@fig-time-jobloss below shows the proportion of respondents who agree that the government should reduce differences in income by social class and personal impact of the pandemic. Overall the working class seem to be supportive of redistribution regardless of the pandemic experiences. On the other hand, the higher-grade service class seems to be more supportive among those who lost their jobs (82% support) compared to those who indicated that nothing happened (60% support). 
+@fig-covid below shows the proportion of respondents who agree that the government should reduce differences in income by social class and personal impact of the pandemic. Overall the working class seem to be supportive of redistribution regardless of the pandemic experiences. On the other hand, the higher-grade service class seems to be more supportive among those who lost their jobs (82% support) compared to those who indicated that nothing happened (60% support). 
 
 ```{r}
-#| label: fig-time-jobloss
+#| label: fig-covid
 #| fig-cap: "Proportion of support for redistribution by social class and personal impact of the pandemic, Ireland, 2021"
 
 fig_covid <- 
