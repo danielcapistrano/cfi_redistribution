@@ -1,17 +1,20 @@
 ---
 title: "Public support for welfare and redistributive policies in Ireland"
-author: "Bertrand Maître, Daniel Capistrano, Helen Russell"
+author: "Daniel Capistrano, Bertrand Maître, Helen Russell"
 format:
    docx:
     toc: true
     number-sections: true
     link-citations: true
-    reference-doc: _assets/esri_template.docx
+    reference-doc: _assets/esri_rs_template.docx
     fig-cap-location: top
-    prefer-html: true
-knitr:
-  opts_chunk:
-    out.width: "70%"
+    # prefer-html: true
+# knitr:
+#   opts_chunk:
+#     out.width: "70%"
+crossref: 
+    chapters: true
+    sec-prefix: Chapter
 execute: 
   echo: false
   message: false
@@ -19,28 +22,13 @@ execute:
 bibliography: _assets/CFI_Redistribution.bib
 ---
 
-# Introduction {#sec-introduction} 
+# Executive summary {#sec-summary .unnumbered}
 
-Many vulnerable individuals and families in Ireland, each with different profiles, circumstances, and needs, are struggling to make ends meet and are falling into poverty. A significant number of these people rely heavily on welfare benefits, but the current level of support is often insufficient to protect them from poverty. In a context of increasing challenges to social welfare in Ireland, it is crucial to have a better understanding of the public support to State actions designed to address these challenges.  
-
-With this objective, the current report presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. Ireland offers a particularly relevant context for this research. Over the past few decades, the Irish society experienced different levels of economic growth, market inequality, and poverty [@roantree_poverty_2025]. In this sense, the changing conditions provide valuable information to examine the factors associated with public support for welfare policies and income redistribution. 
-
-The research project was guide by the following general questions:  
-
-- **Who** in Ireland supports income redistribution?  
-
-- **What** Irish residents think about welfare policies?    
-
-- Has the overall support for welfare policies and income redistribution **changed** over time?   
-
-[Chapter @sec-who] in this report addresses the first question of a diffuse and generalised support for income and wealth redistribution in the Irish society. [Chapter @sec-what], addressing the second question, examines more specific support to welfare policies, beliefs about social benefits and their beneficiaries. Finally, [Chapter @sec-change] looks at change over time in relation to these topics and explores the possible impact of the 2008 economic recession and the 2020 pandemic.
-
-## Key points
-
+Drawing on data from the European Social Survey (ESS), the current report presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. The main findings of the report are:
 
 - 3 in 4 Irish residents indicate that they agree that the government should reduce differences in income. This proportion is slightly higher than the European average and the ones from other northern European countries (@fig-eumap).  
 
-- Female ESS respondents and those from lower social classes are more supportive of income redistribution (@tbl-multiv-gincdif).  
+- Females and those from lower social classes are more supportive of income redistribution (@tbl-multiv-gincdif).  
 
 - Ireland has one of the highest proportions in Europe of respondents who believe that 'social benefits make people lazy' (@fig-lazy).  
 
@@ -50,11 +38,64 @@ The research project was guide by the following general questions:
 
 - In Ireland, perceptions of how unfairly high is the income of the rich is associated with support for redistribution as much as perceptions of how unfairly low is the income of the poor. In countries such as Norway and France, unfairly high incomes are more strongly associated with support for redistribution (@fig-fairness). 
 
-- Support for redistribution among the working class in Ireland is now at the highest level since 2002 (@fig-time-class).
+- Support for income redistribution among the working class in Ireland is now at the highest level since 2002 (@fig-time-class).
 
 - Events such as government campaigns and budget announcements have significant but short-lived impact on welfare attitudes (@fig-dsp-model) and support for redistribution (@fig-budget-model). 
 
 - Those who experienced job loss during the COVID19 pandemic are more supportive of redistribution, regardless of their financial situation (@fig-covid).    
+
+
+# Introduction {#sec-introduction} 
+
+Many vulnerable individuals and families in Ireland, each with different profiles, circumstances, and needs, are struggling to make ends meet and are falling into poverty. According to 2024 figures from the Central Statistics Office (CSO), 12 per cent are at risk of poverty and 16 per cent experience material deprivation. A significant part of the Irish population relies on welfare benefits (social transfers), but the current level of support is often insufficient to protect them from poverty. Given the limits to government finances and the competing demands for funding social welfare in Ireland, it is crucial to have a better understanding of the public support to State actions designed to address these challenges.  
+
+With this objective, the current report presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. Ireland offers a particularly relevant context for this research. Over the past few decades, the Irish society experienced different levels of economic growth, income inequality, and poverty [@roantree_poverty_2025]. In this sense, the changing socio-economic environment provide valuable information to examine the factors associated with public support for welfare policies and income redistribution. To explore this, we analyse multiple rounds of the European Social Survey (ESS) conducted between 2002 and 2024.
+
+The research project was guide by the following general questions:  
+
+- **Who** in Ireland supports income redistribution?  
+
+- **What** do Irish residents think about welfare policies?    
+
+- Has the overall support for welfare policies and income redistribution **changed** over time?   
+
+[Chapter @sec-who] in this report addresses the first question of a diffuse and generalised support for income and wealth redistribution in the Irish society. [Chapter @sec-what], addressing the second question, examines more specific support for welfare policies, beliefs about social benefits and their beneficiaries. Finally, [Chapter @sec-change] looks at change over time in relation to these topics and explores the possible impact of the 2008 economic recession and the 2020 pandemic.
+
+## Previous research
+
+There is a substantial body of research on attitudes to welfare policies and the factors that influence their development. The analyses discussed in this report stem from the following theoretical advancements on this topic.
+
+### Societal level influences
+
+First, while the literature highlights several macro-level correlates (e.g. political culture, trust in government),  economic inequality stands out as the most discussed factor. Comparative research in Europe found higher support for income redistribution in countries with higher inequality [@velev_economic_2024; @finseraas_income_2009]. However, despite rising levels of inequality in the past decades, support for redistribution remained apparently stable over time [@lupu_unequal_2023], which could be an explanation for a lack of major political reaction to income inequality following the median-voter rationale [@meltzer_rational_1981]. Nevertheless, covering a longer period of time, @hillen_rising_2025 find evidence that demand for redistribution grows when levels of inequality rise and lack of policy responsiveness might be due to other factors rather than a lack of public demand.
+
+### Socio-demographic predictors of welfare attitudes
+
+Several socio-demographic characteristics have been found to be associated with welfare attitudes and support for income redistribution. In terms of gender, women are found to be systematically more progressive in relation to policy preferences and support for redistribution [@shorrocks_attitudinal_2020; @grasso_are_2025]. Based on experiments conducted in the United States and European countries, @buser_overconfidence_2020 find that this gender gap can be explained by men's overconfidence in their abilities. 
+
+Another important factor underlined in the literature is the difference across age groups and generations. @steele_wealth_2022 find statistically significant differences across a sample of 30 countries with older respondents being more favourable of income redistribution. Using age-period-cohort modelling, @grasso_are_2025 show that there is an interaction between gender and generation, with the cohorts of women born after 1946 being more supportive of redistribution compared to men in their cohorts.
+
+
+### Political attitudes and welfare attitudes 
+
+@jedinger_role_2019 show that individuals who show right-wing authoritarian attitudes are less supportive of income redistribution. 
+
+
+
+### Welfare for whom? 
+A central concern in the literature on the support for the welfare state is the extent to which the public have a hierarchy of groups that  are seen as more or less deserving of  support.  In an overview of this research @van_oorschot_social_2017   note that ……
+
+Support for redistribution policies and anti-poverty strategies is also related to individuals understanding of the causes of poverty or wealth. Those that attribute poverty or wealth to individual behaviour or disposition  are less likely to support redistribution policies, while those that attribute them to external, structural forces are more likely to support redistribution (Bullock et al., 2003). 
+
+### Experimental studies of  welfare attitudes 
+“Framing wealth inequality in a way that shifts attributions from internal to external causes increases support for redistributive tax policies (Chow & Galak, 2012)”. 
+Chow, R. M., & Galak, J. (2012). The effect of inequality frames on support for redistributive tax policies. Psychological Science, 23(12), 1467–1469.
+ https://doi.org/10.1177/0956797612450035
+
+Ciani et al undertake a meta-analysis of  36 studies that implement information experiments (totaling 84  ‘treatments’). They find that providing information on the level of inequality in society within a survey, “has a sizeable influence on people’s perceptions and concerns about inequality, but has less impact on their attitudes  to redistribution”.   They also found that when respondents are given information about their own position in the income distribution it leads to a small increase in  support for redistribution among those who previously overestimated their position and a small decreases among those who underestimated their position.
+Experiments on preferences for redistributive politics (Kerschbamer and Muller, 2020; Fehr et al., 2024; Epper et al., 2024) and optimal taxation (Aronsson and Johansson-Stenman, 2023),
+
+Numerous experimental studies have examined how conceptions of fairness or the willingness to regard the interests of others informs decisions, and behavior is not just driven by self-interest as suggested by outdated economics models.  These experiments routinely find that individuals care about fairness. In a meta-analysis of such experiments Nunnari &  Pozzi (2025) find that on average  “individuals feel guilt and are willing to pay $0.48 to increase others’ earnings by $1 when ahead; and that they feel envy and are willing to pay $0.35 to decrease others’ earnings by $1 when behind.” 
 
 
 ## Methods and data
@@ -340,6 +381,9 @@ save_display(fig_eumap, w =5, h=4)
 
 ## There is no clear relationship between support for redistribution and willingness to pay more taxes
 
+
+Using data from survey experiments in Germany, Italy, Spain, and the United Kingdom, @bremer_lower_2025 show that support for tax cuts is not unconditional, with ideology and self-interest playing a role in preferences for progressive reforms. 
+
 In August 2025, the Eurobarometer conducted a survey on citizen's attitudes towards taxation. Participants were asked which among the following statements they agreed the most:
 
 - *Taxes are too high, and I would decrease them even if it means fewer or lower quality public services*   
@@ -475,7 +519,7 @@ save_display(fig_age_eu, w=6, h=4)
 
 Using a longer time period, however, we observe different relationships depending on the time of the data collection. These different associations over time might suggest a context-dependent association or different level of support across generations instead of age groups. This topic is further explored in [Chapter @sec-change].
 
-Finally, there is robust evidence for the association between socio-economic status (SES) and overall welfare attitudes in Europe [@svallfors_contested_2012; @kulin_class_2013; @langsaether_more_2020]. The analysis using social class, household income, and 'feeling about financial situation of the household' suggests a negative relationship between SES and support for redistribution. The mean values shown in @fig-ses indicate that both 'skilled' and 'unskilled' workers show higher levels of agreement with the government reducing income differences whereas 'small business owners' and the 'service class', which includes managers and professionals,  show lower levels of agreement. A higher support is also found among those in lower income quintiles and whose financial situation is 'very difficult'.
+Finally, there is robust evidence for the association between socio-economic status (SES) and overall welfare attitudes in Europe [@svallfors_contested_2012; @kulin_class_2013; @langsaether_more_2020; @steele_wealth_2022]. The analysis using social class, household income, and 'feeling about financial situation of the household' suggests a negative relationship between SES and support for redistribution. The mean values shown in @fig-ses indicate that both 'skilled' and 'unskilled' workers show higher levels of agreement with the government reducing income differences whereas 'small business owners' and the 'service class', which includes managers and professionals,  show lower levels of agreement. A higher support is also found among those in lower income quintiles and whose financial situation is 'very difficult'.
 
 ```{r}
 #| label: fig-ses
@@ -1205,7 +1249,7 @@ get_table(
 
 ## Relevant events 
 
-Due to the cross-sectional nature of the European Social Survey, testing the impact of major socio-economic changes, such as the recession or the pandemic, is challenging. The survey interviews different individuals across substantially different time periods, so the differences found across rounds might be due to a diverse range of measured and unmeasured factors. 
+There is a growing number of studies showing that socio-economic events shape attitudes, preferences and beliefs related to welfare and redistribution [@giuliano_aggregate_2025]. Due to the cross-sectional nature of the European Social Survey, testing the impact of these changes, such as the recession or the pandemic, is challenging. The survey interviews different individuals across substantially different time periods, so the differences found across rounds might be due to a diverse range of measured and unmeasured factors. 
 
 However, several Event Study methods provide tools to examine the impact of more specific events contained in shorter time frames. @dunaiski_does_2025, for instance, detected a difference in the perception of fairness of income in Finland in the period immediately after the country's 'Tax Day', when authorities publish a list of individuals with the highest taxable income in the country. The authors utilised the 'Unexpected Event During Survey' (UEDS) design [@munoz_unexpected_2020] to assess the impact of the event taking the respondents interviewed before the event as the control group in a quasi-experiment approach. 
 
