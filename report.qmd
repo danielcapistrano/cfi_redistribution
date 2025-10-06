@@ -63,7 +63,7 @@ The research project was guide by the following general questions:
 
 ## Previous research
 
-There is a substantial body of research on attitudes to welfare policies and the factors that influence their development. The analyses discussed in this report stem from the following theoretical advancements on this topic.
+There is a substantial body of research on attitudes to welfare policies and the factors that influence their development. The analyses presented in this report stem from the following theoretical advancements on this topic.
 
 ### Societal level influences
 
@@ -76,7 +76,7 @@ Several socio-demographic characteristics have been found to be associated with 
 Another important factor underlined in the literature is the difference across age groups and generations. @steele_wealth_2022 find statistically significant differences across a sample of 30 countries with older respondents being more favourable of income redistribution. Using age-period-cohort modelling, @grasso_are_2025 show that there is an interaction between gender and generation, with the cohorts of women born after 1946 being more supportive of redistribution compared to men in their cohorts.
 
 
-### Political attitudes and welfare attitudes 
+### Political attitudes and welfare attitudes
 
 @jedinger_role_2019 show that individuals who show right-wing authoritarian attitudes are less supportive of income redistribution. 
 

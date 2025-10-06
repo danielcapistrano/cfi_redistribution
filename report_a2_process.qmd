@@ -161,7 +161,6 @@ ess_data <-
             budget_round = if_else(essround %in% c(3:7, 11), 1 ,0)
         )
 
-df_ess |> filter(cntry == 'IE' & essround == 4)  |> count(ess_day > "2009-12-09")
 
 ess_data <- 
     ess_data |>
