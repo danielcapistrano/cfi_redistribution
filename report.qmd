@@ -12,9 +12,9 @@ format:
     reference-doc: _assets/esri_rs_template.docx
     fig-cap-location: top
     # prefer-html: true
-# knitr:
-#   opts_chunk:
-#     out.width: "70%"
+knitr:
+  opts_chunk:
+    out.width: "70%"
 crossref: 
     chapters: true
     sec-prefix: Chapter
@@ -24,6 +24,17 @@ execute:
   warning: false
 bibliography: _assets/CFI_Redistribution.bib
 ---
+
+# ABOUT THE ESRI {.unnumbered}
+
+The Economic and Social Research Institute (ESRI) advances evidence-based policymaking that supports economic sustainability and social progress in Ireland. ESRI researchers apply the highest standards of academic excellence to challenges facing policymakers, focusing on ten areas of critical importance to 21st century Ireland.
+
+The Institute was founded in 1960 by a group of senior civil servants led by 
+Dr T.K. Whitaker, who identified the need for independent and in-depth research analysis. Since then, the Institute has remained committed to independent research and its work is free of any expressed ideology or political position. The Institute publishes all research reaching the appropriate academic standard, irrespective of its findings or who funds the research.
+
+The ESRI is a company limited by guarantee, answerable to its members and governed by a Council, comprising up to 14 representatives drawn from a cross-section of ESRI members from academia, civil services, state agencies, businesses and civil society. Funding for the ESRI comes from research programmes supported by government departments and agencies, public bodies, competitive research programmes, membership fees, and an annual grant-in-aid from the Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation.
+
+Further information is available at www.esri.ie.
 
 # Executive summary {#sec-summary .unnumbered}
 
@@ -39,7 +50,7 @@ Drawing on data from the European Social Survey (ESS), the current report presen
 
 - From 2009 to 2016 there was an increase in the proportion of respondents who agree that 'social benefits lead to a more equal society' (@fig-benefits).    
 
-- In Ireland, perceptions of how unfairly high is the income of the rich is associated with support for redistribution as much as perceptions of how unfairly low is the income of the poor. In countries such as Norway and France, unfairly high incomes are more strongly associated with support for redistribution (@fig-fairness). 
+- In Ireland, perceptions about unfairness of the income of the rich is associated with support for redistribution as much as perceptions of how unfairly low the income of the poor is. In countries such as Norway and France, unfairly high incomes are more strongly associated with support for redistribution (@fig-fairness). 
 
 - Support for income redistribution among the working class in Ireland is now at the highest level since 2002 (@fig-time-class).
 
@@ -131,18 +142,19 @@ get_latest <- function(file_pattern){
     latest_file <- tail(sort(file_list), n = 1)
     return(latest_file)
 }
-
+a  <- NULL
+!is.null(a)
 
 # Function to build the regression model
 
-get_model  <- function(df, dv, ivs, type = 'glm'){
+get_model  <- function(df, dv, ivs, w = 'pspwght', type = 'glm'){
     
     myform  <-  as.formula(paste0(dv, " ~ ", paste(ivs, collapse= "+")))
 
     if (type == 'lm'){
-        mymodel <- lm(myform, weights = pspwght, data = df)
+        mymodel <- lm(myform, weights = if(!is.null(w)) get(w) else NULL, data = df)
     } else if (type == 'glm') {
-       mymodel <- glm(myform, family = 'binomial', weights = pspwght, data = df)
+       mymodel <- glm(myform, family = 'binomial', weights =  if(!is.null(w)) get(w) else NULL, data = df)
     }
 
     return(mymodel)
@@ -156,9 +168,11 @@ get_table <- function(model, toprint = everything(), type = 'glm'){
             exponentiate = TRUE,
             include = toprint,
             label = list_labels
-        )
+        ) |> 
+        remove_abbreviation("CI = Confidence Interval") |> 
+        remove_abbreviation("OR = Odds Ratio")
     } else {
-        table_reg <- tbl_regression(model, include = toprint, label = list_labels)
+        table_reg <- tbl_regression(model, include = toprint, label = list_labels)  |> remove_abbreviation(c("CI = Confidence Interval"))
     }
       
 
@@ -366,15 +380,15 @@ save_display(fig_eumap, w = 6, h = 5)
 `r paste0(source_ess, " Round 11")`
 :::
 
-## A third of the Irish population would would agree with higher taxes if it means more or better  public services
+## A third of the Irish population would agree with higher taxes if it means more or better  public services
 
-In terms of policy relevance and social change, it is important to assess how much support for redistribution coincides with willingness to act on that through paying more taxes, for instance. Using data from survey experiments in Germany, Italy, Spain, and the United Kingdom, @bremer_lower_2025 show that support for tax cuts is not unconditional as many would expect. The study indicates that ideology and self-interest play a role in preferences for progressive reforms as well. 
+In terms of policy relevance and social change, it is important to assess how much support for redistribution coincides with willingness to act on that through paying more taxes, for instance. Using data from survey experiments in Germany, Italy, Spain, and the United Kingdom, @bremer_lower_2025 note that support for tax cuts is not widespread and unconditional. The study indicates that ideology and self-interest play a role in preferences for progressive reforms as well. 
 
 As part of the National Election and Democracy Study, @an_coimisiun_toghchain_irelands_2024 conducted a post-election survey between 2024 and 2015 including questions on attitudes and policy preferences. Respondents were asked to what extend they agree that "*The government should increase taxes a lot and spend much more on health and social services*". About 32% of respondents agreed with this statement (8% 'strongly agree' and 24% 'somewhat agree'). 
 
 To explore relative differences across groups, we ran a logistic regression model using agreement with tax increase as a response variable. The explanatory variables included gender, age group, educational attainment, and social class. In addition, the model also includes a question on acceptance of inequality (agreement that "*There is nothing wrong with some people being a lot richer than others*"). As expected, those who 'strongly disagree' or 'somewhat disagree' have, respectively, 26% and 22% lower odds of supporting tax increase compared to those who strongly agree with the inequality statement. 
 
-The results also indicate that women have 6% higher odds of agreeing with tax increase compared to men. In relation to age, those older than 65 (16%) and aged between 55 and 64 (11%) also have increased odds of supporting tax increase in comparison with those younger than 24. No significant differences were found across other age groups, social class, or educatinal attainment. 
+The results also indicate that women have 6% higher odds of agreeing with tax increase compared to men. In relation to age, those older than 65 (16%) and aged between 55 and 64 (11%) also have increased odds of supporting tax increase in comparison with those younger than 24. No significant differences were found across other age groups, social class, or educational attainment. 
 
 ```{r}
 #| include: false
@@ -455,7 +469,7 @@ Comparing ESS data on support for specific welfare policies (discussed in [Chapt
 
 ## Female and lower SES respondents are more supportive of redistribution
 
-Despite the profusion of studies on the relationship between gender and welfare policies, there is a gap in understanding the gender dimension of beliefs and perceptions in relation to these policies [@garritzmann_gender_2021]. Considering the marked gender differences in access to the labour market and levels of pay in Ireland [@hingre_gender_2024], it is plausible to also expect differences in demands for income redistirbution. 
+Despite the profusion of studies on the relationship between gender and welfare policies, there is a gap in understanding the gender dimension of beliefs and perceptions in relation to these policies [@garritzmann_gender_2021]. Considering the marked gender differences in access to the labour market and levels of pay in Ireland [@hingre_gender_2024], it is plausible to also expect differences in demands for income redistribution. 
 
 On average, there is no statistically significant differences for male and female individuals in the latest rounds of both surveys. The ESS question on the government role has the same proportion of agreement for male  and female respondents (76%). Similarly, the voter study identified similar mean values for wealth redistribution across male (5.4) and female (5.2) participants.
 
@@ -640,7 +654,7 @@ We created a statistical model[^model] to assess the extent to which these indiv
 
 [^model]: We use a logistic regression model which is a statistical method commonly employed to estimate the probability of an outcome occurring (in this case, supporting redistirbution) based on one or more independent variables (e.g. gender, age, social class). Similar results are found using a linear model and the original 5-point scale as response variable (please see Annex 1). As observations from multiple rounds were pooled together for this analysis, we added to the model the variable denoting the round to account for the shared variance and dependence of observations within each round. 
 
-@tbl-multiv-gincdif below shows the estimates of the model detecting significant differences across groups. The results in this table, as well as in subsequent tables and figures throughout the report, are presented as odds ratios. An odds ratio lower than 1 indicates that the group is less likely to experience the outcome compared to the reference group (highlighted in the table). An odds ratio greater than 1 suggests that the group is more likely to experience the outcome than the reference group. Older age groups show higher support compared to the youngest group (18 to 24 years old), which is the opposite relationship found for the latest round in 2023, but also found in other participant countries such as the UK. Both SES variables (social class and financial situation) suggest that respondents in more precarious socio-economic situation are more likely to be  favourable of the government reducing income differences. 
+@tbl-multiv-gincdif below details the estimates of the model detecting significant differences across groups. The results in this table, as well as in subsequent tables and figures throughout the report, are presented as odds ratios. An odds ratio lower than 1 indicates that the group is less likely to experience the outcome compared to the reference group (highlighted in the table). An odds ratio greater than 1 suggests that the group is more likely to experience the outcome than the reference group. Older age groups show higher support compared to the youngest group (18 to 24 years old), which is the opposite relationship found for the latest round in 2023, but also found in other participant countries such as the UK. Both SES variables (social class and financial situation) suggest that respondents in more precarious socio-economic situation are more likely to be  favourable of the government reducing income differences. 
 
 
 ```{r}
@@ -664,6 +678,7 @@ save_display(tbl_multiv_gincdif)
 ```
 ::: {custom-style="RS Source and notes"}
 `r source_ess`  
+
 Note: Higher scores on left-right scale indicate placement on the right of centre. 'Main activity', 'Educational attainment' and 'ESS round' omitted (see Annex 1 for full table)
 :::
 
@@ -677,7 +692,7 @@ Overall, the examination of individual factors associated with support for incom
 
 # What do people think about welfare policies? {#sec-what} 
 
-This chapter moves from general support for redistribution to consider individuals perceptions of fairness and their support for  specific policies. Are the general public more or less favorable of policies directed at specific groups? Is there evidence of a hierarchy of recipients?  It also considers beliefs about the causes of  inequality and  how such beliefs relate  to attitudes towards redistribution. 
+This chapter moves from general support for redistribution to consider individuals perceptions of fairness and their support for  specific policies. Is the general public more or less favourable of policies directed at specific groups? Is there evidence of a hierarchy of recipients?  It also considers beliefs about the causes of  inequality and  how such beliefs relate  to attitudes towards redistribution. 
 
 The data analysed in this chapter draws on a special module from the European Social Survey on welfare attitudes that was fielded in 2009 (Round 4) and repeated in 2016 (Round 8) (see @meuleman_past_2018 for more on this module). These rounds of data collection contain additional questions on beliefs about welfare, social benefits and their beneficiaries. 
 
@@ -748,7 +763,7 @@ save_display(fig_deservingness, h=5.5, w=5.5)
 
 ```
 ::: {custom-style="RS Source and notes"}
-`r paste0(source_ess, "Round 8")`
+`r paste0(source_ess, " Round 8")`
 :::
 
 In Ireland, the ranking of prioritisation is similar across different characteristics of respondents. However, comparing age groups, the older the respondent, there is an increasing prioritisation of the "old" and decreasing prioritisation of "working parents" (@fig-ie-deserve). In addition, among those in a 'very difficult' financial situation, there are no significant differences in the prioritisation of working parents over the unemployed over.
@@ -799,7 +814,7 @@ save_display(fig_ie_deserve, h=6, w=6)
 
 ```
 ::: {custom-style="RS Source and notes"}
-`r paste0(source_ess, "Round 8")`
+`r paste0(source_ess, " Round 8")`
 :::
 
 ## Most respondents indicate that immigrants could receive social benefits after having worked and paid taxes for at least one year
@@ -868,12 +883,12 @@ save_display(fig_immig, w =6, h=5)
 
 ```
 ::: {custom-style="RS Source and notes"}
-`r paste0(source_ess, " Round 8)`
+`r paste0(source_ess, " Round 8")`
 :::
 
 ## The view that 'Social benefits make people lazy' is more prevalent in Ireland compared to the European average  
 
-The module also included questions in relation to beliefs about the consequences of social benefits and services. Participants were asked to indicat to what extent they agree that social benefits and services in [country]... 
+The module also included questions in relation to beliefs about the consequences of social benefits and services. Participants were asked to indicate to what extent they agree that social benefits and services in [country]... 
 
 "...cost businesses too much in taxes/charges?"
 
@@ -908,11 +923,12 @@ fig_benefits <-
             str_detect(Question, "sblwcoa") ~ "Make people less\n willing to care",
         )) |> 
         ggplot(aes(x = year, y = mean, group = Statement, color = Statement)) +
-        geom_point() +
-        geom_line() +
-        scale_color_discrete(guide='none') +
-        geom_dl(aes(label = Statement), method = list('last.points', cex = 0.8, hjust = -0.1)) +
-        scale_x_continuous(breaks = c(2009,2016), limits = c(2008, 2019) ) +
+        geom_point(size = 2) +
+        geom_text(aes(label = round(mean)), vjust = -1, size = 2.5)+
+        geom_line(linewidth = 1.2) +
+        scale_color_brewer(palette = 'Dark2', guide='none') +
+        geom_dl(aes(label = Statement), method = list('last.points', cex = 0.9, hjust = -0.1)) +
+        scale_x_continuous(breaks = c(2009,2016), limits = c(2008, 2020) ) +
         labs(
             x = "Year", 
             y = 'Proportion who agree that social benefits...'
@@ -979,7 +995,7 @@ save_display(fig_lazy, w =5, h=4)
 
 ## Younger respondents in Ireland are more likely to agree that social benefits make people lazy
 
-@tbl-multiv-beliefs below shows the regression models for the countries with the highest proportion of agreement with the statement on lazyness: Ireland, Portugal, Poland, and the United Kingdom. The significant explanatory variables are different across these four countries. In Ireland, respondents in the 18-24 age group are more inclined to agree with this statement compared to all older age groups. Conversely, the difference between age groups is not statistically significant in any of the other three groups.
+@tbl-multiv-beliefs below presents coefficients of the regression models for the countries with the highest proportion of agreement with the statement on lazyness: Ireland, Portugal, Poland, and the United Kingdom. The significant explanatory variables are different across these four countries. In Ireland, respondents in the 18-24 age group are more inclined to agree with this statement compared to all older age groups. Conversely, the difference between age groups is not statistically significant in any of the other three groups.
 
 In Portugal, female respondents have 75% increased odds of agreeing that social benefits make people lazy compared to men. Differences across social class groups are not significant in Ireland or Poland. But both in Portugal and the UK, the working class have higher odds of agreeing with the statement on lazyness compared to the higher-grade service class. 
 
@@ -1005,7 +1021,9 @@ tbl_multiv_beliefs <-
                 exponentiate = TRUE,
                 conf.int = FALSE,
                 label = list_labels
-                ) |> bold_p(t = 0.05, q = FALSE) 
+                ) |> 
+                bold_p(t = 0.05, q = FALSE)  |> 
+                remove_abbreviation("OR = Odds Ratio")
             ),
         tab_spanner = c("Ireland", "United Kingdom", "Portugal", "Poland")
         ) |>
@@ -1025,6 +1043,7 @@ save_display(tbl_multiv_beliefs)
 ```
 ::: {custom-style="RS Source and notes"}
 `r source_ess`  
+
 Note: Higher scores on left-right scale indicate placement on the right of centre. 'Main activity', 'Born in country', 'Educational attainment' and 'ESS round' omitted (see Annex 1 for full table)
 :::
 
@@ -1033,7 +1052,7 @@ Note: Higher scores on left-right scale indicate placement on the right of centr
 
 As argued by @cavaille_fair_2025, support for redistribution is also dependent on people's perceptions of fairness. One might be more supportive of redistribution if they perceive that the richest in society earn too much (proportionality principle). At the same time, redistribution might be preferred if the poorest are receiving too little (reciprocity principle). In a special module conducted in 2018, the ESS asked respondents to assess how fair are the incomes received by the top and bottom deciles of the country's income distribution as well as their own gross income. The scale goes from -4 (Low, extremely unfair), through 0 (Fair), to 4 (High, extremely unfair).
 
-@fig-fairness below shows the odds-ratio of these variables added to the model described in @tbl-multiv-gincdif. For most countries, the more unfair the income of top the top decile is perceived, the higher the odds of supporting redistribution. This relationship is particularly strong in Norway and France, for instance. On the other hand, if a respondent perceives the bottom decile as unfairly high, the odds of supporting redistribution is lower. This association is particularly strong in Finland and France. In Ireland, both variables have weaker nonetheless signidficant effects. Across all countries respondents' perceptions of fairness of their own incomes is not a significant predictor of support for redistribution. 
+@fig-fairness below shows the odds-ratio of these variables added to the model described in @tbl-multiv-gincdif. For most countries, the more unfair the income of top the top decile is perceived, the higher the odds of supporting redistribution. This relationship is particularly strong in Norway and France, for instance. On the other hand, if a respondent perceives the bottom decile as unfairly high, the odds of supporting redistribution is lower. This association is particularly strong in Finland and France. In Ireland, both variables have weaker nonetheless significant effects. Across all countries respondents' perceptions of fairness of their own incomes is not a significant predictor of support for redistribution. 
 
 
 ```{r}
@@ -1083,7 +1102,7 @@ save_display(fig_fairness, w =6, h=5)
 
 The period covered by the research from 2002 to 2024 encapsulates two significant societal shocks, the financial crisis and recession starting in 2008 and the Pandemic starting in 2020. Both shocks resulted in significant changes in the labour market, in the reliance on social transfers and especially in the pandemic changes in the role of the state in people’s everyday lives.  Here we consider how support has changed over the past twenty years and whether these major shocks influence public opinion on redistribution. There are also more routine events that occur over the period that might be expected to influence attitudes, such as the regular cycle of budgets. The chapter also assesses whether there is evidence that such events are associated with any change in attitudes.
 
-The @fig-eu-time below shows the proportion of respondents in Ireland and other countries who agree that 'Government should reduce income differences' by year of the start of the survey. Overall there is a stable agreement (`r round(weighted.mean(df_ess$gincdif_agree, w = df_ess$pspwght, na.rm = T),1)*100`)%. Rounds 5 to 7 (2009-2012) as well as 10-11(2022-2024) show a slightly higher agreement compared to other rounds and the European average.  This overall trajectory in Ireland is similar to Portugal and differs substantially from the British and Dutch trajectories. The increase during the years of economic recession (when both Ireland and Portugal were severely affected) suggests a relationship between macro-economic indicators and support for redistribution.
+The @fig-eu-time displays the proportion of respondents in Ireland and other countries who agree that 'Government should reduce income differences' by year of the start of the survey. Overall, there is a stable agreement (`r round(weighted.mean(df_ess$gincdif_agree, w = df_ess$pspwght, na.rm = T),1)*100` %). Rounds 5 to 7 (2009-2012) as well as 10-11(2022-2024) show a slightly higher agreement compared to other rounds and the European average.  This overall trajectory in Ireland is similar to Portugal and differs substantially from the British and Dutch trajectories. The increase during the years of economic recession (when both Ireland and Portugal were severely affected) suggests a relationship between macro-economic indicators and support for redistribution.
 
 ```{r}
 #| label: fig-eu-time
@@ -1173,7 +1192,7 @@ save_display(fig_time_class, w =7, h=5)
 `r source_ess`
 :::
 
-The solid line in @fig-unemp shows the seasonally adjusted monthly unemployment rate from Central Statistics Office (CS0) and the points represent the monthly proportion of respondents supporting income redistribution in Ireland, with size proportional to the number of respondents. The dotted line shows the 3-month moving average of the support for redistribution[^intrasurvey]. The figure suggest an increase in support in anticipation of the unemployment rise (although based on limited number of observations). On the other hand, the sharp reduction in unemployment was not accompanied by a significant decrease in support, which has been stable since mid-2010's.
+The solid line in @fig-unemp represents the seasonally adjusted monthly unemployment rate from Central Statistics Office (CS0) and the points represent the monthly proportion of respondents supporting income redistribution in Ireland, with size proportional to the number of respondents. The dotted line shows the 3-month moving average of the support for redistribution[^intrasurvey]. The figure suggests an increase in support in anticipation of the unemployment rise (although based on limited number of observations). On the other hand, the sharp reduction in unemployment was not accompanied by a significant decrease in support, which has been stable since mid-2010's.
 
 [^intrasurvey]: The ESS data collection period for each round in Ireland varied from 5 months up to 20 months. 
 
@@ -1226,7 +1245,7 @@ save_display(fig_unemp, w =7, h=5)
         
 ```
 ::: {custom-style="RS Source and notes"}
-`r passte0(source_ess, " and Central Statistics Office"`
+`r paste0(source_ess, " and Central Statistics Office")`
 :::
 
 ## Age and Gender
@@ -1241,7 +1260,7 @@ fig_age_round <-
     df_ess |> 
         filter(cntry == 'IE') |> 
         group_by(Round = start_year, agea) |> 
-        summarise(mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T)) |> 
+        summarise(mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T)*100) |> 
         ggplot(aes(x = agea, y = mean)) +
         geom_point(size = 0.5) +
         geom_smooth(method = 'lm', color = "#f26a4c") +
@@ -1260,7 +1279,7 @@ save_display(fig_age_round, w=6, h=6)
 `r source_ess`
 :::
 
-To try to disentangle age and period effects, @fig-ess-cohort below shows the support for redistribution across respondents grouped according to their birth year (pseudo-cohort) and gender. The younger cohort born in the 1980s- early 2000s, who are aged 18-21 years old in the beginning of the series(2002) show increasing support as they enter and establish themselves in the labour market. The two older cohorts show a substantial variation with average higher support during the recession and early years of the economic recovery (2008-2014).
+To try to disentangle age and period effects, @fig-ess-cohort below presents the support for redistribution across respondents grouped according to their birth year (pseudo-cohort) and gender. The younger cohort born in the 1980s- early 2000s, who are aged 18-21 years old in the beginning of the series (2002) show increasing support as they enter and establish themselves in the labour market. The two older cohorts show a substantial variation with average higher support during the recession and early years of the economic recovery (2008-2014).
 
 ```{r}
 #| label: fig-ess-cohort
@@ -1297,7 +1316,7 @@ save_display(fig_cohort, w =5, h=7)
 `r source_ess`
 :::
 
-The visual examination of @fig-ess-cohort shows a common aspect between the youngest and the oldest cohort, which is the divergent gender trajectories from the 2nd to the 3rd round. In addition, the oldest cohort also experienced a similar gender divergence between the 9th and 10th rounds. These two periods are marked by the initial signs of the 2008 economic recession and the pre-post periods of the pandemic. 
+The visual examination of @fig-ess-cohort suggests a common aspect between the youngest and the oldest cohort, which is the divergent gender trajectories from the 2nd to the 3rd round. In addition, the oldest cohort also experienced a similar gender divergence between the 9th and 10th rounds. These two periods are marked by the initial signs of the 2008 economic recession and the pre-post periods of the pandemic. 
 
 ```{r}
 #| include: false
@@ -1324,7 +1343,7 @@ However, several Event Study methods provide tools to examine the impact of more
 
 During the 2016-2017 data collection, the Irish government launched a campaign against welfare fraud. With the slogan '*Welfare Cheats, Cheat Us All*', the Department of Social Protection funded a widely publicised media campaign with the intent of increasing fraud reporting and changing public perceptions of welfare fraud [@devereux_fake_2019]. The campaign ran from April to July 2017. The majority (73%) of the respondents had been interviewed by then and the remaining interviews were conducted during the period of the campaign. After analysing the content of the campaign and reporting statistics, @power_framing_2022 show that it had not affect the overall number of fraud reports, but may have impacted the public legitimacy of welfare recipients in general. 
 
-Using data from the ESS, we assessed the impact of this campaign on welfare attitudes in Ireland. @fig-dsp-mean shows the 7-day emponential moving average[^ema] of three variables in the 30-day time window around the launch of the campaign on the 17th of April. For two of three selected statements related to welfare attitudes, the visual examination suggests a change of trajectory after the beginning of the campaign. The variables were used in their original format (5-point agreement scale) to avoid reduction in statistical power, condisering the already reduced number of observation with a narrow time bandwith.
+Using data from the ESS, we assessed the impact of this campaign on welfare attitudes in Ireland. @fig-dsp-mean depicts the 7-day exponential moving average[^ema] of three variables in the 30-day time window around the launch of the campaign on the 17th of April. For two of three selected statements related to welfare attitudes, the visual examination suggests a change of trajectory after the beginning of the campaign. The variables were used in their original format (5-point agreement scale) to avoid reduction in statistical power, considering the already reduced number of observations with a narrow time bandwidth.
 
 
 [^ema]: Exponential moving averages attributes greater weight to  more recent observations, making it more responsive to potential trajectory changes. 
@@ -1381,17 +1400,19 @@ save_display(fig_dsp_mean, w = 5, h = 7)
 
 
 ```
+
 ::: {custom-style="RS Source and notes"}
 `r paste0(source_ess, " Round 8")`
 :::
 
 The difference between the percentages of agreement and mean values of these variables before and after the launch is only statistically significant to agreement with 'prevent poverty'. However, considering the potential violation of the ignorability assumption [@munoz_unexpected_2020], we built a logistic regression model using controls for potential socio-demographic differences in the composition of the group of respondents before and after the campaign launch. Considering that this period coincides with the final quarter of the data collection, it is reasonable to expect that it may contain a higher proportion of hard-to-reach respondents (e.g. employed, higher social class, younger respondents). So, variables such as main activity, social class, age and gender were included in the model. The observations selected for the analysis are from interviews conducted two weeks prior or after the campaign launch. We also removed from the analysis respondents who indicate that they do not watch, listen or read news about politics or current affairs (9%), as they were unlikely exposed to the campaign. 
 
-@fig-dsp-model shows the estimates of the effect of being interviewed after the launch of the DSP campaign. No significant effects were for the variables related to support for redistribution and the view that social benefits lead to a more equal society. However, the model suggests that respondents have about 80% higher odds of agreeing that social benefits make people lazy if interviewed up to 30 days after the launch of the campaign compared to those interviewed up to 30 days prior to the launch. 
+@fig-dsp-model presents the estimates of the effect of being interviewed after the launch of the DSP campaign. No significant effects were found for the variables related to support for redistribution and the view that social benefits prevent poverty. However, the model detects a statistically significant increase  on the level of agreement that social benefits make people lazy among interviews conducted after the launch of the campaign compared to those interviewed up to 30 days prior to the launch. 
+
 
 ```{r}
 #| label: fig-dsp-model
-#| fig-cap: "Estimates (odds-ratio) for period of interview on welfare attitudes, Ireland, 2016-2017"
+#| fig-cap: "Linear regression estimates for period of interview, Ireland, 2016-2017"
 
 df_ess$dsp_period <- factor(df_ess$dsp_period, levels = c("Before", "After", ""))
 
@@ -1414,7 +1435,7 @@ fig_dsp_model <-
         #type = "faceted", 
         #exponentiate = TRUE
     ) +
-    scale_color_manual(values = c("#f26a4c", "#1fbec6", "#396065"))+
+    scale_color_manual(values = c("#f26a4c", "#1fbec6", "#1F355E"))+
     theme(
         axis.text.y = element_text(size = 12),
         strip.text = element_text(size = 13),
@@ -1423,20 +1444,17 @@ fig_dsp_model <-
 
 save_display(fig_dsp_model, w = 6, h=5)
 
-#tbl_merge(map(dsp_models, ~tbl_regression(.x, exponentiate = TRUE) |> bold_p()), tab_spanner = c("Redistribution", "Lazy", "Poverty"))
-
+#tbl_merge(map(dsp_models, ~tbl_regression(.x) |> bold_p()), tab_spanner = c("Redistribution", "Lazy", "Poverty"))
 
 ```
-::: {custom-style="RS Source and notes"}
-`r paste0(source_ess, " Round 8")`
-Note: The model also includes "Main activity", "Age", "Gender", and "Social class".
-:::
+
+
 
 ### Budget announcement
 
-Another relevant event for welfare attitudes and support for redistribution is the annual announcement of the public budget for the following year. Although this cannot be considered an unexpected event, we hypothesise that the media coverage after the announcement may increase the salience of welfare policies and positively impact respondents' support for redistribution. 
+Another relevant event for welfare attitudes and support for redistribution is the annual budget announcement for the following year. This cannot be considered an unexpected event as the government provides prior indication of when it will be announced. Therefore, some participants might be expecting such event and cannot be considered an analogous to a control group in a quasi-experiment. Nevertheless, we hypothesise that the media coverage after the announcement may increase the salience of welfare policies and positively impact respondents' support for redistribution. It is noteworthy that those who reported that they did not consume any media in a typical day were excluded from the analysis (between 3% and 10% depending on the round). 
 
-The announcement dates in Ireland coincided with the European Social Survey fieldwork in six different years: 2006, 2009, 2011, 2012, 2014, and 2023. The @fig-budget-mean shows the 7-day moving average for the proportion of respondents who agree that the government should reduce differences in income within the 30-day time window around the announcement of the budget. 
+The announcement dates in Ireland coincided with the European Social Survey fieldwork in six different years: 2006, 2009, 2011, 2012, 2014, and 2023. The @fig-budget-mean shows the 7-day exponential moving average for the agreement with the statement that the government should reduce differences in income. The analyses use the same 60-day time window around the announcement of the budget. 
 
 ```{r}
 #| include: false
@@ -1470,6 +1488,8 @@ df_ess |>
 
 ```
 
+
+
 ```{r}
 #| label: fig-budget-mean
 #| fig-cap: "7-day moving average for support for redistribution within the 30-day period of the public budget announcement, Ireland"
@@ -1489,7 +1509,7 @@ df_ess <-
 
 fig_budget_mean <- 
     df_ess |> 
-        filter(!is.na(budget_daysafter) & news == 'Yes' & cntry == 'IE' & abs(budget_daysafter) <= 30) |> 
+        filter(!is.na(budget_daysafter) & news == 'Yes' & cntry == 'IE' & abs(budget_daysafter) <= 30 ) |> 
         group_by(start_year, budget_daysafter) |> 
         summarise(
             mean = weighted.mean(gincdif_inv, na.rm = T),
@@ -1499,8 +1519,7 @@ fig_budget_mean <-
         geom_vline(xintercept = 0, color = '#f26a4c', linetype = 'dashed') +
         facet_wrap(~start_year, ncol = 2) +
         theme_classic()+
-        labs(caption = "Source: European Social Survey",
-            x = "Days after budget announcement") +
+        labs(x = "Days after budget announcement", y = "Mean value") +
         theme(
             axis.text.y = element_text(size = 12),
             plot.caption = element_text(hjust = 0)
@@ -1508,48 +1527,50 @@ fig_budget_mean <-
 
 save_display(fig_budget_mean, w = 6, h = 6)
 ```
-::: {custom-style="RS Source and notes"}
-`r paste0(source_ess, " Round 8")`
-Note: The model also includes "Main activity", "Age", "Gender", and "Social class".
-:::
 
-To test the impact of the budget announcement, we adopted a similar  approach to the one discussed in the previous section. The model includes the same variables to control for sistematic differences in the sample composition of those interviewed before and after the announcement. Using the same time window of 30 days, we do not find any statistically significant differences in the support for redistribution. However, the difference is statistically significant when we select a shorter time window for the analyses.  
 
-As shown in @fig-budget-model, when we consider only interviews conducted within a week or two-week period of the announcement, the differences are statistically significant. The direction of the effect is the opposite of what expected, with lower support for redistribution after the publication of the budget. One potential explanation is a higher salience of redistributive issues prior to the publication as a result of media speculation and campaigns from different organisation attempting to influence the public debate. 
+To test the impact of the budget announcement, we adopted a similar  approach to the one discussed in the previous section. The model includes the same variables to control for systematic differences in the sample composition of those interviewed before and after the announcement. Using the same time window of 60 days (a month before and a month after), we do not find any statistically significant differences in the support for redistribution. However, the difference is statistically significant when we select a shorter time window for the analyses.  
+
+As shown in @fig-budget-model, when we look at subsets of the sample in varied time windows from 5 to 40 days, the differences are only statistically significant up to 28 days. The continuous line shows the predicted change in support for each time window analysed. The dotted lines represent the 95% confidence interval of this estimate. The direction of the effect is the opposite of what expected, with lower support for redistribution after the publication of the budget. 
+
+One potential explanation of this result is a higher salience of redistributive issues prior to the publication as a result of media speculation and campaigns from different organisation attempting to influence the public debate. In this interpretation, the higher support for redistribution only occurs in the month prior to the announcement. @fig-budget-model also includes the estimates from the same model using "satisfaction with government" as dependent variable. In this case, no significant differences are found regardless of the time bandwidth.
 
 This relatively weak and short-lived effect found in Ireland goes in the same direction of @dunaiski_does_2025 conclusion that political events such as the 'Tax Day' in Finland have limited impact on attitudes. 
 
 ```{r}
 #| label: fig-budget-model
-#| fig-cap: "Estimates (odds-ratio) for period of interview on support for redistribution by time window, Ireland"
+#| fig-cap: "Linear regression estimates for being interviewed after the budget announcement by time window, Ireland"
 
 
 fig_budget_model <- 
     map_dfr(
-        c(seq(5,30)),
-        ~broom::tidy(get_model(
-                df = df_ess |> filter(cntry == 'IE' & news == 'Yes'  & abs(budget_daysafter) < .x),
-                dv = 'gincdif_agree',
-                ivs = c('budget_period', 'ess_day', 'factor(mnactic)', 'agea', 'gndr', 'as_factor(class5)'),
-                type = 'glm'
-            ), exponentiate = T, 
-            ) |> mutate(bandwith = .x)
-    ) |> 
+        c('scale(gincdif_inv)', 'scale(stfgov)'), #c(2006, 2009, 2011, 2012, 2014, 2023)
+        function(x){
+            map_dfr(
+                c(seq(5,40)),
+                function (y) {
+                    broom::tidy(get_model(
+                        df = df_ess |> filter(cntry == 'IE' & news == 'Yes' & abs(budget_daysafter) < y ),
+                        dv = x,
+                        ivs = c('budget_period', 'factor(mnactic)', 'agea',  'gndr', 'as_factor(class5)', 'as_factor(essround)'),
+                        type = 'lm')) |> mutate(dv = x, bandwidth = y)
+                })
+        }) |> 
+       mutate(variable = if_else(dv == 'scale(gincdif_inv)', 'Support for redistribution', "Satisfaction with government")) |> 
         filter(term == 'budget_periodTreatment') |> 
-        ggplot(aes(x = bandwith)) +
+        ggplot(aes(x = bandwidth)) +
         geom_line(aes(y = estimate)) +
         geom_line(aes(y = estimate +1.96*std.error), linetype = 'dotted') +
         geom_line(aes(y = estimate -1.96*std.error), linetype = 'dotted') +
-        geom_hline(aes(yintercept = 1), color = '#f26a4c', linetype = 'dashed') +
+        geom_hline(aes(yintercept = 0), color = '#f26a4c', linetype = 'dashed') +
+        facet_wrap(~variable, ncol = 2) +
         theme_classic() +
-        labs(caption = "Source: European Social Survey",
-            x = "Time window (days)") +
+        labs(x = "Days before and after the announcement", y = "Estimate") +
         theme(
-            axis.text.y = element_text(size = 10),
-            plot.caption = element_text(hjust = 0)
+            axis.text.y = element_text(size = 10)
         ) 
 
-save_display(fig_budget_model, w = 5, h = 5)
+save_display(fig_budget_model, w = 6, h = 5)
 
 # get_table(
 #         model = get_model(
@@ -1569,7 +1590,9 @@ save_display(fig_budget_model, w = 5, h = 5)
 
 ### Pandemic
 
-A major event experienced during the ESS time series was the COVID19 pandemic. Evidence from a survey experiment in the United States show that participants were more willing to prioritize society's problems when exposed to issues related to the pandemic [@cappelen_solidarity_2021]. Van Hootegem and Laenen [-@van_hootegem_wave_2023] show that the increase in support for a universal basic income increased with the pandemic but it was short lived. 
+A major event experienced during the ESS time series was the COVID19 pandemic. Evidence from a survey experiment in the United States show that participants were more willing to prioritize society's problems when exposed to issues related to the pandemic [@cappelen_solidarity_2021]. Van Hootegem and Laenen [-@van_hootegem_wave_2023] observed that support for a universal basic income in Belgium increased with the pandemic but it was short lived. 
+
+In response to the pandemic the Irish government introduced a major package of income supports. This included the Pandemic Unemployment Payment,  the Temporary Wage Subsidy Scheme/Employer Wage Subsidy Scheme (see @alamir_equality_2024 for further discussion of government supports). At their height, these schemes were supporting one million workers and 37,000 enterprises, at a cost of €16.7 billion up to October 2021 [@department_of_public_expenditure_and_reform_spending_2021]. 
 
 The first ESS data collection after the pandemic in Ireland occurred between November 2021 and August 2022. By this time, as shown in @fig-unemp, the unemployment rate was already returning to levels similar to the period before the start of the pandemic. The survey included a specific module on items related to respondents' experiences during the pandemic. A sub-group of questions asked participants to indicate if any of the following happened to them as a result of the coronavirus pandemic:  
 
@@ -1588,7 +1611,7 @@ The first ESS data collection after the pandemic in Ireland occurred between Nov
 *None of these*   
 
 
-@fig-covid below shows the proportion of respondents who agree that the government should reduce differences in income by social class and personal impact of the pandemic. Overall the working class seem to be supportive of redistribution regardless of the pandemic experiences. On the other hand, the higher-grade service class seems to be more supportive among those who lost their jobs (82% support) compared to those who indicated that nothing happened (60% support). 
+@fig-covid below shows the proportion of respondents who agree that the government should reduce differences in income by social class and personal impact of the pandemic. Overall, the working class seem to be supportive of redistribution regardless of the pandemic experiences. On the other hand, the higher-grade service class seems to be more supportive among those who lost their jobs (82% support) compared to those who indicated that nothing happened (60% support). 
 
 ```{r}
 #| label: fig-covid
@@ -1603,7 +1626,7 @@ fig_covid <-
                 hapirc19 == 1 | hapwrc19 == 1 ~ "Income or hours\nreduced",
                 hapnoc19 == 1 ~ "Nothing",
                 is.na(hapnoc19) ~ NA_character_,
-                .default = "Other/DK/Refusal"
+                .default = "Other/DK\nRefusal"
             )
         ) |> 
         group_by(impact, class = as_factor(class5)) |> 
@@ -1611,23 +1634,46 @@ fig_covid <-
             mean = weighted.mean(gincdif_agree, w = anweight, na.rm = T)*100,
             total = n(),
             se = sd(gincdif_agree, na.rm = T)/sqrt(length((gincdif_agree)))) |> 
-        ggplot(aes(x = impact, y = class, fill = mean))+
-        geom_tile() +
-        geom_text(aes(label = paste0(round(mean), "%\n(", total, ")")), size = 3) +
-        scale_fill_distiller(palette = "RdBu", direction=-1) + 
-        labs(caption = "Source: European Social Survey, 2021",
-            x = "Pandemic impact", y = 'Social Class', fill = 'Percentage') +
+        ggplot(aes(x = impact, y = class))+
+        geom_tile(colour = 'grey70', fill = 'white') +
+        geom_point(aes(color = mean, size = total), shape = 15) +
+        geom_text(aes(label = round(mean)), color = 'grey20', size = 3, hjust = 2) +
+        scale_color_distiller(palette = "RdBu", direction=-1) + 
+        scale_size(range = c(2, 10), guide = 'none') +
+        labs(x = "", y = '', color = 'Support for\nredistribution (%)') +
+        theme_minimal() +
         theme(
             legend.position = 'top',
-            axis.text.x = element_text(size = 12, angle = 0, hjust = 0.5),
-            axis.text.y = element_text(size = 12),
-            plot.caption = element_text(hjust = -0.5)
+            legend.title = element_text(size = 10),
+            axis.text.x = element_text(size = 9, angle = 0, hjust = 0.5),
+            axis.text.y = element_text(size = 10),
         ) 
 
-save_display(fig_covid, w = 8, h = 5)
+save_display(fig_covid, w = 6, h = 4)
 
 ```
 
+::: {custom-style="RS Source and notes"}
+`r source_ess`  
+
+Note: Square sizes represent the number of participants in each cell. Numbers represent and colours represent the proportion of participants in the cell that agree with the statement on redistribution. 
+:::
+
+# Conclusions and policy implications
+
+Public support for the welfare state is an important foundation for democratic governments to pursue the policies needed to alleviate poverty in society. The attitudes examined in this study are key indicators of this support. On some issues, public attitudes can be instigator of policy change. For example, public support for abortion in Ireland was widespread prior to the referendum in 2018 [@elkink_death_2020]. On other issues, a policy action may prompt changes in attitudes and behaviour.
+
+In Ireland, about three-quarters of the adult population support redistribution, either agreeing or strongly agreeing that the government should reduce differences in income. This is among the highest proportions in Europe.  The level of support is particularly high among low-income households, female and the younger cohort. While the overall proportion fluctuated over the period analysed (2002-2024) it never fell below 65%, giving Irish governments a sustained backing for redistributive policies.  
+
+At the same time, compared to other European countries, Ireland has a higher proportion of respondents who are willing to pay more taxes if that leads to improved public services. However, there is no clear relationship between the aggregate country-level support for redistribution and willingness to pay more taxes.  
+
+Despite the high levels of support for welfare policies and redistribution, Ireland also has one of the highest proportions of people in Europe who believe that “social benefits make people lazy”. This points to the importance of addressing public misconceptions and challenging negative stereotypes about welfare recipients. 
+
+Findings from experimental research suggests that the framing of policies is important, and the provision of information on the extent of inequality.  This is reinforced by this report's findings on the '*welfare cheats*' campaign. Framing the receipt of social transfers as potentially fraudulent increased the perception that social benefits make people lazy, which is associated with lower support for welfare policies and redistribution. In this sense, campaigns that emphasise entitlements and rights are likely to reinforce a more collective public good’ view of the welfare state and  counteract negative perceptions of individuals in receipt of benefit as underserving. Efforts should be made to highlight the positive role of social protection in promoting equality and social cohesion.
+
+The analysis of survey data over time also shows that support for redistribution tends to increase during periods of economic crisis, such as the 2008 recession and the COVID-19 pandemic. Ireland experienced a substantial level of government intervention in the economy during the pandemic, which resulted in social transfers to those that may not previously have drawn on such benefits. This translated into higher support for government redistribution. However, the nature of pandemic  as an external shock meant that public less likely to attribute blame to those who found themselves in need of government support, therefore the support for redistribution in these circumstances may not sustain over time.  
+
+Nevertheless, despite the short-lived effects of these external events, policymakers may take the opportunity of these moments of support to implement more permanent reforms that go beyond the period of crisis.
 
 
 # References {.unnumbered}
