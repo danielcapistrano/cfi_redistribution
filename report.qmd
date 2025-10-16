@@ -34,29 +34,32 @@ Dr T.K. Whitaker, who identified the need for independent and in-depth research 
 
 The ESRI is a company limited by guarantee, answerable to its members and governed by a Council, comprising up to 14 representatives drawn from a cross-section of ESRI members from academia, civil services, state agencies, businesses and civil society. Funding for the ESRI comes from research programmes supported by government departments and agencies, public bodies, competitive research programmes, membership fees, and an annual grant-in-aid from the Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation.
 
-Further information is available at www.esri.ie.
+Further information is available at [www.esri.ie](www.esri.ie).
 
 # Executive summary {#sec-summary .unnumbered}
 
-Drawing on data from the European Social Survey (ESS), the current report presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. The main findings of the report are:
+The current report presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents. Public support for the welfare state is an important foundation for democratic governments to pursue the policies needed to alleviate poverty in society. The study draws primarily  on data from the European Social Survey (ESS), which is supplemented with information from the Election Survey.
 
-- 3 in 4 Irish residents indicate that they agree that the government should reduce differences in income. This proportion is slightly higher than the European average and the ones from other northern European countries (@fig-eumap).  
+Three  in every four  Irish residents indicate that they agree that the government should reduce differences in income. This proportion is slightly higher than the European average (71%) and the ones from other northern European countries  (@fig-eumap).  Support for income redistribution is higher among females, those in the lowest income quintile and those from the unskilled and skilled manual social classes (@tbl-multiv-gincdif). Young people, those born in Ireland, and those who place themselves to the left in terms of their political attitudes are also more supportive of redistribution. 
 
-- Females and those from lower social classes are more supportive of income redistribution (@tbl-multiv-gincdif).  
+To get behind these general sentiments around distribution, the study also explores attitudes to more concrete welfare and tax policies, as well as ideological basis for redistribution.  While the connection found between social position (e.g. low income) and support for redistribution might be explained by self-interest (i.e. the belief that greater redistribution would improve their own material conditions), there is also evidence that it is influenced by peoples’ views on fairness. In Ireland, perceptions about unfairness of the income of the rich is associated with support for redistribution as much as perceptions of how unfairly low the income of the poor is. In countries such as Norway and France, unfairly high incomes are more strongly associated with support for redistribution (@fig-fairness).
 
-- Ireland has one of the highest proportions in Europe of respondents who believe that 'social benefits make people lazy' (@fig-lazy).  
+**Attitudes to social benefits**
 
-- Younger, right-wing, and those with lower educational attainment are more likely to agree that social benefits make people lazy (@tbl-multiv-beliefs).  
+A high proportion of respondents in Ireland (64%) believe that social benefits prevent poverty (down slightly from 69% in 2009), but there was a small increase in the proportion of respondents who agree that ‘social benefits lead to a more equal society’ from 52% in 2009 to 53% 2016[^essmodule] (@fig-benefits). However, apart from these positive beliefs, there are also more negative sentiments with 58% believing that ‘social benefits make people lazy’. Younger,  those on the right of the left-right scale, and those with lower educational attainment are more likely to agree that social benefits make people lazy (@tbl-multiv-beliefs). While that belief declined over time, Ireland has one of the highest proportions in Europe of respondents agreeing with this statement (@fig-lazy).
 
-- From 2009 to 2016 there was an increase in the proportion of respondents who agree that 'social benefits lead to a more equal society' (@fig-benefits).    
 
-- In Ireland, perceptions about unfairness of the income of the rich is associated with support for redistribution as much as perceptions of how unfairly low the income of the poor is. In countries such as Norway and France, unfairly high incomes are more strongly associated with support for redistribution (@fig-fairness). 
+There is a higher level of support for government spending on older people, childcare for working families than there is for those who are unemployed.  The same pattern is observed in most European countries but, in Ireland, the gaps between these three groups are significantly smaller. A third of respondents indicated that they would agree with higher taxes if it meant more or better public services. This is the 6th highest percentage across the 27 participant countries (@fig-tax). 
 
-- Support for income redistribution among the working class in Ireland is now at the highest level since 2002 (@fig-time-class).
 
-- Events such as government campaigns and budget announcements have significant but short-lived impact on welfare attitudes (@fig-dsp-model) and support for redistribution (@fig-budget-model). 
 
-- Those who experienced job loss during the COVID19 pandemic are more supportive of redistribution, regardless of their financial situation (@fig-covid).    
+[^essmodule]: This question is from a special module fielded in ESS 2009 and 2016 only. 
+
+**Change over time**
+
+Over the period 2002 to 2023/4 support for redistribution in Ireland fluctuated around 75%. Trends differ across social class groups. Support for income redistribution among the working class in Ireland is now at the highest level since 2002 (@fig-time-class). Events such as a government campaign focused on welfare fraud  and budget announcements have a significant but short-lived impact on welfare attitudes (@fig-dsp-mean) and support for redistribution (@fig-budget-mean). The impact of the pandemic is also visible.  Those who experienced job loss during the COVID19 pandemic are more supportive of redistribution, regardless of their financial situation or social class (@fig-covid), suggesting that the enhanced role of government in supporting incomes during that period boosted support for redistribution. 
+
+These findings suggest that there is a strong basis of support for government policies of redistribution, however these are sensitive to framing, with a focus on fraud rather than citizens entitlements leading to more negative sentiment about redistribution.  Attitudes to welfare are also sensitive to trade-offs and perceived hierarchies of deservingness.  Awareness of ones own potential reliance on social benefits motivates support for redistribution but so does people’s sense of what is fair. Lessons from behavioural studies suggest that providing information to individuals about the extent of existing inequalities influences individual support for redistribution. It is important that governments address misperceptions about welfare recipients and provide reliable information about inequalities in society. 
 
 
 # Introduction {#sec-introduction} 
@@ -103,7 +106,7 @@ Support for redistribution policies and anti-poverty strategies is also related 
 
 ### Experimental studies of welfare attitudes 
 
-Numerous experimental studies have examined how conceptions of fairness or the willingness to regard the interests of others informs decisions, and behavior is not just driven solely by self-interest as suggested by earlier models [@meltzer_rational_1981].  These experiments routinely find that individuals care about fairness. In a meta-analysis of such experiments administered in the past two decades, @nunnari_meta-analysis_2022 identify an overall aversion to inequality, despite high levels of heterogeneity across studies an participants.  
+Numerous experimental studies have examined how conceptions of fairness or the willingness to regard the interests of others informs decisions, and behaviour is not just driven solely by self-interest as suggested by earlier models [@meltzer_rational_1981].  These experiments routinely find that individuals care about fairness. In a meta-analysis of such experiments administered in the past two decades, @nunnari_meta-analysis_2022 identify an overall aversion to inequality, despite high levels of heterogeneity across studies an participants.  
 
 Based also on another meta-analysis, @ciani_learning_2021 show that providing information about the level of inequality in surveys affects concerns about inequality but has a 'small effect' on demand for redistribution. Finally, @chow_effect_2012 indicate that the way in which inequality is framed (the rich making more than the poor or the poor making less than the rich) influences the negative relationship between conservatism  and support for redistribution. 
 
@@ -142,8 +145,6 @@ get_latest <- function(file_pattern){
     latest_file <- tail(sort(file_list), n = 1)
     return(latest_file)
 }
-a  <- NULL
-!is.null(a)
 
 # Function to build the regression model
 
@@ -380,93 +381,6 @@ save_display(fig_eumap, w = 6, h = 5)
 `r paste0(source_ess, " Round 11")`
 :::
 
-## A third of the Irish population would agree with higher taxes if it means more or better  public services
-
-In terms of policy relevance and social change, it is important to assess how much support for redistribution coincides with willingness to act on that through paying more taxes, for instance. Using data from survey experiments in Germany, Italy, Spain, and the United Kingdom, @bremer_lower_2025 note that support for tax cuts is not widespread and unconditional. The study indicates that ideology and self-interest play a role in preferences for progressive reforms as well. 
-
-As part of the National Election and Democracy Study, @an_coimisiun_toghchain_irelands_2024 conducted a post-election survey between 2024 and 2015 including questions on attitudes and policy preferences. Respondents were asked to what extend they agree that "*The government should increase taxes a lot and spend much more on health and social services*". About 32% of respondents agreed with this statement (8% 'strongly agree' and 24% 'somewhat agree'). 
-
-To explore relative differences across groups, we ran a logistic regression model using agreement with tax increase as a response variable. The explanatory variables included gender, age group, educational attainment, and social class. In addition, the model also includes a question on acceptance of inequality (agreement that "*There is nothing wrong with some people being a lot richer than others*"). As expected, those who 'strongly disagree' or 'somewhat disagree' have, respectively, 26% and 22% lower odds of supporting tax increase compared to those who strongly agree with the inequality statement. 
-
-The results also indicate that women have 6% higher odds of agreeing with tax increase compared to men. In relation to age, those older than 65 (16%) and aged between 55 and 64 (11%) also have increased odds of supporting tax increase in comparison with those younger than 24. No significant differences were found across other age groups, social class, or educational attainment. 
-
-```{r}
-#| include: false
-
-df_neds_nomissing <- 
-    df_neds |>
-        filter(taxSpend_v2 != 8 & education_v8 != 97) |> #removing missing values
-        mutate(
-            agree_tax = if_else(taxSpend_v2 %in% c(4,5), 1, 0), #dichotomous agreement
-            agree_ineq = relevel(as_factor(peopleRichPoor), ref = 5) # Make strongly agree as reference
-        ) 
-
-glm(
-    agree_tax ~ as_factor(ageCat) + as_factor(gender) + as_factor(socialGrade_v6) + agree_ineq + education_v8,
-    data = df_neds_nomissing,
-    weights = wgt
-) |> tbl_regression(exponentiate = TRUE)
-
-# lm(
-#     taxSpend_v2 ~ as_factor(ageCat) + as_factor(gender) + as_factor(socialGrade_v6)+ agree_ineq + education_v8,
-#     data = df_neds_nomissing,
-#     weights = wgt
-# ) |> tbl_regression()
-
-# df_neds |> 
-#     filter(taxSpend_v2 != 8) |> 
-#     group_by(ageCat) |> 
-#     summarise(mean = weighted.mean(taxSpend_v2 %in% c(4,5), w = wgt)*100)
-```
-
-In 2025, the Eurobarometer conducted a survey on citizen's attitudes towards taxation. Participants were asked which among the following statements they agreed the most:
-
-- *Taxes are too high, and I would decrease them even if it means fewer or lower quality public services*   
-- *I agree with higher taxes if it means more or better  public services*  
-- *Both taxes and public services should stay at the same level*  
-
-In Ireland, 34% of respondents indicated that they would agree with higher taxes if it means more or better public services. This is the 6th highest percentage across the 27 participant countries. This proportion varies from 16% in Luxembourg and Belgium to 42% in Sweden and Spain. Comparing countries at the national level in @fig-tax, there is no clear relationship between this proportion and the overall support for redistribution measured by the ESS in 2023.
-
-```{r}
-#| label: fig-tax
-#| fig-cap: "Relationship between support for redistribution and agreement that there could be 'higher taxes if it means more or better  public services', Europe, 2023/2025"
-
-eubar_tax <- read_csv("./data/eurob_tax.csv")
-eubar_wealthy <- read_csv("./data/eurb_wealthy.csv")
-eubar_tax <- eubar_tax |> select(-wtotal, -tax_dk)  |> pivot_longer(cols = -cntry, names_to = "option", values_to = "n")
-
-eubar_taxben <- eubar_tax |> group_by(cntry) |> mutate(tax = prop.table(n)*100) |> filter(cntry != "EU27" & option == "tax_morebenef")
-
-fig_taxes <- 
-    df_ess |> 
-        filter(essround == 11) |>  
-        group_by(cntry) |> 
-        summarise(
-            mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T)*100, .groups = 'drop') |> 
-        left_join(eubar_taxben |> select(cntry, tax)) |> 
-        mutate(hl = if_else(cntry == "IE", "Ireland", "Other")) |> 
-        ggplot(aes(x = mean, y = tax, label = as_factor(cntry)))+
-        geom_point(aes(color = hl), size = 2.5) +
-        geom_text(nudge_x = 0.5, nudge_y = 0.5, size = 3.5,  check_overlap = T, color = "grey30") +
-        scale_color_manual(values = c("#f26a4c", "#1F355E"))+
-        theme_classic() +
-            labs(
-                x = "Government should reduce income differences (%)",
-                y = "Agree with higher taxes if it means more or better public services (%)"
-            ) +
-            theme(legend.position = "none")  
-
-save_display(fig_taxes, w =6, h=5)
-
-```
-
-::: {custom-style="RS Source and notes"}
-`r paste0(source_ess, " Round 11 and Eurobarometer Flash Survey 2025")`
-:::
-
-
-Comparing ESS data on support for specific welfare policies (discussed in [Chapter @sec-what]) and government policies, @rosset_unevenly_2025 found mixed evidence for policy responsiveness. Although tax policies in several countries have moved in the same direction of the increasingly progressive attitudes to welfare,  unemployment policy has not had the same trajectory.
-
 ## Female and lower SES respondents are more supportive of redistribution
 
 Despite the profusion of studies on the relationship between gender and welfare policies, there is a gap in understanding the gender dimension of beliefs and perceptions in relation to these policies [@garritzmann_gender_2021]. Considering the marked gender differences in access to the labour market and levels of pay in Ireland [@hingre_gender_2024], it is plausible to also expect differences in demands for income redistribution. 
@@ -617,7 +531,9 @@ save_display(fig_class, w = 6, h= 6)
 
 ## Left-wing voters are more supportive of redistribution
 
-There is a consistent pattern of association between the respondents' ideological positioning and support for redistribution. The survey includes a traditional question implemented in international surveys designed to assess ideological position of individuals [@aybar_scale_2024]. In this question, respondents are asked to point out where they would position themselves in a scale where 0 means the left and 10 means the right.  Results consistently indicate that individuals who place themselves more to the left of the scale tend to be more supportive of redistribution, even though this correlation is weaker in Ireland compared to other European countries.
+There is a consistent pattern of association between the respondents' ideological positioning and support for redistribution. The survey includes a traditional question implemented in international surveys designed to assess ideological position of individuals [@aybar_scale_2024]. In this question, respondents are asked to point out where they would position themselves in a scale where 0 means the left and 10 means the right[^lrireland].  Results consistently indicate that individuals who place themselves more to the left of the scale tend to be more supportive of redistribution, even though this correlation is weaker in Ireland compared to other European countries.
+
+[^lrireland]: In Ireland, the mean value of this scale in the 2023/2024 round was 4.78. 
 
 ```{r}
 #| include: false
@@ -626,6 +542,13 @@ df_ess |>
     filter(!is.na(lrscale) & !is.na(gincdif_agree) & cntry == "IE") |>
     group_by(essround) |> 
     summarise(cor = cor(lrscale, gincdif_agree))
+
+df_ess |> 
+    filter(cntry =='IE' & essround == 11) |> count(lrscale, wt = pspwght) |> mutate(p=prop.table(n))
+    summarise(weighted.mean(lrscale, w = pspwght, na.rm = T))
+
+
+
 
 ```
 
@@ -652,7 +575,7 @@ lm(redist_inv ~  as_factor(party_lable) + lrscale, data = df_vs |>
 
 We created a statistical model[^model] to assess the extent to which these individual factors are associated with support for redistribution in Ireland. In addition to these main variables, the model includes a measurement of the household financial situation. A subjective measurement was chosen ('Satisfaction with the household income') instead of household income due to the high proportion of missing values in the former. However, the same model using household income instead of this subjective measurement indicates similar results for the main variables (see Annex 1). The following control variables were also added to the model: economic activity ('Main activity in the last seven days'), educational attainment, and political ideology ('Placement in the left-right scale'). 
 
-[^model]: We use a logistic regression model which is a statistical method commonly employed to estimate the probability of an outcome occurring (in this case, supporting redistirbution) based on one or more independent variables (e.g. gender, age, social class). Similar results are found using a linear model and the original 5-point scale as response variable (please see Annex 1). As observations from multiple rounds were pooled together for this analysis, we added to the model the variable denoting the round to account for the shared variance and dependence of observations within each round. 
+[^model]: We use a logistic regression model which is a statistical method commonly employed to estimate the probability of an outcome occurring (in this case, supporting redistribution) based on one or more independent variables (e.g. gender, age, social class). Similar results are found using a linear model and the original 5-point scale as response variable (please see Annex 1). As observations from multiple rounds were pooled together for this analysis, we added to the model the variable denoting the round to account for the shared variance and dependence of observations within each round. 
 
 @tbl-multiv-gincdif below details the estimates of the model detecting significant differences across groups. The results in this table, as well as in subsequent tables and figures throughout the report, are presented as odds ratios. An odds ratio lower than 1 indicates that the group is less likely to experience the outcome compared to the reference group (highlighted in the table). An odds ratio greater than 1 suggests that the group is more likely to experience the outcome than the reference group. Older age groups show higher support compared to the youngest group (18 to 24 years old), which is the opposite relationship found for the latest round in 2023, but also found in other participant countries such as the UK. Both SES variables (social class and financial situation) suggest that respondents in more precarious socio-economic situation are more likely to be  favourable of the government reducing income differences. 
 
@@ -687,16 +610,16 @@ Those who were not born in Ireland are significantly less likely to support redi
 Overall, the examination of individual factors associated with support for income redistribution in Ireland goes in the same direction of the literature pointing out the role of material interests (financial situation) and perspectives of upward mobility (social class) @bonnet_what_2024.
 
 
-[^omitted]:  Coefficients for the control variables were omitted to faciliate reading, but the full table can be found in Annex 1.
+[^omitted]:  Coefficients for the control variables were omitted to facilitate reading, but the full table can be found in Annex 1.
 
 
-# What do people think about welfare policies? {#sec-what} 
+# What do people think about welfare and tax policies? {#sec-what} 
 
 This chapter moves from general support for redistribution to consider individuals perceptions of fairness and their support for  specific policies. Is the general public more or less favourable of policies directed at specific groups? Is there evidence of a hierarchy of recipients?  It also considers beliefs about the causes of  inequality and  how such beliefs relate  to attitudes towards redistribution. 
 
 The data analysed in this chapter draws on a special module from the European Social Survey on welfare attitudes that was fielded in 2009 (Round 4) and repeated in 2016 (Round 8) (see @meuleman_past_2018 for more on this module). These rounds of data collection contain additional questions on beliefs about welfare, social benefits and their beneficiaries. 
 
-## Meritocratic differences are acceptable for younger and right-wing respondents
+## Meritocratic differences are acceptable for younger and respondents who position themselves more to the right of the ideological scale
 
 As discussed in the previous chapter, a few socio-demographic characteristics such as age and social class may influence people's views on redistribution. The connection between these two factors, social position and redistributive preferences, tend to be explained by self-interest, meaning that people may support redistribution if they believe that it would improve their own material conditions and lives. However, a large body of research shows that other factors related to peoples' views on fairness are also relevant to understand overall support to welfare policies [@cavaille_fair_2025]. 
 
@@ -1004,7 +927,7 @@ Finally, in Ireland, the UK and Portugal, the agreement is higher among those re
 
 ```{r}
 #| label: tbl-multiv-beliefs
-#| tbl-cap: "Logistic regression estimates for agreement on statements about 'social benefits', Ireland, 2016"
+#| tbl-cap: "Logistic regression estimates for agreement that 'social benefits make people lazy', 2016"
 
 tbl_multiv_beliefs <- 
     tbl_merge(
@@ -1097,6 +1020,98 @@ save_display(fig_fairness, w =6, h=5)
 ::: {custom-style="RS Source and notes"}
 `r source_ess`
 :::
+
+
+## A third of the Irish population would agree with higher taxes if it means more or better  public services
+
+In terms of policy relevance and social change, it is important to assess how much support for redistribution coincides with willingness to act on that through paying more taxes, for instance. Using data from survey experiments in Germany, Italy, Spain, and the United Kingdom, @bremer_lower_2025 note that support for tax cuts is not widespread and unconditional. The study indicates that ideology and self-interest play a role in preferences for progressive reforms as well. 
+
+As part of the National Election and Democracy Study, @an_coimisiun_toghchain_irelands_2024 conducted a post-election survey between 2024 and 2015 including questions on attitudes and policy preferences. Respondents were asked to what extend they agree that "*The government should increase taxes a lot and spend much more on health and social services*". About 32% of respondents agreed with this statement (8% 'strongly agree' and 24% 'somewhat agree'). 
+
+To explore relative differences across groups, we ran a logistic regression model using agreement with tax increase as a response variable. The explanatory variables included gender, age group, educational attainment, and social class. In addition, the model also includes a question on acceptance of inequality (agreement that "*There is nothing wrong with some people being a lot richer than others*"). As expected, those who 'strongly disagree' or 'somewhat disagree' have, respectively, 26% and 22% lower odds of supporting tax increase compared to those who strongly agree with the inequality statement. 
+
+The results also indicate that women have 6% higher odds of agreeing with tax increase compared to men. In relation to age, those older than 65 (16%) and aged between 55 and 64 (11%) also have increased odds of supporting tax increase in comparison with those younger than 24. No significant differences were found across other age groups, social class, or educational attainment. 
+
+```{r}
+#| include: false
+
+df_neds_nomissing <- 
+    df_neds |>
+        filter(taxSpend_v2 != 8 & education_v8 != 97) |> #removing missing values
+        mutate(
+            agree_tax = if_else(taxSpend_v2 %in% c(4,5), 1, 0), #dichotomous agreement
+            agree_ineq = relevel(as_factor(peopleRichPoor), ref = 5) # Make strongly agree as reference
+        ) 
+
+glm(
+    agree_tax ~ as_factor(ageCat) + as_factor(gender) + as_factor(socialGrade_v6) + agree_ineq + education_v8,
+    data = df_neds_nomissing,
+    weights = wgt
+) |> tbl_regression(exponentiate = TRUE)
+
+# lm(
+#     taxSpend_v2 ~ as_factor(ageCat) + as_factor(gender) + as_factor(socialGrade_v6)+ agree_ineq + education_v8,
+#     data = df_neds_nomissing,
+#     weights = wgt
+# ) |> tbl_regression()
+
+# df_neds |> 
+#     filter(taxSpend_v2 != 8) |> 
+#     group_by(ageCat) |> 
+#     summarise(mean = weighted.mean(taxSpend_v2 %in% c(4,5), w = wgt)*100)
+```
+
+In 2025, the Eurobarometer conducted a survey on citizen's attitudes towards taxation. Participants were asked which among the following statements they agreed the most:
+
+- *Taxes are too high, and I would decrease them even if it means fewer or lower quality public services*   
+- *I agree with higher taxes if it means more or better  public services*  
+- *Both taxes and public services should stay at the same level*  
+
+In Ireland, 35% indicated that ‘taxes are too high’ and 25% that taxes ‘should stay at the same level’. However, 34% of the Irish respondents indicated that they would agree with higher taxes if it meant more or better public services. This is the 6th highest percentage across the 27 participant countries. This proportion varies from 16% in Luxembourg and Belgium to 42% in Sweden and Spain. Comparing countries at the national level in @fig-tax, there is no clear relationship between this proportion and the overall support for redistribution measured by the ESS in 2023. 
+
+
+```{r}
+#| label: fig-tax
+#| fig-cap: "Relationship between support for redistribution and agreement that there could be 'higher taxes if it means more or better  public services', Europe, 2023/2025"
+
+eubar_tax <- read_csv("./data/eurob_tax.csv")
+eubar_wealthy <- read_csv("./data/eurb_wealthy.csv")
+eubar_tax <- eubar_tax |> select(-wtotal, -tax_dk)  |> pivot_longer(cols = -cntry, names_to = "option", values_to = "n")
+
+eubar_taxben <- eubar_tax |> group_by(cntry) |> mutate(tax = prop.table(n)*100) |> filter(cntry != "EU27" & option == "tax_morebenef")
+
+fig_taxes <- 
+    df_ess |> 
+        filter(essround == 11) |>  
+        group_by(cntry) |> 
+        summarise(
+            mean = weighted.mean(gincdif_agree, w = pspwght, na.rm = T)*100, .groups = 'drop') |> 
+        left_join(eubar_taxben |> select(cntry, tax)) |> 
+        mutate(hl = if_else(cntry == "IE", "Ireland", "Other")) |> 
+        ggplot(aes(x = mean, y = tax, label = as_factor(cntry)))+
+        geom_point(aes(color = hl), size = 2.5) +
+        geom_text(nudge_x = 0.5, nudge_y = 0.5, size = 3.5,  check_overlap = T, color = "grey30") +
+        scale_color_manual(values = c("#f26a4c", "#1F355E"))+
+        theme_classic() +
+            labs(
+                x = "Government should reduce income differences (%)",
+                y = "Agree with higher taxes if it means more or better public services (%)"
+            ) +
+            theme(legend.position = "none")  
+
+save_display(fig_taxes, w =6, h=5)
+
+# eubar_tax |> group_by(cntry) |> mutate(tax = prop.table(n)*100) |> filter(cntry == 'IE')
+
+```
+
+::: {custom-style="RS Source and notes"}
+`r paste0(source_ess, " Round 11 and Eurobarometer Flash Survey 2025")`
+:::
+
+It is important to note that the Eurobarometer did not include any question on general support for redistribution,  so it is not possible to test if this relationship exists at the individual level. However, other studies conducted in Europe suggest there is a positive association at the individual level that is moderated by political attitudes, welfare attitudes and socio-economic status [@witko_attitudes_2025; @jacques_explaining_2023; @naumann_tax_2018].
+
+Comparing ESS data on support for specific welfare policies and government policies, @rosset_unevenly_2025 found mixed evidence for policy responsiveness. Although tax policies in several countries have moved in the same direction of the increasingly progressive attitudes to welfare,  unemployment policy has not had the same trajectory.
 
 # Has support for redistribution changed over time? {#sec-change} 
 
@@ -1439,13 +1454,14 @@ fig_dsp_model <-
     theme(
         axis.text.y = element_text(size = 12),
         strip.text = element_text(size = 13),
-        plot.caption = element_text(hjust = -0.5)
+        legend.text = element_text(size = 13)
     ) 
 
 save_display(fig_dsp_model, w = 6, h=5)
 
 #tbl_merge(map(dsp_models, ~tbl_regression(.x) |> bold_p()), tab_spanner = c("Redistribution", "Lazy", "Poverty"))
 
+df_ess |> filter(cntry == 'IE') |> group_by(essround) |> summarise(weighted.mean(gincdif_agree, w = pspwght, na.rm = T))
 ```
 
 
@@ -1663,9 +1679,9 @@ Note: Square sizes represent the number of participants in each cell. Numbers re
 
 Public support for the welfare state is an important foundation for democratic governments to pursue the policies needed to alleviate poverty in society. The attitudes examined in this study are key indicators of this support. On some issues, public attitudes can be instigator of policy change. For example, public support for abortion in Ireland was widespread prior to the referendum in 2018 [@elkink_death_2020]. On other issues, a policy action may prompt changes in attitudes and behaviour.
 
-In Ireland, about three-quarters of the adult population support redistribution, either agreeing or strongly agreeing that the government should reduce differences in income. This is among the highest proportions in Europe.  The level of support is particularly high among low-income households, female and the younger cohort. While the overall proportion fluctuated over the period analysed (2002-2024) it never fell below 65%, giving Irish governments a sustained backing for redistributive policies.  
+In Ireland, about three-quarters of the adult population support redistribution, either agreeing or strongly agreeing that the government should reduce differences in income. This is among the highest proportions in Europe.  The level of support is particularly high among low-income households, female and the younger cohort. While the overall proportion fluctuated over the period analysed (2002-2024) it never fell below 69%, giving Irish governments a sustained backing for redistributive policies.  
 
-At the same time, compared to other European countries, Ireland has a higher proportion of respondents who are willing to pay more taxes if that leads to improved public services. However, there is no clear relationship between the aggregate country-level support for redistribution and willingness to pay more taxes.  
+At the same time, compared to other European countries, Ireland has a higher proportion of respondents who are willing to pay more taxes if that leads to improved public services. Although there is no clear relationship between the aggregate country-level support for redistribution and willingness to pay more taxes, evidence from a post-electoral survey in Ireland also suggests that those who are more averse to inequality are also more willing to pay higher taxes.  
 
 Despite the high levels of support for welfare policies and redistribution, Ireland also has one of the highest proportions of people in Europe who believe that “social benefits make people lazy”. This points to the importance of addressing public misconceptions and challenging negative stereotypes about welfare recipients. 
 
