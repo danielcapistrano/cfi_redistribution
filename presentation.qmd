@@ -1,0 +1,189 @@
+---
+title: "Public support for welfare and redistributive policies in Ireland"
+author: "Daniel Capistrano, Bertrand Maître and Helen Russell"
+institute: ""
+title-slide-attributes:
+    data-background-image: img/pres_cover.png
+    data-background-size: contain
+    data-background-position: bottom
+subtitle: ""
+date: November 2025  
+date-format: "MMMM YYYY"
+from: markdown+emoji
+format: 
+  revealjs:
+    menu: false
+    theme: _assets/slides.scss
+    incremental: true
+    slide-number: false
+    logo: img/logo_esri.png
+    transition: fade
+    mouse-wheel: false    
+    background-transition: fade
+    controls: true
+    chalkboard: true
+    highlight-style: github
+editor: 
+  markdown: 
+    wrap: sentence
+embed-resources: false
+execute: 
+  include: true
+  eval: true
+  cache: true
+  echo: false
+bibliography: _assets/CFI_Redistribution.bib
+---
+
+# Key findings {.inverted}
+
+```{r}
+library(tidyverse)
+```
+
+## Redistribution
+
+::: {.columns}
+
+::: {.column}
+
+[3 in 4]{.giant}  
+Irish residents agree that the *government should reduce differences in income*.
+
+:::
+
+::: {.column}
+![](./img/fig_eumap.png)
+
+:::
+
+:::
+
+::: {.aside}
+Source: Authors’ own analysis of the European Social Survey 2023/2024 
+:::
+
+## Taxes
+
+[1 in 3]{.giant}  
+Irish residents indicated that they *agree with higher taxes if it means more or better public services*. This is the 6th highest percentage across 27 EU countries. 
+
+::: {.aside}
+Source: Authors’ own analysis of the Eurobarometer Flash Survey 2025.
+:::
+
+## Social benefits
+
+::: {.columns}
+
+::: {.column}
+
+<br>  
+More than [half]{.big} of Irish residents agree that *social benefits make people lazy*.  
+:::
+
+::: {.column}
+![](./img/fig_lazy.png)
+:::
+
+:::
+
+::: {.aside}
+Source: Authors’ own analysis of the European Social Survey 2009/2016.
+:::
+
+
+## Relevant events
+
+::: {.columns}
+
+::: {.column}
+
+<br>  
+Those who experienced job loss during the [COVID19]{.big} pandemic are more supportive of redistribution, regardless of their financial situation or social class.
+:::
+
+::: {.column}
+![](./img/fig_covid.png)
+:::
+
+:::
+
+::: {.aside}
+Source: Authors’ own analysis of the European Social Survey 2023/2024.
+:::
+
+# Literature {.inverted}
+
+
+## Societal level influences 
+
+- Higher support for redistribution in countries with higher inequality [@velev_economic_2024; @finseraas_income_2009]  
+
+- Support for redistribution remained apparently stable over time [@lupu_unequal_2023] and could be related to lack of major political reaction to income inequality.     
+
+
+## Socio-demographic predictors 
+
+- Women are more progressive in relation to policy preferences and support for redistribution [@shorrocks_attitudinal_2020; @inglehart_cultural_2018; @grasso_are_2025]  
+
+-  @steele_wealth_2022 find that older respondents are more favourable of income redistribution.  
+
+- @grasso_are_2025 highlights the association between gender and generation, with the cohorts of women born after 1946 being more supportive of redistribution compared to men in their cohorts  
+
+## Welfare for whom? 
+
+@van_oorschot_social_2017 note that support for welfare policies, social transfers and redistribution is conditional on the social legitimacy of these policies' target groups  
+
+
+# Methods {.inverted}
+
+## Data sources
+
+- European Social Survey (2002 - 2024)  
+
+- European Elections Studies (EES)  
+
+- Electoral Commission / Eurobarometer  
+
+
+## References 
+
+::: {#refs}
+:::
+
+
+# Results {.inverted}
+
+## Fairness
+
+![](./img/fig_fairness.png)
+
+## Social benefits
+
+![](./img/fig_benefits.png)
+
+## Deservingness
+
+![](./img/fig_deservingness.png)
+
+## Tax
+
+![](./img/fig_taxes.png)
+
+## Redistribution over time (total)
+
+![](./img/fig_eutime.png)
+
+## Redistribution over time (social class)
+
+![](./img/fig_time_class.png)
+
+## Events (DSP campaign)
+
+![](./img/fig_dsp_mean.png)
+
+## Events (Budget)
+
+![](./img/fig_budget_mean.png)
+
