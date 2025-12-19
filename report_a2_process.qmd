@@ -300,6 +300,7 @@ ess_vars <- c(
     "stfgov",
     "stflife",
     "stfeco",
+    "ppltrst",
     "trstplt",
     "nmnybsc",
     "smdfslv",

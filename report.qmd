@@ -1430,15 +1430,32 @@ The difference between the percentages of agreement and mean values of these var
 #| fig-cap: "Linear regression estimates for period of interview, Ireland, 2016-2017"
 
 df_ess$dsp_period <- factor(df_ess$dsp_period, levels = c("Before", "After", ""))
+df_ess <- 
+    df_ess |> 
+        mutate(
+            news = case_when(
+                essround < 8 & tvpol == 0 ~ "No",
+                essround < 8 & tvpol > 0 ~ "Yes",
+                essround > 7 & nwspol == 0 ~ "No",
+                essround > 7 & nwspol > 0 ~ "Yes",
+                .default = NA           
+                ))
+
+# get_model(
+#         df = df_ess |> filter(cntry == "IE" & essround == 8 & abs(dsp_daysafter) <=30 & nwspol > 0),
+#         dv = "dsp_period == 'After'",
+#         ivs = c('factor(mnactic)', 'agea', 'as_factor(gndr)', 'as_factor(class5)'),
+#         type = 'glm'
+#     )  |> tbl_regression(exponentiate = TRUE)
 
 dsp_models <- 
     map(
-        c('gincdif_inv', 'sblazy_inv', 'sbprvpv_inv'),
+        c('gincdif_agree', 'sblazy_agree', 'sbprvpv_agree'),
         ~get_model(
-            df = df_ess |> filter(cntry == "IE" & essround == 8 & abs(dsp_daysafter) <=30 & nwspol > 0),
+            df = df_ess |> filter(cntry == "IE" & essround == 8 & abs(dsp_daysafter) <=30),
             dv = .x,
-            ivs = c('dsp_period', 'ess_day', 'factor(mnactic)', 'agea', 'gndr', 'as_factor(class5)'),
-            type = 'lm'
+            ivs = c('dsp_period', 'factor(mnactic)', 'agea', 'as_factor(gndr)', 'as_factor(class5)'),
+            type = 'glm'
         ) 
     )
 
@@ -1513,13 +1530,6 @@ df_ess |>
 df_ess <- 
     df_ess |> 
         mutate(
-            news = case_when(
-                essround < 8 & tvpol == 0 ~ "No",
-                essround < 8 & tvpol > 0 ~ "Yes",
-                essround > 7 & nwspol == 0 ~ "No",
-                essround > 7 & nwspol > 0 ~ "Yes",
-                .default = NA           
-                ),
             budget_period = if_else(budget_daysafter < 0, "Control", "Treatment")
             )
 
