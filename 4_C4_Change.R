@@ -36,7 +36,7 @@ fig_eutime <-
         theme(
             legend.position = "none",
             axis.text.y = element_text(size = 11),
-            axis.text.x= element_text(size = 11, angle = 45, vjust = 1, hjust = 1),
+            axis.text.x = element_text(size = 11, angle = 45, vjust = 1, hjust = 1),
         )
 
 save_display(fig_eutime, w =7, h=5)
@@ -315,7 +315,7 @@ tb_dsp_model <-
         })
     
 fig_dsp_model <-
-    tb_dsp_model|>
+    tb_dsp_model |>
         filter(term %in% c("treated_group", "treated_group:treated_days")) |>
         mutate(
             variable = case_when(
@@ -323,7 +323,7 @@ fig_dsp_model <-
                 str_detect(variable, "gincdif") ~ "Government should reduce income differences"
             ),
             term = case_match(term, "treated_group" ~ "Treatment group", "treated_group:treated_days" ~ "Treated*Days"),
-            period = case_match(period, "7d" ~ "\u00B1 1 week\n (n=228)", "14d" ~ "\u00B1 2 weeks\n (n=561)", "150d" ~ "Full sample\n (n=1,993)")
+            period = case_match(period, "7d" ~ "\u00B1 1 week\n (n=266)", "14d" ~ "\u00B1 2 weeks\n (n=676)", "150d" ~ "Full sample\n (n=2,368)")
         ) |>
             ggplot(aes(y = term, color = period)) +
             geom_pointrange(aes(x = estimate, xmin = estimate -1.96*std.error, xmax = estimate +1.96*std.error),
@@ -337,7 +337,7 @@ fig_dsp_model <-
             legend.position = "bottom"
             )
 
-save_display(fig_dsp_model, w = 6, h = 6)
+save_display(fig_dsp_model, w = 5.5, h = 5.5)
 
 
 # # Checking difference in midpoint in the control group
@@ -350,15 +350,17 @@ save_display(fig_dsp_model, w = 6, h = 6)
 # map_dfr(c("gincdif_inv",  "sbprvpv_inv"), function(outcome) {
 #             map_dfr(c(150, 14, 7), function(n_days) {
 #                 get_event_coeff(
-#                     df = df_ess,
-#                     event_date = dsp_launch_date,
+#                     df = df_ess |> filter(ess_day < "2017-04-17"),
+#                     event_date = dsp_placebo_date,
 #                     round = 8,
 #                     outcome = outcome,
 #                     event_window = n_days,
-#                     covars = c("gndr", "age_group", "mnactic", "lrscale")
+#                     covars = c("gndr", "age_group", "mnactic")
 #                 )
 #             })
-#         })
+#         }) |> 
+#         filter(p.value <=0.05) |> 
+#         view()
 
 
 ##############################################################################################
@@ -410,35 +412,79 @@ df_ess |> filter(ess_day == "2023-10-10") |> count(essround)
 #| FIGURE 4.9: "Linear regression estimates for being interviewed after the budget announcement by time window, Ireland"
 
 fig_budget_model <- 
-    map2_dfr(
-        c("2009-12-09", "2011-12-06", "2012-12-05", "2014-10-14", "2023-10-10"),
-        c(4, 5, 6, 7, 11),
-        ~ get_event_coeff(
-            df = df_ess,
-            event_date = .x,
-            round = .y,
-            outcome = "stfgov",
-            event_window = 10,
-            covars = c("age_group", "gndr", "mnactic")
-        ) |> mutate(year = substr(.x, 1, 4))) |> 
+    map_dfr(
+        c(10, 14, 30),
+        function(n_days){
+            map2_dfr(
+                c("2009-12-09", "2011-12-06", "2012-12-05", "2014-10-14", "2023-10-10"),
+                c(4, 5, 6, 7, 11),
+                ~ get_event_coeff(
+                    df = df_ess,
+                    event_date = .x,
+                    round = .y,
+                    outcome = "gincdif_inv",
+                    event_window = n_days,
+                    covars = c("age_group", "gndr", "mnactic", "class5", "lrscale")
+                ) |> mutate(year = substr(.x, 1, 4)))
+        }) |>
         filter(term %in% c("treated_group",  "treated_group:treated_days")) |>
             mutate(
                 term = case_match(term, "treated_group" ~ "Treatment group", "treated_group:treated_days" ~ "Treated*Days"),
-                year = factor(year)
+                year = factor(year),
+                period = case_match(period,"10d" ~ "\u00B1 10 days", "14d" ~ "\u00B1 2 weeks", "30d" ~ "\u00B1 30 days")
             ) |>
-                ggplot(aes(y = term, color = year)) +
-                geom_pointrange(aes(x = estimate, xmin = estimate -1.96*std.error, xmax = estimate +1.96*std.error),
-                                position = position_dodge(width = 0.4)) +
-                geom_vline(aes(xintercept = 0), color = "#f26a4c", linetype = "dashed") +
-                theme_classic() +
-                #scale_color_discrete(limits=rev) +
-                labs(x = "Estimate", y = "", 
-                    color = "Year: ") +
-                theme(
-                legend.position = "bottom"
-                )
+            ggplot(aes(y = term, color = year)) +
+            geom_pointrange(aes(x = estimate, xmin = estimate -1.96*std.error, xmax = estimate +1.96*std.error),
+                            position = position_dodge(width = 0.4), size = 0.2) +
+            geom_vline(aes(xintercept = 0), color = "#f26a4c", linetype = "dashed") +
+            theme_classic() +
+            facet_wrap(~period) +
+            labs(x = "Estimate", y = "", 
+                color = "Year: ") +
+            theme(
+            legend.position = "bottom"
+            )
 
-save_display(fig_budget_model, w = 6, h = 5)
+save_display(fig_budget_model, w = 6, h = 4)
+
+
+
+
+fig_budget_model <- 
+    map_dfr(
+        c(10, 14, 150),
+        function(n_days){
+            map2_dfr(
+                c("2009-12-09", "2011-12-06", "2012-12-05", "2014-10-14", "2023-10-10"),
+                c(4, 5, 6, 7, 11),
+                ~ get_event_coeff(
+                    df = df_ess,
+                    event_date = .x,
+                    round = .y,
+                    outcome = "gincdif_inv",
+                    event_window = n_days,
+                    covars = c("age_group", "gndr", "mnactic")
+                ) |> mutate(year = substr(.x, 1, 4)))
+        }) |>
+        filter(term %in% c("treated_group",  "treated_group:treated_days")) |>
+            mutate(
+                term = case_match(term, "treated_group" ~ "Treatment group", "treated_group:treated_days" ~ "Treated*Days"),
+                year = factor(year),
+                period = case_match(period,"10d" ~ "\u00B1 10 days", "14d" ~ "\u00B1 2 weeks", "150d" ~ "Full sample")
+            ) |>
+            ggplot(aes(y = term, color = year)) +
+            geom_pointrange(aes(x = estimate, xmin = estimate -1.96*std.error, xmax = estimate +1.96*std.error),
+                            position = position_dodge(width = 0.4), size = 0.2) +
+            geom_vline(aes(xintercept = 0), color = "#f26a4c", linetype = "dashed") +
+            theme_classic() +
+            facet_wrap(~period) +
+            labs(x = "Estimate", y = "", 
+                color = "Year: ") +
+            theme(
+            legend.position = "bottom"
+            )
+
+save_display(fig_budget_model, w = 6, h = 4)
 
 ##############################################################################################
 #| FIGURE 4.10: "Proportion of support for redistribution by social class and personal impact of the pandemic, Ireland, 2021"
@@ -448,8 +494,8 @@ fig_covid <-
         filter(!is.na(class5) & cntry == "IE" & essround == 10) |>
         mutate(
             impact = case_when(
-                hapljc19 == 1 | hapfoc19 == 1 | hapfuc19 == 1 ~ "Lost job\nUnpaid leave\nForloughed",
-                hapirc19 == 1 | hapwrc19 == 1 ~ "Income or hours\nreduced",
+                hapljc19 == 1 | hapfoc19 == 1 | hapfuc19 == 1 ~ "Lost job/\nUnpaid leave/\nForloughed",
+                hapirc19 == 1 | hapwrc19 == 1 ~ "Income\nor hours\nreduced",
                 hapnoc19 == 1 ~ "Nothing",
                 is.na(hapnoc19) ~ NA_character_,
                 .default = "Other/DK\nRefusal"
@@ -460,18 +506,22 @@ fig_covid <-
             mean = weighted.mean(gincdif_agree, w = anweight, na.rm = T)*100,
             total = n(),
             se = sd(gincdif_agree, na.rm = T)/sqrt(length((gincdif_agree)))) |>
-        ggplot(aes(x = impact, y = class))+
-        geom_tile(colour = "grey70", fill = "white") +
-        geom_point(aes(color = mean, size = total), shape = 15) +
-        geom_text(aes(label = round(mean)), color = "grey20", size = 3, hjust = 2) +
-        scale_color_distiller(palette = "RdBu", direction=-1) +
-        scale_size(range = c(2, 10), guide = "none") +
+        ggplot(aes(x = impact, y = mean, label = round(mean))) +
+        geom_bar(stat = "identity", width = 0.5, fill = "#1F355E") +
+        facet_wrap(~class, ncol = 2) +
+        geom_text(size = 3, color = "white", vjust = 1.2) +
+        # ggplot(aes(x = impact, y = class))+
+        # geom_tile(colour = "grey70", fill = "white") +
+        # geom_point(aes(color = mean, size = total), shape = 15) +
+        # geom_text(aes(label = round(mean)), color = "grey20", size = 3, hjust = 2) +
+        # scale_color_distiller(palette = "RdBu", direction=-1) +
+        # scale_size(range = c(2, 10), guide = "none") +
         labs(x = "", y = "", color = "Support for\nredistribution (%)") +
-        theme_minimal() +
+        theme_classic() +
         theme(
             legend.position = "top",
             legend.title = element_text(size = 10),
-            axis.text.x = element_text(size = 9, angle = 0, hjust = 0.5),
+            axis.text.x = element_text(size = 8, angle = 0, hjust = 0.5),
             axis.text.y = element_text(size = 10),
         )
 
