@@ -3,3 +3,4 @@ temp*
 /.quarto/
 *_cache/
 _archive/
+.Rproj.user

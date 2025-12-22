@@ -182,7 +182,7 @@ dsp_day <- "2017-04-17"
 ess_data <- 
     ess_data |> 
         mutate(dsp_before = if_else(ess_day < as.Date(dsp_day), 1, 0, missing = NA),
-                dsp_period = if_else(ess_day < as.Date(dsp_day), "Before", "After", missing = NA)) |>
+                dsp_period = if_else(ess_day < as.Date(dsp_day), "Before", "After", missing = NA_character_)) |>
         mutate(dsp_daysafter = ess_day - as.Date(dsp_day))
 
 ```
@@ -249,6 +249,11 @@ ess_vars <- c(
     "nwspol",
     "tvpol",
     "rdpol",
+    "bennent",
+    "basinc",
+    "lbenent",
+    "uentrjb",
+    "wrkprbf",
     "essround",
     "ess_month",
     "ess_day",

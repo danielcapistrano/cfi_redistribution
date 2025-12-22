@@ -72,7 +72,6 @@ get_table(
 
 # Intepersonal trus as predictor
 
-
 get_table(
     model = get_model(
         df = df_ess |> filter(cntry == "IE"),
@@ -82,6 +81,95 @@ get_table(
     ),
     type = 'glm'
 )
+
+# Placebo for dsp campaign
+
+
+# Getting variable for news consumption
+df_ess <- 
+    df_ess |> 
+        mutate(
+            news = case_when(
+                essround < 8 & tvpol == 0 ~ "No",
+                essround < 8 & tvpol > 0 ~ "Yes",
+                essround > 7 & nwspol == 0 ~ "No",
+                essround > 7 & nwspol > 0 ~ "Yes",
+                .default = NA           
+                ))
+
+# Calculating mid-point of the fieldwork
+dsp_control_midpoint <- 
+    df_ess |> 
+    filter(cntry == 'IE' & essround == 8 & ess_day < '2017-04-17') |> 
+    summarise(m = median(ess_day)) |> 
+    pull(m)
+
+df_ess <- df_ess |> mutate(
+    dsp_midpoint_period = case_when(
+        essround != 8 ~ NA_character_,
+        ess_day <= dsp_control_midpoint ~ "Before",
+        ess_day > dsp_control_midpoint ~ "After"),
+    dsp_midpoint_dafter = as.numeric(ess_day - dsp_control_midpoint)
+    )
+
+
+get_coef_period <- function(outcomes, indep_vars, timevar, period){
+  map_dfr(
+    outcomes,
+    function(x){
+      map_dfr(
+        period,
+        function (y) {
+          broom::tidy(get_model(
+            df = df_ess |> filter(
+              cntry == 'IE' & essround == 8 & ess_day < '2017-04-17' & news == 'Yes' & abs(get(timevar)) <= y
+            ),
+            dv = x,
+            ivs = indep_vars,
+            #w = NULL,
+            type = 'lm')) |> 
+            mutate(dv = x, period = y)
+        })
+    })
+}
+
+
+dsp_placebo <- get_coef_period(
+    outcomes = c('gincdif_inv', 'sblazy', 'sbprvpv'),
+    indep_vars = c('dsp_midpoint_period'),# 'as_factor(gndr)', 'as_factor(class5)', 'as_factor(mnactic)'),
+    timevar = 'dsp_midpoints_dafter',
+    period = c(15,10, 5))
+
+
+#fig_dsp_placebo <- 
+    dsp_placebo |>
+        mutate(
+            variable = case_match(
+                dv, 
+                'gincdif_inv' ~ 'Support for redistribution', 
+                'sblazy' ~ "Social benefits make people lazy",
+                'sbprvpv' ~ "Social benefits prevent poverty"),
+            period = case_match(
+                period,
+                #200 ~ 'Full sample',
+                15 ~ '30 days',
+                10 ~ '20 days',
+                5 ~ '10')) |> 
+        filter(term %in% c('dsp_midpoint_periodBefore')) |> 
+        ggplot(aes(y = term, fill = period, color = period)) +
+        geom_pointrange(aes(x = estimate, xmin = estimate -1.96*std.error, xmax = estimate +1.96*std.error),
+                position = position_dodge(width = 0.4)) +
+        geom_vline(aes(xintercept = 0), color = '#f26a4c', linetype = 'dashed') +
+        facet_wrap(~variable, ncol = 1) +
+        theme_classic() +
+        labs(x = "Estimated effect of being interviewed\nin the second part of the fieldwork", y = "", color = "Time-window: ", fill = "Time-window: ") +
+        theme(
+            axis.text.y = element_blank(),
+            legend.position = 'bottom'
+        ) 
+
+save_display(fig_dsp_placebo, w = 6, h=6)
+
 
 ## Pandemic impact in Ireland, Great Britain and Germany
 
@@ -117,5 +205,4 @@ df_ess |>
         axis.text.y = element_text(size = 12),
         plot.caption = element_text(hjust = -0.5)
     ) 
-
 

@@ -8,6 +8,8 @@ library(directlabels)
 library(gtsummary)
 library(rnaturalearth)
 library(rnaturalearthdata)
+library(WeightIt)
+library(ordinal)
 
 # Function to get the name of the latest file
 get_latest <- function(file_pattern){
