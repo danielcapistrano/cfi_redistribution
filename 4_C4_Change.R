@@ -491,6 +491,11 @@ save_display(fig_budget_model, w = 6, h = 4)
 
 fig_covid <-
     df_ess |>
+        mutate(class_covid = if_else(
+            as_factor(class5) %in% c("Higher-grade service class", "Lower-grade service class"),
+            "Service class (higher- and lower-grade)",
+            as_factor(class5)
+        )) |> 
         filter(!is.na(class5) & cntry == "IE" & essround == 10) |>
         mutate(
             impact = case_when(
@@ -501,15 +506,17 @@ fig_covid <-
                 .default = "Other/DK\nRefusal"
             )
         ) |>
-        group_by(impact, class = as_factor(class5)) |>
+        group_by(impact, class = as_factor(class_covid)) |>
         summarise(
             mean = weighted.mean(gincdif_agree, w = anweight, na.rm = T)*100,
             total = n(),
             se = sd(gincdif_agree, na.rm = T)/sqrt(length((gincdif_agree)))) |>
-        ggplot(aes(x = impact, y = mean, label = round(mean))) +
-        geom_bar(stat = "identity", width = 0.5, fill = "#1F355E") +
+        filter(impact != "Other/DK\nRefusal") |> 
+        ggplot(aes(x = impact, y = mean, label = paste0(round(mean), " %"))) +
+        geom_bar(stat = "identity", width = 0.6, fill = "#1F355E") +
         facet_wrap(~class, ncol = 2) +
         geom_text(size = 3, color = "white", vjust = 1.2) +
+        geom_text(aes(label = paste0("(n=", total, ")")),size = 2, color = "white", vjust = 3.5) +
         # ggplot(aes(x = impact, y = class))+
         # geom_tile(colour = "grey70", fill = "white") +
         # geom_point(aes(color = mean, size = total), shape = 15) +
@@ -525,4 +532,4 @@ fig_covid <-
             axis.text.y = element_text(size = 10),
         )
 
-save_display(fig_covid, w = 6, h = 4)
+save_display(fig_covid, w = 6, h = 5)
