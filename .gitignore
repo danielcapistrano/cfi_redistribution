@@ -4,3 +4,4 @@ temp*
 *_cache/
 _archive/
 .Rproj.user
+.lintr

@@ -1,0 +1,145 @@
+/*-- scss:defaults --*/
+
+
+#quarto-document-content {
+  font-family: "Roboto", sans-serif;
+  font-size:  16pt;
+  margin-bottom: 20vh;
+  padding-bottom: 10vh;
+  z-index: 1;
+}
+
+/*-- closeread config --*/
+
+.cr-section {
+  background-color: transparent !important;
+}
+
+.cr-section .sticky-col {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.cr-section.sidebar-left .sticky-col {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.cr-section.sidebar-left .narrative-col {
+  background-color: #223451;
+  font-size: 1.2rem;
+  color: white !important;
+  // min-width: 40svw;
+  // padding-left: 80px;
+}
+
+
+  // .cr-section.sidebar-left .narrative-col .narrative > *,
+  // .cr-section.sidebar-right .narrative-col .narrative > *,
+  // .cr-section.overlay-left .narrative-col .narrative > *,
+  // .cr-section.overlay-right .narrative-col .narrative > *,
+  // .cr-section.overlay-center .narrative-col .narrative > * {
+  //   background-color: rgba(255, 255, 255, .9);
+  //   padding: 5px;
+  //   color: black;
+  //   font-weight: 200;
+  //   font-size: 1rem;
+  //   text-align: center;
+  //   min-width: 50svw;
+  //   position: absolute;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  // }
+
+/*-- scss:rules --*/
+
+.date {
+  font-size: 0.6em;
+  font-weight: 100;
+}
+
+details>summary {
+  font-size: 0.75em;
+}
+
+.inverted {
+  background-color: #223451 !important;
+}
+
+.small {
+  font-size: 0.75em;
+}
+
+.big {
+  font-size: 1.75em;
+}
+
+.giant {
+  font-size: 3em;
+}
+
+.reveal .slide .in-out {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  padding-left: 1em;
+  background: #E8E8E8;
+  font-family: $font-family-monospace;
+  font-size: 0.6em;
+}
+
+.reveal .slide .goal {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  padding-left: 1em;
+  background: #ccddeb;
+}
+
+.reveal .slide aside,
+.reveal .slide div.aside {
+  font-size: 0.5em;
+  bottom: 0px;
+}
+
+.reveal .progress {
+  height: 1%;
+}
+
+.navigate-left .controls-arrow,
+.navigate-right .controls-arrow {
+  font-size: 90%;
+  color: grey;
+}
+
+#title-slide {
+  .quarto-title-authors {
+    justify-content: left;
+  
+    .quarto-title-author {
+      padding-left: 0;
+      padding-right: 0;
+      width: 100%;
+    }
+  }
+}
+
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+  color: #7e588aff;
+  height: 1%;
+}
+
+.reveal .slide-number > a[href*='title-slide'] {
+  display: none;
+}
+
+.reveal .slide-logo {
+  height: 90px !important;
+  width: 160px !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+

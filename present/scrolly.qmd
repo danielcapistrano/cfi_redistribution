@@ -1,0 +1,41 @@
+---
+title: Narrow the gap
+format:
+  closeread-html:
+    css: _assets/scrolly.scss
+    fig-format: svg
+    toc: false
+---
+
+
+Public support for welfare and redistributive policies in Ireland
+
+# {.page-columns .page-full}
+
+
+## Why narrow the gap? 
+
+Many vulnerable individuals and families in Ireland are struggling to make ends meet and are falling into poverty. Given the limits to government finances and the competing demands for funding social welfare in Ireland, it is crucial to have a better understanding of the public support to State actions designed to reduce inequalities and provide welfare to all.
+
+## Who supports redistribution?
+
+:::{.cr-section}
+
+
+Three in every four Irish residents agree that the government should reduce differences in income.
+This proportion is slightly higher than the European average (71%) and the proportions in other northern European countries ([main report]()). 
+
+@cr-features
+
+
+:::{#cr-features}
+1. Highlighting
+2. Zooming
+3. Panning
+:::
+
+
+:::
+
+
+## Who supports redistribution?

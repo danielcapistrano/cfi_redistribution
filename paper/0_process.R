@@ -1,0 +1,332 @@
+library(tidyverse)
+library(haven)
+
+#########################################################
+## European Social Survey (ESS)
+
+### Importing
+
+# Data downloaded from the European Social Survey [website](https://www.europeansocialsurvey.org) using the data builder.
+# The following file contain the cumulative dataset for selected countries across the 11 rounds available. 
+# A subset of relevant variables were selected before download.
+
+df_ess <- read_dta("data/raw/ess/ess_eu.dta")
+
+
+### Invert scale of main outcome
+
+# Inverting scale of main outcome variable to denote stronger agreement with higher values. 
+df_ess <- df_ess |> mutate(gincdif_inv = 6 - gincdif)
+
+
+### Year / quarter
+
+df_ess <-
+    df_ess |>
+    mutate(start_year = case_match(
+        essround,
+        1 ~ 2003, 2 ~ 2005, 3 ~ 2006, 4 ~ 2009, 5 ~ 2011,
+        6 ~ 2012, 7 ~ 2014, 8 ~ 2016, 9 ~ 2018, 10 ~ 2021, 11 ~ 2023
+    ))
+
+# Adding column identifying the year and the quarter in which the interview has started. 
+
+# get_quarter <- function(month){
+#     if_else(is.na(month), NA,
+#         if_else(month < 4, 1,
+#             if_else(month > 3 & month < 7, 2,
+#                 if_else(month > 6 & month < 10, 3, 
+#                     if_else(month> 9 & month < 13, 4, NA)))))
+# }
+
+# df_ess <- 
+#     df_ess |> 
+#         mutate(
+#             interv_quarter = case_when(     
+#                 essround < 3 ~ paste0(inwyr,  get_quarter(inwmm)),
+#                 essround > 2 & essround  < 10 ~ paste0(inwyys, get_quarter(inwmms)),
+#                 essround > 9 ~ format(as.Date(inwds), "%Y%QQ")
+#             ),
+#             interv_year = case_when(
+#                 essround < 3 ~ inwyr, 
+#                 essround > 2 & essround  < 10 ~ inwyys,
+#                 essround > 9 ~ as.numeric(format(as.Date(inwds), "%Y"))
+#             )
+#         )
+
+
+### Add CSO data on seasonally adjusted monthly unemployment
+df_cso <- read_csv("data/raw/MUM01.20250522T130504.csv")
+
+df_cso$ess_month = as.Date(paste0(df_cso$Month, " 01"), format = "%Y %B %d")
+
+df_ess <-
+    df_ess |>
+    mutate(
+        ess_day = case_when(
+            essround < 3 ~ as.Date(paste0(inwyr, "-", inwmm, "-", inwdd), format = "%Y-%m-%d"),
+            essround > 2 & essround < 10 ~ as.Date(paste0(inwyye, "-", inwmme, "-", inwdde), format = "%Y-%m-%d"),
+            essround > 9 ~ as.Date(format(inwde, "%Y-%m-%d"), format = "%Y-%m-%d")
+        ),
+        ess_month = as.Date(paste0(strftime(ess_day, format("%Y-%m")), "-01"), format = "%Y-%m-%d")
+    ) |>
+    left_join(df_cso |> select(ess_month, VALUE) |> rename(cso_unemp = VALUE))
+
+### Add flag if interview was conducted before after budget announcement  
+# Here is a plot showing the number of ESS interviews for each day and the red vertical line represents the day of the announcement of the following years' annual budget, these dates were gathered from diverse sources (Oireachtas transcripts, citizensinformation.ie, news from RTE, IrishTimes and IrishExaminer).
+
+budget_days <- tibble(budget_date = as.Date(c(
+    "2002-12-06", "2003-12-03", "2004-12-01", "2005-12-07",
+    "2006-12-06", "2007-12-05", "2008-10-14", "2009-12-09", "2010-12-07", 
+    "2011-12-06", "2012-12-05", "2013-10-15", "2014-10-14", "2015-10-13", 
+    "2016-10-11", "2017-10-10", "2018-10-09", "2019-10-08", "2020-10-13",
+    "2021-10-12", "2022-09-27", "2023-10-10", "2024-10-01"
+), format = "%Y-%m-%d"))
+
+
+# df_ess |> 
+#     filter(cntry == 'IE') |> 
+#     ggplot(aes(x = ess_day)) + 
+#     geom_histogram(binwidth = 10) + 
+#     geom_vline(
+#             data = budget_days,
+#             aes(xintercept = budget_date),
+#             color = 'red'
+#         )
+
+
+# As seen in the plot, these are the rounds in which the budget announcement was made during the fieldwork.
+# - 3 (2006),  
+# - 4 (2009),  
+# - 5 (2011),  
+# - 6 (2012),  
+# - 7 (2014),
+# - 11 (2023)
+
+df_ess <- 
+    df_ess |>
+        mutate(
+            budget_daysafter = case_when(
+                essround == 3 ~ ess_day - as.Date("2006-12-06"),
+                essround == 4 ~ ess_day - as.Date("2009-12-09"),
+                essround == 5 ~ ess_day - as.Date("2011-12-06"),
+                essround == 6 ~ ess_day - as.Date("2012-12-05"),
+                essround == 7 ~ ess_day - as.Date("2014-10-14"),
+                essround == 11 ~ ess_day - as.Date("2023-10-10"),
+                .default = NA
+            ),
+            budget_round = if_else(essround %in% c(3:7, 11), 1 ,0)
+        )
+
+
+df_ess <- 
+    df_ess |>
+        mutate(
+            xmas_daysafter = if_else(essround %in% c(3, 4, 5, 6, 7, 11), as.Date(ess_day, format = "%m-%d") - as.Date("12-25", format = "%m-%d"), NA
+            )
+        )
+
+### Add flag if interview was conducted before DSP 2017 campaign on welfare 'cheaters'
+
+
+dsp_day <- "2017-04-17"
+
+df_ess <- 
+    df_ess |> 
+        mutate(dsp_before = if_else(ess_day < as.Date(dsp_day), 1, 0, missing = NA),
+                dsp_period = if_else(ess_day < as.Date(dsp_day), "Before", "After", missing = NA_character_)) |>
+        mutate(dsp_daysafter = ess_day - as.Date(dsp_day))
+
+
+
+### Add flag if interview was conducted before 2023 Dublin riots
+
+riot_day <- "2023-11-23"
+
+df_ess <- 
+    df_ess |> 
+        mutate(riot_before = if_else(ess_day < as.Date(riot_day), 1, 0, missing = NA),
+                riot_period = if_else(ess_day < as.Date(riot_day), "Before", "After", missing = NA)) |>
+        mutate(riot_daysafter = ess_day - as.Date(riot_day))
+
+
+### Social class
+# Create [Oesch social class schema](https://people.unil.ch/danieloesch/scripts/) from relevant columns in the dataset.
+
+source("data/raw/ess/Oesch_SocialClass.R")
+
+
+### Exporting
+
+# Exporting dataset with minimal set of variables.
+
+ess_vars <- c(
+    "cntry",
+    "idno",
+    "essround",
+    "inwtm",
+    "nwspol",
+    "tvpol",
+    "rdpol",
+    "bennent",
+    "basinc",
+    "lbenent",
+    "uentrjb",
+    "wrkprbf",
+    "essround",
+    "ess_month",
+    "ess_day",
+    "cso_unemp",
+    "xmas_daysafter",
+    "dsp_daysafter",
+    "dsp_period",
+    "dsp_before",
+    "riot_daysafter",
+    "riot_period",
+    "riot_before",
+    "start_year",
+    "budget_daysafter",
+    "budget_round",
+    "pspwght",
+    "anweight",
+    "agea",
+    "gndr",
+    "gincdif",
+    "lrscale",
+    "ctzcntr",
+    "brncntr",
+    "yrbrn",
+    "isco08",
+    "isco08p",
+    "emplrel",
+    "emplno",
+    "emprelp",
+    "iscoco",
+    "iscocop",
+    "emplnop",
+    "mnactic",
+    "eduyrs",
+    "eisced",
+    "edulvla",
+    "hincfel",
+    "hinctnta",
+    "gincdif_inv",
+    "ess_month",
+    "cso_unemp",
+    "class5",
+    "class8",
+    "class16",
+    "brnocnt",
+    "btminfr",
+    "topinfr",
+    "stfgov",
+    "trstplt",
+    "nmnybsc",
+    "smdfslv",
+    "dfincac",
+    "gvcldcr",
+    "gvslvol",
+    "gvslvue",
+    "imsclbn",
+    "sbeqsoc",
+    "sblazy",
+    "sblwcoa",
+    "sbprvpv",
+    "sbstrec",
+    "sbbsntx",
+    "uemplwk",
+    "gvhanc19",
+    "respc19",
+    "hapljc19",
+    "hapfuc19",
+    "hapfoc19",
+    "hapirc19",
+    "hapwrc19",
+    "hapnoc19"
+)
+
+df_ess <- df_ess |> select(all_of(ess_vars))
+
+write_dta(df_ess, paste0("data/processed/ESS_v", format(Sys.Date(), "%m%d"),".dta"))
+
+## Voter Study (VS - European Elections Survey)
+
+### Importing
+
+# Data downloaded from the GESIS [website](https://www.gesis.org/en/services/finding-and-accessing-data/international-survey-programs/european-election-studies).
+# Import individual files
+
+vs_14 <- read_dta("./data/raw/vs/ZA5160_v4-1-0.dta")
+vs_19 <- read_dta("./data/raw/vs/ZA7581_v2-0-1.dta")
+vs_24 <- read_dta ("./data/raw/vs/ZA8868_v1-0-0.dta")
+
+### Combining files 
+# The surveys from 2014, 2019 and 2024 are available in three different files. The following code renames the main columns to 
+
+vs_vars <- c("cntry", "idno", "agea", "gndr", "redist", "weight", "study")
+
+vs_14 <- 
+    vs_14 |>
+    mutate(
+        study = "EES14",
+        cntry = b,
+        idno = respid,
+        agea = vd11,
+        gndr = as_factor(d10),
+        redist = qpp17_2 -1, # see coding (0 on quest is = to 1 in dataset)
+        weight = wex
+    ) |> 
+    select(all_of(vs_vars)) 
+
+vs_19 <- 
+    vs_19 |> 
+    mutate(
+        study = "EES19", 
+        agea = 2019 - D4_1,
+        cntry = hCountry,
+        idno = respid,
+        gndr = as_factor(D3),
+        redist = Q14_2,
+        weight = WGT1
+    
+    ) |> 
+    select(all_of(vs_vars)) 
+
+vs_24 <- 
+    vs_24 |> 
+    mutate(
+        study = "EES24",
+        cntry = country,
+        idno = resp_id,
+        agea = d4_age,
+        gndr = as_factor(d3),
+        redist = q12_2,
+        weight = Weight2
+    
+    ) |> 
+    select(all_of(vs_vars)) 
+
+
+# The following code combines these three different files into one cumulative dataset.
+vs_all <- bind_rows(vs_14, vs_19, vs_24)
+
+### Missing values for main outcome
+# Assigning common NA code to all non-valid observations. 
+vs_all$redist <- if_else(vs_all$redist < -1 | vs_all$redist > 11, NA, vs_all$redist)
+
+
+### Invert scale of main outcome
+# Assigning common NA code to all non-valid observations. 
+vs_all$redist_inv <- 10 - vs_all$redist
+# vs_all |>  count(redist, redist_inv)
+
+### Select Ireland
+# Creating dataset with observation from Ireland only. 
+vs_ie  <- vs_all |> filter(cntry == 8)
+
+
+### Exporting
+
+write_dta(vs_ie, paste0("data/processed/VS_v", format(Sys.Date(), "%m%d"), ".dta"))
+
+write_dta(vs_all, paste0("data/processed/VSEU_v", format(Sys.Date(), "%m%d"), ".dta"))
