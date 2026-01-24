@@ -168,6 +168,7 @@ ess_vars <- c(
     "nwspol",
     "tvpol",
     "rdpol",
+    "ppltrst",
     "bennent",
     "basinc",
     "lbenent",
