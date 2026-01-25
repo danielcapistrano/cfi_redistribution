@@ -1,0 +1,19 @@
+project:
+  type: website
+  output-dir: ../docs
+website:
+  title: ""
+  favicon: "img/favicon.png"
+  page-navigation: true
+  navbar:
+    background: "#005d80ff"
+    foreground: "white"
+    logo: "img/esri_wbg.png"
+    left:
+      - href: index.qmd
+        text: Home
+      - href: https://www.esri.ie
+        text: Full report
+    tools:
+      - icon: github
+        href: https://github.com/danielcapistrano/cfi_redistribution
