@@ -1,0 +1,146 @@
+
+
+/*-- scss:rules --*/
+
+#quarto-document-content {
+  // font-size: 18pt;
+  margin-bottom: 20vh;
+  padding-bottom: 10vh;
+  z-index: 1;
+}
+
+.small {
+  font-size: 0.75em;
+}
+
+.big {
+  font-size: 1.75em;
+}
+
+.giant {
+  font-size: 3em;
+}
+
+/*-- highlight animation --*/
+
+mark {
+  -webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
+          animation: 1.5s highlight 1.5s 1 normal forwards;
+  background-color: none;
+  background: linear-gradient(90deg, #efeb14e0 50%, rgba(255, 255, 255, 0) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+}
+
+@-webkit-keyframes highlight {
+  to {
+    background-position: 0 0;
+  }
+}
+
+@keyframes highlight {
+  to {
+    background-position: 0 0;
+  }
+}
+
+
+/*-- Closeread config --*/
+
+body, section, header {
+  background-color: white !important;
+}
+
+
+.cr-section {
+  background-color: transparent !important;
+}
+
+.cr-section .sticky-col {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.cr-section.sidebar-left .sticky-col {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.cr-section.sidebar-left .narrative-col {
+  background-color: transparent;
+  min-width: 40svw;
+  padding-left: 80px;
+}
+
+
+.cr-section.overlay-center .narrative-col .narrative {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  text-align: center;
+  min-width: 50svw;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.cr-section.overlay-center .narrative-col .trigger .narrative {
+  padding: 0em;
+}
+
+.cr-section.overlay-center .narrative-col .trigger .narrative p {
+  padding: 1% !important;
+}
+
+
+/* mobile sizing (bootstrap: xs) is always overlay-center */
+@media (max-width: 576px) {
+  #quarto-document-content h1 {
+    font-size: 2.5em;
+    line-height: 1;
+  }
+
+  .cr-section.sidebar-left .narrative-col,
+  .cr-section.sidebar-right .narrative-col,
+  .cr-section.overlay-left .narrative-col,
+  .cr-section.overlay-right .narrative-col,
+  .cr-section.overlay-center .narrative-col {
+    background-color: transparent;
+  }
+
+  .cr-section.sidebar-left .narrative-col .narrative > *,
+  .cr-section.sidebar-right .narrative-col .narrative > *,
+  .cr-section.overlay-left .narrative-col .narrative > *,
+  .cr-section.overlay-right .narrative-col .narrative > *,
+  .cr-section.overlay-center .narrative-col .narrative > * {
+    background-color: rgba(255, 255, 255, .9);
+    padding: 5px;
+    color: black;
+    font-weight: 200;
+    font-size: 0.8rem;
+    text-align: center;
+    min-width: 50svw;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .cr-section .narrative-col .trigger .narrative {
+    padding: 0em;
+  }
+
+  #info p {
+    font-size: 0.8rem;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .tbl-smaller th, td, tr, tbody {
+    font-size: 0.7rem !important;
+  }
+
+  .tbl-note {
+    font-size: 0.7rem;
+  }
+}

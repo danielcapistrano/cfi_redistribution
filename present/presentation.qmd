@@ -3,7 +3,7 @@ title: "Public support for welfare and redistributive policies in Ireland"
 author: "Daniel Capistrano, Bertrand Maître and Helen Russell"
 institute: ""
 title-slide-attributes:
-    data-background-image: img/pres_cover.png
+    data-background-image: ../img/pres_cover.png
     data-background-size: contain
     data-background-position: bottom
 subtitle: ""
@@ -13,10 +13,10 @@ from: markdown+emoji
 format: 
   revealjs:
     menu: false
-    theme: _assets/slides.scss
+    theme: ../_assets/slides.scss
     incremental: true
     slide-number: false
-    logo: img/logo_esri.png
+    logo: ../img/logo_esri.png
     transition: fade
     mouse-wheel: false    
     background-transition: fade
@@ -32,7 +32,7 @@ execute:
   eval: true
   cache: true
   echo: false
-bibliography: _assets/CFI_Redistribution.bib
+bibliography: ../_assets/CFI_Redistribution.bib
 ---
 
 # Key findings {.inverted}

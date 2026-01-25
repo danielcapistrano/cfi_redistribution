@@ -1,4 +1,4 @@
-source("1_SetupImport.R")
+source("paper/1_SetupImport.R")
 
 
 ##############################################################################################
@@ -337,7 +337,7 @@ fig_c4_dsp_model <-
             legend.position = "bottom"
             )
 
-save_output(fig_c4_dsp_model, w = 5.5, h = 5.5)
+save_output(fig_c4_dsp_model, w = 5.5, h = 5)
 
 
 # # Checking difference in midpoint in the control group
@@ -482,7 +482,7 @@ fig_c4_budget_model <-
             legend.position = "bottom"
             )
 
-save_output(fig_c4_budget_model, w = 6, h = 4)
+save_output(fig_c4_budget_model, w = 5.5, h = 4)
 
 ##############################################################################################
 #| FIGURE 4.10: "Proportion of support for redistribution by social class and personal impact of the pandemic, Ireland, 2021"

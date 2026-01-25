@@ -17,7 +17,7 @@ fig_c3_deservingness <-
         mutate(Group = ordered(Group, levels = c("gvslvue", "gvcldcr", "gvslvol"))) |> 
         mutate(Group = case_match(Group, "gvcldcr" ~ "Working parents", "gvslvol" ~ "Old", "gvslvue" ~ "Unemployed")) |> 
         ggplot(aes(y = reorder(country, -mean), x = mean, xmin = mean - 1.96*se, xmax = mean + 1.96*se,  group = Group, color = Group)) +
-        geom_pointrange(size = 0.2) +
+        geom_pointrange(size = 0.4) +
         scale_color_manual(values = c("#f26a4c", "#1fbec6", "#396065"), breaks = c("Unemployed", "Working parents", "Old"))+
         theme_classic() +
         labs(
@@ -31,7 +31,7 @@ fig_c3_deservingness <-
             axis.text.y = element_text(size = 12)
         )
 
-save_output(fig_c3_deservingness, h=5.5, w=5.5)
+save_output(fig_c3_deservingness, h=5, w=5.5)
 
 ##############################################################################################
 #FIGURE 3.2: "Mean values for deservingness of government support by group, Ireland, 2016"

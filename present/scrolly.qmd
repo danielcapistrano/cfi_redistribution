@@ -1,41 +1,92 @@
 ---
 title: Narrow the gap
+subtitle: Public support for welfare and redistributive policies in Ireland
+author:
+  - name: Daniel Capistrano
+    orcid: https://orcid.org/0000-0002-8157-5564
+  - name: Bertrand Maître
+  - name: Helen Russel
+    orcid: https://orcid.org/0000-0001-6376-2668
+date: 18 Feb 2026
 format:
   closeread-html:
+    title-block-banner: "white"
+    title-block-banner-color: "#223451"
+    theme: lux
+    fontsize: 1.4rem
+    # lightbox: true
     css: _assets/scrolly.scss
     fig-format: svg
+    code-tools: false
     toc: false
+    bibliography: _assets/CFI_Redistribution.bib
 ---
 
 
-Public support for welfare and redistributive policies in Ireland
 
-# {.page-columns .page-full}
+::: {.column-screen}
+![](./img/illu_header.png)
+:::
 
+## Why narrow the gap?
 
-## Why narrow the gap? 
-
-Many vulnerable individuals and families in Ireland are struggling to make ends meet and are falling into poverty. Given the limits to government finances and the competing demands for funding social welfare in Ireland, it is crucial to have a better understanding of the public support to State actions designed to reduce inequalities and provide welfare to all.
+Many vulnerable individuals and families in Ireland are struggling to make ends meet and are falling into poverty [@roantree_poverty_2025]. Because government resources are limited and there are many competing demands on social welfare funding, it is crucial to understand ['who']{.mark} supports State efforts to reduce income inequalities and to provide welfare, as well as examine ['when']{.mark} and ['why']{.mark} they support these efforts.
 
 ## Who supports redistribution?
 
-:::{.cr-section}
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{#cr-prop1}
+![](img/illu_support1.png){width="70%" fig-align="center"}
+:::
+
+:::{#cr-prop2}
+![](img/illu_support2.png){width="70%" fig-align="center"}
+:::
+
+:::{#cr-map}
+![](../output/fig_c2_eumap.svg)
+:::
 
 
-Three in every four Irish residents agree that the government should reduce differences in income.
+@cr-prop1  
+
+@cr-prop2 According to data from the [Euorpean Social Survey](www.europeansocialsurvey.org), three in every four Irish residents agree that the "*government should reduce differences in income*".  
+
+
+[@cr-map]{pan-to="15%,30%" scale-by="3"} About 76 per cent  of respondents indicated that they either ‘agree’ (45%) or ‘agree strongly’ (31%) with this statement.
+
+[@cr-map]{scale-by="1.1"} This proportion is slightly higher than the European average (71%) and the ones from other northern European countries.
+
+
+:::
+
+
+:::{.column-page style="background-color: #005d80ff; color: white;"}
+
+Both female respondents and those who place themselves on the left of the left-right political scale are more likely to support income redistribution, even when controlling for other factors such as age and education. 
+
+Overall, the examination of individual factors associated with support for income redistribution in Ireland goes in the same direction of the literature pointing out the role of material interests (financial situation) and perspectives of upward mobility (social class) [@bonnet_what_2024].
+
+:::
+
+
+
+
+:::{.cr-section layout="sidebar-right"}
+
+
+:::{#cr-sex}
+![](../output/fig_c2_sex.svg)
+:::
+
+[@cr-sex] Three in every four Irish residents agree that the government should reduce differences in income.
 This proportion is slightly higher than the European average (71%) and the proportions in other northern European countries ([main report]()). 
 
-@cr-features
-
-
-:::{#cr-features}
-1. Highlighting
-2. Zooming
-3. Panning
 :::
-
-
-:::
-
 
 ## Who supports redistribution?
+
+
+# References

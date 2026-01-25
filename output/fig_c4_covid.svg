@@ -156,7 +156,7 @@
 <text x='70.71' y='339.90' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>reduced</text>
 <text x='131.11' y='322.62' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='30.25px' lengthAdjust='spacingAndGlyphs'>Lost job/</text>
 <text x='131.11' y='331.26' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='48.95px' lengthAdjust='spacingAndGlyphs'>Unpaid leave/</text>
-<text x='131.11' y='339.90' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='40.52px' lengthAdjust='spacingAndGlyphs'>Forloughed</text>
+<text x='131.11' y='339.90' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='40.52px' lengthAdjust='spacingAndGlyphs'>Furloughed</text>
 <text x='191.52' y='322.62' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='27.59px' lengthAdjust='spacingAndGlyphs'>Nothing</text>
 <polyline points='233.24,311.96 426.52,311.96 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='269.48,314.70 269.48,311.96 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
@@ -167,7 +167,7 @@
 <text x='269.48' y='339.90' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>reduced</text>
 <text x='329.88' y='322.62' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='30.25px' lengthAdjust='spacingAndGlyphs'>Lost job/</text>
 <text x='329.88' y='331.26' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='48.95px' lengthAdjust='spacingAndGlyphs'>Unpaid leave/</text>
-<text x='329.88' y='339.90' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='40.52px' lengthAdjust='spacingAndGlyphs'>Forloughed</text>
+<text x='329.88' y='339.90' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='40.52px' lengthAdjust='spacingAndGlyphs'>Furloughed</text>
 <text x='390.28' y='322.62' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='27.59px' lengthAdjust='spacingAndGlyphs'>Nothing</text>
 <polyline points='34.47,155.98 34.47,22.40 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <text x='29.54' y='153.49' text-anchor='end' style='font-size: 10.00px;fill: #4D4D4D; font-family: "Arial";' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>0</text>
