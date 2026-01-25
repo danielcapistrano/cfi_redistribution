@@ -1,28 +1,33 @@
 ---
 title: Narrow the gap
 subtitle: Public support for welfare and redistributive policies in Ireland
-# author:
-#   - name: Daniel Capistrano
-#     orcid: https://orcid.org/0000-0002-8157-5564
-#   - name: Bertrand Maître
-#   - name: Helen Russel
-#     orcid: https://orcid.org/0000-0001-6376-2668
-# date: 18 Feb 2026
+author:
+  - name: Daniel Capistrano
+    orcid: https://orcid.org/0000-0002-8157-5564
+  - name: Bertrand Maître
+  - name: Helen Russel
+    orcid: https://orcid.org/0000-0001-6376-2668
+date: 18 Feb 2026
 format:
   closeread-html:
-    # title-block-banner: "white"
-    # title-block-banner-color: "#223451"
-    theme: lux
+    title-block-banner: "white"
+    title-block-banner-color: "#223451"
+    theme: materia
     fontsize: 1.4rem
+    remove-header-space: true
     # lightbox: true
-    css: _assets/scrolly.scss
+    cr-style:
+      narrative-background-color-sidebar: "#005d80ff"
+      narrative-text-color-sidebar: white
+      narrative-background-color-overlay: "rgba(255, 255, 255, .8)"
+      narrative-text-color-overlay: black
+      section-background-color: white
+      css: _assets/scrolly.scss
     fig-format: svg
     code-tools: false
     toc: false
     bibliography: _assets/CFI_Redistribution.bib
 ---
-
-
 
 ::: {.column-screen}
 ![](./img/illu_header.png)
@@ -46,11 +51,11 @@ Many vulnerable individuals and families in Ireland are struggling to make ends 
 :::
 
 :::{#cr-map}
-![](../output/fig_c2_eumap.svg)
+![](img/fig_c2_eumap.svg)
 :::
 
 
-@cr-prop1  
+@cr-prop1
 
 @cr-prop2 According to data from the [Euorpean Social Survey](www.europeansocialsurvey.org), three in every four Irish residents agree that the "*government should reduce differences in income*".  
 
@@ -62,31 +67,138 @@ Many vulnerable individuals and families in Ireland are struggling to make ends 
 
 :::
 
-
-:::{.column-page style="background-color: #005d80ff; color: white;"}
+## 
 
 Both female respondents and those who place themselves on the left of the left-right political scale are more likely to support income redistribution, even when controlling for other factors such as age and education. 
 
 Overall, the examination of individual factors associated with support for income redistribution in Ireland goes in the same direction of the literature pointing out the role of material interests (financial situation) and perspectives of upward mobility (social class) [@bonnet_what_2024].
 
-:::
-
-
-
 
 :::{.cr-section layout="sidebar-right"}
 
 
-:::{#cr-sex}
-![](../output/fig_c2_sex.svg)
+:::{#cr-class}
+![](img/fig_c2_class.svg)
 :::
 
-[@cr-sex] Three in every four Irish residents agree that the government should reduce differences in income.
-This proportion is slightly higher than the European average (71%) and the proportions in other northern European countries ([main report]()). 
+
+
+@cr-class
+
+
+The circles indicate the proportion who support redistribution within each group. [@cr-class]{pan-to="0%,60%" scale-by="1.6"} The data indicate that higher support is found among those in lower income quintiles and whose financial situation is ‘very difficult’.
+
+[@cr-class]{pan-to="0%,0%" scale-by="1.5"} Looking at social class, both ‘skilled’ manual and ‘unskilled’ workers show higher levels of agreement with the government reducing income differences, whereas ‘small business owners’ and the ‘service class’, which includes managers and professionals, show lower levels of agreement. 
+
+
+@cr-class
+
 
 :::
 
-## Who supports redistribution?
+## What do people think about welfare policies?
+
+::: {.column-screen}
+![](./img/illu_half.png)
+:::
+
+
+As discussed in the previous section, a few socio-demographic characteristics such as gender and social class may influence people’s views on redistribution. The connection between these two factors, social position and redistributive preferences, tend to be explained by self-interest, meaning that people may support redistribution if they believe that it would improve their own material conditions and lives. However, a large body of research shows that other factors related to people’s views on fairness are also relevant to understand overall support to welfare policies [@cavaille_fair_2025].
+
+For instance, the ESS included questions in relation to beliefs about the consequences of social benefits and services. 
+
+:::{.callout-note appearance="simple"}
+
+### Participants were asked to indicate to what extent they agree that social benefits and services in [country]…
+
+‘… cost businesses too much in taxes/charges’  
+‘… lead to a more equal society’  
+‘… make people lazy’  
+‘… make people less willing care for one another’  
+‘… prevent widespread poverty’  
+‘… place too great a strain on the economy’ 
+
+:::
+
+Despite a decrease between 2009 and 2016, the belief that [‘social benefits prevent widespread poverty’]{.mark}  was the most prevalent across all these statements. On the other hand, Ireland (58%) had the third highest proportion of respondents agreeing that ‘social benefits make people lazy’, behind Portugal (63%) and Poland (60%). This proportion is significantly lower in countries such as Iceland (24%), Sweden (35%), and Germany (43%). Finally, as expected, those who strongly agree that ‘social benefits make people lazy’ are also less likely to support income redistribution (68%), whereas those who strongly disagree are more supportive of redistribution (84%).
+
+![](./img/fig_c3_benefits.svg)
+
+
+
+
+:::{.cr-section layout="sidebar-left"}
+
+
+:::{#cr-fair}
+![](img/fig_c3_fairness.svg)
+:::
+
+In a special module conducted in 2018, the ESS asked respondents to assess how fair are the incomes received by the top and bottom deciles of the country’s income distribution.
+
+@cr-fair
+
+For most countries, the more unfair the income of the top decile is perceived, the higher the odds of supporting redistribution. 
+
+
+[@cr-fair]{pan-to="70%,30%" scale-by="2"} This relationship is particularly strong in [Norway]{.mark}, for instance, where each unit in the unfairness scale of the top decile is associated with 51 per cent higher odds of supporting redistribution. In addition, if a respondent perceives the bottom decile as unfairly too low, the odds of supporting redistribution are also higher. 
+
+
+[@cr-fair]{pan-to="0%,10%" scale-by="2.5"} In [Poland]{.mark}, the perceived unfairness of the bottom income decile is a stronger predictor of support compared to the unfairness of the top decile. 
+
+
+[@cr-fair]{pan-to="-25%,10%" scale-by="2.5"} In Ireland, both variables have weaker but nonetheless significant effects, meaning that view about unfairnes of both the rich and the poor is associated with support for redistribution.
+
+
+
+:::
+
+## Has support for redistribution changed over time?
+
+The period covered by the research from 2002 to 2024 encapsulates two significant societal shocks, the financial crisis and recession starting in 2008 and the pandemic starting in 2020. Both shocks resulted in significant changes in the labour market, in the reliance on social transfers and especially in the pandemic, changes in the role of the State in people’s everyday lives. Here we consider how support has changed over the past 20 years and whether these major shocks influence public opinion on redistribution. There are also more routine political events that occured over the period that might be expected to influence attitudes. 
+
+Overall, there is a stable agreement over time that the ‘Government should reduce income differences’. Rounds 5 to 7 
+(2009–2012) as well as 10 to 11 (2022–2024) show a slightly higher agreement compared to other rounds and the European average. This overall trajectory in Ireland is similar to Portugal and differs substantially from the British and Dutch trajectories. The increase during the years of economic recession (when both Ireland and Portugal were severely affected) suggests a relationship between macro-economic indicators and support for redistribution.
+
+However, the recovery from the economic recession initiated a different trajectory for different social classes despite the overall increase during the recession. 
+
+
+:::{.cr-section layout="sidebar-left"}
+
+
+:::{#cr-timeclass}
+![](img/fig_c4_time_class.svg)
+:::
+
+
+@cr-timeclass
+
+[@cr-timeclass]{pan-to="-15%,0%" scale-by="1.5"} Respondents in the [service classes]{.mark} had an overall reduction in the level of support for redistribution since the peak of the economic recession. 
+
+
+[@cr-timeclass]{pan-to="-15%,30%" scale-by="1.5"} On the other hand, respondents grouped into the [working classes]{.mark} have a trajectory of stable or increasing support since then. 
+
+@cr-timeclass In fact, 85 per cent of unskilled workers indicated in the latest round that the government should reduce differences in income, which is the highest proportion in the time series since 2002. 
+
+
+
+:::
+
+##
+
+During the 2016–2017 data collection, the Irish government launched a campaign against welfare fraud. With the slogan ‘Welfare Cheats Cheat Us All’, the Department of Social Protection funded a widely publicised media campaign with the intent of increasing fraud reporting and changing public perceptions of welfare fraud (Devereux and Power, 2019). The campaign ran from April to July 2017. 
+The majority (73%) of the respondents had been interviewed by then and the remaining interviews were conducted during the period of the campaign. After analysing the content of the campaign and reporting statistics, Power, Devereux and Ryan (2022) show that it had not affected the overall number of fraud reports, but may have impacted the public legitimacy of welfare recipients in general.
+Using data from the ESS, we assessed the impact of this campaign on welfare attitudes in Ireland. Figure 4.6 depicts the seven-day exponential moving average  of three variables in the 30-day time window around the launch of the campaign on 17 April. For two of three selected statements related to welfare attitudes, 
+the visual examination suggests a change of trajectory after the beginning 
+of the campaign. The variables were used in their original format 
+(5-point agreement scale) to avoid reduction in statistical power, considering 
+the already reduced number of observations with a narrow time bandwidth.
+
+
+::: {.column-page-left}
+![](./img/dsp_bus.jpg)
+:::
+
 
 
 # References

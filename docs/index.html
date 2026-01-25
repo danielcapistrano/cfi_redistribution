@@ -6,6 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Daniel Capistrano">
+<meta name="author" content="Bertrand Maître">
+<meta name="author" content="Helen Russel">
+<meta name="dcterms.date" content="2026-02-18">
 
 <title>Narrow the gap</title>
 <style>
@@ -61,7 +65,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-065e2befc8f9086c127336e126c24c75.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6e029b8fd8f3f77e96072edeeed1ec3f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/intersection-observer-polyfill-1.0.0/intersection-observer.js"></script>
 <script src="site_libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
 <script src="site_libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
@@ -92,18 +96,34 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #223451;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #223451;
+background: white;
+      }
+</style>
 <meta cr-debug-mode="false">
-<meta cr-remove-header-space="false">
+<meta cr-remove-header-space="true">
 
 
 <link rel="stylesheet" href="site_libs/quarto-contrib/quarto-project/qmd-lab/closeread/closeread.css">
-<link rel="stylesheet" href="_assets/scrolly.scss">
 </head>
 
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -124,7 +144,7 @@ div.csl-indent {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://www.esri.ie"> 
-<span class="menu-text">Report</span></a>
+<span class="menu-text">Full report</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -135,31 +155,57 @@ div.csl-indent {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Narrow the gap</h1>
+            <p class="subtitle lead">Public support for welfare and redistributive policies in Ireland</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-body">
+
+      <div>
+      <div class="quarto-title-meta-heading">Authors</div>
+      <div class="quarto-title-meta-contents">
+               <p>Daniel Capistrano <a href="https://orcid.org/https://orcid.org/0000-0002-8157-5564" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+               <p>Bertrand Maître </p>
+               <p>Helen Russel <a href="https://orcid.org/https://orcid.org/0000-0001-6376-2668" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 18, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content page-columns page-full column-body" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Narrow the gap</h1>
-<p class="subtitle lead">Public support for welfare and redistributive policies in Ireland</p>
-</div>
-
-
-
-<div class="quarto-title-meta column-body">
-
+<main class="content quarto-banner-title-block page-columns page-full column-body" id="quarto-document-content">
+      <!-- user-provided yaml closeread style options -->
+      <style>
+        :root {
+          --cr-narrative-text-color-sidebar: white;
+--cr-section-background-color: white;
+--cr-narrative-text-color-overlay: black;
+--cr-narrative-background-color-overlay: rgba(255, 255, 255, .8);
+--cr-narrative-background-color-sidebar: #005d80ff;
+        }
+      </style>
     
-  
-    
-  </div>
-  
 
 
-</header>
+
 
 
 <div class="column-screen">
@@ -169,7 +215,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="why-narrow-the-gap">Why narrow the gap?</h2>
 <p>Many vulnerable individuals and families in Ireland are struggling to make ends meet and are falling into poverty <span class="citation" data-cites="roantree_poverty_2025">(<a href="#ref-roantree_poverty_2025" role="doc-biblioref">Roantree et al. 2025</a>)</span>. Because government resources are limited and there are many competing demands on social welfare funding, it is crucial to understand <mark>‘who’</mark> supports State efforts to reduce income inequalities and to provide welfare, as well as examine <mark>‘when’</mark> and <mark>‘why’</mark> they support these efforts.</p>
 </section>
-<section id="who-supports-redistribution" class="level2 page-columns page-full">
+<section id="who-supports-redistribution" class="level2">
 <h2 class="anchored" data-anchor-id="who-supports-redistribution">Who supports redistribution?</h2>
 <div class="cr-section cr-column-screen sidebar-left">
 <div class="narrative-col">
@@ -183,7 +229,7 @@ div.csl-indent {
 <p>According to data from the <a href="www.europeansocialsurvey.org">Euorpean Social Survey</a>, three in every four Irish residents agree that the “<em>government should reduce differences in income</em>”.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-pan-to="15%,30%" data-scale-by="3" data-focus-on="cr-map">
+<div class="trigger new-trigger" data-scale-by="3" data-pan-to="15%,30%" data-focus-on="cr-map">
 <div class="narrative">
 <p>About 76 per cent of respondents indicated that they either ‘agree’ (45%) or ‘agree strongly’ (31%) with this statement.</p>
 </div>
@@ -211,34 +257,162 @@ div.csl-indent {
 </div>
 </div>
 <div id="cr-map" class="sticky">
-<p><img src="../output/fig_c2_eumap.svg" class="img-fluid"></p>
-</div>
-</div>
-</div>
-</div>
-<div class="column-page" style="background-color: #005d80ff; color: white;">
-<p>Both female respondents and those who place themselves on the left of the left-right political scale are more likely to support income redistribution, even when controlling for other factors such as age and education.</p>
-<p>Overall, the examination of individual factors associated with support for income redistribution in Ireland goes in the same direction of the literature pointing out the role of material interests (financial situation) and perspectives of upward mobility (social class) <span class="citation" data-cites="bonnet_what_2024">(<a href="#ref-bonnet_what_2024" role="doc-biblioref">Bonnet et al. 2024</a>)</span>.</p>
-</div>
-<div class="cr-section cr-column-screen sidebar-right">
-<div class="narrative-col">
-<div class="trigger new-trigger" data-focus-on="cr-sex">
-<div class="narrative">
-<p>Three in every four Irish residents agree that the government should reduce differences in income. This proportion is slightly higher than the European average (71%) and the proportions in other northern European countries (<a href="">main report</a>).</p>
-</div>
-</div>
-</div>
-<div class="sticky-col">
-<div class="sticky-col-stack">
-<div id="cr-sex" class="sticky">
-<p><img src="../output/fig_c2_sex.svg" class="img-fluid"></p>
+<p><img src="img/fig_c2_eumap.svg" class="img-fluid"></p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="who-supports-redistribution-1" class="level2">
-<h2 class="anchored" data-anchor-id="who-supports-redistribution-1">Who supports redistribution?</h2>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p>Both female respondents and those who place themselves on the left of the left-right political scale are more likely to support income redistribution, even when controlling for other factors such as age and education.</p>
+<p>Overall, the examination of individual factors associated with support for income redistribution in Ireland goes in the same direction of the literature pointing out the role of material interests (financial situation) and perspectives of upward mobility (social class) <span class="citation" data-cites="bonnet_what_2024">(<a href="#ref-bonnet_what_2024" role="doc-biblioref">Bonnet et al. 2024</a>)</span>.</p>
+<div class="cr-section cr-column-screen sidebar-right">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-class">
+<div class="narrative">
+
+</div>
+</div>
+<div class="trigger new-trigger" data-scale-by="1.6" data-pan-to="0%,60%" data-focus-on="cr-class">
+<div class="narrative">
+<p>The circles indicate the proportion who support redistribution within each group.The data indicate that higher support is found among those in lower income quintiles and whose financial situation is ‘very difficult’.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-scale-by="1.5" data-pan-to="0%,0%" data-focus-on="cr-class">
+<div class="narrative">
+<p>Looking at social class, both ‘skilled’ manual and ‘unskilled’ workers show higher levels of agreement with the government reducing income differences, whereas ‘small business owners’ and the ‘service class’, which includes managers and professionals, show lower levels of agreement.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-class">
+<div class="narrative">
+
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-class" class="sticky">
+<p><img src="img/fig_c2_class.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-do-people-think-about-welfare-policies" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-do-people-think-about-welfare-policies">What do people think about welfare policies?</h2>
+<div class="column-screen">
+<p><img src="./img/illu_half.png" class="img-fluid"></p>
+</div>
+<div data-focus-on="cavaille_fair_2025">
+<p>As discussed in the previous section, a few socio-demographic characteristics such as gender and social class may influence people’s views on redistribution. The connection between these two factors, social position and redistributive preferences, tend to be explained by self-interest, meaning that people may support redistribution if they believe that it would improve their own material conditions and lives. However, a large body of research shows that other factors related to people’s views on fairness are also relevant to understand overall support to welfare policies</p>
+</div>
+<p>For instance, the ESS included questions in relation to beliefs about the consequences of social benefits and services.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Participants were asked to indicate to what extent they agree that social benefits and services in [country]…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>‘… cost businesses too much in taxes/charges’<br>
+‘… lead to a more equal society’<br>
+‘… make people lazy’<br>
+‘… make people less willing care for one another’<br>
+‘… prevent widespread poverty’<br>
+‘… place too great a strain on the economy’</p>
+</div>
+</div>
+<p>Despite a decrease between 2009 and 2016, the belief that <mark>‘social benefits prevent widespread poverty’</mark> was the most prevalent across all these statements. On the other hand, Ireland (58%) had the third highest proportion of respondents agreeing that ‘social benefits make people lazy’, behind Portugal (63%) and Poland (60%). This proportion is significantly lower in countries such as Iceland (24%), Sweden (35%), and Germany (43%). Finally, as expected, those who strongly agree that ‘social benefits make people lazy’ are also less likely to support income redistribution (68%), whereas those who strongly disagree are more supportive of redistribution (84%).</p>
+<p><img src="./img/fig_c3_benefits.svg" class="img-fluid"></p>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger">
+<div class="narrative">
+<p>In a special module conducted in 2018, the ESS asked respondents to assess how fair are the incomes received by the top and bottom deciles of the country’s income distribution.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-fair">
+<div class="narrative">
+
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>For most countries, the more unfair the income of the top decile is perceived, the higher the odds of supporting redistribution.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-scale-by="2" data-pan-to="70%,30%" data-focus-on="cr-fair">
+<div class="narrative">
+<p>This relationship is particularly strong in <mark>Norway</mark>, for instance, where each unit in the unfairness scale of the top decile is associated with 51 per cent higher odds of supporting redistribution. In addition, if a respondent perceives the bottom decile as unfairly too low, the odds of supporting redistribution are also higher.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-scale-by="2.5" data-pan-to="0%,10%" data-focus-on="cr-fair">
+<div class="narrative">
+<p>In <mark>Poland</mark>, the perceived unfairness of the bottom income decile is a stronger predictor of support compared to the unfairness of the top decile.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-scale-by="2.5" data-pan-to="-25%,10%" data-focus-on="cr-fair">
+<div class="narrative">
+<p>In Ireland, both variables have weaker but nonetheless significant effects, meaning that view about unfairnes of both the rich and the poor is associated with support for redistribution.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-fair" class="sticky">
+<p><img src="img/fig_c3_fairness.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="has-support-for-redistribution-changed-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="has-support-for-redistribution-changed-over-time">Has support for redistribution changed over time?</h2>
+<p>The period covered by the research from 2002 to 2024 encapsulates two significant societal shocks, the financial crisis and recession starting in 2008 and the pandemic starting in 2020. Both shocks resulted in significant changes in the labour market, in the reliance on social transfers and especially in the pandemic, changes in the role of the State in people’s everyday lives. Here we consider how support has changed over the past 20 years and whether these major shocks influence public opinion on redistribution. There are also more routine political events that occured over the period that might be expected to influence attitudes.</p>
+<p>Overall, there is a stable agreement over time that the ‘Government should reduce income differences’. Rounds 5 to 7 (2009–2012) as well as 10 to 11 (2022–2024) show a slightly higher agreement compared to other rounds and the European average. This overall trajectory in Ireland is similar to Portugal and differs substantially from the British and Dutch trajectories. The increase during the years of economic recession (when both Ireland and Portugal were severely affected) suggests a relationship between macro-economic indicators and support for redistribution.</p>
+<p>However, the recovery from the economic recession initiated a different trajectory for different social classes despite the overall increase during the recession.</p>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-timeclass">
+<div class="narrative">
+
+</div>
+</div>
+<div class="trigger new-trigger" data-scale-by="1.5" data-pan-to="-15%,0%" data-focus-on="cr-timeclass">
+<div class="narrative">
+<p>Respondents in the <mark>service classes</mark> had an overall reduction in the level of support for redistribution since the peak of the economic recession.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-scale-by="1.5" data-pan-to="-15%,30%" data-focus-on="cr-timeclass">
+<div class="narrative">
+<p>On the other hand, respondents grouped into the <mark>working classes</mark> have a trajectory of stable or increasing support since then.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-timeclass">
+<div class="narrative">
+<p>In fact, 85 per cent of unskilled workers indicated in the latest round that the government should reduce differences in income, which is the highest proportion in the time series since 2002.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-timeclass" class="sticky">
+<p><img src="img/fig_c4_time_class.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-1" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<p>During the 2016–2017 data collection, the Irish government launched a campaign against welfare fraud. With the slogan ‘Welfare Cheats Cheat Us All’, the Department of Social Protection funded a widely publicised media campaign with the intent of increasing fraud reporting and changing public perceptions of welfare fraud (Devereux and Power, 2019). The campaign ran from April to July 2017. The majority (73%) of the respondents had been interviewed by then and the remaining interviews were conducted during the period of the campaign. After analysing the content of the campaign and reporting statistics, Power, Devereux and Ryan (2022) show that it had not affected the overall number of fraud reports, but may have impacted the public legitimacy of welfare recipients in general. Using data from the ESS, we assessed the impact of this campaign on welfare attitudes in Ireland. Figure 4.6 depicts the seven-day exponential moving average of three variables in the 30-day time window around the launch of the campaign on 17 April. For two of three selected statements related to welfare attitudes, the visual examination suggests a change of trajectory after the beginning of the campaign. The variables were used in their original format (5-point agreement scale) to avoid reduction in statistical power, considering the already reduced number of observations with a narrow time bandwidth.</p>
+<div class="column-page-left">
+<p><img src="./img/dsp_bus.jpg" class="img-fluid"></p>
+</div>
 </section>
 <section id="references" class="level1">
 
