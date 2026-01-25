@@ -17,3 +17,6 @@ website:
     tools:
       - icon: github
         href: https://github.com/danielcapistrano/cfi_redistribution
+fotmat:
+  html:
+    css: _assets/scrolly.scss

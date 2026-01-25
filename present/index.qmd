@@ -122,8 +122,9 @@ For instance, the ESS included questions in relation to beliefs about the conseq
 
 Despite a decrease between 2009 and 2016, the belief that [‘social benefits prevent widespread poverty’]{.mark}  was the most prevalent across all these statements. On the other hand, Ireland (58%) had the third highest proportion of respondents agreeing that ‘social benefits make people lazy’, behind Portugal (63%) and Poland (60%). This proportion is significantly lower in countries such as Iceland (24%), Sweden (35%), and Germany (43%). Finally, as expected, those who strongly agree that ‘social benefits make people lazy’ are also less likely to support income redistribution (68%), whereas those who strongly disagree are more supportive of redistribution (84%).
 
+::: {.column-page-right}
 ![](./img/fig_c3_benefits.svg)
-
+:::
 
 
 
@@ -149,6 +150,7 @@ For most countries, the more unfair the income of the top decile is perceived, t
 
 [@cr-fair]{pan-to="-25%,10%" scale-by="2.5"} In Ireland, both variables have weaker but nonetheless significant effects, meaning that view about unfairnes of both the rich and the poor is associated with support for redistribution.
 
+@cr-fair
 
 
 :::

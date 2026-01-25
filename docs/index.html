@@ -195,11 +195,11 @@ background: white;
       <!-- user-provided yaml closeread style options -->
       <style>
         :root {
-          --cr-narrative-text-color-sidebar: white;
---cr-section-background-color: white;
+          --cr-narrative-background-color-overlay: rgba(255, 255, 255, .8);
 --cr-narrative-text-color-overlay: black;
---cr-narrative-background-color-overlay: rgba(255, 255, 255, .8);
 --cr-narrative-background-color-sidebar: #005d80ff;
+--cr-narrative-text-color-sidebar: white;
+--cr-section-background-color: white;
         }
       </style>
     
@@ -229,7 +229,7 @@ background: white;
 <p>According to data from the <a href="www.europeansocialsurvey.org">Euorpean Social Survey</a>, three in every four Irish residents agree that the “<em>government should reduce differences in income</em>”.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="3" data-pan-to="15%,30%" data-focus-on="cr-map">
+<div class="trigger new-trigger" data-scale-by="3" data-focus-on="cr-map" data-pan-to="15%,30%">
 <div class="narrative">
 <p>About 76 per cent of respondents indicated that they either ‘agree’ (45%) or ‘agree strongly’ (31%) with this statement.</p>
 </div>
@@ -274,12 +274,12 @@ background: white;
 
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1.6" data-pan-to="0%,60%" data-focus-on="cr-class">
+<div class="trigger new-trigger" data-scale-by="1.6" data-focus-on="cr-class" data-pan-to="0%,60%">
 <div class="narrative">
 <p>The circles indicate the proportion who support redistribution within each group.The data indicate that higher support is found among those in lower income quintiles and whose financial situation is ‘very difficult’.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1.5" data-pan-to="0%,0%" data-focus-on="cr-class">
+<div class="trigger new-trigger" data-scale-by="1.5" data-focus-on="cr-class" data-pan-to="0%,0%">
 <div class="narrative">
 <p>Looking at social class, both ‘skilled’ manual and ‘unskilled’ workers show higher levels of agreement with the government reducing income differences, whereas ‘small business owners’ and the ‘service class’, which includes managers and professionals, show lower levels of agreement.</p>
 </div>
@@ -327,7 +327,9 @@ background: white;
 </div>
 </div>
 <p>Despite a decrease between 2009 and 2016, the belief that <mark>‘social benefits prevent widespread poverty’</mark> was the most prevalent across all these statements. On the other hand, Ireland (58%) had the third highest proportion of respondents agreeing that ‘social benefits make people lazy’, behind Portugal (63%) and Poland (60%). This proportion is significantly lower in countries such as Iceland (24%), Sweden (35%), and Germany (43%). Finally, as expected, those who strongly agree that ‘social benefits make people lazy’ are also less likely to support income redistribution (68%), whereas those who strongly disagree are more supportive of redistribution (84%).</p>
+<div class="column-page-right">
 <p><img src="./img/fig_c3_benefits.svg" class="img-fluid"></p>
+</div>
 <div class="cr-section cr-column-screen sidebar-left">
 <div class="narrative-col">
 <div class="trigger">
@@ -345,19 +347,24 @@ background: white;
 <p>For most countries, the more unfair the income of the top decile is perceived, the higher the odds of supporting redistribution.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="2" data-pan-to="70%,30%" data-focus-on="cr-fair">
+<div class="trigger new-trigger" data-scale-by="2" data-focus-on="cr-fair" data-pan-to="70%,30%">
 <div class="narrative">
 <p>This relationship is particularly strong in <mark>Norway</mark>, for instance, where each unit in the unfairness scale of the top decile is associated with 51 per cent higher odds of supporting redistribution. In addition, if a respondent perceives the bottom decile as unfairly too low, the odds of supporting redistribution are also higher.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="2.5" data-pan-to="0%,10%" data-focus-on="cr-fair">
+<div class="trigger new-trigger" data-scale-by="2.5" data-focus-on="cr-fair" data-pan-to="0%,10%">
 <div class="narrative">
 <p>In <mark>Poland</mark>, the perceived unfairness of the bottom income decile is a stronger predictor of support compared to the unfairness of the top decile.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="2.5" data-pan-to="-25%,10%" data-focus-on="cr-fair">
+<div class="trigger new-trigger" data-scale-by="2.5" data-focus-on="cr-fair" data-pan-to="-25%,10%">
 <div class="narrative">
 <p>In Ireland, both variables have weaker but nonetheless significant effects, meaning that view about unfairnes of both the rich and the poor is associated with support for redistribution.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-fair">
+<div class="narrative">
+
 </div>
 </div>
 </div>
@@ -382,12 +389,12 @@ background: white;
 
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1.5" data-pan-to="-15%,0%" data-focus-on="cr-timeclass">
+<div class="trigger new-trigger" data-scale-by="1.5" data-focus-on="cr-timeclass" data-pan-to="-15%,0%">
 <div class="narrative">
 <p>Respondents in the <mark>service classes</mark> had an overall reduction in the level of support for redistribution since the peak of the economic recession.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1.5" data-pan-to="-15%,30%" data-focus-on="cr-timeclass">
+<div class="trigger new-trigger" data-scale-by="1.5" data-focus-on="cr-timeclass" data-pan-to="-15%,30%">
 <div class="narrative">
 <p>On the other hand, respondents grouped into the <mark>working classes</mark> have a trajectory of stable or increasing support since then.</p>
 </div>
