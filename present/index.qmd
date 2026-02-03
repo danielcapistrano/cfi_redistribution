@@ -1,6 +1,5 @@
 ---
-title: Narrow the gap
-subtitle: Public support for welfare and redistributive policies in Ireland
+title: Public support for welfare policies and reducing inequality in Ireland
 author:
   - name: Daniel Capistrano
     orcid: https://orcid.org/0000-0002-8157-5564
@@ -10,62 +9,147 @@ author:
 date: 18 Feb 2026
 format:
   closeread-html:
-    title-block-banner: "white"
-    title-block-banner-color: "#223451"
-    theme: materia
-    fontsize: 1.4rem
+    axe: true
+    title-block-banner: false
+    cap-location: top
+    page-layout: article
+    theme: cosmo
+    fontsize: 1.2rem
     remove-header-space: true
-    # lightbox: true
     cr-style:
-      narrative-background-color-sidebar: "#005d80ff"
-      narrative-text-color-sidebar: white
       narrative-background-color-overlay: "rgba(255, 255, 255, .8)"
-      narrative-text-color-overlay: black
+      narrative-text-color-overlay: grey90
       section-background-color: white
       css: _assets/scrolly.scss
-    fig-format: svg
+    #fig-format: svg
     code-tools: false
     toc: false
     bibliography: _assets/CFI_Redistribution.bib
+execute: 
+  echo: false
+  warning: false
 ---
+# Public support for welfare policies and reducing inequality in Ireland
 
-::: {.column-screen}
-![](./img/illu_header.png)
-:::
+```{r}
+library(ggiraph)
 
-## Why narrow the gap?
+setwd("../")
+source("paper/1_SetupImport.R")
+setwd("~/")
+
+```
 
 Many vulnerable individuals and families in Ireland are struggling to make ends meet and are falling into poverty [@roantree_poverty_2025]. Because government resources are limited and there are many competing demands on social welfare funding, it is crucial to understand ['who']{.mark} supports State efforts to reduce income inequalities and to provide welfare, as well as examine ['when']{.mark} and ['why']{.mark} they support these efforts.
 
-## Who supports redistribution?
+
+According to data from the [European Social Survey](www.europeansocialsurvey.org), three in every four Irish residents agree that the "*government should reduce differences in income*". This proportion is higher than the European average (71%) and has been relatively stable over time. 
 
 
-:::{.cr-section layout="sidebar-left"}
-
-:::{#cr-prop1}
-![](img/illu_support1.png){width="70%" fig-align="center"}
-:::
-
-:::{#cr-prop2}
-![](img/illu_support2.png){width="70%" fig-align="center"}
-:::
-
-:::{#cr-map}
-![](img/fig_c2_eumap.svg)
-:::
+```{r}
+#| fig-cap: "Proportion agreeing that the ‘Government should reduce income differences’, Ireland, 2023"
+#| label: fig-waffle
+#| fig-alt: ""
+#| fig-width: 7
+#| fig-height: 5
+library(ggwaffle)
 
 
-@cr-prop1
+# Navy (11, 37, 69) → #0B2545
+# Blue (47, 109, 174) → #2F6DAE
+# Teal (0, 121, 140) → #00798C
+# Green (58, 140, 94) → #3A8C5E
+# Ochre (176, 141, 54) → #B08D36
+# Red (153, 62, 56) → #993E38
+# Grey 1 (58, 63, 69) → #3A3F45
+# Grey 2 (154, 163, 172) → #9AA3AC
 
-@cr-prop2 According to data from the [Euorpean Social Survey](www.europeansocialsurvey.org), three in every four Irish residents agree that the "*government should reduce differences in income*".  
+waffle <- 
+  df_ess |> 
+    filter(cntry == "IE" & essround == 11) |> 
+    count(gincdif = as_factor(gincdif), wt = pspwght) |> 
+    mutate(p = round(prop.table(n)*80)) |> 
+    select(-n) |> 
+    uncount(p) |> 
+    waffle_iron(aes_d(group = gincdif))  |> 
+    ggplot(aes(x,y, fill = group))+
+    geom_tile_interactive(aes(tooltip = group, data_id = group), color = "white", size = 0.5) +
+    coord_equal() + 
+    scale_fill_manual(values = c("#0B2545", "#2F6DAE", "grey", "#B08D36", "#993E38"))+
+    theme_void() +
+    theme(legend.position = "right", 
+          legend.text = element_text(size = 18),
+          legend.title = element_blank(),
+          plot.margin=unit(c(-0.30,0,0,0), "null"))
+
+girafe(
+  waffle,
+  options = list(
+         opts_hover(css = "color: black;"),
+         opts_hover_inv(css = "opacity: 0.8;"),
+         opts_sizing(rescale = TRUE, width = 0.8)
+       )
+  )
 
 
-[@cr-map]{pan-to="15%,30%" scale-by="3"} About 76 per cent  of respondents indicated that they either ‘agree’ (45%) or ‘agree strongly’ (31%) with this statement.
+```
 
-[@cr-map]{scale-by="1.1"} This proportion is slightly higher than the European average (71%) and the ones from other northern European countries.
+The overall trajectory in Ireland is similar to Portugal and differs substantially from the British and Dutch trajectories. The increase during the years of economic recession (when both Ireland and Portugal were severely affected) suggests a relationship between macro-economic context and support for redistribution.
+
+```{r}
+#| fig-cap: "Proportion agreeing that the ‘Government should reduce income differences’ by year, 2002–2024"
+#| label: fig-long
+#| fig-alt: ""
+#| fig-width: 7
+#| fig-height: 5
+
+all_countries <- unique(df_ess$cntry)
+
+select_countries <- c("IE", "PT", "NL", "GB")
+
+df_ess$cntry_rlvl <- factor(df_ess$cntry, levels = c(all_countries[!all_countries %in% select_countries], select_countries))
+
+fig_c4_eutime <-
+    df_ess |>
+        mutate(Country = 
+        factor(if_else(cntry %in% select_countries, cntry_label, "Other countries"), levels = c("Other countries", "Portugal", "Ireland", "United Kingdom", "Netherlands"))
+        ) |> 
+        group_by(Year = start_year, Country, cntry_rlvl)  |>
+        summarise(
+            Proportion = weighted.mean(gincdif_agree, w = pspwght, na.rm = TRUE)*100) |>
+        ggplot(aes(x = Year, y = Proportion, group = cntry_rlvl, color = Country, frame = Year, data_id = Country, tooltip = Country)) +
+        geom_line_interactive(linewidth = 0.8) +
+        scale_color_manual(values = c("grey95", "red",  "#396065", "blue", "#f26a4c"))+
+        scale_x_continuous(breaks = seq(2002,2024, 2), limits = c(2003, 2023)) +
+        labs(
+            x = "Year", y = "Government should reduce income differences (%)"
+        ) +
+        theme_classic() +
+        theme(
+            legend.position = "bottom",
+            legend.title = element_blank(),
+            legend.text = element_text(size = 12),
+            axis.text.y = element_text(size = 10),
+            axis.text.x = element_text(size = 10, angle = 45, vjust = 1, hjust = 1),
+        ) +
+        guides(color=guide_legend(nrow=2,byrow=TRUE))
+
+#ggplotly(fig_c4_eutime, tooltip = c("Country", "Year"))  # |> config(displayModeBar = FALSE)
+
+girafe(
+  fig_c4_eutime,
+  options = list(
+         opts_hover(css = "fill: white;"),
+         opts_hover_inv(css = "opacity: 0.2;"),
+         opts_sizing(rescale = TRUE, width = 0.8)
+       )
+)
+
+```
 
 
-:::
+
+
 
 ## 
 

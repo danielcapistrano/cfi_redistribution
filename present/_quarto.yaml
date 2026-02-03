@@ -2,21 +2,23 @@ project:
   type: website
   output-dir: ../docs
 website:
-  title: ""
+  title: "Public support for welfare policies and reducing inequality in Ireland"
   favicon: "img/favicon.png"
-  page-navigation: true
-  navbar:
-    background: "#005d80ff"
-    foreground: "white"
-    logo: "img/esri_wbg.png"
-    left:
-      - href: index.qmd
-        text: Home
-      - href: https://www.esri.ie
-        text: Full report
-    tools:
-      - icon: github
-        href: https://github.com/danielcapistrano/cfi_redistribution
+  page-navigation: false
+  # navbar:
+  #   background: "rgba(255, 255, 255, 0)"
+  #   foreground: "#223451"
+  #   logo: "img/esri_wbg.png"
+  #   left:
+  #     - href: index.qmd
+  #       text: Home
+  #     - href: https://www.esri.ie
+  #       text: Full report
+  #     - href: https://www.esri.ie
+  #       text: About
+  #   tools:
+  #     - icon: github
+  #       href: https://github.com/danielcapistrano/cfi_redistribution
 fotmat:
   html:
     css: _assets/scrolly.scss
