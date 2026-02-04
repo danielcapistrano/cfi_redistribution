@@ -1,38 +1,43 @@
 ---
-title: Public support for welfare policies and reducing inequality in Ireland
-author:
-  - name: Daniel Capistrano
-    orcid: https://orcid.org/0000-0002-8157-5564
-  - name: Bertrand Maître
-  - name: Helen Russel
-    orcid: https://orcid.org/0000-0001-6376-2668
-date: 18 Feb 2026
+# title: Minding the gap
+# subtitle: Public support for welfare policies and reducing inequality in Ireland
+# author:
+#   - name: Daniel Capistrano
+#     orcid: https://orcid.org/0000-0002-8157-5564
+#   - name: Bertrand Maître
+#   - name: Helen Russel
+#     orcid: https://orcid.org/0000-0001-6376-2668
+# date: 18 Feb 2026
 format:
-  closeread-html:
-    axe: true
-    title-block-banner: false
+  html:
+    theme: yeti
+    smooth-scroll: true
     cap-location: top
-    page-layout: article
-    theme: cosmo
-    fontsize: 1.2rem
-    remove-header-space: true
-    cr-style:
-      narrative-background-color-overlay: "rgba(255, 255, 255, .8)"
-      narrative-text-color-overlay: grey90
-      section-background-color: white
-      css: _assets/scrolly.scss
-    #fig-format: svg
-    code-tools: false
     toc: false
     bibliography: _assets/CFI_Redistribution.bib
+    css: _assets/story.css
+    include-in-header: 
+      - text: |
+            <script src="_assets/highlight.js"></script>
 execute: 
   echo: false
   warning: false
+  eval: true
 ---
+
+:::{.column-page-inset-right}
 # Public support for welfare policies and reducing inequality in Ireland
+:::
+
+Daniel Capistrano, Bertrand Maître & Helen Russell   
+18 February 2026
+  
+
+[Full report]() | [Code]()
 
 ```{r}
 library(ggiraph)
+library(ggwaffle)
 
 setwd("../")
 source("paper/1_SetupImport.R")
@@ -40,11 +45,12 @@ setwd("~/")
 
 ```
 
-Many vulnerable individuals and families in Ireland are struggling to make ends meet and are falling into poverty [@roantree_poverty_2025]. Because government resources are limited and there are many competing demands on social welfare funding, it is crucial to understand ['who']{.mark} supports State efforts to reduce income inequalities and to provide welfare, as well as examine ['when']{.mark} and ['why']{.mark} they support these efforts.
+## 
+
+Many individuals in Ireland are struggling to make ends meet and are falling into poverty. To what extent the Irish public support government's action to guarantee and increase support for those in need? A new report from the ESRI presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents 
 
 
-According to data from the [European Social Survey](www.europeansocialsurvey.org), three in every four Irish residents agree that the "*government should reduce differences in income*". This proportion is higher than the European average (71%) and has been relatively stable over time. 
-
+Three in every four Irish residents agree that the ["*government should reduce differences in income*"]{.mark}. This proportion is higher than the European average (71%) and has been relatively stable over time. 
 
 ```{r}
 #| fig-cap: "Proportion agreeing that the ‘Government should reduce income differences’, Ireland, 2023"
@@ -52,7 +58,6 @@ According to data from the [European Social Survey](www.europeansocialsurvey.org
 #| fig-alt: ""
 #| fig-width: 7
 #| fig-height: 5
-library(ggwaffle)
 
 
 # Navy (11, 37, 69) → #0B2545
@@ -76,11 +81,14 @@ waffle <-
     geom_tile_interactive(aes(tooltip = group, data_id = group), color = "white", size = 0.5) +
     coord_equal() + 
     scale_fill_manual(values = c("#0B2545", "#2F6DAE", "grey", "#B08D36", "#993E38"))+
+    scale_x_continuous(expand = c(0, 0)) +
+    scale_y_continuous(expand = c(0, 0))  +
     theme_void() +
-    theme(legend.position = "right", 
-          legend.text = element_text(size = 18),
+    theme(legend.position = "bottom", 
+          legend.text = element_text(size = 16),
           legend.title = element_blank(),
-          plot.margin=unit(c(-0.30,0,0,0), "null"))
+          plot.margin=unit(c(0.05,0.05,0.02,0.02), "null"))+
+    guides(fill=guide_legend(nrow=3,byrow=TRUE))
 
 girafe(
   waffle,
@@ -158,27 +166,13 @@ Both female respondents and those who place themselves on the left of the left-r
 Overall, the examination of individual factors associated with support for income redistribution in Ireland goes in the same direction of the literature pointing out the role of material interests (financial situation) and perspectives of upward mobility (social class) [@bonnet_what_2024].
 
 
-:::{.cr-section layout="sidebar-right"}
 
 
-:::{#cr-class}
-![](img/fig_c2_class.svg)
-:::
+The circles indicate the proportion who support redistribution within each group.  The data indicate that higher support is found among those in lower income quintiles and whose financial situation is ‘very difficult’.
+
+Looking at social class, both ‘skilled’ manual and ‘unskilled’ workers show higher levels of agreement with the government reducing income differences, whereas ‘small business owners’ and the ‘service class’, which includes managers and professionals, show lower levels of agreement. 
 
 
-
-@cr-class
-
-
-The circles indicate the proportion who support redistribution within each group. [@cr-class]{pan-to="0%,60%" scale-by="1.6"} The data indicate that higher support is found among those in lower income quintiles and whose financial situation is ‘very difficult’.
-
-[@cr-class]{pan-to="0%,0%" scale-by="1.5"} Looking at social class, both ‘skilled’ manual and ‘unskilled’ workers show higher levels of agreement with the government reducing income differences, whereas ‘small business owners’ and the ‘service class’, which includes managers and professionals, show lower levels of agreement. 
-
-
-@cr-class
-
-
-:::
 
 ## What do people think about welfare policies?
 
@@ -206,38 +200,21 @@ For instance, the ESS included questions in relation to beliefs about the conseq
 
 Despite a decrease between 2009 and 2016, the belief that [‘social benefits prevent widespread poverty’]{.mark}  was the most prevalent across all these statements. On the other hand, Ireland (58%) had the third highest proportion of respondents agreeing that ‘social benefits make people lazy’, behind Portugal (63%) and Poland (60%). This proportion is significantly lower in countries such as Iceland (24%), Sweden (35%), and Germany (43%). Finally, as expected, those who strongly agree that ‘social benefits make people lazy’ are also less likely to support income redistribution (68%), whereas those who strongly disagree are more supportive of redistribution (84%).
 
-::: {.column-page-right}
-![](./img/fig_c3_benefits.svg)
-:::
-
-
-
-:::{.cr-section layout="sidebar-left"}
-
-
-:::{#cr-fair}
-![](img/fig_c3_fairness.svg)
-:::
 
 In a special module conducted in 2018, the ESS asked respondents to assess how fair are the incomes received by the top and bottom deciles of the country’s income distribution.
 
-@cr-fair
 
 For most countries, the more unfair the income of the top decile is perceived, the higher the odds of supporting redistribution. 
 
 
-[@cr-fair]{pan-to="70%,30%" scale-by="2"} This relationship is particularly strong in [Norway]{.mark}, for instance, where each unit in the unfairness scale of the top decile is associated with 51 per cent higher odds of supporting redistribution. In addition, if a respondent perceives the bottom decile as unfairly too low, the odds of supporting redistribution are also higher. 
+This relationship is particularly strong in [Norway]{.mark}, for instance, where each unit in the unfairness scale of the top decile is associated with 51 per cent higher odds of supporting redistribution. In addition, if a respondent perceives the bottom decile as unfairly too low, the odds of supporting redistribution are also higher. 
 
 
-[@cr-fair]{pan-to="0%,10%" scale-by="2.5"} In [Poland]{.mark}, the perceived unfairness of the bottom income decile is a stronger predictor of support compared to the unfairness of the top decile. 
+In [Poland]{.mark}, the perceived unfairness of the bottom income decile is a stronger predictor of support compared to the unfairness of the top decile. 
 
 
-[@cr-fair]{pan-to="-25%,10%" scale-by="2.5"} In Ireland, both variables have weaker but nonetheless significant effects, meaning that view about unfairnes of both the rich and the poor is associated with support for redistribution.
+In Ireland, both variables have weaker but nonetheless significant effects, meaning that view about unfairnes of both the rich and the poor is associated with support for redistribution.
 
-@cr-fair
-
-
-:::
 
 ## Has support for redistribution changed over time?
 
@@ -248,27 +225,16 @@ Overall, there is a stable agreement over time that the ‘Government should red
 
 However, the recovery from the economic recession initiated a different trajectory for different social classes despite the overall increase during the recession. 
 
-
-:::{.cr-section layout="sidebar-left"}
-
-
-:::{#cr-timeclass}
-![](img/fig_c4_time_class.svg)
-:::
+Respondents in the [service classes]{.mark} had an overall reduction in the level of support for redistribution since the peak of the economic recession. 
 
 
-@cr-timeclass
+On the other hand, respondents grouped into the [working classes]{.mark} have a trajectory of stable or increasing support since then. 
 
-[@cr-timeclass]{pan-to="-15%,0%" scale-by="1.5"} Respondents in the [service classes]{.mark} had an overall reduction in the level of support for redistribution since the peak of the economic recession. 
-
-
-[@cr-timeclass]{pan-to="-15%,30%" scale-by="1.5"} On the other hand, respondents grouped into the [working classes]{.mark} have a trajectory of stable or increasing support since then. 
-
-@cr-timeclass In fact, 85 per cent of unskilled workers indicated in the latest round that the government should reduce differences in income, which is the highest proportion in the time series since 2002. 
+In fact, 85 per cent of unskilled workers indicated in the latest round that the government should reduce differences in income, which is the highest proportion in the time series since 2002. 
 
 
 
-:::
+
 
 ##
 

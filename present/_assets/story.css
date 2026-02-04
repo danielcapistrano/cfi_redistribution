@@ -1,0 +1,58 @@
+
+h1 {
+  margin-block-start: 80px;
+  font-size: 3.5rem;
+  color: #0B2545;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.page-columns .content {
+  line-height: 1.6;
+}
+
+/* Overall body/content width */
+.page-columns {
+  max-width: 800px;  
+  margin: 0 auto;  
+}
+
+/* h1 breaks out of the column */
+.page-columns h1 {
+  margin-left: 0 !important;
+  margin-right: auto;
+  max-width: 1000px;
+}
+
+/* Different bg colour for specific section */
+
+.highlight-section {
+  background-color: #f5f7fa;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 8px;
+}
+
+/*-- highlight animation --*/
+mark {
+  background: linear-gradient(
+    90deg,
+    #efeb14e0 50%,
+    rgba(255, 255, 255, 0) 50%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+}
+
+/* animation triggers only when class is added */
+mark.animate {
+  animation: highlight 1.5s ease 0.3s forwards;
+}
+
+/* keyframes */
+@keyframes highlight {
+  to {
+    background-position: 0 0;
+  }
+}
+
