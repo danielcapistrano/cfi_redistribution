@@ -19,10 +19,12 @@ format:
     include-in-header: 
       - text: |
             <script src="_assets/highlight.js"></script>
+    template-partials:
+        - _assets/title-block.html
 execute: 
   echo: false
   warning: false
-  eval: true
+  eval: false
 ---
 
 :::{.column-page-inset-right}
@@ -47,7 +49,7 @@ setwd("~/")
 
 ## 
 
-Many individuals in Ireland are struggling to make ends meet and are falling into poverty. To what extent the Irish public support government's action to guarantee and increase support for those in need? A new report from the ESRI presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents 
+Does the Irish population support measures to reduce inequality in Ireland? Many individuals in Ireland are struggling to make ends meet and are falling into poverty. To what extent the Irish public support government's action to guarantee and increase support for those in need? A new report from the ESRI presents findings of a research project that explored attitudes towards welfare and redistributive policies among Irish residents 
 
 
 Three in every four Irish residents agree that the ["*government should reduce differences in income*"]{.mark}. This proportion is higher than the European average (71%) and has been relatively stable over time. 
