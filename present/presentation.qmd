@@ -52,7 +52,45 @@ include-after: |
   </script>
 ---
 
+# Why? {.inverted}
+
+# Questions
+
+- Is there public support for reducing inequalities in Ireland?  
+- Who supports more?  
+- Support to whom?  
+- Can support change? 
+
+
+# Literature {.inverted}
+
+
+## Societal level influences 
+
+- Higher support for redistribution in countries with higher inequality [@velev_economic_2024; @finseraas_income_2009]  
+
+- Support for redistribution remained apparently stable over time [@lupu_unequal_2023] and could be related to lack of major political reaction to income inequality.  
+
+- @van_oorschot_social_2017 note that support for welfare policies, social transfers and redistribution is conditional on the social legitimacy of these policies' target groups  
+
+
+
+## Socio-demographic predictors 
+
+- Women are more progressive in relation to policy preferences and support for redistribution [@shorrocks_attitudinal_2020; @inglehart_cultural_2018; @grasso_are_2025]  
+
+-  @steele_wealth_2022 find that older respondents are more favourable of income redistribution.  
+
+- @grasso_are_2025 highlights the association between gender and generation, with the cohorts of women born after 1946 being more supportive of redistribution compared to men in their cohorts  
+
+
+# Methods {.inverted}
+
+
+
+
 # Key findings {.inverted}
+
 
 ```{r}
 library(tidyverse)
@@ -130,27 +168,6 @@ Those who experienced job loss during the [COVID19]{.big} pandemic are more supp
 Source: Authors’ own analysis of the European Social Survey 2023/2024.
 :::
 
-# Literature {.inverted}
-
-
-## Societal level influences 
-
-- Higher support for redistribution in countries with higher inequality [@velev_economic_2024; @finseraas_income_2009]  
-
-- Support for redistribution remained apparently stable over time [@lupu_unequal_2023] and could be related to lack of major political reaction to income inequality.     
-
-
-## Socio-demographic predictors 
-
-- Women are more progressive in relation to policy preferences and support for redistribution [@shorrocks_attitudinal_2020; @inglehart_cultural_2018; @grasso_are_2025]  
-
--  @steele_wealth_2022 find that older respondents are more favourable of income redistribution.  
-
-- @grasso_are_2025 highlights the association between gender and generation, with the cohorts of women born after 1946 being more supportive of redistribution compared to men in their cohorts  
-
-## Welfare for whom? 
-
-@van_oorschot_social_2017 note that support for welfare policies, social transfers and redistribution is conditional on the social legitimacy of these policies' target groups  
 
 
 # Methods {.inverted}

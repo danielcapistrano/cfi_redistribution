@@ -208,9 +208,21 @@ get_dist_fair <- function(var, label){
     df_ess |>
          filter(cntry == 'IE') |> 
         filter(essround == 9) |> 
-        count(vals = get(var), wt = pspwght) |> 
-        mutate(p = prop.table(n)*100, var = label) 
+        count(values = get(var), wt = pspwght) |> 
+        mutate(proportion = prop.table(n)*100, var = label) 
 }
+
+# df_ess |>
+#         # filter(cntry == 'IE') |> 
+#         filter(essround == 9) |> 
+#         mutate(bt_unfair = if_else(btminfr < 0, 1, 0)) |> 
+#         group_by(cntry) |> 
+#         summarise(values = weighted.mean(btminfr, w = pspwght, na.rm = T)) |> 
+#         arrange(values)
+#         # mutate(proportion = prop.table(n)*100)  |> 
+#         # arrange(proportion) |> filter(values == 0)
+
+# get_dist_fair("topinfr", "Top decile")
 
 fig_c3_fair_dist <- 
     get_dist_fair( "btminfr", "Bottom decile") |> 
