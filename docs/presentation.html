@@ -50,7 +50,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-5ac7ae7828e64aeb0df2c382daff825d.css">
+  <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-2513aaece88e8fe71e9d1dd45afb3e4a.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -160,7 +160,7 @@ Daniel Capistrano, Bertrand Maître and Helen Russell
 </div>
 </div>
 
-  <p class="date">November 2025</p>
+  <p class="date">February 2026</p>
 </section>
 <section>
 <section id="key-findings" class="title-slide slide level1 inverted center">
@@ -743,6 +743,22 @@ Velev, Valentin, and Alexander W Schmidt-Catran. 2024. <span>“Economic <span>I
         }
       });
       </script>
+    <script type="text/javascript">
+      Reveal.on('ready', event => {
+        if (event.indexh === 0) {
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        if (event.indexh === 0) {
+          Reveal.configure({ slideNumber: null });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+        if (event.indexh === 1) {
+          document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+        }
+      });
+    </script>
     
 
 </body></html>

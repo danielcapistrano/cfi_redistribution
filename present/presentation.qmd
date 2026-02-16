@@ -7,7 +7,7 @@ title-slide-attributes:
     data-background-size: contain
     data-background-position: bottom
 subtitle: ""
-date: November 2025  
+date: February 2026  
 date-format: "MMMM YYYY"
 from: markdown+emoji
 format: 
@@ -33,6 +33,23 @@ execute:
   cache: true
   echo: false
 bibliography: _assets/CFI_Redistribution.bib
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>
 ---
 
 # Key findings {.inverted}
