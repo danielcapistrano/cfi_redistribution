@@ -3,7 +3,7 @@ title: "Public support for welfare and redistributive policies in Ireland"
 author: "Daniel Capistrano, Bertrand Maître and Helen Russell"
 institute: ""
 title-slide-attributes:
-    data-background-image: img/pres_cover.png
+    data-background-image: img/cfi_cover.png
     data-background-size: contain
     data-background-position: bottom
 subtitle: ""
@@ -61,9 +61,9 @@ include-after: |
 ## Questions
 
 - [Is there public support for reducing income differences in Ireland?]{.big}  
-  - Who supports more?  
-  - Who should benefit?  
-  - Can support change? 
+  - Who supports ?  
+  - Who should benefit ?  
+  - Can support change over time? 
 
 
 # Literature {.inverted}
@@ -89,7 +89,7 @@ include-after: |
 
 # Methods {.inverted}
 
-## Data sources 
+## Data sources {.center}
 
 
 ::: {.columns}
@@ -115,30 +115,19 @@ include-after: |
 
 ## Support for government action
 
-::: {.columns}
+**3 in 4** Irish residents agree that the *government should reduce differences in income*.
 
-::: {.column}
+![](./img/fig_c2_eumap.svg){fig-align="center" width="75%"} 
 
-[3 in 4]{.giant}  
-Irish residents agree that the *government should reduce differences in income*.
-
-:::
-
-::: {.column}
-![](./img/fig_c2_eumap.svg)
-
-:::
-
-:::
 
 ::: {.aside}
-Source: Authors’ own analysis of the European Social Survey 2023/2024 
+Source: European Social Survey
 :::
 
 
 
 
-## Agreement by sex 2002–2024
+## Agreement by sex, Ireland 2002–2024
 
 ::: {.columns}
 
@@ -157,21 +146,20 @@ respondents.
 
 :::
 
-
 ::: {.aside}
-Source: Authors’ own analysis of the European Social Survey 2002-2024 
+Source: European Social Survey
 :::
 
-## Agreement by SES 2002-2024
+## Agreement by SES, Ireland 2002-2024
 
 ::: {.columns}
 
-::: {.column width="30%"}
+::: {.column width="40%"}
 
-the analysis by social class, household income, or  "financial situation" show a negative relationship between SES and support for redistribution.
+The analysis by social class, household income, or "financial situation" show a negative relationship between SES and support for redistribution. But remains over 60% in all groups.
 :::
 
-::: {.column width="70%"}
+::: {.column width="60%"}
 ![](./img/fig_c2_class.svg){fig-align="center"} 
 
 :::
@@ -180,97 +168,149 @@ the analysis by social class, household income, or  "financial situation" show a
 
 
 ::: {.aside}
-Source: Authors’ own analysis of the European Social Survey 2002-2024 
+Source: European Social Survey
 :::
 
 
-## Other positive associations
+## Other positive associations{.center}
 
 - Born in Ireland  
 - Younger
 - Left of the political scale  
 
 
-# Deservingness and beliefs {.inverted}
+# Welfare for whom? {.inverted}
+Perceptions of deservingness and beliefs about the role of social supports
+
 
 ## Who should receive higher priority from the government
 
 ::: {.columns}
 
-::: {.column width="30%"}
-...government should be least responsible for the unemployed compared to working
-parents and older citizens.
+::: {.column width="30%" .smaller}
+...higher agreement for gov. support for working parents and older citizens.
+
+...lower agreement for govt supports for the unemployed
 :::
 
 ::: {.column width="70%"}
 
-![](./img/fig_c3_deservingness.svg){fig-align="center"} 
+![](./img/fig_c3_deservingness.svg){fig-align="center" width="80%"} 
 :::
 
 :::
 
 ::: {.aside}
-Source: Authors’ own analysis of the European Social Survey 2016/2017 
+Source: European Social Survey
 :::
 
 
-## Beliefs about social benefits
+## Beliefs about social benefits, Ireland
 
-![](./img/fig_c3_benefits.svg){fig-align="center"} 
+![](./img/fig_c3_benefits_present.svg){fig-align="center" width="75%"} 
 
 ::: {.aside}
-Source: Authors’ own analysis of the European Social Survey 2009/2016 
+Source: European Social Survey
 :::
 
 ## Perceptions on fairness
 
-![](./img/fig_c3_fairness.svg){fig-align="center" width="80%"} 
+> Please think about the top 10% of employees working full-time in Ireland, earning more than €81,000 per year. In your opinion, are these incomes unfairly low, fair, or unfairly high? Please think generally about people earning this level of incomes
+
+> And now please think about the bottom 10% of employees working full-time in Ireland, earning less than €19,000 per year.
 
 
+## Support for redistribution and perceived fairness of the incomes
 
-## Taxes
-
-[1 in 3]{.giant}  
-Irish residents indicated that they *agree with higher taxes if it means more or better public services*. This is the 6th highest percentage across 27 EU countries. 
+![](./img/fig_c3_fairness_present_none.svg){fig-align="center" width="90%"} 
 
 ::: {.aside}
-Source: Authors’ own analysis of the Eurobarometer Flash Survey 2025.
+Source: European Social Survey
+:::
+
+## Support for redistribution and perceived fairness of the incomes
+
+![](./img/fig_c3_fairness_present_no.svg){fig-align="center" width="90%"} 
+
+::: {.aside}
+Source: European Social Survey
+:::
+
+## Support for redistribution and perceived fairness of the incomes
+
+![](./img/fig_c3_fairness_present_pl.svg){fig-align="center" width="90%"} 
+
+::: {.aside}
+Source: European Social Survey
+:::
+
+
+## Support for redistribution and perceived fairness of the incomes
+
+![](./img/fig_c3_fairness_present_ie.svg){fig-align="center" width="90%"} 
+
+::: {.aside}
+Source: European Social Survey
+:::
+
+## Support for redistribution and perceived fairness of the incomes
+
+![](./img/fig_c3_fairness_present_all.svg){fig-align="center" width="90%"} 
+
+::: {.aside}
+Source: European Social Survey
+:::
+
+## Attitudes to taxation in Ireland 
+
+<br>
+
+- 34% of Irish residents indicate that they *agree with higher taxes if it means more or better public services*. This is the 6th highest percentage across 27 EU countries. 
+
+- 35% believe taxes are too high, another 25% think they should remain at their current level.
+
+::: {.aside}
+Source: Eurobarometer Flash Survey 2025.
 :::
 
 # Change over time {.inverted}
 
-## Support for government action 
+## Support for government action reducing differences in income
 
 ![](./img/fig_c4_eutime.svg){fig-align="center" width="80%"} 
 
+::: {.aside}
+Source: European Social Survey
+:::
 
-## COVID19
+## COVID-19, Ireland 2021-2022
 
 ::: {.columns}
 
-::: {.column width="30%"}
+::: {.column width="40%"}
 
-<br>  
-Those who experienced job loss during the [COVID19]{.big} pandemic are more supportive of redistribution, regardless of their financial situation or social class.
+Those who experienced job loss during the COVID-19 pandemic are more supportive of redistribution, regardless of their financial situation or social class.
 :::
 
-::: {.column width="70%"}
-![](./img/fig_c4_covid.svg)
+::: {.column width="60%"}
+![](./img/fig_c4_covid.svg){fig-align="center"}
 :::
-
 :::
 
 ::: {.aside}
-Source: Authors’ own analysis of the European Social Survey 2023/2024.
+Source: European Social Survey.
 :::
 
-## Government campaign
+## Irish Government campaign
 
 
 ![](./img/dsp_bus.jpg)
 
+:::{.aside}
+Image: [Thecreed.ie/dsp-welfare-3-2](https://thecreed.ie/dsp-welfare-cheats-blog)
+:::
 
-## Government campaign
+## Irish Government campaign
 
 ::: {.columns}
 
@@ -281,23 +321,22 @@ Source: Authors’ own analysis of the European Social Survey 2023/2024.
 :::
 
 ::: {.column width="60%"}
-![](./img/fig_c4_dsp_mean.svg){fig-align="center"}
+![](./img/fig_c4_dsp_mean.svg){fig-align="center" width="70%"}
 :::
 
 :::
 
 ::: {.aside}
-Source: Authors’ own analysis of the European Social Survey 2016/2017.
+Source: European Social Survey
 :::
 
-## Government campaign
+## Irish Government campaign
 
 ::: {.columns}
 
 ::: {.column width="40%"}
 
-statistically significant decrease on the level of agreement that social benefits prevents poverty among interviews conducted after the launch of the campaign compared to
-those interviewed before the launch.
+Statistically significant decrease on the level of agreement that '*social benefits prevents poverty*' among interviews conducted after the launch of the campaign compared to those interviewed before the launch.
 
 :::
 
@@ -308,14 +347,54 @@ those interviewed before the launch.
 :::
 
 ::: {.aside}
-Source: Authors’ own analysis of the European Social Survey 2016/2017.
+Source: European Social Survey
 :::
 
-## Conclusions
+## Conclusions and policy implications
 
-- High support for government action to reduce income differences  
-- Negative stereotypes about welfare recipients may undermine this support  
-- 
+- Strong support for Irish government to reduce income differences, especially to address “unfairly low income” of those in the bottom income decile. 
 
+- Support for redistribution higher among low-income households, females, younger people. 
+
+- Higher than EU-average level of support for higher taxes conditional of providing better public services (may be motivated by self-interest but also related to support for redistribution)  
+
+## Conclusions and policy implications
+
+- Pandemic, which saw a huge increase in government supports, was associated with an increase in support for redistribution, especially among those directly effected  
+
+- Negative stereotypes about welfare recipients may undermine this support
+
+- Importance of communication of the role of social protection in addressing risks and the rights/entitlements of citizens  
+
+
+## Thank you {.hide-logo .inverted}
+<br>
+
+Daniel Capistrano ([daniel.capistrano@esri.ie](daniel.capistrano@esri.ie))  
+Bertrand Maître  
+Helen Russell
+
+<br>
+
+::: {.columns}
+::: {.column width="20%" text-align="center"}
+![](./img/news_qrcode.png)  
+
+:::{style="font-size: 40%;"}
+  Sign up to our Newsletter
+:::
+
+:::
+::: {.column width="80%" .small}
+![](./img/icon_website.svg){width="6%" .inline}  [ESRI.ie](https://www.esri.ie)  
+![](./img/icon_linkedin.svg){width="6%" .inline} [Economic and Social Research Institute
+](https://ie.linkedin.com/company/economic-and-social-research-institute-esri-)  
+![](./img/icon_youtube.svg){width="6%" .inline} [\@ESRIDublin](https://www.youtube.com/@ESRIDublin)  
+![](./img/icon_bluesky.svg){width="6%" .inline} [\@ESRI.ie](https://bsky.app/profile/esri.ie)  
+
+
+:::
+
+:::
 
 ## References

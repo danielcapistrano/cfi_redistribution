@@ -25,6 +25,17 @@
          x="9.6818504"
          y="20.746822" />
     </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4">
+      <rect
+         style="opacity:0.560847;fill:none;stroke-width:0.751177"
+         id="rect5"
+         width="399.72214"
+         height="262.10153"
+         x="17.289019"
+         y="28.353991" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="namedview271"
@@ -37,8 +48,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="pt"
      inkscape:zoom="1.0845034"
-     inkscape:cx="274.3191"
-     inkscape:cy="207.92927"
+     inkscape:cx="359.15056"
+     inkscape:cy="208.39031"
      inkscape:window-width="1730"
      inkscape:window-height="894"
      inkscape:window-x="0"
@@ -49,7 +60,7 @@
      class="svglite"
      id="g271"
      transform="translate(-9.6818504,-20.746822)"
-     clip-path="url(#clipPath271)">
+     clip-path="url(#clipPath4)">
     <defs
        id="defs1">
       <style

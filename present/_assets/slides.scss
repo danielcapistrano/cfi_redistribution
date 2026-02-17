@@ -63,6 +63,10 @@ details>summary {
   bottom: 0px;
 }
 
+.reveal .slide-logo.hide-logo {
+  display: none !important;
+}
+
 .reveal .progress {
   height: 1%;
 }
