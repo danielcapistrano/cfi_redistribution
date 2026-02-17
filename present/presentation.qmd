@@ -10,7 +10,7 @@ subtitle: ""
 date: February 2026  
 date-format: "MMMM YYYY"
 from: markdown+emoji
-format: 
+format: #pptx
   revealjs:
     menu: false
     theme: _assets/slides.scss
@@ -23,6 +23,9 @@ format:
     controls: true
     chalkboard: true
     highlight-style: github
+    include-in-header: 
+      - text: |
+            <script src="_assets/highlight.js"></script>
 editor: 
   markdown: 
     wrap: sentence
@@ -52,14 +55,15 @@ include-after: |
   </script>
 ---
 
+
 # Why? {.inverted}
 
-# Questions
+## Questions
 
-- Is there public support for reducing inequalities in Ireland?  
-- Who supports more?  
-- Support to whom?  
-- Can support change? 
+- [Is there public support for reducing income differences in Ireland?]{.big}  
+  - Who supports more?  
+  - Who should benefit?  
+  - Can support change? 
 
 
 # Literature {.inverted}
@@ -74,7 +78,6 @@ include-after: |
 - @van_oorschot_social_2017 note that support for welfare policies, social transfers and redistribution is conditional on the social legitimacy of these policies' target groups  
 
 
-
 ## Socio-demographic predictors 
 
 - Women are more progressive in relation to policy preferences and support for redistribution [@shorrocks_attitudinal_2020; @inglehart_cultural_2018; @grasso_are_2025]  
@@ -86,17 +89,31 @@ include-after: |
 
 # Methods {.inverted}
 
+## Data sources 
 
+
+::: {.columns}
+
+::: {.column width = "70%"}
+
+- **European Social Survey (2002 - 2024)**  
+- European Election Studies - Voter Survey  
+- Eurobarometer  
+- National Election and Democracy Study   
+
+:::
+
+::: {.column width = "30%"}
+![](./img/illu_ess.jpg)
+
+:::
+
+:::
 
 
 # Key findings {.inverted}
 
-
-```{r}
-library(tidyverse)
-```
-
-## Redistribution
+## Support for government action
 
 ::: {.columns}
 
@@ -108,7 +125,7 @@ Irish residents agree that the *government should reduce differences in income*.
 :::
 
 ::: {.column}
-![](./img/fig_eumap.png)
+![](./img/fig_c2_eumap.svg)
 
 :::
 
@@ -117,6 +134,99 @@ Irish residents agree that the *government should reduce differences in income*.
 ::: {.aside}
 Source: Authors’ own analysis of the European Social Survey 2023/2024 
 :::
+
+
+
+
+## Agreement by sex 2002–2024
+
+::: {.columns}
+
+::: {.column width="30%"}
+
+Considering all 11 rounds of the ESS together, there is a significantly
+higher support for redistribution among female respondents compared to male
+respondents.
+
+:::
+
+::: {.column width="70%"}
+![](./img/fig_c2_sex.svg){fig-align="center"} 
+
+:::
+
+:::
+
+
+::: {.aside}
+Source: Authors’ own analysis of the European Social Survey 2002-2024 
+:::
+
+## Agreement by SES 2002-2024
+
+::: {.columns}
+
+::: {.column width="30%"}
+
+the analysis by social class, household income, or  "financial situation" show a negative relationship between SES and support for redistribution.
+:::
+
+::: {.column width="70%"}
+![](./img/fig_c2_class.svg){fig-align="center"} 
+
+:::
+
+:::
+
+
+::: {.aside}
+Source: Authors’ own analysis of the European Social Survey 2002-2024 
+:::
+
+
+## Other positive associations
+
+- Born in Ireland  
+- Younger
+- Left of the political scale  
+
+
+# Deservingness and beliefs {.inverted}
+
+## Who should receive higher priority from the government
+
+::: {.columns}
+
+::: {.column width="30%"}
+...government should be least responsible for the unemployed compared to working
+parents and older citizens.
+:::
+
+::: {.column width="70%"}
+
+![](./img/fig_c3_deservingness.svg){fig-align="center"} 
+:::
+
+:::
+
+::: {.aside}
+Source: Authors’ own analysis of the European Social Survey 2016/2017 
+:::
+
+
+## Beliefs about social benefits
+
+![](./img/fig_c3_benefits.svg){fig-align="center"} 
+
+::: {.aside}
+Source: Authors’ own analysis of the European Social Survey 2009/2016 
+:::
+
+## Perceptions on fairness
+
+![](./img/fig_c3_fairness.svg){fig-align="center" width="80%"} 
+
+
 
 ## Taxes
 
@@ -127,39 +237,25 @@ Irish residents indicated that they *agree with higher taxes if it means more or
 Source: Authors’ own analysis of the Eurobarometer Flash Survey 2025.
 :::
 
-## Social benefits
+# Change over time {.inverted}
+
+## Support for government action 
+
+![](./img/fig_c4_eutime.svg){fig-align="center" width="80%"} 
+
+
+## COVID19
 
 ::: {.columns}
 
-::: {.column}
-
-<br>  
-More than [half]{.big} of Irish residents agree that *social benefits make people lazy*.  
-:::
-
-::: {.column}
-![](./img/fig_lazy.png)
-:::
-
-:::
-
-::: {.aside}
-Source: Authors’ own analysis of the European Social Survey 2009/2016.
-:::
-
-
-## Relevant events
-
-::: {.columns}
-
-::: {.column}
+::: {.column width="30%"}
 
 <br>  
 Those who experienced job loss during the [COVID19]{.big} pandemic are more supportive of redistribution, regardless of their financial situation or social class.
 :::
 
-::: {.column}
-![](./img/fig_covid.png)
+::: {.column width="70%"}
+![](./img/fig_c4_covid.svg)
 :::
 
 :::
@@ -168,56 +264,58 @@ Those who experienced job loss during the [COVID19]{.big} pandemic are more supp
 Source: Authors’ own analysis of the European Social Survey 2023/2024.
 :::
 
+## Government campaign
 
 
-# Methods {.inverted}
-
-## Data sources
-
-- European Social Survey (2002 - 2024)  
-
-- European Elections Studies (EES)  
-
-- Electoral Commission / Eurobarometer  
+![](./img/dsp_bus.jpg)
 
 
-## References 
+## Government campaign
 
-::: {#refs}
+::: {.columns}
+
+::: {.column width="40%"}
+
+... seven-day exponential moving average of three variables in the 30-day time window around the launch of the campaign on 17 April 2017.
+
 :::
 
+::: {.column width="60%"}
+![](./img/fig_c4_dsp_mean.svg){fig-align="center"}
+:::
 
-# Results {.inverted}
+:::
 
-## Fairness
+::: {.aside}
+Source: Authors’ own analysis of the European Social Survey 2016/2017.
+:::
 
-![](./img/fig_fairness.png)
+## Government campaign
 
-## Social benefits
+::: {.columns}
 
-![](./img/fig_benefits.png)
+::: {.column width="40%"}
 
-## Deservingness
+statistically significant decrease on the level of agreement that social benefits prevents poverty among interviews conducted after the launch of the campaign compared to
+those interviewed before the launch.
 
-![](./img/fig_deservingness.png)
+:::
 
-## Tax
+::: {.column width="60%"}
+![](./img/fig_c4_dsp_model.svg){fig-align="center" width="100%"}
+:::
 
-![](./img/fig_taxes.png)
+:::
 
-## Redistribution over time (total)
+::: {.aside}
+Source: Authors’ own analysis of the European Social Survey 2016/2017.
+:::
 
-![](./img/fig_eutime.png)
+## Conclusions
 
-## Redistribution over time (social class)
+- High support for government action to reduce income differences  
+- Negative stereotypes about welfare recipients may undermine this support  
+- 
 
-![](./img/fig_time_class.png)
 
-## Events (DSP campaign)
-
-![](./img/fig_dsp_mean.png)
-
-## Events (Budget)
-
-![](./img/fig_budget_mean.png)
-
+## References
