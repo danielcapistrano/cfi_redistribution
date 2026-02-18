@@ -106,3 +106,26 @@ details>summary {
   max-height: unset !important;
 }
 
+
+/*-- highlight animation --*/
+mark {
+  background: linear-gradient(
+    90deg,
+    #efeb14e0 50%,
+    rgba(255, 255, 255, 0) 50%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+}
+
+/* animation triggers only when class is added */
+mark.animate {
+  animation: highlight 1.5s ease 0.3s forwards;
+}
+
+/* keyframes */
+@keyframes highlight {
+  to {
+    background-position: 0 0;
+  }
+}

@@ -1,19 +1,22 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const marks = document.querySelectorAll("mark");
+document.addEventListener("DOMContentLoaded", function () {
 
-  const observer = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate");
-          // observer.unobserve(entry.target); // animate only once
-        }
-      });
-    },
-    {
-      threshold: 0.4 // % of element visible before triggering
-    }
-  );
+  function animateMarksInSlide(slide) {
+    const marks = slide.querySelectorAll("mark");
+    marks.forEach(mark => {
+      mark.classList.add("animate");
+    });
+  }
 
-  marks.forEach(mark => observer.observe(mark));
+  // Animate marks on first slide
+  animateMarksInSlide(Reveal.getCurrentSlide());
+
+  // Animate marks when slide changes
+  Reveal.on("slidechanged", function(event) {
+    animateMarksInSlide(event.currentSlide);
+  });
+
 });
+
+// if (!mark.classList.contains("animate")) {
+//   mark.classList.add("animate");
+// }
