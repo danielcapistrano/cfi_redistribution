@@ -69,11 +69,11 @@ include-after: |
 ::: {.column width="50%"}
 
 ::: {.nonincremental}
-[www.esri.ie](www.esri.ie)
+[www.esri.ie](https://www.esri.ie/publications/browse)
 
-- Press release  
-- Executive summary  
-- Full report 
+
+![](./img/qrcode.svg){fig-align="center" width="50%"}
+
 :::
 
 :::
@@ -82,7 +82,7 @@ include-after: |
 
 ## Questions
 
-- [Is there public support for reducing income differences in Ireland?]{.big}  
+- Is there public support for reducing income differences in Ireland?
   - Who supports ?  
   - Who should benefit ?  
   - Can support change over time? 
@@ -396,25 +396,6 @@ Source: European Social Survey
 Image: [Thecreed.ie/dsp-welfare-3-2](https://thecreed.ie/dsp-welfare-cheats-blog)
 :::
 
-## Irish Government campaign
-
-::: {.columns}
-
-::: {.column width="40%"}
-
-... seven-day exponential moving average of three variables in the 30-day time window around the launch of the campaign on 17 April 2017.
-
-:::
-
-::: {.column width="60%"}
-![](./img/fig_c4_dsp_mean.svg){fig-align="center" width="70%"}
-:::
-
-:::
-
-::: {.aside}
-Source: European Social Survey
-:::
 
 ## Irish Government campaign
 
